@@ -1,0 +1,236 @@
+﻿body
+{
+}
+img
+{
+    border-width: 0px;
+}
+.NullLine
+{
+    margin-top: 10px;
+}
+
+.Center
+{
+    margin-left: auto;
+    margin-right: auto;
+}
+#Drag_Footer
+{
+    float: left;
+    background-color: Green;
+}
+.MarginTop
+{
+    margin-top: 10px;
+}
+
+.SplitLine
+{
+    height: 1px;
+    background-color: rgb(64,83,108);
+    overflow: hidden;
+}
+
+.Bottomest, .Bottomest *
+{
+    z-index: 0;
+}
+.MainSiteMap
+{
+    width: 100%;
+    padding-top: 5px;
+}
+
+
+.TinyLogin input
+{
+    margin: 2px;
+    width: 110px;
+}
+
+/*空属性，也可定义默认的样式，但一要合其它样式配合，规定只设置上圆角*/
+.UpDiv
+{
+}
+
+/*空属性，规定只设置下圆角*/
+.DownDiv
+{
+}
+.Sect
+{
+    font-size: 13px;
+    margin-top: 10px;
+    border: solid 1px black;
+    background-color: #6b86b3;
+    color: White;
+    font-weight: bold;
+    padding: 0px;
+}
+.SectInner
+{
+    padding: 2px;
+    font-size: 12px;
+    background-color: white;
+    color: black;
+    border: solid 1px #e5eeff;
+    font-size: 12px;
+    font-weight: normal;
+    margin: 0px;
+}
+.Sect span
+{
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-left: 5px;
+}
+
+.Sect a
+{
+    color: White;
+}
+
+.SectInner A
+{
+    color: black;
+}
+
+
+.LogoTit
+{
+    font-family: Arial Black;
+    font-size: 25px;
+    color: #000040;
+}
+.Erect_Split
+{
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.GrayLink A
+{
+    color: #555555;
+    font-size: 12px;
+}
+
+.SearchBg
+{
+    background-color: #3d83b4;
+}
+.SearchBg input
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 0px;
+}
+.SearchBg select
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 0px;
+}
+.SearchTxt
+{
+    width: 290px;
+}
+.Tab
+{
+    cursor: default;
+    border: solid 1px #0a75a6;
+    text-align: center;
+}
+.TabInner
+{
+    border: solid 1px #ECF8EB;
+    background-color: #ECF8EB;
+    padding: 10px;
+    padding-top: 6px;
+    padding-bottom: 4px;
+    color: Black;
+    font-weight: bold;
+}
+.TabInnerSel
+{
+    background-color: #3d83b4;
+    border: solid 1px #ECF8EB;
+    color: White;
+}
+.PagerDiv
+{
+    margin-top: 10px;
+    border: solid 1px #2e3d52;
+    background-color: #869fb7;
+    color: White;
+}
+
+.PagerInnerDiv
+{
+    padding: 5px;
+    font-size: 12px;
+    border: solid 1px #a9bcd0;
+    margin: 0px;
+}
+
+.PagerDiv a
+{
+    color: White;
+}
+.PagerDiv img
+{
+    color: White;
+    margin-top: 3px;
+    border-width: 0px;
+}
+
+.WebPager A
+{
+    border: solid 1px #5a708c;
+    color: #5A708C;
+    padding: 2px;
+    margin: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: white;
+}
+
+.WebPager A.sel
+{
+    background-color: #5e90c3;
+    color: White;
+    font-weight: bold;
+}
+.WebPager a:hover
+{
+    background-color: #5e90c3;
+    color: White;
+}
+
+
+.WebPager A.prenxt
+{
+    margin: 2px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+/*sidebarmenu end */
+.KeySpan
+{
+    margin-top: 10px;
+    vertical-align: top;
+    white-space: normal;
+    width: 120px;
+    font-size: 12px;
+}
+.ValueSpan
+{
+    margin-top: 10px;
+    vertical-align: top;
+    white-space: normal;
+    font-size: 12px;
+    line-height: 20px;
+}

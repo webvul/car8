@@ -1,0 +1,72 @@
+﻿.Inline {
+    vertical-align: middle;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+}
+
+#body_head {
+    border: solid 0px #7792AE;
+    background-image: url('SkinHeader.gif');
+    background-repeat: no-repeat;
+    margin: auto;
+    width: 960px;
+}
+
+    #body_head div {
+        line-height: 85px;
+        margin-left: 50px;
+        color: #E4EFFA;
+        vertical-align: middle;
+        text-align: left;
+        font-size: 36px;
+        font-family: 华文行楷;
+    }
+
+#body_fav {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+}
+
+#body_menu {
+    border-top: solid 1px #34A17B;
+    background: #309274;
+    margin: auto;
+    text-align: left;
+    vertical-align: middle;
+    width: 960px;
+    height: 32px;
+}
+
+    #body_menu ul {
+        display: inline;
+    }
+
+        #body_menu ul li {
+            padding-left: 2px;
+            background: url(mainNavigatLeft.gif) left no-repeat;
+            .Inline;
+        }
+
+            #body_menu ul li a {
+                padding: 13px 22px 6px 21px;
+                color: white;
+                text-align: center;
+                text-decoration: none;
+                font: bold 13px/1em tahoma;
+            }
+
+        #body_menu ul .current {
+            padding-right: 8px;
+            background: url(mainNavigatCurrentRight.gif) right bottom no-repeat;
+            color: #309274!important;
+        }
+
+            #body_menu ul .current a {
+                padding: 13px 14px 6px 22px!important;
+                background: url(mainNavigatCurrentLeft.gif) left bottom no-repeat!important;
+                color: #309274!important;
+                text-decoration: none!important;
+                .Inline;
+            }

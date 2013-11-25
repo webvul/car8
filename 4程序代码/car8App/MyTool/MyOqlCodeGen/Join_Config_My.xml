@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!-- （自动生成）合并Xml，By: UDI-PC.(Administrator)   At:2013/11/15 13:04:59 -->
+<MyOqlCodeGen>
+  <Table db="dbo" Owner="dbo">
+    <Group>
+      <Entity MapName="DeptAnnex" Name="TB_DeptAnnex" Enums="Key=DeptAnnexKeyEnum">
+      </Entity>
+      <Entity MapName="Person" Name="TB_Person" Enums="Sex=OrgSexEnum">
+      </Entity>
+      <Entity MapName="Dept" Enums="BizType=DeptBizTypeEnum" Name="TB_Dept">
+      </Entity>
+      <Entity Name="Annex">
+      </Entity>
+      <Entity Name="Dict" Enums="Trait=DictTraitEnum">
+      </Entity>
+      <Entity Name="ResKey">
+      </Entity>
+      <Entity Name="ResValue" Enums="Lang=LangEnum">
+      </Entity>
+      <Entity Name="PowerController">
+      </Entity>
+      <Entity Name="PowerAction">
+      </Entity>
+      <Entity Name="PowerButton">
+      </Entity>
+      <Entity Name="Log" Enums="Type=InfoEnum" db="Log">
+      </Entity>
+      <Entity Name="Menu" Enums="Status=IsAbleEnum">
+      </Entity>
+      <Entity Name="CacheTable">
+      </Entity>
+    </Group>
+    <Group Name="Shop">
+      <Entity MapName="ProductType" Name="TB_ProductType">
+      </Entity>
+      <Entity MapName="NoticeType" Name="TB_NoticeType">
+      </Entity>
+      <Entity MapName="NoticeInfo" Name="TB_NoticeInfo">
+      </Entity>
+      <Entity MapName="ProductClicks" Name="TB_ProductClicks">
+      </Entity>
+      <Entity MapName="ContactMsg" Name="TB_ContactMsg">
+      </Entity>
+      <Entity MapName="ProductAnnex" Name="TB_ProductAnnex">
+      </Entity>
+      <Entity MapName="ProductInfo" Name="TB_ProductInfo">
+      </Entity>
+      <Entity MapName="ProductDetail" Name="TB_ProductDetail">
+      </Entity>
+      <Entity MapName="EnterpriseShowCase" Name="TB_EnterpriseShowCase">
+      </Entity>
+      <Entity MapName="NoticeShowCase" Name="TB_NoticeShowCase">
+      </Entity>
+    </Group>
+    <Group Name="LongFor">
+      <Entity MapName="Community" Name="TM_Community">
+      </Entity>
+      <Entity Name="T_STANDARD_ROLE" Enums="STANDARD_ROLE_ID=Guid" />
+      <Entity Name="T_ROOM_OWNER">
+      </Entity>
+      <Entity Name="TEMP_ROOMOWNER">
+      </Entity>
+      <Entity MapName="Dept_Community" Name="TB_Dept_Community">
+      </Entity>
+    </Group>
+  </Table>
+  <View db="dbo" Owner="dbo">
+    <Group Name="View">
+      <Entity Name="VPowerAction" PKs="ID" AutoIncreKey="ID" MyTable="PowerController,PowerAction,PowerButton" />
+      <Entity Name="PM_VTxtRes" MapName="VTxtRes" Enums="Lang=LangEnum" PKs="Lang,ResID" MyTable="ResKey,ResValue" />
+    </Group>
+  </View>
+  <Proc Owner="dbo" db="dbo">
+    <Group Name="">
+      <Entity Name="P_LoginShop" MapName="PLogin" Return="result=PersonRule.Entity:out" />
+      <Entity Name="P_EditPassword" Return="" />
+    </Group>
+    <Group Name="LongFor">
+      <Entity Name="SP_Import_RoomOwner" Return="" />
+    </Group>
+  </Proc>
+  <Function Owner="dbo" db="dbo">
+    <Group Name="Shop">
+      <Entity Name="Split" Enums="Value=String">
+      </Entity>
+    </Group>
+  </Function>
+</MyOqlCodeGen>

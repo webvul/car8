@@ -1,0 +1,17 @@
+﻿User-agent:*
+Disallow: /bin/ 
+Disallow: /Sys/ 
+Disallow: /App_Themes/ 
+Disallow: /App_Browsers/ 
+Disallow: /MyPart/ 
+Disallow: /Res/ 
+Disallow: /ErrWebName/ 
+Disallow: /UpLoad/ 
+Disallow: /MyCon/ 
+Disallow: /Area/Admin/ 
+Disallow: /Common/ 
+Disallow: /Css/ 
+Disallow: /Img/ 
+Disallow: /Doc/ 
+
+Sitemap:http://cne17.com/sitemap.xml

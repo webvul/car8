@@ -1,0 +1,30 @@
+﻿.idTabs ul
+{
+	padding: 5px;
+	float: left;
+}
+.idTabs li
+{
+	list-style: none; /*Try deleting this float*/
+	float: left;
+}
+.idTabs a
+{
+	display: block;
+	text-decoration: none;
+}
+.idTabs a.selected
+{
+	background: #FFF;
+	color: #000;
+}
+.items > div
+{
+	display: none;
+	float: left;
+}
+.idTabs ul, .idTabs a
+{
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+}

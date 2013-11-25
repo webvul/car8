@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D7B1D7B3-2FA8-48BE-B722-C6C0B6710A37}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MyTool</RootNamespace>
+    <AssemblyName>MyTool</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>http://localhost/AfterBuildEvent/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>MyTool.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Microsoft.SqlServer.ConnectionInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Microsoft.SqlServer.Management.Sdk.Sfc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Smo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Microsoft.SqlServer.Smo.dll</HintPath>
+    </Reference>
+    <Reference Include="MyCmn, Version=1.0.4507.17858, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\MyCmn.dll</HintPath>
+    </Reference>
+    <Reference Include="MyOql, Version=1.0.4507.17865, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\MyOql.dll</HintPath>
+    </Reference>
+    <Reference Include="MyOql_CodeGen">
+      <HintPath>..\lib\MyOql_CodeGen.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="db\1建库脚本.sql" />
+    <Content Include="db\2程序集注册.sql" />
+    <Content Include="db\3结构脚本.sql" />
+    <Content Include="db\4数据脚本.sql" />
+    <Content Include="db\5创建日志表.sql" />
+    <Content Include="Ms_Sql\base.sql" />
+    <Content Include="Ms_Sql\自动生成存储过程.sql" />
+    <Content Include="Ms_Sql\自动生成表.sql" />
+    <Content Include="Ms_Sql\自动生成表值函数.sql" />
+    <Compile Include="Base\EXIFextractor.cs" />
+    <Compile Include="Base\translation.cs" />
+    <Compile Include="MyHandler\DeleteFolderHandler.cs" />
+    <Compile Include="MyHandler\GenIEntityHandler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyHandler\GenIEntityHandler.Designer.cs">
+      <DependentUpon>GenIEntityHandler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyHandler\GenSqlHandler.cs" />
+    <Compile Include="MyHandler\ICommandHandler.cs" />
+    <Compile Include="MyHandler\NewFileHandler.cs" />
+    <Compile Include="MyHandler\NewProxyClassFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyHandler\NewProxyClassFrm.Designer.cs">
+      <DependentUpon>NewProxyClassFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyHandler\NewProxyClassHandler.cs" />
+    <Compile Include="MyHandler\ExtendXmlHandler.cs" />
+    <Compile Include="MyHandler\ExtendＭyOqlHandler.cs" />
+    <Compile Include="MyHandler\MyOqlTableOfViewHandler.cs" />
+    <Compile Include="MyHandler\MyOqlTableOfProcHandler.cs" />
+    <Compile Include="MyHandler\MyOqlProcHandler.cs" />
+    <Compile Include="MyHandler\MyOqlProcOfProcHandler.cs" />
+    <Compile Include="MyHandler\ExecuteMsSqlFileHandler.cs" />
+    <Compile Include="MyHandler\CheckIModelHandler.cs" />
+    <Compile Include="MyHandler\ExifInfo.cs" />
+    <Compile Include="MyHandler\GenDbSqlHandler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyHandler\GenDbSqlHandler.Designer.cs">
+      <DependentUpon>GenDbSqlHandler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MyHandler\MyOqlCodeGenHandler.cs" />
+    <Content Include="MyOqlCodeGen\CodeHeader.txt" />
+    <Content Include="语音完成.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CheckIModel.bat" />
+    <None Include="jre-6u32-ea-bin-b03-windows-amd64-29_feb_2012.exe - 快捷方式.lnk" />
+    <None Include="MyOqlCodeGen\MyOqlCodeGen_Auto_View.init">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MyOqlCodeGen\MyOqlCodeGen_Auto_Func.init">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MyOqlCodeGen\MyOqlCodeGen_Auto_Table_Log.init">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="yui.bat" />
+    <None Include="MyOqlCodeGen.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="MyOqlCodeGen\MyOqlCodeGen_Auto_Table.init">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MyOqlCodeGen\MyOqlCodeGen_Auto_Proc.init">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MyOqlCodeGen\MyOqlCodeGen_My_Func.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MyOqlCodeGen\MyOqlCodeGen_My_Proc.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MyOqlCodeGen\MyOqlCodeGen_My_Table.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MyOqlCodeGen\MyOqlCodeGen_My_View.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MyOqlCodeGen\合并MyOqlCodeGen.bat" />
+    <None Include="生成实体代码.bat" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MyOqlCodeGen\语音提示.js" />
+    <Content Include="yuicompressor-2.4.2.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MyHandler\GenIEntityHandler.resx">
+      <DependentUpon>GenIEntityHandler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyHandler\NewProxyClassFrm.resx">
+      <DependentUpon>NewProxyClassFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyHandler\GenDbSqlHandler.resx">
+      <DependentUpon>GenDbSqlHandler.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MyHandler\MyOqlCodeGenerate\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

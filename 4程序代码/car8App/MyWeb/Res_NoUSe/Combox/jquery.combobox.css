@@ -1,0 +1,62 @@
+/******* modify at your own risk *********/
+.combobox
+{
+	display: inline;
+
+}
+.comboboxdiv
+{
+	height:100px;
+	overflow:auto;
+	position: absolute;
+	display: none;
+	z-index: 1001;
+}
+.combobox input
+{
+	display: inline;
+	vertical-align: middle;
+}
+.combobox textarea
+{
+	display: inline;
+	vertical-align: middle;
+}
+.combobox .button
+{
+	height: 13px;
+	border: 0px;
+	margin: 0px 0px 5px -15px;
+	padding: 0;
+	display: inline;
+	vertical-align: bottom;
+}
+
+.comboboxul
+{
+	margin: 0;
+	padding: 0;
+	border: solid 1px yellow;
+}
+
+.comboboxul li
+{
+	list-style-type: none;
+	border: solid 1px #ccc;
+	border-width: 0 0 1px;
+	cursor: pointer;
+	padding: 3px;
+}
+
+/******* modify this to custom the appearance of the suggestions *******/
+.comboboxul li
+{
+	color: #191970;
+	background-color: #f5deb3;
+}
+
+.comboboxul li.selected
+{
+	color: #00ffff;
+	background-color: #191970;
+}

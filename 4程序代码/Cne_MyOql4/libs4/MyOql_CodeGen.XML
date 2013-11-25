@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MyOql_CodeGen</name>
+    </assembly>
+    <members>
+        <member name="T:MyOql.MyOql_CodeGen.MyOqlCodeGen">
+            <summary>
+            代码生成.
+            <remarks>
+            规范数据库设计：
+            1. 尽量使用不能为空设计。
+            2. 
+            存储过程中  Return 参数如果为空, 则返回影响行数.
+            </remarks>
+            </summary>
+            <summary>
+            
+            </summary>
+            <remarks>
+            对 Sqlserver 来说， varchar(max) = text , nvarchar(max) = ntext
+            对数据库来说，应该尽量使用 varchar(max) ，所以 MyOql 中的 text 在传递给数据库时，使用  varchar(max)  而没有了 text
+            </remarks>
+        </member>
+        <member name="M:MyOql.MyOql_CodeGen.MyOqlCodeGen.TidyTemplate(System.String)">
+            <summary>
+            处理一下模板格式.
+            </summary>
+            <param name="TemplateString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.MyOql_CodeGen.MyOqlCodeGen.Init">
+            <summary>
+            从数据库中取出部分元数据
+            </summary>
+        </member>
+        <member name="M:MyOql.MyOql_CodeGen.MyOqlCodeGen.FixedSqlType``1(MyOql.DatabaseType,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            原则是程序表示的数值范围尽可能包容下数据库里的值。如数据库定义 Numberic(3) 时，映射到程度是 Int16 而不是 Byte.(如256)
+            </summary>
+            <remarks>
+            对于 Sqlserver 来说：
+            数据库里的数据长度表示的是实际十进制的数字个数。 Numberic(18,2) 表示：数据总长度是18，其中有2个小数位
+            C#中：
+            byte 的数值最大长度为 3  位 , 所以该类型可以对应 Numberic(m) 中的  m 小于 3 时
+            Int16 的数值最大长度为 5  位 , 所以该类型可以对应 Numberic(m) 中的  m 小于 5 时
+            Int32 的数值最大长度为 10 位 , 所以该类型可以对应 Numberic(m) 中的  m 小于 10 时
+            Int64 的数值最大长度为 19 位 , 所以该类型可以对应 Numberic(m) 中的  m 小于 19 时
+            Decimal的数值最大长度为 29 位, 所以该类型可以对应 Numberic(m) 中的  m 小于 29 时
+            数据库里的数值最大长度为 38 位, 大于 29 位的数值在C#中只能使用 Decimal，暂时不考虑大数字类型。
+            注意上面使用的规则是 m 小于 类型位，如：byte 最大值  255 ， 是3 位， 但数据库中可能会存储 256 ，也是3 位，为了最大限度的让 C# 包容数据库里的数据，所以使用了 小于。
+            
+            单精度浮点数值，精度只有 7  位十进制有效数字，但内部可能维护 9 位，：http://msdn.microsoft.com/zh-cn/library/system.single.aspx
+            双精度浮点数值，精度只有 15 位十进制有效数字，但内部可能维护 17 位，：http://msdn.microsoft.com/zh-cn/library/system.double.aspx
+            
+            by udi at 2013年4月12日
+            
+            对于 MySql 来说：
+            
+            对于 Oracle 来说：
+            </remarks>
+            <param name="dbType"></param>
+            <param name="table">TableDbName</param>
+            <param name="DbConfig"></param>
+            <param name="Owner">目前没有使用</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.MyOql_CodeGen.MyOqlCodeGen.Check(System.String,System.String)">
+            <summary>
+            校验是否包含重复。 在外部调用。
+            </summary>
+            <param name="FileName"></param>
+            <param name="RootName"></param>
+            <returns></returns>
+        </member>
+        <member name="P:MyOql.MyOql_CodeGen.MyOqlCodeGen.TableDescriptions">
+            <summary>
+            表说明，三列： ConfigName, TableName，Descr
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOql_CodeGen.MyOqlCodeGen.ColumnDefines">
+            <summary>
+            从数据库选出的列。有五列： ConfigName, TableName，ColumnName，Type，Precision，Length，Scale。
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOql_CodeGen.MyOqlCodeGen.GroupModel.Path">
+            <summary>
+            父路径
+            </summary>
+        </member>
+        <member name="T:MyOql.MyOql_CodeGen.MyOqlCodeGen_Static">
+            <summary>
+            代码生成.
+            存储过程中  Return 参数如果为空, 则返回影响行数.
+            </summary>
+        </member>
+        <member name="M:MyOql.MyOql_CodeGen.MyOqlCodeGen_Static.ToPublicCode(MyOql.MyOqlCodeGenSect.ProcCollection.ProcGroupCollection.ProcElement,System.Boolean)">
+            <summary>
+            </summary>
+            <remarks>
+            存储过程可返回:
+                Dictionary&lt;T,V&gt;
+                DataTable
+            	实体：如  PersonRule.Entity。
+            	实体数组： PersonRule.Entity[]。
+            	值：须是 DbType 枚举类型，如 Int32 ，系统返回对应的 C#数据类型。
+            	值数组： 须是DbType 枚举类型数组。如 Int32[] ，系统返回对应的数据类型的数组。
+            </remarks>
+            <example>
+            <code>
+            配置节内容:
+            <Entity Name="PLogin" Paras="UserID=varchar:in,PassWord=varchar:in" Return="result=Person:out"></Entity>
+            </code>
+            </example>
+            方向:in , out ,ret
+            <param name="Proc"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MyOql.MyOql_CodeGen.ICode">
+            <summary>
+            以后，生成器可以使用
+            </summary>
+            <param name="groupList"></param>
+            <param name="level"></param>
+            <returns></returns>
+        </member>
+        <member name="F:MyOql.MyOql_CodeGen.CodeLanguage.CsNet">
+            <summary>
+            C#.Net 语言
+            </summary>
+        </member>
+        <member name="F:MyOql.MyOql_CodeGen.CodeLanguage.VbNet">
+            <summary>
+            Vb.Net 语言
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOql_CodeGen.ColumnDefineDetail.db">
+            <summary>
+            冗余字段。
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOql_CodeGen.ProcParaDetail.db">
+            <summary>
+            冗余字段。
+            </summary>
+        </member>
+    </members>
+</doc>

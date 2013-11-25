@@ -1,0 +1,97 @@
+﻿.Pucker
+{
+    border: solid 1px gray;
+    border-top-width: 0px;
+    background-color: #f2f5f7;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    color: #1B293E;
+    cursor: default;
+}
+
+.Pucker a
+{
+    color:#1B293E;
+    text-decoration: none;
+}
+.Pucker a:hover
+{
+}
+.Pucker .root
+{
+    display: none;
+}
+.Pucker li
+{
+    list-style: none outside none;
+}
+
+.Pucker ul
+{
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    padding-left: 5px;
+    margin-left: 5px;
+}
+.Pucker > li /*Ie6 no 根节点*/
+{
+    border-top: solid 1px #4D597F;
+}
+
+.Pucker > li > div /*Ie6 no 根节点*/
+{
+    padding: 5px 13px;
+    /*background-image: url(bg_gray.gif);*/
+    background-color: #5191c6;
+    border-bottom: solid 1px #4D597F;
+}
+
+.Pucker ul li div /*留出折叠的空间*/
+{
+    padding: 5px;
+    padding-left: 10px;
+}
+
+.Pucker .minus
+{
+    background: transparent url(cap_red_minus.gif) no-repeat 0 center;
+}
+.Pucker .add
+{
+    background: transparent url(cap_add.gif) no-repeat 0 center;
+}
+
+.Pucker .sel
+{
+    background: transparent url(true.gif) no-repeat 0 center;
+}
+
+.Pucker .root_minus
+{
+    background-position: right top;
+    background-repeat: no-repeat;
+    background-image: url(red_minus.gif);
+}
+
+.Pucker .root_add
+{
+    background-position: right top;
+    background-repeat: no-repeat;
+    background-image: url(red_add.gif);
+}
+
+.Pucker .root_add a ,.Pucker  .root_minus a {
+	color: White;
+	font-weight: bold;
+}
+
+.Pucker .over
+{
+    background-color: #abe2ff;
+}
+
+.Pucker .rootOver
+{
+}

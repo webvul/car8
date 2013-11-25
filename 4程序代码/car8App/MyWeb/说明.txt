@@ -1,0 +1,42 @@
+Admin/Views/Home 下的文件,第一版(左边是树状菜单的内容)已打包到 Menu第一版.rar 中,其中包括:
+:
+E:\MonoApp\MyWebTradeSln\MyWeb\Areas\Admin\Views\Home\Index.aspx
+E:\MonoApp\MyWebTradeSln\MyWeb\Areas\Admin\Views\Home\Menu.aspx
+E:\MonoApp\MyWebTradeSln\MyWeb\Areas\Admin\Views\Home\Title.aspx
+
+以及
+E:\MonoApp\MyWebTradeSln\MyWeb\Areas\Admin\Controllers\HomeController.cs
+
+关于行权限方案:
+CREATE TABLE [dbo].[PowerTableRow](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Table] int NULL,
+	[IDKey] [varchar](50) NULL,-- IDKey要求是Table 的Int型唯一索引.
+	[NameKey] [varchar](50) NULL,	--显示列的列名称.
+ CONSTRAINT [PK_PowerRow] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH ON [PRIMARY]
+) ON [PRIMARY]
+
+行集权限存储方案为:
+1.简单Json格式=字典
+2.  Key 项为 Table
+	Value 项为 该Table的 IDKey 字段的 MyBigInt表示.
+
+	如: {Menu:123434,Dict:343434}
+3.只有Person有 RowPower 列. 用户RowPower 权限为 (Dept | Roles) & NotPower & RowPower 并集.
+
+4.行集权限只限制Select,Update,在MyOql 的Select 中过滤.添加者自动拥有该行权限. 
+	分为： 查询行集权限，更新行集权限。
+5.如果三权分立,在配置文件中配置是否SysAdmin启用最大权限.
+
+Boxy弹出页面返回值现在是 okValue ，重构修改为 ReturnValue 或 Value
+
+Dos 找出可写文件:
+dir * /a:-r /s /b
+
+MyOql 丑陋地方: 复合列. ColumnClip 的 Extend.
+
+-----
+NoSession , 没有 Session 需要登录 .

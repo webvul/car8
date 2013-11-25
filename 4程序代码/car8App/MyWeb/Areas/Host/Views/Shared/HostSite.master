@@ -1,0 +1,108 @@
+﻿<%@ Master Language="C#" Inherits="MyCon.MyMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>和易家社区服务平台</title>
+    <%--<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />--%>
+    <%--<meta name="verify-v1" content="MCgouhOaJKfjbeZwMKdvkQDl+liNWgNYBe9lBtMGlDY=" />--%>
+    <meta name="Copyright" content="和易家社区服务平台" />
+    <meta name="description" content="和易家社区服务平台,企业建站,B2C,B2B电子商务平台." />
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="~/favicon.gif" type="image/gif" />
+    <%--    <script src="~/Host/SiteMain.js" type="text/javascript"></script>--%>
+    <asp:ContentPlaceHolder ID="MainHead" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body style="margin: 0px;">
+    <form target="_blank">
+        <div class="Pin" style="width: 950px; margin: auto;">
+            <div style="float: left; padding: 8px; cursor: pointer;" onclick="window.location=jv.Root + 'Index' + (jv.page()['Lang']== 'En' ? '-En' :'') + '.aspx';">
+                <%-- <MyCon:MyEnHold ID="enlogo" runat="server">
+                <img src="~/Img/LogoEn.gif" />
+            </MyCon:MyEnHold>
+            <MyCon:MyZhHold ID="zhlogo" runat="server">
+                <img src="~/Img/LogoZh.gif" />
+            </MyCon:MyZhHold>
+                --%>
+            </div>
+            <div style="float: right; width: 650px; margin: 0px; *margin-bottom: -1px;">
+                &nbsp;
+            <%--<div style="width: 100%; color: White;font-size:12px;padding:2px 8px 2px 8px;" class="SearchBg">
+                建筑仪器<span class="Erect_Split">|</span>台布
+            </div>--%>
+                <div style="margin-top: 6px; margin: 0px;">
+                    <div style="float: right; width: 100%;" class="GrayLink">
+                        <span style="float: right"><a href="~/Logon.aspx" target="_blank">
+                            <%=GetRes("登录" )%>
+                        </a><span class="Erect_Split">|</span><a href="~/Rigister.aspx" starget="_blank"><%=GetRes("注册" )%>
+                        </a><span class="Erect_Split">|</span><a href="GetPassword.aspx" target="_blank"><%=GetRes("找回密码" )%>
+                        </a><span class="Erect_Split">|</span> <a href="javascript:jv.AddToFavorite('http://cne17.com','cne17.com-和易家社区服务平台');">
+                            <%=GetRes("添加到收藏夹" )%>
+                        </a><span class="Erect_Split">|</span>
+                            <%=GetRes("EnglishSite" )%>
+                        </span>
+                    </div>
+                    <div style="margin-top: 10px; margin-left: 10px; vertical-align: top; *margin-top: 30px"
+                        id="toptab">
+                        <div class="Inline" style="margin: 0px; padding: 0px;">
+                            <div class="Sect UpDiv Tab">
+                                <div class="SectInner UpDiv TabInner" data="Products Leads">
+                                    <%=GetRes("找产品" )%>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="Inline" style="*margin-left: 5px">
+                            <div class="Sect UpDiv Tab">
+                                <div class="SectInner UpDiv TabInner" data="Buying Leads">
+                                    <%=GetRes("找采购" )%>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="Inline" style="*margin-left: 5px">
+                            <div class="Sect UpDiv Tab">
+                                <div class="SectInner UpDiv TabInner" data="Companies Leads">
+                                    <%=GetRes("找企业" )%>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="float: left; width: 100%; margin: 0px; padding: 0px;" class="SearchBg">
+                <input type="text" id="txtSearch" class="SearchTxt" />
+                <span id="btnSearch" onclick="javascript:jv.hostsite.mysrch();return false;" style="margin-left: 20px;">
+                    <font id="f_txt"></font></span><font style="margin-left: 30px; font-family: Wingdings 2; color: White; font-size: 20px; font-weight: bold;">(</font><font style="color: White; font-weight: bold;">13466396863</font>
+            </div>
+            MainSiteMap MapRoot
+        </div>
+        <div class="Pin" style="width: 950px; margin: auto;">
+            <div class="Pin" style="width: 100%;">
+                <div style="float: left; width: 282px;">
+                    <asp:ContentPlaceHolder ID="MainList" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+                <div style="float: right; width: 650px;">
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+            <div class="Sect" style="display: none;">
+                <span>
+                    <%=GetRes("Friendly link")  %>
+                </span>
+                <div class="SectInner">
+                </div>
+            </div>
+        </div>
+        <div class="SplitLine" style="margin: 10px;">
+        </div>
+        <div style="text-align: center; font-size: 12px;">
+            <div>
+                ©-和易家社区服务平台 <%=DateTime.Today.Year %>
+            </div>
+
+        </div>
+    </form>
+</body>
+</html>

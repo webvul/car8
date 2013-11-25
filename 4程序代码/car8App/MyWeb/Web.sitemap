@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+    <siteMapNode >
+        <siteMapNode url="~/Shop/Index.aspx"  zh="首页" en="Home" description="home" >
+            <siteMapNode url="~/Shop/Products.aspx" en="Products"  zh="产品" description ="products" >
+                <siteMapNode url="~/Shop/ProductInfo.aspx"  description ="products" ></siteMapNode>
+            </siteMapNode>
+            <siteMapNode url="~/Shop/Profile.aspx" zh="企业证书" en="TrustPass Profile" description ="" ></siteMapNode>
+            <siteMapNode url="~/Shop/Contact.aspx" zh="联系我们" en="Contact" description ="联系我们" ></siteMapNode>
+            <siteMapNode url="~/Shop/AboutUs.aspx" zh="关于我们" en="About Us"  description="关于我们" />
+        </siteMapNode>
+        <siteMapNode url="~/index.aspx" en="Home" zh="首页" description="home">
+            <siteMapNode url="~/Market.aspx" en="Market" zh="市场"></siteMapNode>
+            <siteMapNode url="~/StockInfo.aspx" en="Stock" zh="采购"></siteMapNode>
+            <siteMapNode url="~/Products.aspx" en="Product" zh="产品"></siteMapNode>
+            <siteMapNode url="~/Companys.aspx" en="Company" zh="公司"></siteMapNode>
+        </siteMapNode>
+        <siteMapNode url="SysAdmin" InMenu="Yes">
+            <siteMapNode url="" en="" zh="开发工具" roles="SysAdmin">
+                <siteMapNode url="~/Admin/AutoGen/Index.aspx" zh="生成列表和编辑页面" ></siteMapNode>
+                <siteMapNode url="~/Admin/Home/Test.aspx" en="Organization" zh="测试页面"  roles="SysAdmin"></siteMapNode>
+                <siteMapNode url="~/Admin/PowerController/List.aspx" en="Power Controller" zh="权限Controller定义"  Powers="SysAdmin"></siteMapNode>
+                <siteMapNode url="~/Admin/PowerAction/List.aspx" en="Power Action" zh="权限Action定义"  Powers="SysAdmin"></siteMapNode>
+                <siteMapNode url="~/Admin/PowerButton/List.aspx" en="Power Button" zh="权限Button定义"  Powers="SysAdmin"></siteMapNode>
+                <siteMapNode url="~/Admin/PowerTable/List.aspx" en="Power Table" zh="权限Table定义"  Powers="SysAdmin"></siteMapNode>
+                <siteMapNode url="~/Admin/PowerColumn/List.aspx" en="Power Coilumn" zh="权限Column定义"  Powers="SysAdmin"></siteMapNode>
+                <siteMapNode url="~/Admin/Home/MyWork.aspx" en="Power Define" zh="我的工作平台"  Powers="SysAdmin"></siteMapNode>
+            </siteMapNode>
+            <siteMapNode url="" en="System Management" zh="系统管理" roles="SysAdmin">
+                <siteMapNode url="~/Admin/Dept/List.aspx" en="Organization" zh="组织机构"  roles="SysAdmin"></siteMapNode>
+                <siteMapNode url="~/Admin/Person/List.aspx" en="User List" zh="用户列表" roles="SysAdmin"></siteMapNode>
+                <siteMapNode url="~/Admin/Role/List.aspx" en="User Role" zh="角色列表" roles="SysAdmin"></siteMapNode>
+                <siteMapNode url="~/Admin/Payment/List.aspx" en="Payment list" zh="付费列表" roles="SysAdmin"></siteMapNode>
+                <siteMapNode url="~/Admin/TxtRes/List.aspx" en="Language resource" zh="语言资源" roles="SysAdmin"></siteMapNode>
+                <siteMapNode url="~/Admin/Category/List.aspx" en="Market Category" zh="市场分类" roles="SysAdmin"></siteMapNode>
+                <siteMapNode url="~/Admin/HomeShowCase/List/InHome.aspx" en="Home Show Approve" zh="首页展示审核" roles="SysAdmin"></siteMapNode>
+                <siteMapNode url="~/Admin/HomeShowCase/List/Approve.aspx" en="Category Show Approve" zh="分类展示审核" roles="SysAdmin"></siteMapNode>
+                <siteMapNode url="~/Admin/Stock/List/Approve.aspx" en="Procurement Approve" zh="采购审核" roles="SysAdmin"></siteMapNode>
+                <siteMapNode url="~/Admin/Dict/List.aspx" en="Data Dictionary"  zh="数据字典" InMenu="Yes"></siteMapNode>
+            </siteMapNode>
+            <siteMapNode url="" en="Site Management" zh="网站管理" description ="">
+                <siteMapNode url="~/Admin/Dept/Update.aspx" en="Edit my information" zh="单位档案"></siteMapNode>
+                <siteMapNode url="~/Admin/Person/Update.aspx" en="Edit my information" zh="个人资料"></siteMapNode>
+                <siteMapNode url="~/Admin/Password/Edit.aspx" en="Edit password" zh="修改我的密码"  ></siteMapNode>
+                <siteMapNode url="~/Admin/SkinSet.aspx" en="Skin Set" zh="皮肤设置"  ></siteMapNode>
+                <siteMapNode url="~/Admin/SkinSlefSet.aspx" en="Custom skin" zh="自定义设置"  ></siteMapNode>
+                <siteMapNode url="~/Admin/ContactMsg/List.aspx" en="Message management" zh="消息管理"  ></siteMapNode>
+                <siteMapNode url="~/Admin/CreateSite.aspx" en="Generate site" zh="生成网站"  ></siteMapNode>
+            </siteMapNode>
+            <siteMapNode url="" en="Product management" zh="商品管理"   >
+                <!--<siteMapNode url="~/Admin/ProductType/List" en="Product type" zh="商品分类"></siteMapNode>-->
+                <siteMapNode url="~/Admin/ProductInfo/List.aspx" en="Product type" zh="商品信息"></siteMapNode>
+                <siteMapNode url="~/Admin/ProductInfo/Hot.aspx" en="Product type" zh="展示商品"></siteMapNode>
+                <!--<siteMapNode url="~/Admin/ProductUI/Equip_Data.aspx" en="Product detail" zh="产品详细信息"></siteMapNode>-->
+                <siteMapNode url="~/Admin/ProductUI/Equip_WordSet.aspx" en="Text set" InMenu="No"></siteMapNode>
+                <siteMapNode url="~/Admin/ProductUI/ProductAnnexUI.aspx" en="File management" InMenu="No"></siteMapNode>
+                <siteMapNode url="~/Admin/DeptUI/DeptAnnexUI.aspx" en="File management" InMenu="No"></siteMapNode>
+                <siteMapNode url="~/Admin/StockUI/StockAnnexUI.aspx" en="File management" InMenu="No"></siteMapNode>
+                <siteMapNode url="~/Admin/DeptDetail/List.aspx" en="Company text" zh="公司档案"></siteMapNode>
+                <siteMapNode url="~/Admin/DeptAnnex/List.aspx" en="Company text" zh="照片管理"></siteMapNode>
+                <siteMapNode url="~/Admin/EnterpriseShowCase/List.aspx" en="Showcase set" zh="展示设置"></siteMapNode>
+                <siteMapNode url="~/Admin/SiteShow/List.aspx" en="To homepage" zh="推荐到首页"></siteMapNode>
+                <siteMapNode url="~/Admin/Sock/List.aspx" en="To Stock" zh="推荐到采购"></siteMapNode>
+            </siteMapNode>
+            <siteMapNode url="" en="Procurement management" zh="采购管理"  >
+                <siteMapNode url="~/Admin/StockUI/MyStockInfo.aspx?Action=Add" en="Add procurement" zh="添加采购"  ></siteMapNode>
+                <siteMapNode url="~/Admin/StockUI/StockList.aspx" en="Add procurement" zh="采购列表"  ></siteMapNode>
+            </siteMapNode>
+        </siteMapNode>
+    </siteMapNode>
+</siteMap>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!-- （自动生成）分析在 存储过程 中可能会变更的 表对象，By: UDI-PC.(Administrator)   At:2013/11/15 13:04:55 -->
+<MyOqlCodeGen>
+    <Proc>
+        <Group>
+            <Entity Name="P_LoginShop" AutoTable="" />
+<Entity Name="P_EditPassword" AutoTable="TB_Person" />
+<Entity Name="SP_Import_RoomOwner" AutoTable="T_BUILDING,T_ROOM_OWNER,T_ROOMOWNER_RELATION" />
+        </Group>
+    </Proc>
+</MyOqlCodeGen>

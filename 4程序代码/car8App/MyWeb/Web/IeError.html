@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>浏览器检测</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=EmulateIE8" />
+    <style type="text/css">
+        body {
+            text-align: center;
+            font-size: large;
+            font-weight: bold;
+        }
+
+        div {
+            display: none;
+        }
+
+        #con {
+            margin-top: 20px;
+            width: 90%;
+            border: 5px solid Red;
+            background-color: #eee;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div id="con">
+        <div id="nIe">
+            您的浏览器不是IE，请下载 IE8。
+            <br />
+            <a href="http://download.microsoft.com/download/1/6/1/16174D37-73C1-4F76-A305-902E9D32BAC9/IE8-WindowsXP-x86-CHS.exe">32位 XP用户点击升级到IE8</a>
+            <br />
+            <a href="http://download.microsoft.com/download/4/E/3/4E30CB91-FC6D-4358-AE62-C8F1382D2C03/IE8-WindowsServer2003-x64-CHS.exe">64位 XP用户点击升级到IE8</a>
+            <br />
+            <a href="http://download.microsoft.com/download/7/9/7/7973BA4C-09AA-46E7-ADBF-D18077F8A241/IE8-WindowsVista-x86-CHS.exe">32位 Vista用户点击升级到IE8</a>
+            <br />
+            <a href="http://download.microsoft.com/download/F/4/A/F4A92676-8B12-4324-A44A-95D4CD8D16D7/IE8-WindowsVista-x64-CHS.exe">64位 Vista用户点击升级到IE8</a>
+            <br />
+            <a href="http://download.microsoft.com/download/0/E/7/0E7904F9-0C7D-45AC-9058-F4ABC3B0C4AD/IE8-WindowsServer2003-x86-CHS.exe">32位 2003用户点击升级到IE8</a>
+            <br />
+            <a href="http://download.microsoft.com/download/4/E/3/4E30CB91-FC6D-4358-AE62-C8F1382D2C03/IE8-WindowsServer2003-x64-CHS.exe">64位 2003用户点击升级到IE8</a>
+        </div>
+        <div id="nIe8">
+            软件检测到您的浏览器不是8，如果您的浏览器版本小于8，请升级：
+            <br />
+            <a href="http://download.microsoft.com/download/1/6/1/16174D37-73C1-4F76-A305-902E9D32BAC9/IE8-WindowsXP-x86-CHS.exe">32位 XP用户点击升级到IE8</a>
+            <br />
+            <a href="http://download.microsoft.com/download/4/E/3/4E30CB91-FC6D-4358-AE62-C8F1382D2C03/IE8-WindowsServer2003-x64-CHS.exe">64位 XP用户点击升级到IE8</a>
+            <br />
+            <a href="http://download.microsoft.com/download/7/9/7/7973BA4C-09AA-46E7-ADBF-D18077F8A241/IE8-WindowsVista-x86-CHS.exe">32位 Vista用户点击升级到IE8</a>
+            <br />
+            <a href="http://download.microsoft.com/download/F/4/A/F4A92676-8B12-4324-A44A-95D4CD8D16D7/IE8-WindowsVista-x64-CHS.exe">64位 Vista用户点击升级到IE8</a>
+            <br />
+            <a href="http://download.microsoft.com/download/0/E/7/0E7904F9-0C7D-45AC-9058-F4ABC3B0C4AD/IE8-WindowsServer2003-x86-CHS.exe">32位 2003用户点击升级到IE8</a>
+            <br />
+            <a href="http://download.microsoft.com/download/4/E/3/4E30CB91-FC6D-4358-AE62-C8F1382D2C03/IE8-WindowsServer2003-x64-CHS.exe">64位 2003用户点击升级到IE8</a>
+            <br />
+        </div>
+        <div id="nIe8_7">
+            软件检测您的浏览器的浏览器模式为IE7，或IE8兼容性视图，请设置为IE8标准。
+        </div>
+        <div id="nIeStandard">
+            软件检测您的浏览器的文本模式为杂项，这种模式在会在显示样式上有很大的差异。 请设置为 IE8标准
+        </div>
+    </div>
+    <script type="text/javascript">
+        var ieMode = document.documentMode;
+        var isIE = !!window.ActiveXObject;
+        if (!isIE) {
+            document.getElementById("nIe").style.display = "block";
+        }
+
+        var isIE6 = isIE && !window.XMLHttpRequest;
+        if (isIE6) {
+            document.getElementById("nIe8").style.display = "block";
+        }
+
+        var isIE7 = isIE && !isIE6 && !ieMode;
+        if (isIE7) {
+            document.getElementById("nIe8").style.display = "block";
+        }
+
+        var isIE8_7 = ieMode == 7;
+        if (isIE8_7) {
+            document.getElementById("nIe8_7").style.display = "block";
+        }
+
+
+        var isIE9 = isIE && ieMode == 9;
+        if (isIE9) {
+            document.getElementById("nIe8").style.display = "block";
+        }
+
+        if (document.compatMode !== "CSS1Compat") {
+            document.getElementById("nIeStandard").style.display = "block";
+        }
+    </script>
+</body>
+</html>

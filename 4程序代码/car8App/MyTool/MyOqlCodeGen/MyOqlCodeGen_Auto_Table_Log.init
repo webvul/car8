@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!-- 由 Sql 做初始化生成，每次修改结构，需要重新生成一次 -->
+
+<MyOqlCodeGen>
+  <Table>
+    <Group db="Log">
+      <Entity Name="Log" PKs="Id" AutoIncreKey="Id" ComputeKeys="" UniqueKey="" FKs="" />
+    </Group>
+  </Table>
+</MyOqlCodeGen>

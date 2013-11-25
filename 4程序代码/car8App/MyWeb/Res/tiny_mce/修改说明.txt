@@ -1,0 +1,55 @@
+ 
+1.D:\HydApp_代码\和易家\11项目工程\03编码\Hyj_Shop\MyWeb\Res\tiny_mce\plugins\advimage\image.htm
+ <script src="../../../MyJs.js" type="text/javascript"></script>
+    <script src="../../../MyJs_Admin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            var getMyMvcPage = function (win) {
+                if (win.jv.AllRequest.length) return win;
+                else return getMyMvcPage(win.parent);
+            };
+
+            $("#advimage").addClass("jvRequest_waite");
+            var mvcJv = getMyMvcPage(window).jv;
+            jv.Root = mvcJv.Root;
+            jv.AddRequest(mvcJv.AllRequest[mvcJv.AllRequest.length - 1]);
+            jv.MyOnInit();
+
+            jv.page().LoadImage = function (ev) {
+                jv.PopList({
+                    list: 'List', area: 'Admin', entity: 'Annex', mode: 'radio', query: {},
+                    uid: "",
+                    callback: function (role, data) {
+                        if (data && data.length) {
+                            $("#src").val(data[0].FullUrl);
+                        }
+                    }
+                }, ev);
+                return true;
+            };
+        });
+    </script>
+
+	在相应的按钮下添加
+	onclick="jv.page().LoadImage();" style="cursor: pointer; text-decoration: underline; color: darkblue"
+
+2.D:\HydApp_代码\和易家\11项目工程\03编码\Hyj_Shop\MyWeb\Res\tiny_mce\plugins\inlinepopups\skins\clearlooks2\window.css
+	.clearlooks2 .mceStatusbar .mceBottom span 字体设置为 12px
+
+3. D:\HydApp_代码\和易家\11项目工程\03编码\Hyj_Shop\MyWeb\Res\tiny_mce\themes\advanced\skins\default\content.css
+	body, td, pre 字体设置为 12px
+	a.mceItemAnchor	宽高设置为 12px
+3. D:\HydApp_代码\和易家\11项目工程\03编码\Hyj_Shop\MyWeb\Res\tiny_mce\themes\advanced\skins\default\dialog.css
+	body  字体设置为 12px
+	td    字体设置为 12px
+	fieldset   字体设置为 12px
+	input, select, textarea   字体设置为 12px
+	#charmap #codeN    字体设置为 12px
+	.tabs a    字体设置为 12px
+4. D:\HydApp_代码\和易家\11项目工程\03编码\Hyj_Shop\MyWeb\Res\tiny_mce\themes\advanced\skins\default\ui.css
+	所有字体改为 12px
+	.defaultSkin .mceOldBoxModel .mceListBox .mceOpen   宽度设为 12px
+5. D:\HydApp_代码\和易家\11项目工程\03编码\Hyj_Shop\MyWeb\Res\tiny_mce\themes\advanced\skins\highcontrast\dialog.css
+
+
+

@@ -1,0 +1,131 @@
+﻿ 
+div.ListFile
+{
+	overflow: auto;
+    white-space: pre-line;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+div.ListFile span{
+	display:inline-block;
+	vertical-align:middle;
+}
+div.ListFile .Link
+{
+	border:0;
+	padding:0;
+	margin:0;
+	background:none;
+}
+div.ListFile .Link img
+{
+    height:20px;
+    vertical-align:middle;
+    margin-right:5px;
+}
+div.ListFile .del
+{
+    display:inline-block;
+    width:20px;
+    height:20px;
+    vertical-align:middle;
+    background:url(images/delete.gif) no-repeat;
+    cursor:pointer;
+}
+div.ListFile .cancel
+{
+    display:inline-block;
+    width:20px;
+    height:20px;
+    vertical-align:middle;
+    background:url(images/standards.png) no-repeat;
+    cursor:pointer;
+}
+div.ListFile .confirm{
+	display:block;
+    padding:0 10px;
+	vertical-align:middle;
+	width:30px;
+	height:20px;
+    cursor:pointer;
+}
+div.ListFile .over
+{
+    background-color: #E7E7FF;
+}
+ 
+
+div.ListFile .DelFile span
+{
+    text-decoration:line-through;
+    font-style:italic;
+    color:Red;
+}
+
+table.ListFile 
+{
+    width:100%;
+    border-collapse: collapse;
+}
+
+table.ListFile thead tr
+{
+    background:#000 url(images/tableHead_bg.gif) repeat-x left top ;
+}
+
+table.ListFile tbody tr
+{
+    background-color:#f6f6f6;
+}
+
+table.ListFile thead tr th.fileName
+{
+    width:100%;
+}
+
+table.ListFile th,table.file td
+{
+    padding: 5px;
+    white-space:nowrap;
+    word-wrap:normal;
+    word-break:keep-all;
+}
+table.ListFile td img
+{
+    cursor:pointer;
+}
+
+
+
+
+.DelBtn
+{
+    border-width:0;
+    width:15px;
+    height:15px;
+    background:url(images/delete.gif) no-repeat transparent -1px -1px;
+}
+
+.DelFile
+{
+    border-width:0;
+    width:15px;
+    height:15px;
+    background:url(load.png) no-repeat transparent -1px -1px;
+}
+
+.DownloadIcon
+{
+    background:transparent url(Download.gif) no-repeat center center;
+}
+
+.DeleteIcon
+{
+    background:transparent url(Delete.gif) no-repeat center center;
+}
+
+.DelFile .DeleteIcon
+{
+    background:transparent url(load.png) no-repeat center center;
+}

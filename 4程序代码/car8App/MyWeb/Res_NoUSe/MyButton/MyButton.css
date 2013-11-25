@@ -1,0 +1,65 @@
+﻿a  
+
+{
+
+text-decoration: none;
+
+}
+
+a:hover 
+
+{
+
+text-decoration: underline;
+
+}
+.Sect a  
+
+{
+
+color: White;
+
+}
+
+.SectInner a  
+
+{
+
+color: black;
+
+}
+.NsBtn
+{
+    border: solid 1px green;
+    text-align: center;
+    vertical-align: middle;
+}
+.NsBtn *
+{
+    cursor: default;
+}
+
+.NsBtnInner
+{
+    color: #006400;
+    border: solid 1px white;
+    background-color: #d6dff7;
+    vertical-align: top;
+}
+.NsBtnInner a
+{
+    color: #2e3d52;
+    display: block;
+    font-weight: bold;
+    font-size: 14px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+.NsBtnInner a:hover
+{
+    color: Red;
+ 
+    text-decoration: none;
+}

@@ -1,0 +1,50 @@
+﻿.tv
+{
+    border: solid 1px #4D597F;
+    background-color: #ebedf2;
+    text-align: left;
+}
+.tv a
+{
+    color:Black;
+}
+.tv dd
+{
+    margin-left: 10px;
+}
+.tv dl
+{
+	margin:0px ;
+	padding:0px;
+}
+.tv dt div
+{
+    font-size: 12px;
+    padding: 4px;
+    padding-left:5px;
+}
+.tv .divtit
+{
+    background-position: right center;
+    background-repeat: no-repeat;
+}
+.tv .divcap
+{
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding: 2px;
+    padding-left:15px;
+}
+
+.tv .divcapsel_deled
+{
+    border: solid #999999 1px;
+    background-color: #b0b8cf;
+}
+
+.tv .sel > div
+{
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding-left:15px;
+}

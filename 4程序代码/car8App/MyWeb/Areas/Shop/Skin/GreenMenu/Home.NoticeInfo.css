@@ -1,0 +1,52 @@
+﻿
+/*产品详细页的CSS*/
+#bigCon .Detail {
+    margin-top: 10px;
+}
+
+    #bigCon .Detail .Title {
+        font-weight: bold;
+    }
+
+    #bigCon .Detail:after {
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: ".";
+        clear: both;
+        height: 0;
+    }
+
+* html #bigCon {
+    zoom: 1;
+}
+
+*:first-child + html #bigCon {
+    zoom: 1;
+}
+
+    #bigCon .Detail .ImgSlider {
+        float: right;
+    }
+
+.tabInfo {
+}
+
+    .tabInfo .key {
+        width: 200px;
+        white-space: normal;
+        font-size: 12px;
+        text-align:right;
+    }
+
+        .tabInfo .key:after {
+            content: " : ";
+        }
+
+    .tabInfo .val {
+        margin-left: 20px;
+        width: 440px;
+        white-space: normal;
+        font-size: 12px;
+        text-align:left;
+    }

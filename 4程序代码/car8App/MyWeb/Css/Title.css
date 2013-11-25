@@ -1,0 +1,165 @@
+﻿body, div, address, blockquote, iframe, ul, ol, dl, dt, dd, li, dl, h1, h2, h3, h4, h5, h6, p, pre, table, form, caption, th, td, form, legend, fieldset, input, button, select, textarea
+{
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 100%;
+    font-family: inherit;
+}
+ol, ul, li
+{
+    list-style: none;
+}
+img
+{
+    border: 0;
+}
+body
+{
+    color: #515151;
+    font-family: "微软雅黑" , Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+.clearfix:after {
+	content: " ";
+	display: block;
+	clear: both;
+	height: 0;
+}
+.clearfix {
+	zoom: 1;
+}
+.flaltleft
+{
+    float: left;
+}
+.flaltright
+{
+    float: right; width:400px;
+}
+.clearboth
+{
+    clear: both;
+    overflow: hidden;
+    height: 1px;
+    margin-top: -1px;
+}
+
+#header
+{
+    background: url(images/header-bj.gif) top left repeat-x;
+    width:100%;
+    height: 40px;
+    line-height: 40px;
+    clear: both;
+    color: #abe2ff;
+}
+#logo
+{
+    background: url(images/logo.gif) top left no-repeat;
+    width: 330px;
+    float: left;
+}
+#out_btn
+{
+    background: url(images/link_bj.gif) top left no-repeat;
+    width: 253px;
+    height: 27px;
+    float: right;
+    margin: 7px 0px 0px 20px;
+    outline: none;
+}
+#out_btn ul li
+{
+    float: left;
+}
+#out_btn ul li a
+{
+    line-height: 28px;
+    float: left;
+    outline: none;
+    padding-left: 36px;
+    text-align: left;
+}
+#out_btn ul li a:link, #out_btn ul li a:visited
+{
+    color: #abe2ff;
+    text-decoration: none;
+}
+#out_btn ul li a:hover
+{
+    color: #fff;
+    text-decoration: none;
+}
+
+.mytasktodo_r
+{
+	color: White; 
+	margin-right: 20px; 
+	background:url(images/hb_topnbg01.jpg) no-repeat right; 
+	/*width:164px;*/
+	line-height:39px;
+	padding-right:23px;
+
+}
+.mytasktodo_l
+{
+	color: White; 
+	height: auto;
+	background:url(images/hb_topnbg03.jpg) no-repeat left; 
+	/*width:140px;*/
+	line-height:39px;
+	padding-left:18px;
+	padding-right:10px;	
+	float:left;
+	
+}
+.mytasktodo_m
+{
+	background:url(images/hb_topnbg04.jpg); 
+	line-height:39px;
+	float:left;
+	
+}
+.mytasktodo_more
+{
+
+	
+}
+.Inline87
+{
+	vertical-align: middle;
+	display: inline-block; *display:inline;zoom:1;
+
+}
+.divT
+        {
+            overflow: hidden;
+            height: 20px;
+            /*line-height: 20px;*/
+            text-align: left;
+            color: White;
+            padding-bottom: 4px;
+            /*background:url(images/hb_topnbg04.jpg); 
+            line-height:40px;*/
+
+        }
+        
+        .divT ul
+        {
+            margin-top: 0px;
+        }
+        
+        .divT li
+        {
+            line-height: 18px;
+            height: 18px;
+            padding: 0px;
+            margin: 0px;
+            padding-top: 2px;
+        }
+        .divT *
+        {
+            color: White;
+        }

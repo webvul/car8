@@ -1,0 +1,352 @@
+﻿body
+{
+	font-size: 12px;
+	margin-left: auto;
+	margin-right: auto;
+	background-image: url();
+	background-repeat: no-repeat;
+}
+pre
+{
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+}
+img
+{
+	border-width: 0px;
+}
+.Body_Back, .MainItem, .MainItemInner, .Cap, .CapInner, .MainSiteMap, .MainSiteMapInner
+{
+	background-color: #002233;
+}
+.Sect_Back, .Sect, .SectInner
+{
+	background-color: rgb(90,112,140);
+}
+.Sect_Border, .MainItem, .MainItemInner, .MainSiteMap, .MainSiteMapInner
+{
+	border-color: #222B38;
+}
+.Embed_Color, .MainItem, .MainItemInner, .Cap, .CapInner, ButtonLink, .ButtonLink A, .MainSiteMap *, .ListDiv A
+{
+	color: white;
+}
+.NormalTxt, .NormalTxt *, .InfoPadDivTxt, .KeySpan, .KeySpan *, .ValueSpan, .ValueSpan *, .KeySpan, .Viewy, .Viewy *, .TipTxt, .Sect, .Sect *,.CapTit
+{
+	color: white;
+	font-size: 12px;
+	font-family: Arial;
+	font-weight: normal;
+}
+
+.BodyDiv
+{
+	text-align: center;
+	margin: auto;
+	width: 950px;
+}
+.BodyDiv *
+{
+	text-align: left;
+}
+.KeySpan
+{
+	margin-top: 10px;
+	vertical-align: top;
+	white-space: normal;
+	width: 200px;
+	padding-left: 20px;
+	padding-right: 10px;
+	font-size: 12px;
+	height: 100%;
+}
+.ValueSpan
+{
+	margin-top: 10px;
+	width: 440px;
+	vertical-align: top;
+	white-space: normal;
+	font-size: 12px;
+	line-height: 20px;
+	height: 100%;
+}
+.ProductInfoKey
+{
+	width:180px;
+}
+
+.ProductInfoValue
+{
+	width:240px;
+}
+
+
+/*ID*/
+#bigCon
+{
+	width: 730px;
+	overflow: hidden;
+}
+#smallCon
+{
+	overflow: hidden;
+	width: 200px;
+	text-align: left;
+}
+
+/*通用样式*/
+.Sect
+{
+	margin: auto;
+	border: solid 0px #845703;
+	background-color: #f2ecc4;
+}
+.SectInner
+{
+	padding: 2px;
+	border: solid 0px #e1daaa;
+	overflow: hidden;
+	margin: 0px;
+	zoom: 1;
+}
+.Sect input,.Sect textarea
+{
+	color:Black;
+}
+.NullLine
+{
+	margin-top: 10px;
+}
+.Pin
+{
+	overflow: hidden;
+}
+/*
+.AutoLine,.Viewy *
+{
+	white-space: normal;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+*/
+/*大标题*/
+
+.CapTit
+{
+	font-size: 14px;
+}
+
+.TipTxt
+{
+	color: #777777;
+	font-size: 11px;
+}
+/*第三色*/
+.OtherTxt, .OtherTxt *
+{
+	color: #D3E4F5;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.MainItem
+{
+	border-width: 1px;
+	border-style: solid;
+	background-color: #354253;
+	font-weight: bold;
+}
+.MainItemInner
+{
+	background-color: Transparent;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #4B5C72;
+	padding: 3px;
+	font-size: 13px;
+	margin: 0px;
+}
+.Cap
+{
+	font-weight: bold;
+	font-size: 12px;
+	margin: 10px;
+}
+.CapInner
+{
+	background-color: #758DA8;
+	padding: 3px 3px 3px 6px;
+}
+
+.SplitLine
+{
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 2px;
+	margin-bottom: 6px;
+	height: 1px;
+	background-color: #40536C;
+	border-bottom: solid 1px #6C8099;
+	overflow:hidden;
+}
+
+/*空属性，也可定义默认的样式，但一要合其它样式配合，规定只设置上圆角*/
+.UpDiv
+{
+}
+
+/*空属性，规定只设置下圆角*/
+.DownDiv
+{
+}
+
+/*上半部分*/
+.Header
+{
+	background-color: #5A708C;
+	border: solid 1px black;
+}
+.HeaderInner
+{
+	border: solid 1px #7792AE;
+	background-image: url(  'SkinHeader.gif' );
+	background-repeat: no-repeat;
+}
+/*下半部分*/
+.Content
+{
+	border: solid 1px black;
+}
+.ContentInner
+{
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-bottom: 20px;
+	border: solid 1px #7792AE;
+	background-color: #5A708C;
+}
+.CorpLogoImg
+{
+	height: 50px;
+	vertical-align: middle;
+}
+.SkinHeaderImg
+{
+}
+/*一些组件*/
+.MenuMap
+{
+	border-width: 0px;
+	background-color: Transparent;
+}
+.MenuMapInner
+{
+	background-color: Transparent;
+	padding: 0px;
+	border-width: 0px;
+	padding-top: -10px;
+}
+.MainSiteMap
+{
+	background-color: #354253;
+	border-width: 1px;
+	border-style: solid;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.MainSiteMapInner
+{
+	color: White;
+	background-color: Transparent;
+	border-width: 0px;
+	margin: 0px;
+}
+.MainSiteMapInner,.MainSiteMapInner *
+{
+	color: White;
+	vertical-align:middle;
+}
+.MapSep
+{
+	margin:1px 5px 1px 3px;
+	width:6px;
+	height:15px;
+	background-image:url(crumbArrow.gif);
+	background-repeat:no-repeat;
+}
+
+.ContactImg
+{
+	border: 0px;
+	width: 18px;
+}
+.MSNImage
+{
+}
+.QQImage
+{
+}
+.EmailImage
+{
+	border: 0px;
+	width: 20px;
+}
+
+.ButtonLink
+{
+	height: 24px;
+	margin-top: 10px;
+	padding-left: 0px;
+	font-family: Arial;
+	font-size: 13px;
+	background-repeat: repeat-x;
+	border: solid 1px rgb(28,40,55);
+	background-image: url(portalLinkTitle.gif);
+}
+.ButtonLink A
+{
+	display:block;
+	margin-top:4px;
+	margin-left: 10px;
+}
+.ListPhoto
+{
+}
+input.buttonSkinA
+{
+	text-align: center;
+	font: bold 14px arial;
+	padding: 3px 8px;
+	width: auto;
+	overflow: visible;
+	color: #5E2708;
+	background: #FEEEB1 url(buttonSkinAL.gif) bottom repeat-x !important;
+	border-top: 1px solid #F39D24 !important;
+	border-left: 1px solid #F39D24 !important;
+	border-right: 1px solid #CF6F18 !important;
+	border-bottom: 1px solid #CF6F18 !important;
+}
+input.buttonSkinB
+{
+	font: bold 14px arial;
+	padding: 3px 8px;
+	width: auto;
+	overflow: visible;
+	color: #5E2708;
+	background: #EEF4FF url(buttonSkinBL.gif) bottom repeat-x;
+	border-left: 1px solid #BAC6D9;
+	border-top: 1px solid #BAC6D9;
+	border-right: 1px solid #7A8699;
+	border-bottom: 1px solid #7A8699;
+}
+input.buttonSkinBDisable, input.buttonSkinADisable
+{
+	color: #bfbfbf;
+	background: #f3f3f3;
+	border: 1px solid #ddd;
+}

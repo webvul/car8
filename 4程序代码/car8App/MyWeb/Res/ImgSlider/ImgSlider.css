@@ -1,0 +1,61 @@
+﻿.ImgSlider
+{
+    margin:5px;
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border: groove 1px gray;
+    overflow:hidden;
+}
+.ImgSlider .this_pic
+{
+    width: 100%;
+    height: 100%;
+}
+
+.ImgSlider .transparence
+{
+    border-top: 1px solid #fff;
+    background: #000;
+    z-index: 1;
+    height: 40px;
+    opacity: 0.3;
+    filter: alpha(opacity=30);
+}
+.ImgSlider .transparence, .ImgSlider div
+{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    margin: 0;
+}
+.ImgSlider div
+{
+    height: 50px;
+    list-style: none;
+    overflow: hidden;
+    z-index: 99;
+    padding-left: 10px;
+}
+.ImgSlider div span
+{
+    float: left;
+}
+
+.ImgSlider div span img
+{
+    position: relative;
+    top: 10px;
+    float: left;
+    height: 30px;
+    margin: 5px 10px;
+    border: 1px solid #fff;
+    z-index: 99;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+}
+.ImgSlider .cur
+{
+    border: solid 1px #885418;
+}

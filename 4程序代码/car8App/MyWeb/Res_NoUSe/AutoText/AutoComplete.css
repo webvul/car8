@@ -1,0 +1,16 @@
+﻿.floor
+{
+    position: absolute;
+    background-color:white;
+    border: 1px solid;
+    overflow: auto;
+}
+.unselected
+{
+    background-color: white;
+}
+.selected
+{
+    background-color: dodgerblue;
+    color: white;
+}

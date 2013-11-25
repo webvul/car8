@@ -1,0 +1,284 @@
+﻿.ListDivHeader
+{
+	color: #845703;
+	font-family: Arial;
+	font-size: 14px;
+	font-weight: bold;
+}
+.labHead
+{
+	height: 130px;
+	margin-left: 50px;
+	padding-top: 50px;
+	color: #0c0e00;
+	font-family: 华文行楷;
+	font-size: 30px;
+}
+
+.FootSplitLine
+{
+	overflow: hidden;
+}
+
+.ContactImg
+{
+	background-image: url(contact_nowZh.gif);
+}
+
+
+/*特殊处理*/
+
+.DivLang
+{
+	font-size: 14px;
+	font-family: Arial;
+	margin: 20px;
+	float:right;
+}
+
+.Desc
+{
+	margin: 10px;
+	line-height: 24px;
+}
+.Search
+{
+}
+.SearchInner
+{
+}
+
+
+
+.SearchBtn
+{
+	float: right;
+	margin-right: 10px;
+	margin-top: 5px;
+	margin-bottom: 4px;
+	width: 74px;
+	height: 24px;
+	background-color: Transparent;
+	background-image: url(inSearchButtonZh.gif);
+	background-repeat: no-repeat;
+}
+.SearchTxt
+{
+	width: 222px;
+	margin-top: 10px;
+	margin-left: 8px;
+}
+.SearchDivImg
+{
+}
+
+.InfoPad
+{
+}
+.InfoPadInner
+{
+	white-space: normal;
+	font-family: Tahoma;
+	line-height: 22px;
+	font-size: 13px;
+	padding: 8px;
+}
+
+.List
+{
+}
+.ListInner
+{
+	padding: 5px;
+	font-size: 13px;
+}
+
+
+.ListSplitDiv
+{
+	margin-top: 1px;
+	margin-bottom: 5px;
+	height: 1px;
+	background-color: #ffffff;
+	border-bottom: solid 1px #dac67c;
+	overflow:hidden;
+}
+
+
+.Viewy
+{
+	background-color: #E1C38F;
+	border-style: solid;
+	border-width: 1px;
+}
+
+.ViewyInner
+{
+	padding: 10px;
+	background-color: #f1ebd5;
+}
+.ViewySplitLine
+{
+	overflow:hidden;
+}
+
+.ViewyTit
+{
+	font-weight: bold;
+	border-width: 0px;
+	background-color: Transparent;
+	color: #003399;
+}
+
+.PagerDiv
+{
+	margin-top: 10px;
+	border: solid 1px #ccc688;
+	background-color: #e5ded0;
+	color: Black;
+}
+
+.PagerInnerDiv
+{
+	padding: 5px;
+	font-size: 12px;
+	border: solid 1px #b48e49;
+	margin: 0px;
+}
+
+.PagerDiv a
+{
+	color: black;
+}
+.PagerDiv img
+{
+	color: #845703;
+	margin-top: 3px;
+	border-width: 0px;
+}
+
+.WebPager A
+{
+	border: solid 1px #a47a2b;
+	color: #5A708C;
+	padding: 2px;
+	margin: 2px;
+	padding-left: 5px;
+	padding-right: 5px;
+	background-color: white;
+}
+
+.WebPager A.sel
+{
+	background-color: #a47a2b;
+	color: White;
+	font-weight: bold;
+}
+.WebPager a:hover
+{
+	background-color: #5e90c3;
+	color: White;
+}
+
+
+.WebPager A.prenxt
+{
+	margin: 2px;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.MapRoot
+{
+	padding-left: 15px;
+}
+
+/*SendMsg*/
+.SendMsgDiv
+{
+	padding: 10px;
+}
+.SendMsgFlash
+{
+	padding: 10px;
+}
+.SendMsgFlash div
+{
+	color: #2e3d52;
+	font-size: 13px;
+	font-weight: bold;
+}
+.SendMsgTxtDiv
+{
+	float: right;
+	width: 530px;
+	padding: 10px;
+}
+
+
+
+/*Menu*/
+.mainNavigat
+{
+	height: 29px; *margin-left:50px;
+}
+
+.mainNavigat ul
+{
+	margin: auto; *margin:0px0px0px39px!important;*margin:0px0px0px39px;
+}
+
+.mainNavigat li
+{
+	display: block;
+	float: left;
+	padding: 0;
+	margin: 0;
+}
+
+.mainNavigat a:link, .mainNavigat a:visited
+{
+	display: block;
+	font: bold 12px tahoma;
+	width: 129px;
+	height: 22px;
+	float: left;
+	color: #845703 !important;
+	background-repeat: no-repeat;
+	text-align: center;
+	padding: 8px 0 0 0;
+	margin: 0;
+}
+
+.mainNavigat a:hover
+{
+	background-color: #b48e49;
+	display: block;
+	font: bold 12px tahoma;
+	width: 129px;
+	float: left;
+	color: #FFFFCC !important;
+	background-repeat: no-repeat;
+	text-align: center;
+	padding: 8px 0 0 0;
+	margin: 0;
+	text-decoration: none;
+}
+
+.mainNavigat .current a:link, .mainNavigat .current a:visited
+{
+	background-color: #b48e49;
+	display: block;
+	font: bold 12px tahoma;
+	width: 129px;
+	float: left;
+	color: #FFFFCC !important;
+	background-repeat: no-repeat;
+	text-align: center;
+	padding: 8px 0 0 0;
+	margin: 0;
+	text-decoration: none;
+}
+.deptTitleImg {
+    height:110px;
+}

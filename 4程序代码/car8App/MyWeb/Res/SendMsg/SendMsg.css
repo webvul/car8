@@ -1,0 +1,14 @@
+﻿.SendMsg
+{
+	z-index: 999;
+}
+.WinIcon
+{
+	margin-left: 20px;
+	float: right;
+	width: 20px;
+	height: 19px;
+	background-image: url(images/icon.gif);
+	background-position: 0 19px;
+	cursor: pointer;
+}

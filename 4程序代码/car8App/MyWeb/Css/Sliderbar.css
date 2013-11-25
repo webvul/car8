@@ -1,0 +1,24 @@
+﻿body, div, address, blockquote, iframe, ul, ol, dl, dt, dd, li, dl, h1, h2, h3, h4, h5, h6, p, pre, table, form, caption, th, td, form, legend, fieldset, input, button, select, textarea {margin:0; padding:0; font-weight: normal;font-style: normal;font-size: 100%; font-family: inherit;} 
+ol, ul ,li{list-style: none;}
+img {border: 0;}
+body {color:#515151;background:url(images/sidebarbj.gif) -186px top  repeat-y; text-align: center; font-family: "微软雅黑",  Arial, Helvetica, sans-serif ;font-size: 12px ;} 
+.flaltleft{float:left;}
+.flaltright{float:right;}
+.clearboth{clear:both; overflow:hidden; height:1px; margin-top:-1px; }
+
+ /*  左侧--------------------------------------*/
+ #sidebar{background:url(images/sidebar-bj.gif) top left repeat-x ;  width:10px;  float:left; height:100%;}
+ #sidebarbottom{background:url(images/sidebar-bottom.gif) top left no-repeat; padding-top:30px;}
+ #menu{ background:url(images/sidebar-middle.gif) top left repeat-y ; margin-top:10px; }
+ #menu ul{ text-align:left; padding-left:6px; }
+ #menu ul li a{ outline:none;  height:25px; line-height:25px;padding-left:55px; color:#1b293e; text-decoration:none;display:block; }
+ #menu ul li a:link ,#menu ul li a:visited{ background:url(images/submenu_bj.gif) top left no-repeat; }
+ #menu ul li a:hover{ background:url(images/submenu_over.gif) top left no-repeat;  }
+ 
+ #menu ul li a.menuheader:link,#menu ul li a.menuheader:visited{background:url(images/menu_bj.gif) top left no-repeat; font-weight:bold;padding-left:30px;  text-shadow: 0px 1px 0px #fff; color:#000;}
+ #menu ul li a.menuheader:hover{background:url(images/menu_bj2.gif) top left no-repeat;font-weight:bold;text-shadow: 0px 1px 0px #fff;}
+ 
+  /*  中间伸缩按钮--------------------------------------*/
+  #middlebar{ float:left; width:10px; height:500px; background:url(images/sidebar-middle-bj.gif) top left no-repeat;}
+  .left_btn{background:url(images/middle_bar_left.png) top left no-repeat;_background:url(images/middle_bar_left.gif) top left no-repeat; width:8px; height:17px; border:none;margin-top:300px;  outline:none;} 
+  .right_btn{background:url(images/middle_bar_right.png) top left no-repeat; width:8px; height:17px; border:none; margin-top:300px; outline:none;} 

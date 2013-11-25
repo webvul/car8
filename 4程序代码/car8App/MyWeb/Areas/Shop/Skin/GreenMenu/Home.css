@@ -1,0 +1,308 @@
+﻿ pre {
+    white-space: -moz-pre-wrap;
+    white-space: -o-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+img {
+    border-width: 0px;
+}
+
+body {
+    background-color: white;
+    margin-right: auto;
+    margin-left: auto;
+    background-repeat: no-repeat;
+    font-size: 12px;
+}
+a {
+    text-decoration: none;
+}
+
+span {
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+}
+
+#body_head {
+    border: solid 0px #7792AE;
+    background-image: url('SkinHeader.gif');
+    background-repeat: no-repeat;
+    margin: auto;
+    width: 960px;
+    height: 87px;
+}
+
+    #body_head div {
+        line-height: 85px;
+        padding-left: 50px;
+        color: #E4EFFA;
+        vertical-align: middle;
+        text-align: left;
+        font-size: 36px;
+        font-family: 华文行楷;
+    }
+
+    #body_head .CorpLogoImg {
+        margin: 30px 20px 0 50px;
+        height: 50px;
+    }
+
+    #body_head .deptTitleImg {
+        height: 60px;
+    }
+
+#body_fav {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+}
+
+#body_menu {
+    border-top: solid 1px #34A17B;
+    background: #309274;
+    margin: auto;
+    text-align: left;
+    vertical-align: middle;
+    width: 960px;
+    height: 32px;
+}
+
+    #body_menu ul {
+        display: inline;
+    }
+
+        #body_menu ul li {
+            padding-left: 2px;
+            background: url(mainNavigatLeft.gif) left no-repeat;
+            vertical-align: middle;
+            display: inline-block;
+            *display: inline;
+            zoom: 1;
+        }
+
+            #body_menu ul li a {
+                padding: 13px 22px 6px 21px;
+                color: white;
+                text-align: center;
+                text-decoration: none;
+                font: bold 13px/1em tahoma;
+            }
+
+
+            #body_menu ul li.current, #body_menu ul li:hover {
+                padding-right: 8px;
+                background: url(mainNavigatCurrentRight.gif) right bottom no-repeat;
+                color: #309274!important;
+            }
+
+                #body_menu ul li.current a, #body_menu ul li:hover a {
+                    padding: 13px 14px 6px 22px!important;
+                    background: url(mainNavigatCurrentLeft.gif) left bottom no-repeat!important;
+                    color: #309274!important;
+                    text-decoration: none!important;
+                    display: inline-block;
+                    *display: inline;
+                    zoom: 1;
+                }
+
+#body_content {
+    width: 960px;
+    text-align: right;
+    margin: auto;
+    position: relative;
+}
+
+    #body_content:after {
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: ".";
+        clear: both;
+        height: 0;
+    }
+
+* html #body_content {
+    zoom: 1;
+}
+
+*:first-child + html #body_content {
+    zoom: 1;
+}
+
+
+#smallCon {
+    text-align: left;
+    float: left;
+    width: 200px;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+}
+
+    #smallCon .Sect {
+        margin-top: 10px;
+        text-align: left;
+        background-color: #F6F4F5;
+    }
+
+        #smallCon .Sect .split {
+            overflow: hidden;
+            margin-top: 1px;
+            margin-bottom: 5px;
+            height: 1px;
+            border-bottom: solid 0px #4A5565;
+            background-color: #e9e9e6;
+        }
+
+
+        #smallCon .Sect .Title {
+            border: solid 0px rgb(28,40,55);
+            background-color: #dae4d4;
+            font-size: 15px;
+            font-family: Arial;
+        }
+
+    #smallCon a {
+        color: black;
+        margin: 5px;
+        display: inline-block;
+        *display: inline;
+        zoom: 1;
+    }
+
+#bigCon {
+    width: 750px;
+    text-align: left;
+    vertical-align: top;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+}
+
+    #bigCon:after {
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: ".";
+        clear: both;
+        height: 0;
+    }
+
+* html #bigCon {
+    zoom: 1;
+}
+
+*:first-child + html #bigCon {
+    zoom: 1;
+}
+
+#body_foot {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+    #body_foot .split {
+        overflow: hidden;
+        margin-top: 2px;
+        margin-right: 10px;
+        margin-bottom: 6px;
+        margin-left: 10px;
+        height: 1px;
+        background-color: #455574;
+    }
+
+#body_nav {
+    width: 960px;
+    margin: auto;
+    background-color: #F8F9ED;
+}
+
+    #body_nav:after {
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: ".";
+        clear: both;
+        height: 0;
+    }
+
+* html #body_nav {
+    zoom: 1;
+}
+
+*:first-child + html #body_nav {
+    zoom: 1;
+}
+
+    #body_nav .MapRoot {
+        padding-left: 15px;
+    }
+
+    #body_nav .MapSep {
+        margin-right: 5px;
+        margin-left: 3px;
+        width: 6px;
+        background-image: url(crumbArrow.gif);
+        background-repeat: no-repeat;
+    }
+
+    #body_nav span {
+        height: 23px;
+        float: left;
+        vertical-align: middle;
+        line-height: 23px;
+    }
+
+    #body_nav a {
+        color: black;
+        vertical-align: middle;
+        line-height: 23px;
+        float: left;
+    }
+
+.CorpInfo {
+    background-color: #F1EBD5;
+    margin-top: 10px;
+    border-width: 1px;
+    border-style: solid;
+}
+
+    .CorpInfo .split {
+        overflow: hidden;
+        margin-top: 2px;
+        margin-right: 10px;
+        margin-bottom: 6px;
+        margin-left: 10px;
+        height: 1px;
+        border-bottom: solid 1px #F5F1E2;
+        background-color: #E8DEBC;
+    }
+
+    .CorpInfo .Title {
+        padding: 10px 0 0 10px;
+        border-width: 0px;
+        background-color: transparent;
+        color: #039;
+        font-weight: bold;
+    }
+
+    .CorpInfo .CorpTail {
+        background-color: #E1C38F;
+    }
+
+    .CorpInfo .kv {
+        padding: 6px;
+    }
+
+    .CorpInfo .key:after {
+        content: "：";
+    }
+
+    .CorpInfo .EmailImage, .CorpInfo .QQImage {
+        width: 20px;
+    }
+/*---------------------------------comm end ---------------------------------*/

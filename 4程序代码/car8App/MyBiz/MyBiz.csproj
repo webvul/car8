@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{52759F9B-59FA-476D-8088-8CB1E6B70643}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MyBiz</RootNamespace>
+    <AssemblyName>MyBiz</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkProfile />
+    <PublishUrl>http://localhost/Bus/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\lib\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="MyCmn, Version=1.0.4834.18985, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\MyCmn.dll</HintPath>
+    </Reference>
+    <Reference Include="MyOql, Version=1.0.4590.26928, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\MyOql.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Workflow.Activities" />
+    <Reference Include="System.Workflow.ComponentModel" />
+    <Reference Include="System.Workflow.Runtime" />
+    <Reference Include="System.WorkflowServices" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Admin\LangResBiz.cs" />
+    <Compile Include="Admin\LangResBiz_Extend.cs" />
+    <Compile Include="Admin\LogClass.cs" />
+    <Compile Include="Admin\MenuNodeCollection.cs" />
+    <Compile Include="Admin\PowerActionBiz.cs" />
+    <Compile Include="Admin\PowerActionBiz_Extend.cs" />
+    <Compile Include="Admin\PowerBiz.cs" />
+    <Compile Include="Admin\PowerBiz_Data.cs" />
+    <Compile Include="Admin\PowerButtonBiz.cs" />
+    <Compile Include="Admin\PowerButtonBiz_Extend.cs" />
+    <Compile Include="Admin\PowerColumnBiz.cs" />
+    <Compile Include="Admin\PowerColumnBiz_Extend.cs" />
+    <Compile Include="Admin\PowerConfigBiz.cs" />
+    <Compile Include="Admin\PowerTableBiz.cs" />
+    <Compile Include="Admin\PowerTableBiz_Extend.cs" />
+    <Compile Include="Admin\ToolBiz.cs" />
+    <Compile Include="Admin\TxtResBiz.cs" />
+    <Compile Include="Admin\TxtResBiz_Extend.cs" />
+    <Compile Include="Admin\TxtResBiz_ForEntity.cs" />
+    <Compile Include="Admin\PersonBiz.cs" />
+    <Compile Include="Admin\PowerControllerBiz.cs" />
+    <Compile Include="Admin\NoticeBiz.cs" />
+    <Compile Include="Admin\ProductBiz.cs" />
+    <Compile Include="App\TStandardRoleBiz.cs" />
+    <Compile Include="App\TStandardRoleBiz_Extend.cs" />
+    <Compile Include="KeepInfo.cs" />
+    <Compile Include="MyBizHelper.cs" />
+    <Compile Include="MyBizHelper_LongFor.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\OleDbService.cs" />
+    <Compile Include="Sys\HostSkinHelper.cs" />
+    <Compile Include="MyWF\IService.cs" />
+    <Compile Include="Sys\IPScanner.cs" />
+    <Compile Include="Sys\LifeSession.cs" />
+    <Compile Include="Sys\Mvc.cs" />
+    <Compile Include="Sys\MyClientChannel.cs" />
+    <Compile Include="Sys\MyCompress.cs" />
+    <Compile Include="Sys\MyExcel.cs" />
+    <Compile Include="Sys\MyOqlEvent\MyOqlEvent.cs" />
+    <Compile Include="Sys\MyOqlEvent\MyOqlEvent_Cache.cs" />
+    <Compile Include="Sys\MyOqlEvent\MyOqlEvent_Ing.cs" />
+    <Compile Include="Sys\MyOqlEvent\MyOqlEvent_Sql.cs" />
+    <Compile Include="Sys\MySessionEnum.cs" />
+    <Compile Include="MyWF\MysqlWorkflowPersistenceService_wf3.cs" />
+    <Compile Include="MyWF\MyState_wf3.cs" />
+    <Compile Include="MyWF\MyState_wf3.designer.cs">
+      <DependentUpon>MyState_wf3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyWF\MyWFHelpr.cs" />
+    <Compile Include="Sys\PowerJson.cs" />
+    <Compile Include="Sys\SessionHelper.cs" />
+    <Compile Include="Sys\SkinVar.cs" />
+    <Compile Include="Sys\UserUtil.cs" />
+    <Compile Include="Sys\OpenXml.cs" />
+    <Compile Include="Sys\XmlExcel.cs" />
+    <Compile Include="Sys\QueryModelBase.cs" />
+    <Compile Include="XmlExcel_Define\A.cs" />
+    <Compile Include="UIEnum\UserPower.cs" />
+    <Compile Include="WF\IInvite_wf3.cs" />
+    <Compile Include="XmlExcel_Define\XmlExcel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>
+      </ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>
+      </ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>
+      </ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.VisualBasic.PowerPacks.10.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft Visual Basic PowerPacks 10.0</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MyWF\SqlPersistenceService_Logic_wf3.sql" />
+    <Content Include="MyWF\SqlPersistenceService_Schema_wf3.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DbEnt\DbEnt.csproj">
+      <Project>{C860CEC6-DE88-498E-891B-18ADB416126C}</Project>
+      <Name>DbEnt</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="WF\Activity1.xaml.bak">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,520 @@
+﻿body
+{
+	background-image: url(bg_body.gif);
+	background-repeat: repeat-x;
+	background-color: #d6d6d6;
+}
+.CapTxt
+{
+}
+.NormalTxt
+{
+}
+
+.MsnDiv
+{
+	
+}
+.DivLang
+{
+	position: absolute;
+	color: White;
+	margin: 20px;
+	right: 0;
+	top: 0;
+}
+
+.PadTop
+{
+	padding-top:8px;
+}
+.MSNImage
+{
+	border: 0px;
+	width:18px;
+}
+.QQImage
+{
+	border:0px;
+	width:18px;
+}
+.EmailImage
+{
+	border:0px;
+	width:20px;
+}
+.ContactNowImg
+{
+	margin: 10px;
+	border: 0px;
+}
+.SearchDivImg
+{
+	float: right;
+}
+.SearchBtnImg
+{
+	margin: -5px;
+	height: 20px;
+	margin-right: 30px;
+}
+#AllDiv
+{
+	width: 950px;
+	z-index: 1;
+	margin: auto;
+	border: solid 0px #030303;
+	background-color: Transparent;
+}
+#AllDivInner
+{
+	min-height: 900px;
+	border: solid 0px #7792ae;
+	margin: 0px;
+}
+
+.KeySpan
+{
+	vertical-align: top;
+	white-space: normal;
+	width: 200px;
+	padding-left: 15px;
+	font-size: 12px;
+	color: Black;
+	height: 100%;
+}
+.ValueSpan
+{
+	vertical-align: top;
+	white-space: normal;
+	color: Black;
+	font-size: 12px;
+	line-height: 20px;
+	height: 100%;
+}
+
+.InfoPadDiv
+{
+	margin-top: 10px;
+	border: solid 0px #2e3d52;
+	background-image: url( 'infopad.gif' );
+	background-repeat: no-repeat;
+}
+
+.InfoPadInnerDiv
+{
+	height: 220px;
+	border: solid 0px #a9bcd0;
+	margin: 0px; *margin-bottom:-2px;
+}
+
+.InfoPadDivTxt
+{
+	color: Black;
+	white-space: normal;
+	font-family: Tahoma;
+	line-height: 22px;
+	font-size: 13px;
+	padding: 8px;
+}
+
+.MainItemDiv
+{
+	margin-top: 10px;
+	color: White;
+	font-weight: bold;
+	background-image: url( 'bg_h3_win.gif' );
+	background-repeat: repeat;
+}
+.MainItemInnerDiv
+{
+	border: solid 0px #7792ae;
+	padding: 5px;
+	font-size: 13px;
+	margin: 0px; *margin-right:-1px;
+}
+.MainConDiv
+{
+	padding-left: 10px;
+	background-color: #EEEEEE;
+}
+.CapDiv
+{
+	color: Black;
+	font-weight: bold;
+	font-size: 12px;
+	padding-top: 5px;
+	margin-bottom: 5px;
+	width: 100%;
+	border-bottom: solid 1px gray;
+}
+
+.ListDiv
+{
+	background-image: url( 'list_toper.gif' );
+	background-repeat: no-repeat;
+	margin-top: 10px;
+	border: solid 0px #222b38;
+	background-color: #efefef;
+	color: black;
+}
+.ListInnerDiv
+{
+	border: solid 0px #5a708c;
+	padding: 5px;
+	padding-top: 10px;
+	font-size: 13px;
+	margin: 0px; *margin-right:-1px;
+}
+
+.ListDiv A
+{
+	color: black;
+}
+.ListDivHeader
+{
+	color: White;
+	font-family: Arial;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.ListSplitDiv
+{
+	margin-top: 1px;
+	margin-bottom: 5px;
+	height: 0px;
+	background-color: #2c3744;
+}
+
+.ShowCorpInfoDiv
+{
+	margin-top: 10px;
+	border: solid 0px #222b38;
+	background-color: #efefef;
+}
+
+.ShowCorpInfoInnerDiv
+{
+	background-image: url(list_Toper.gif);
+	background-repeat: no-repeat;
+	padding: 5px;
+	border: solid 0px #222b38;
+}
+
+.ShowCorpInfoDivTitle
+{
+	color: White;
+	font-size: 12px;
+	font-weight: bold;
+}
+.ShowCorpInfoSplitDiv
+{
+	margin-top: 1px;
+	margin-bottom: 5px;
+	height: 0px;
+	background-color: rgb(232,222,188);
+}
+
+.ShowCorpInfoText
+{
+	white-space: normal;
+	word-wrap: break-word;
+	word-break: break-all;
+	color: #003399;
+	margin: 10px;
+	margin-top: 20px;
+	font-size: 11px;
+}
+
+.PagerDiv
+{
+	margin-top: 10px;
+	border: solid 1px #2e3d52;
+	background-color: #CCCCCC;
+	color: black;
+}
+
+.PagerInnerDiv
+{
+	padding: 5px;
+	font-size: 12px;
+	border: solid 1px #a9bcd0;
+	margin: 0px; *margin-bottom:-2px;
+}
+
+.PagerDiv a
+{
+	color: black;
+}
+.PagerDiv img
+{
+	color: White;
+	margin-top: -2px;
+	border-width: 0px;
+}
+
+.WebPager A
+{
+	border: solid 1px #5a708c;
+	color: #5A708C;
+	padding: 2px;
+	margin: 2px;
+	padding-left: 5px;
+	padding-right: 5px;
+	background-color: white;
+}
+
+.WebPager A.sel
+{
+	background-color: #5e90c3;
+	color: White;
+	font-weight: bold;
+}
+.WebPager a:hover
+{
+	background-color: #5e90c3;
+	color: White;
+}
+
+
+.WebPager A.prenxt
+{
+	margin: 2px;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+
+
+
+#SkinHeader
+{
+	background-repeat: no-repeat;
+}
+#CorpLogoImg
+{
+	height: 50px;
+}
+
+.labHead
+{
+	background-image: url(bg_top.gif);
+	height: 50px;
+	color: #33517f;
+	font-weight: bold;
+	vertical-align: middle;
+	text-align: left;
+	padding-top: 10px;
+	padding-left: 40px;
+	font-size: 20px;
+}
+#divCon
+{
+	padding-top: 0px;
+	width: 100%;
+	white-space: nowrap;
+	text-align: left;
+}
+#bigCon
+{
+	padding: 5px;
+	width: 720px;
+	overflow: hidden;
+}
+
+.SkinTopBanner
+{
+	overflow: hidden;
+	width: 950px;
+}
+
+#smallCon
+{
+	float: left;
+	width: 200px;
+	padding: 5px;
+	text-align: left;
+}
+.MapRoot
+{
+	padding-left: 15px;
+}
+
+
+.SplitLine
+{
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 2px;
+	margin-bottom: 6px;
+	height: 0px;
+	background-color: gray;
+}
+.DescDiv
+{
+	white-space: normal;
+	font-family: Tahoma;
+	line-height: 22px;
+	font-size: 13px;
+	padding: 8px;
+}
+.ButtonLink
+{
+	height: 20px;
+	width: 100%;
+	padding-top: 8px;
+	margin-top: 10px;
+	padding-left: 0px;
+	color: Black;
+	font-family: Arial;
+	font-size: 13px;
+	background-repeat: no-repeat;
+}
+
+.MainSiteMap
+{
+	background-image: url(siteMap_bg.gif);
+	background-repeat: no-repeat;
+	margin-left: 0px;
+	padding-top: 5px;
+	width: 950px;
+	height: 23px;
+}
+
+.MainSiteMap *
+{
+	color: black;
+}
+
+
+.ButtonLink A
+{
+	margin-left: 10px;
+	color: Black;
+}
+input.buttonSkinA
+{
+	font: bold 14px arial;
+	padding: 3px 8px;
+	width: auto;
+	overflow: visible;
+	color: #5E2708;
+	background: #FEEEB1 url(buttonSkinAL.gif) bottom repeat-x !important;
+	border-top: 1px solid #F39D24 !important;
+	border-left: 1px solid #F39D24 !important;
+	border-right: 1px solid #CF6F18 !important;
+	border-bottom: 1px solid #CF6F18 !important;
+}
+input.buttonSkinB
+{
+	font: bold 14px arial;
+	padding: 3px 8px;
+	width: auto;
+	overflow: visible;
+	color: #5E2708;
+	background: #EEF4FF url(buttonSkinBL.gif) bottom repeat-x;
+	border-left: 1px solid #BAC6D9;
+	border-top: 1px solid #BAC6D9;
+	border-right: 1px solid #7A8699;
+	border-bottom: 1px solid #7A8699;
+}
+input.buttonSkinBDisable, input.buttonSkinADisable
+{
+	color: #bfbfbf;
+	background: #f3f3f3;
+	border: 1px solid #ddd;
+}
+/*SendMsg*/
+.SendMsgDiv
+{
+	background-color: #f2f6f9;
+	height: 238px;
+	padding: 10px;
+	width: 720px;
+}
+.SendMsgFlash
+{
+	padding: 10px;
+}
+.SendMsgFlash div
+{
+	color: #2e3d52;
+	font-size: 13px;
+	font-weight: bold;
+}
+.SendMsgTxtDiv
+{
+	float: right;
+	width: 550px;
+	padding: 20px;
+}
+
+
+
+/*Menu*/
+.mainNavigat
+{
+	height: 33px; *margin-left:50px;
+}
+
+.mainNavigat ul
+{
+	margin: auto; *margin:0px0px0px39px!important;*margin:0px0px0px39px;
+}
+
+.mainNavigat li
+{
+	display: block;
+	float: left;
+	padding: 0;
+	margin: 0;
+}
+
+.mainNavigat a:link, .mainNavigat a:visited
+{
+	display: block;
+	font: bold 12px tahoma;
+	width: 129px;
+	height: 25px;
+	float: left;
+	color: #ffffcc !important;
+	background-repeat: no-repeat;
+	text-align: center;
+	padding: 8px 0 0 0;
+	margin: 0;
+}
+
+.mainNavigat a:hover
+{
+	background-image: url(bg_menu_on.gif);
+	display: block;
+	font: bold 12px tahoma;
+	width: 129px;
+	height: 25px;
+	float: left;
+	color: black !important;
+	background-repeat: no-repeat;
+	text-align: center;
+	padding: 8px 0 0 0;
+	margin: 0;
+	text-decoration: none;
+}
+
+.mainNavigat .current a:link, .mainNavigat .current a:visited
+{
+	background-image: url(bg_menu_on.gif);
+	display: block;
+	font: bold 12px tahoma;
+	width: 129px;
+	height: 25px;
+	float: left;
+	color: black !important;
+	background-repeat: no-repeat;
+	text-align: center;
+	padding: 8px 0 0 0;
+	margin: 0;
+	text-decoration: none;
+}
+
+

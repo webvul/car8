@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>AutoComplete</title>
+    <link href="AutoComplete.css" type="text/css" rel="stylesheet">
+
+    <script language="javascript" type="text/javascript" src="js/jquery-latest.js"></script>
+
+    <script language="javascript" type="text/javascript" src="js/jquery.AutoComplete.js"></script>
+
+    <script language="javascript" type="text/javascript">
+        $(function(){
+            $("input").AutoComplete("data.asp",{seperator:";",autoTab:true,parameterName:"key",kwlength:2});
+//	        $("input").AutoComplete("data.htm",{seperator:";",autoTab:true,parameterName:"key",kwlength:2});
+//          $("input").AutoComplete("handler.ashx",{seperator:";",autoTab:true,parameterName:"key",kwlength:2});
+
+        });
+    </script>
+
+</head>
+<body>
+    <input type="text" id="test" />
+    <input type="text" id="Text3" />
+    <table>
+        <tr>
+            <td>
+                <input id="Text1" type="text" name="key" /></td>
+        </tr>
+        <tr>
+            <td>
+                <input id="Text2" type="text" name="key" /></td>
+        </tr>
+    </table>
+</body>
+</html>

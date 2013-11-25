@@ -1,0 +1,10 @@
+﻿//系统自动生成的实体，不能修改。 By: $Computer$.$Author$  At:$DateTime$
+using System;
+using MyOql;
+using MyCmn;
+using System.Linq;
+using System.Data ;
+using System.Data.Common ;
+using System.Collections.Generic;
+using System.Runtime.Serialization ;
+using DbEnt;

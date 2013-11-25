@@ -1,0 +1,571 @@
+﻿html#html_Style {
+    background-color: #5C84B7;
+    border-width: 0px 7px 7px 0px;
+    border-color: #5C84B7;
+    border-style: solid;
+    overflow: hidden;/* 要设置滚动条，设置到 body 上*/
+}
+
+html#html_Main {
+    border-width: 0px;
+}
+
+body * {
+    font-size: 12px;
+}
+
+body {
+    background-color: #F6F6F6;
+    margin: 0px;
+    padding: 0px;
+    font-family: Tahoma,Verdana,Helvetica,Sans-Serif;
+    font-size: 12px;
+}
+
+span {
+    display: inline-block;
+}
+
+textarea {
+    Word-break: break-all;
+    word-wrap: break-word;
+}
+pre {
+	white-space: pre-wrap;/*解决火狐下pre不能自动换行的问题*/
+}
+.Link {
+    /*    color:Blue; */
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+img {
+    border-width: 0px;
+}
+
+A {
+    color: Blue;
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+input[type="checkbox"], input[type="radio"] {
+    width: auto;
+    margin: 0px;
+}
+
+.Inline {
+    vertical-align: middle;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+}
+
+.Center {
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto; /*FF*/
+}
+ 
+
+div.MyCard > div {
+    width: 45%;
+    vertical-align: top;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+}
+
+table {
+    border-spacing: 0;
+}
+
+    table.MyCard {
+        width: 100%;
+    }
+
+.divSplit, div.MyCard > div.divSplit {
+    text-align: center;
+    margin: 28px;
+    width: 1px;
+    background-color: gray;
+}
+
+.MyCardTitle {
+    margin: 10px 0 10px 10px;
+    background-color: Gray;
+    color: Yellow;
+    padding: 2px 5px 3px 5px;
+    font-size: 14px;
+    vertical-align: middle;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+}
+
+.MyTool {
+    background-color: #f0f0f0;
+    padding: 4px;
+    border: solid 1px #8e846b;
+    z-index: 999;
+    display: block;
+    margin-bottom: 5px;
+    text-align: right;
+}
+
+
+
+textarea {
+    overflow: auto;
+    resize: none;
+}
+
+.kv {
+    margin: 5px;
+    /*   white-space:nowrap;border: 2px solid #B67E7B; 
+   background-color: #B67E7B;
+*/
+}
+
+    .kv > * {
+        /*vertical-align: top;*/
+        display: inline-block;
+        *display: inline;
+        zoom: 1;
+    }
+
+.key {
+    /*margin-top: 6px;*/
+    min-width: 80px;
+    text-align: right;
+    /* vertical-align: top;*/
+}
+
+.val {
+    min-width: 80px;
+    vertical-align: top;
+    white-space: nowrap;
+    word-wrap: normal;
+    word-break: keep-all;
+}
+
+.kv .key {
+    width: 35%;
+}
+
+.kv .val {
+    width: 63%;
+    /*width:63%\0; IE8 Only*/
+}
+
+td.key {
+    background-color: #eee;
+}
+
+.withblack {
+    color: Black;
+}
+
+.withgray {
+    color: #515151;
+}
+
+.withRed, .must {
+    color: Red !important;
+}
+
+.withOrange {
+    color: Orange;
+}
+
+.withGreen {
+    color: Green;
+}
+
+.withBlue {
+    color: Blue;
+}
+
+.nvlborder, input[readonly] {
+    border: 1px solid #A5ACB2;
+    background-color: #EBEBE4;
+}
+
+.val input, .val > span, .val textarea, .val select {
+    /*min-height:21px;*/
+    vertical-align: top;
+    /*  min-width:80px;
+    max-width:360px;*/
+    width: 90%;
+    +width:120px;
+}
+
+.val > span {
+    margin-top: 6px;
+}
+
+/* 后缀，采用向左缩 的方式 ，保持右对齐。 */
+.val .suffix {
+    min-width: auto;
+    width: auto;
+    position: relative;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    .val select {
+        min-height: 24px;
+    }
+}
+
+/*
+.val input,.val>span,.val textarea
+{
+    outline: 1px solid white;
+}
+*/
+
+.noinput, .noinput input {
+    min-width: 0px;
+    max-width: 1024px;
+    width: auto;
+}
+
+.key .Link, .val .Link {
+    min-width: 0px !important;
+    width: auto !important;
+}
+
+
+.hero {
+    margin: 7px;
+    padding: 3px;
+}
+
+.kv .check, .kv .radio, .val .check, .val .radio, .val .radioItem {
+    vertical-align: top;
+    width: auto;
+    height: auto;
+}
+
+.heightAuto {
+    height: auto!important;
+}
+
+.submit, .button {
+    font-size: 12px;
+    padding: 0px 2px 0px 2px;
+    min-width: 50px;
+    +min-width: auto; /*IE7*/
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    .submit, .button {
+        padding: 2px;
+    }
+}
+
+/*两种写法*/
+.query_btn, .BtnQuery {
+    text-align: right;
+    margin: 8px 22px;
+}
+
+    .query_btn input, .BtnQuery input, .query_btn button, .BtnQuery button {
+        width: auto !important;
+    }
+
+.divQuery {
+    padding: 10px;
+}
+
+    .divQuery A, .divQuery .Link {
+        color: Black;
+    }
+
+    .divQuery .kv {
+        text-align: right;
+        width: 22%;
+    }
+
+
+.fix120 {
+    width: 125px;
+}
+
+.win {
+}
+
+.PageTool {
+}
+
+    .PageTool input {
+        padding: 2px 10px;
+        margin:2px 5px;
+    }
+/*Button 样工: http://hellohappy.org/css3-buttons/ 
+button, input[type=button]
+{
+    background-color: #ee432e;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ee432e), color-stop(50%, #c63929), color-stop(50%, #b51700), color-stop(100%, #891100));
+    background-image: -webkit-linear-gradient(top, #ee432e 0%, #c63929 50%, #b51700 50%, #891100 100%);
+    background-image: -moz-linear-gradient(top, #ee432e 0%, #c63929 50%, #b51700 50%, #891100 100%);
+    background-image: -ms-linear-gradient(top, #ee432e 0%, #c63929 50%, #b51700 50%, #891100 100%);
+    background-image: -o-linear-gradient(top, #ee432e 0%, #c63929 50%, #b51700 50%, #891100 100%);
+    background-image: linear-gradient(top, #ee432e 0%, #c63929 50%, #b51700 50%, #891100 100%);
+    border: 1px solid #951100;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4), 0 1px 3px #333333;
+    -moz-box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4), 0 1px 3px #333333;
+    box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4), 0 1px 3px #333333;
+    color: #fff;
+    padding: 2px 15px;
+    text-align: center;
+    text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.8);
+}
+button:hover, input[type=button]:hover
+{
+    background-color: #f37873;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f37873), color-stop(50%, #db504d), color-stop(50%, #cb0500), color-stop(100%, #a20601));
+    background-image: -webkit-linear-gradient(top, #f37873 0%, #db504d 50%, #cb0500 50%, #a20601 100%);
+    background-image: -moz-linear-gradient(top, #f37873 0%, #db504d 50%, #cb0500 50%, #a20601 100%);
+    background-image: -ms-linear-gradient(top, #f37873 0%, #db504d 50%, #cb0500 50%, #a20601 100%);
+    background-image: -o-linear-gradient(top, #f37873 0%, #db504d 50%, #cb0500 50%, #a20601 100%);
+    background-image: linear-gradient(top, #f37873 0%, #db504d 50%, #cb0500 50%, #a20601 100%);
+    cursor: pointer;
+}
+button:active, input[type=button]:active
+{
+    background-color: #d43c28;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #d43c28), color-stop(50%, #ad3224), color-stop(50%, #9c1500), color-stop(100%, #700d00));
+    background-image: -webkit-linear-gradient(top, #d43c28 0%, #ad3224 50%, #9c1500 50%, #700d00 100%);
+    background-image: -moz-linear-gradient(top, #d43c28 0%, #ad3224 50%, #9c1500 50%, #700d00 100%);
+    background-image: -ms-linear-gradient(top, #d43c28 0%, #ad3224 50%, #9c1500 50%, #700d00 100%);
+    background-image: -o-linear-gradient(top, #d43c28 0%, #ad3224 50%, #9c1500 50%, #700d00 100%);
+    background-image: linear-gradient(top, #d43c28 0%, #ad3224 50%, #9c1500 50%, #700d00 100%);
+    -webkit-box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4);
+    -moz-box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4);
+    box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4);
+}
+*/
+.Wrap {
+    white-space: pre-line;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.NoWrap {
+    white-space: nowrap;
+    word-wrap: normal;
+    word-break: keep-all;
+}
+
+/*tableDnd 样式 */
+.tDnD_whileDrag, .tDnD_whileDrag * {
+    background-color: darkGoldenrod;
+    color: White;
+}
+
+.ref {
+    /*padding-right:24px;*/ /*设置 padding-right后，列宽就会不一致。该  ref 列宽会多出 24px*/
+    border: 1px solid #A5ACB2;
+    min-height: 20px;
+    background: #fff url(Img/Button_Select.jpg) no-repeat right center !important;
+    cursor: hand !important;
+    height: 20px\9;
+}
+
+    .ref:disabled {
+        background: transparent url(Img/Button_Disabled_Select.jpg) no-repeat right center !important;
+    }
+
+.cover {
+    z-index: 999;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    background-color: rgb(50, 50, 50);
+    filter: alpha(opacity=10);
+    opacity: 0.1;
+    -webkit-user-select: none;
+    -moz-user-select: -moz-none;
+}
+
+
+.Icon16 {
+    width: 16px;
+    height: 16px;
+}
+
+.Icon24 {
+    width: 24px;
+    height: 24px;
+}
+
+.Icon32 {
+    width: 32px;
+    height: 32px;
+}
+
+.Icon64 {
+    width: 64px;
+    height: 64px;
+}
+
+
+/*以下样式 不沉淀。*/
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+    font-size: 0;
+}
+
+.clearfix {
+    display: inline-block;
+}
+
+.DelText {
+    text-decoration: line-through;
+    font-style: italic;
+    color: Red;
+}
+
+.info_win_con {
+}
+
+.info_win_bj {
+    background-color: Orange;
+    opacity: 0.5;
+}
+
+.info_win {
+    font-weight: bold;
+    font-size: large;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    word-break: break-all;
+    text-align: center;
+}
+
+table.noborder, table.noborder td, table.noborder th {
+    border-width: 0px;
+}
+
+.inputContainer input {
+    margin: 3px;
+}
+
+.buttonContainer input {
+    text-align: center;
+}
+
+.divNavigation span {
+    margin: 5px;
+}
+
+    .divNavigation span a {
+        background: transparent url(Img/close.gif) no-repeat left center;
+        padding-left: 18px;
+    }
+
+.navselected a {
+    background: transparent url(Img/open.gif) no-repeat left center !important;
+}
+
+table.radioNavi tr td {
+    padding: 5px;
+}
+
+input.label {
+    border-width: 0px;
+    background-color: transparent;
+}
+
+.MyTitle {
+    text-align: center;
+    font-size: 12pt;
+    background-image: url("Img/tableHead_bg.gif");
+    background-color: rgb(238, 238, 238);
+    padding: 4px;
+    vertical-align: middle;
+}
+
+.PmTool {
+    background-image: url("img/dotbg.gif");
+    background-repeat: repeat;
+    vertical-align: middle;
+    text-align: center;
+    padding: 4px;
+}
+
+    .PmTool .left, .PmTool.left, .PmLeft {
+        text-align: left;
+    }
+
+    .PmTool .center, .PmCenter {
+        text-align: center;
+    }
+
+    .PmTool .right, .PmRight {
+        text-align: right;
+    }
+
+/*popSearch*/
+.PopSearch {
+    display: none;
+}
+
+select {
+    min-width: 42px;
+}
+
+.editor {
+    width: 100%;
+    height: 300px;
+}
+
+.loadingDiv {
+    background-color: #fff;
+    z-index: 99999;
+    position: fixed;
+    width: 250px;
+    height: 30px;
+    padding-top: 150px;
+    border: solid 3px green;
+    text-align: center;
+    background: #fff url(images/wait.gif) no-repeat center 30px;
+}
+
+
+/*color－line  彩带的简写*/
+.coline {
+    margin-left: -5px;
+    width: 180px;
+    height: 10px;
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType=1,startColorstr='gray', endColorstr='#F6F6F6'); /* for IE */
+    background: -webkit-gradient(linear,0 0,100% 0, from(gray), to(#F6F6F6) );
+    background: -moz-linear-gradient(left, gray,#F6F6F6);
+    vertical-align: middle;
+    margin-top: 12px;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+}
+
+.button.large {
+    font-size: medium;
+    padding: 4px 20px;
+    color: blue;
+    font-weight: bold;
+}

@@ -1,0 +1,227 @@
+﻿<%@ Master Language="C#" Inherits="MyMaster<IShopModel>" %>
+
+<%@ Import Namespace="System.Linq" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="~/favicon.ico" type="image/x-icon" />
+    <meta name="robots" content="all" />
+    <meta http-equiv="windows-Target" content="_top" />
+    <title>
+        <asp:ContentPlaceHolder ID="Title" runat="server">
+        </asp:ContentPlaceHolder>
+    </title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div id="body_head">
+        <% 
+            var deptLogoAnn = Model.Dept.GetAnnexByLogo();
+            if (deptLogoAnn != null)
+            {
+                Ronse += Html.MyTag(HtmlTextWriterTag.Img, "", new { @class = "CorpLogoImg", src = deptLogoAnn.FullName });
+
+            }
+
+            var deptTitleAnn = Model.Dept.GetAnnexByTitle();
+            if (deptTitleAnn != null)
+            {
+                Ronse += Html.MyTag(HtmlTextWriterTag.Img, "", new { @class = "deptTitleImg", src = deptTitleAnn.FullName });
+            }
+            else
+            {
+                Ronse += Html.MyTag(HtmlTextWriterTag.Div, Model.Dept.Name, new  { style ="margin-bottom:56px;display:inline-block" });
+            }
+        %>
+    </div>
+    <%--<div id="body_fav" onclick="javascript:AddToFavorite(jv.Root,'(和易家社区服务平台)');">添加到收藏夹</div>--%>
+    <div id="body_menu">
+        <ul>
+            <%
+                var dict = new Dictionary<ShopMenu, string>();
+                dict[ShopMenu.Home] = "~/Shop/Index/" + Model.Dept.WebName + ".aspx";
+                dict[ShopMenu.Products] = "~/Shop/Products/" + Model.Dept.WebName + ".aspx";
+                dict[ShopMenu.Notice] = "~/Shop/Notice/" + Model.Dept.WebName + ".aspx";
+                dict[ShopMenu.AboutUs] = "~/Shop/About/" + Model.Dept.WebName + ".aspx";
+
+                var menuIndex = new string[] { "Index", "Products", "Notice", "About" }.IndexOf(o => MyHelper.Action.IndexOf(o, StringComparison.CurrentCultureIgnoreCase) != -1);
+
+                for (int i = 0; i < dict.Count; i++)
+                {
+                    Response.Write("<li");
+                    if (menuIndex == i || (menuIndex < 0 && i == 1))
+                    {
+                        Response.Write(@" class=""current""");
+                    }
+                    Response.Write(@"><a href=""" + dict.Values.ElementAt(i) + @""">" + dict.Keys.ElementAt(i).GetRes() + @"</a>");
+
+                } %>
+        </ul>
+    </div>
+    <div id="body_main">
+        <div id="body_nav">
+            <%if (menuIndex != 0)
+              { %>
+            <a href='~/Shop/Index/<%=Model.Dept.WebName %>.aspx' title="home" class="MapRoot">
+                <%=ShopMenu.Home.GetRes() %>
+            </a><span class="MapSep"></span>
+            <% 
+                  if (menuIndex > 0)
+                  {
+                      Ronse += Html.MyTag(HtmlTextWriterTag.Span, dict.Keys.ElementAt(menuIndex).GetRes(), null);
+                  }
+                  else if (string.Equals(MyHelper.Action, "ProductInfo", StringComparison.CurrentCultureIgnoreCase))
+                  {
+                      Ronse += Html.ActionLink(ShopMenu.Products.GetRes(), ShopMenu.Products.ToString(), new { WebName = Model.Dept.WebName }).ToHtmlString();
+
+                      //ProductInfo 中参数 page.
+                      var productId = MyHelper.RequestContext.RouteData.Values["id"].AsInt();
+                      var info = dbr.ProductInfo.FindById(productId);
+                      var productType = info.GetProductType();
+                      var pids = productType.Wbs.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Where(o => o != "0").ToArray();
+
+                      var pRootType = new List<RowData>();
+                      if (pids.Length > 0)
+                      {
+                          pRootType = dbr.ProductType
+                              .Select(o => new ColumnClip[] { o.Id, o.Name })
+                              .Where(o => o.Id.In(pids))
+                              .OrderBy(o => o.Id.Asc)
+                              .ToDictList();
+                      }
+
+                      pRootType.Add(new RowData() { { "Id", productType.Id }, { "Name", productType.Name } });
+
+                      for (int i = 0; i < pRootType.Count; i++)
+                      {
+                          var curType = pRootType[i];
+                          Ronse += @"<span class=""MapSep""></span>";
+
+                          object atr = new
+                              {
+                                  href = "~/Shop/Products/" + Model.Dept.WebName + ".aspx?Type=" + curType["Id"].AsString(),
+                                  title = curType["Name"].AsString()
+                              };
+                          Ronse += Html.MyTag(HtmlTextWriterTag.A, curType["Name"].AsString(), atr);
+                      }
+
+                      Ronse += @"<span class=""MapSep""></span>";
+                      Ronse += Html.MyTag(HtmlTextWriterTag.Span, info.Name, null);
+                  }
+                  else if (string.Equals(MyHelper.Action, "NoticeInfo", StringComparison.CurrentCultureIgnoreCase))
+                  {
+                      Ronse += Html.ActionLink(ShopMenu.Products.GetRes(), ShopMenu.Notice.ToString(), new { WebName = Model.Dept.WebName }).ToHtmlString();
+
+                      //ProductInfo 中参数 page.
+                      var noticeId = MyHelper.RequestContext.RouteData.Values["id"].AsInt();
+                      var info = dbr.NoticeInfo.FindById(noticeId);
+                      var noticeType = info.GetNoticeType();
+                      var pids = noticeType.Wbs.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Where(o => o != "0").ToArray();
+
+                      var pRootType = new List<RowData>();
+                      if (pids.Length > 0)
+                      {
+                          pRootType = dbr.NoticeType
+                              .Select(o => new ColumnClip[] { o.Id, o.Name })
+                              .Where(o => o.Id.In(pids))
+                              .OrderBy(o => o.Id.Asc)
+                              .ToDictList();
+                      }
+
+                      pRootType.Add(new RowData() { { "Id", noticeType.Id }, { "Name", noticeType.Name } });
+
+                      for (int i = 0; i < pRootType.Count; i++)
+                      {
+                          var curType = pRootType[i];
+                          Ronse += @"<span class=""MapSep""></span>";
+
+                          object atr = new
+                          {
+                              href = "~/Shop/Products/" + Model.Dept.WebName + ".aspx?Type=" + curType["Id"].AsString(),
+                              title = curType["Name"].AsString()
+                          };
+                          Ronse += Html.MyTag(HtmlTextWriterTag.A, curType["Name"].AsString(), atr);
+                      }
+
+                      Ronse += @"<span class=""MapSep""></span>";
+                      Ronse += Html.MyTag(HtmlTextWriterTag.Span, info.Name, null);
+                  }
+              } %>
+        </div>
+        <div id="body_content">
+            <div id="smallCon">
+                <%--        <div class="Title">
+                    <a href="~/Shop/ShowCase/<%=Model.Dept.WebName %>.aspx">展示商品
+                    </a>
+                </div>--%>
+
+                <div class="Sect">
+                    <div class="Title">
+                        <a href="~/Shop/Products/<%=Model.Dept.WebName %>.aspx">商品</a>
+                    </div>
+                    <% 
+                        
+                        var ptype = dbr.ProductType.Select(
+                            o => new ColumnClip[] { o.Id, o.Name }
+                            ).Where(o => o.DeptID == Model.Dept.Id).ToDictList();
+
+                        for (int i = 0; i < ptype.Count; i++)
+                        {
+                            if (i > 0)
+                            {
+                                Ronse += Html.MyTag(HtmlTextWriterTag.Div, "", new { @class = "split" });
+                            }
+                            Ronse += Html.MyTag(HtmlTextWriterTag.A, ptype[i]["Name"].AsString(), new
+                            {
+                                href = "~/Shop/Products/" + Model.Dept.WebName + ".aspx?Type=" + ptype[i]["Id"]
+                            });
+                        }
+                        
+                         
+                    %>
+                </div>
+                <div class="Sect">
+                    <div class="Title">
+                        <a href="~/Shop/Notice/<%=Model.Dept.WebName %>.aspx">公告</a>
+                    </div>
+                    <% 
+                        var ntype = dbr.NoticeType.Select(
+                            o => new ColumnClip[] { o.Id, o.Name }
+                            ).Where(o => o.DeptID == Model.Dept.Id).ToDictList();
+
+                        for (int i = 0; i < ntype.Count; i++)
+                        {
+                            if (i > 0)
+                            {
+                                Ronse += Html.MyTag(HtmlTextWriterTag.Div, "", new { @class = "split" });
+                            }
+                            Ronse += Html.MyTag(HtmlTextWriterTag.A, ntype[i]["Name"].AsString(), new
+                            {
+                                href = "~/Shop/Notice/" + Model.Dept.WebName + ".aspx?Type=" + ntype[i]["Id"]
+                            });
+                        }
+                    %>
+                </div>
+                <%Html.RenderPartial("~/Areas/Shop/Views/Shared/CorpInfo.ascx", Model.Dept); %>
+            </div>
+            <asp:ContentPlaceHolder ID="SmallContent" runat="server">
+            </asp:ContentPlaceHolder>
+
+            <div id="bigCon">
+                <asp:ContentPlaceHolder ID="BigContent" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+
+        </div>
+    </div>
+    <div id="body_foot">
+        <div class="split">
+        </div>
+        © 和易家社区服务平台 <%=DateTime.Today.Year %>
+    </div>
+</body>
+</html>

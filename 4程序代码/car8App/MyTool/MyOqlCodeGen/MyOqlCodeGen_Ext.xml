@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!-- （自动生成）合成 MyOql.config，By: UDI-PC.(Administrator)   At:2013/11/15 13:04:59 -->
+<MyOqlCodeGen>
+  <Table db="dbo" Owner="dbo">
+    <Group>
+      <Entity MapName="DeptAnnex" Name="TB_DeptAnnex" Enums="Key=DeptAnnexKeyEnum" PKs="ID" AutoIncreKey="ID" FKs="DeptID(ud)=TB_Dept:ID,AnnexID(ud)=Annex:ID">
+      </Entity>
+      <Entity MapName="Person" Name="TB_Person" Enums="Sex=OrgSexEnum" PKs="UserID" FKs="Logo()=Annex:ID,DeptID()=TB_Dept:ID">
+      </Entity>
+      <Entity MapName="Dept" Enums="BizType=DeptBizTypeEnum" Name="TB_Dept" PKs="ID" UniqueKey="WebName" FKs="Logo()=Annex:ID,Title()=Annex:ID,TitleExtend()=Annex:ID">
+      </Entity>
+      <Entity Name="Annex" PKs="ID" AutoIncreKey="ID">
+      </Entity>
+      <Entity Name="Dict" Enums="Trait=DictTraitEnum" PKs="ID" AutoIncreKey="ID">
+      </Entity>
+      <Entity Name="ResKey" PKs="Key" AutoIncreKey="ID">
+      </Entity>
+      <Entity Name="ResValue" Enums="Lang=LangEnum" PKs="Lang,ResID" AutoIncreKey="ID">
+      </Entity>
+      <Entity Name="PowerController" PKs="ID" AutoIncreKey="ID">
+      </Entity>
+      <Entity Name="PowerAction" PKs="ID" AutoIncreKey="ID" FKs="ControllerID()=PowerController:ID">
+      </Entity>
+      <Entity Name="PowerButton" PKs="ID" AutoIncreKey="ID" FKs="ActionID(ud)=PowerAction:ID">
+      </Entity>
+      <Entity Name="Log" Enums="Type=InfoEnum" db="Log" PKs="Id" AutoIncreKey="Id">
+      </Entity>
+      <Entity Name="Menu" Enums="Status=IsAbleEnum" PKs="ID">
+      </Entity>
+      <Entity Name="CacheTable" PKs="Table">
+      </Entity>
+    </Group>
+    <Group Name="Shop">
+      <Entity MapName="ProductType" Name="TB_ProductType" PKs="ID" AutoIncreKey="ID" UniqueKey="Name,PID" FKs="DeptID()=TB_Dept:ID">
+      </Entity>
+      <Entity MapName="NoticeType" Name="TB_NoticeType" PKs="ID" AutoIncreKey="ID">
+      </Entity>
+      <Entity MapName="NoticeInfo" Name="TB_NoticeInfo" PKs="ID" AutoIncreKey="ID" FKs="NoticeTypeID(ud)=TB_NoticeType:ID,Logo()=Annex:ID">
+      </Entity>
+      <Entity MapName="ProductClicks" Name="TB_ProductClicks" PKs="ID" AutoIncreKey="ID" UniqueKey="Year,Month,ProductID" FKs="ProductID(ud)=TB_ProductInfo:ID">
+      </Entity>
+      <Entity MapName="ContactMsg" Name="TB_ContactMsg" PKs="ID" AutoIncreKey="ID">
+      </Entity>
+      <Entity MapName="ProductAnnex" Name="TB_ProductAnnex" PKs="ID" AutoIncreKey="ID" FKs="ProductID(ud)=TB_ProductInfo:ID,AnnexID(ud)=Annex:ID">
+      </Entity>
+      <Entity MapName="ProductInfo" Name="TB_ProductInfo" PKs="ID" AutoIncreKey="ID" FKs="ProductTypeID(ud)=TB_ProductType:ID,Logo()=Annex:ID">
+      </Entity>
+      <Entity MapName="ProductDetail" Name="TB_ProductDetail" PKs="ID" AutoIncreKey="ID" FKs="ProductID()=TB_ProductInfo:ID">
+      </Entity>
+      <Entity MapName="EnterpriseShowCase" Name="TB_EnterpriseShowCase" PKs="ProductID">
+      </Entity>
+      <Entity MapName="NoticeShowCase" Name="TB_NoticeShowCase" PKs="NoticeID">
+      </Entity>
+    </Group>
+    <Group Name="LongFor">
+      <Entity MapName="Community" Name="TM_Community" PKs="CommID">
+      </Entity>
+      <Entity Name="T_STANDARD_ROLE" Enums="STANDARD_ROLE_ID=Guid" PKs="STANDARD_ROLE_ID" />
+      <Entity Name="T_ROOM_OWNER" PKs="ROOM_OWNER_ID" UniqueKey="LoginName">
+      </Entity>
+      <Entity Name="TEMP_ROOMOWNER" PKs="Id" AutoIncreKey="Id">
+      </Entity>
+      <Entity MapName="Dept_Community" Name="TB_Dept_Community" PKs="RefID" AutoIncreKey="RefID">
+      </Entity>
+    </Group>
+  </Table>
+  <View db="dbo" Owner="dbo">
+    <Group Name="View">
+      <Entity Name="VPowerAction" PKs="ID" AutoIncreKey="ID" MyTable="PowerController,PowerAction,PowerButton" AutoTable="PowerAction,PowerButton,PowerController" />
+      <Entity Name="PM_VTxtRes" MapName="VTxtRes" Enums="Lang=LangEnum" PKs="Lang,ResID" MyTable="ResKey,ResValue" AutoTable="ResKey,ResValue" />
+    </Group>
+  </View>
+  <Proc Owner="dbo" db="dbo">
+    <Group Name="">
+      <Entity Name="P_LoginShop" MapName="PLogin" Return="result=PersonRule.Entity:out" />
+      <Entity Name="P_EditPassword" Return="" AutoTable="TB_Person" />
+    </Group>
+    <Group Name="LongFor">
+      <Entity Name="SP_Import_RoomOwner" Return="" AutoTable="T_BUILDING,T_ROOM_OWNER,T_ROOMOWNER_RELATION" />
+    </Group>
+  </Proc>
+  <Function Owner="dbo" db="dbo">
+    <Group Name="Shop">
+      <Entity Name="Split" Enums="Value=String" Paras="val=String:in,split=String:in">
+      </Entity>
+    </Group>
+  </Function>
+</MyOqlCodeGen>

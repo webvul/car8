@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>图片上传</title>
+    <link href="css/uploadImg.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../../tiny_mce_popup.js"></script>
+    <script src="../../../MyJs.js" type="text/javascript"></script>
+    <script src="../../../MyJs_Admin.js" type="text/javascript"></script>
+    <link href="../../../MyCss.css" rel="stylesheet" />
+    <link href="../../../FileUploader/fileuploader.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            var getMyMvcPage = function (win) {
+                if (win.jv.AllRequest.length) return win;
+                else return getMyMvcPage(win.parent);
+            };
+
+            $("#advimage").addClass("jvRequest_waite");
+            var mvcJv = getMyMvcPage(window).jv;
+            jv.Root = mvcJv.Root;
+            jv.AddRequest(mvcJv.AllRequest[mvcJv.AllRequest.length - 1]);
+            jv.MyOnInit();
+
+            $("#upFile_Logo").upFile({
+                max: 1, listFile: null, onComplete: function (i, fileFullName, res) {
+                    $("#MyImg_Logo").attr("src", res.url);
+                    $("#Edit_Logo").val(res.id);
+                    this.upFile._options._loaded = [];
+                }
+            });
+
+            jv.page().LoadImage = function (ev) {
+                jv.PopList({
+                    list: 'ImgList', area: 'Admin', entity: 'Annex', mode: 'radio', query: {},
+                    uid: "",
+                    callback: function (role, data) {
+                        if (data && data.length) {
+                            $("#src").val(data[0].FullUrl);
+                        }
+                    }
+                }, ev);
+                return true;
+            };
+ 
+            jv.page().insert = function () {
+                var ed = tinyMCEPopup.editor, f = document.forms[0], nl = document.getElementById("MyImg_Logo") , v, args = {}, el;
+
+                tinyMCEPopup.restoreSelection();
+
+                // Fixes crash in Safari
+                if (tinymce.isWebKit)
+                    ed.getWin().focus();
+
+                if (!ed.settings.inline_styles) {
+                    args = {
+                        vspace: nl.vspace.value,
+                        hspace: nl.hspace.value,
+                        border: nl.border.value,
+                        align: getSelectValue(f, 'align')
+                    };
+                } else {
+                    // Remove deprecated values
+                    args = {
+                        vspace: '',
+                        hspace: '',
+                        border: '',
+                        align: ''
+                    };
+                }
+
+                tinymce.extend(args, {
+                    src: nl.src.replace(/ /g, '%20') 
+
+                });
+
+
+                el = ed.selection.getNode();
+
+                if (el && el.nodeName == 'IMG') {
+                    ed.dom.setAttribs(el, args);
+                } else {
+                    tinymce.each(args, function (value, name) {
+                        if (value === "") {
+                            delete args[name];
+                        }
+                    });
+
+                    ed.execCommand('mceInsertContent', false, tinyMCEPopup.editor.dom.createHTML('img', args), { skip_undo: 1 });
+                    ed.undoManager.add();
+                }
+
+                tinyMCEPopup.editor.execCommand('mceRepaint');
+                tinyMCEPopup.editor.focus();
+                tinyMCEPopup.close();
+            }
+        });
+    </script>
+
+</head>
+<body id="advimage">
+    <span id="app_title" style="display: none">图片上传</span>
+    <form>
+        <div id="upFile_Logo" class="Inline" style="margin: 20px;vertical-align:top">上传图片</div>
+        <img id="MyImg_Logo" style="width:200px;vertical-align:top;border:solid 5px yellow;" />
+        <div class="mceActionPanel">
+            <input type="button" id="insert" name="insert" value="插入" onclick="jv.page().insert();"/>
+            <input type="button" id="cancel" name="cancel" value="关闭" onclick="tinyMCEPopup.close();" />
+        </div>
+    </form>
+</body>
+</html>

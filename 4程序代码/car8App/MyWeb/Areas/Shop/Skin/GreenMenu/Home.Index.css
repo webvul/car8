@@ -1,0 +1,50 @@
+﻿ 
+#body_Show {
+    margin-top: 10px;
+}
+
+    #body_Show .Title {
+        font-size: 18px;
+        position: relative;
+    }
+
+        #body_Show .Title .more {
+            position: absolute;
+            right: 0px;
+            width: 4px;
+            height: 7px;
+            background: url(icon_arrow.gif) no-repeat center center;
+        }
+
+#body_Info {
+    border: 1px solid #F6F4F5;
+}
+
+    #body_Info:after {
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: ".";
+        clear: both;
+        height: 0;
+    }
+
+* html #body_Info {
+    zoom: 1;
+}
+
+*:first-child + html #body_Info {
+    zoom: 1;
+}
+
+    #body_Info .Detail {
+        width: 50%;
+        float: left;
+    }
+
+    #body_Info .corpExtend {
+        width: 50%;
+        float: left;
+    }
+
+

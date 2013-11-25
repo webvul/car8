@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!-- （自动生成）合并Xml，By: UDI-PC.(Administrator)   At:2013/11/15 13:04:59 -->
+<MyOqlCodeGen>
+  <Table>
+    <Group db="Log">
+      <Entity Name="Annex" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="CacheTable" PKs="Table" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="Dict" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="Menu" PKs="ID" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="PowerAction" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="ControllerID()=PowerController:ID" />
+      <Entity Name="PowerButton" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="ActionID(ud)=PowerAction:ID" />
+      <Entity Name="PowerController" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="ResKey" PKs="Key" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="ResValue" PKs="Lang,ResID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="T_ROOM_OWNER" PKs="ROOM_OWNER_ID" AutoIncreKey="" ComputeKeys="" UniqueKey="LoginName" FKs="" />
+      <Entity Name="T_STANDARD_ROLE" PKs="STANDARD_ROLE_ID" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="TB_ContactMsg" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="TB_Dept" PKs="ID" AutoIncreKey="" ComputeKeys="" UniqueKey="WebName" FKs="Logo()=Annex:ID,Title()=Annex:ID,TitleExtend()=Annex:ID" />
+      <Entity Name="TB_Dept_Community" PKs="RefID" AutoIncreKey="RefID" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="TB_DeptAnnex" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="DeptID(ud)=TB_Dept:ID,AnnexID(ud)=Annex:ID" />
+      <Entity Name="TB_EnterpriseShowCase" PKs="ProductID" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="TB_NoticeInfo" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="NoticeTypeID(ud)=TB_NoticeType:ID,Logo()=Annex:ID" />
+      <Entity Name="TB_NoticeShowCase" PKs="NoticeID" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="TB_NoticeType" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="TB_Person" PKs="UserID" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="Logo()=Annex:ID,DeptID()=TB_Dept:ID" />
+      <Entity Name="TB_ProductAnnex" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="ProductID(ud)=TB_ProductInfo:ID,AnnexID(ud)=Annex:ID" />
+      <Entity Name="TB_ProductClicks" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="Year,Month,ProductID" FKs="ProductID(ud)=TB_ProductInfo:ID" />
+      <Entity Name="TB_ProductDetail" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="ProductID()=TB_ProductInfo:ID" />
+      <Entity Name="TB_ProductInfo" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="ProductTypeID(ud)=TB_ProductType:ID,Logo()=Annex:ID" />
+      <Entity Name="TB_ProductType" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="Name,PID" FKs="DeptID()=TB_Dept:ID" />
+      <Entity Name="TEMP_ROOMOWNER" PKs="Id" AutoIncreKey="Id" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="TM_Community" PKs="CommID" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="Log" PKs="Id" AutoIncreKey="Id" ComputeKeys="" UniqueKey="" FKs="" />
+    </Group>
+  </Table>
+  <Proc>
+    <Group>
+      <Entity Name="P_EditPassword" AutoTable="TB_Person" />
+      <Entity Name="P_LoginShop" />
+      <Entity Name="SP_Import_RoomOwner" AutoTable="T_BUILDING,T_ROOM_OWNER,T_ROOMOWNER_RELATION" />
+    </Group>
+  </Proc>
+  <Function>
+    <Group>
+      <Entity Name="Split" Paras="val=String:in,split=String:in" />
+    </Group>
+  </Function>
+  <View>
+    <Group Name="View">
+      <Entity Name="VPowerAction" AutoTable="PowerAction,PowerButton,PowerController" />
+      <Entity Name="PM_VTxtRes" AutoTable="ResKey,ResValue" />
+    </Group>
+  </View>
+</MyOqlCodeGen>

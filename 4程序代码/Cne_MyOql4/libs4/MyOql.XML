@@ -1,0 +1,4396 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MyOql</name>
+    </assembly>
+    <members>
+        <member name="T:MyOql.ColumnClip">
+            <summary>
+            列子句
+            </summary>
+            <summary>
+            
+            </summary>
+            <remarks>
+            不能使用 ColumnClip[].Contains ，因为重载了 ==
+            </remarks>
+        </member>
+        <member name="T:MyOql.SqlClipBase">
+            <summary>
+            SqlClip 表示一个 Sql 语句段的基类。如From 子句 ， Where 子句 。
+            其中包含 ContextClipBase 表示一个Sql动作。如 Select 子句，Insert 子句，Update 子句。
+            MyOql 内部存存结构即是很多不同的 SqlClip。
+            </summary>
+        </member>
+        <member name="P:MyOql.SqlClipBase.Key">
+            <summary>
+            Sql语句段的关键字
+            </summary>
+        </member>
+        <member name="T:MyOql.IAsable">
+            <summary>
+            表示是否是可以  As 的对象。 表，字段，子查询，都可以 As
+            </summary>
+             <remarks>
+             </remarks>
+        </member>
+        <member name="M:MyOql.IAsable.SetAlias(System.String)">
+            <summary>
+            使用 SetAlias 之前，需要对对象进行克隆。
+            </summary>
+            <param name="Alias"></param>
+        </member>
+        <member name="M:MyOql.ColumnClip.op_Equality(MyOql.ColumnClip,System.Object)">
+            <summary>
+            生成 column = value 表达式。
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.op_Inequality(MyOql.ColumnClip,System.Object)">
+            <summary>
+            生成 column != value 表达式。
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.op_GreaterThan(MyOql.ColumnClip,System.Object)">
+            <summary>
+            生成 column > value 表达式。
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.op_LessThan(MyOql.ColumnClip,System.Object)">
+            <summary>
+            生成 column &lt; value 表达式。
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.op_GreaterThanOrEqual(MyOql.ColumnClip,System.Object)">
+            <summary>
+            生成 column >= value 表达式。
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.op_LessThanOrEqual(MyOql.ColumnClip,System.Object)">
+            <summary>
+            生成 column &lt;= value 表达式。
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.op_BitwiseAnd(MyOql.ColumnClip,System.Int32)">
+            <summary>
+            生成 column &amp; value 表达式。
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.op_BitwiseOr(MyOql.ColumnClip,System.Int32)">
+            <summary>
+            生成 column | value 表达式。
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.NotIn``1(MyOql.NoValueEnum,``0[])">
+            <summary>
+            生成 not in （值参数） 子句
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="option"></param>
+            <param name="Values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.NotIn``1(MyOql.SelectClip{``0})">
+            <summary>
+            生成 not in (select 语句) 子句
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Select"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.In``1(``0[])">
+            <summary>
+            生成 in (值参数）子句。当没有数据时，生成SQL 语句的方式。默认生成 1=0,不会返回结果
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.In``1(MyOql.NoValueEnum,``0[])">
+            <summary>
+            生成 in (值参数）子句。
+            </summary>
+            <param name="option">当没有数据时，生成SQL 语句的方式。默认生成 1=0,不会返回结果</param>
+            <typeparam name="T"></typeparam>
+            <param name="Values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.In``1(MyOql.SelectClip{``0})">
+            <summary>
+            生成 in (select 语句）子句。
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Select"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.Like(System.String)">
+            <summary>
+            生成 like 表达式，会对值 ： [  _  进行转义。
+            </summary>
+            <param name="Expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.OriLike(System.String)">
+            <summary>
+            原生的 Like ，不对值进行转义。
+            </summary>
+            <param name="Expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.Between(System.Object,System.Object)">
+            <summary>
+            Oracle 中 采用 Between And 的时间值不会查询到内容.目前禁用. Udi 2010-10-28
+            </summary>
+            <param name="value1"></param>
+            <param name="value2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.BitAnd``1(``0)">
+            <summary>
+            二进制 And ,生成Sql 为  &amp;
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.BitAnd(System.Int32)">
+            <summary>
+            二进制 And ,生成Sql 为  &amp;
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.BitOr``1(``0)">
+            <summary>
+            二进制 Or , 生成SQL 为 &amp;
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.BitOr(System.Int32)">
+            <summary>
+            二进制 Or , 生成SQL 为 &amp;
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.SubString(System.Int32,System.Int32)">
+            <summary>
+            生成 substring(column,1,2) 表达式。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.SubString(MyOql.ColumnClip,MyOql.ColumnClip)">
+            <summary>
+            生成 substring(column,1,2) 表达式。
+            </summary>
+            <remarks>
+            例如表达式: dbr.Menu.Name.SubString('Text',1,2) .其结构如下:<br />
+            <pre>
+                                        ComplexColumn:返回的一个复合列
+                                        ----------------------------
+                Left:dbr.Menu.Name       Operator:SqlOperator.SubString       Right:ComplexColumn     
+                -------------------------------------------------------------------
+                                                                                 1      Parameter     2       
+            </pre>
+            </remarks>
+            <param name="StartIndex">起始索引</param>
+            <param name="Length">长度值</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.Replace(MyOql.ColumnClip,MyOql.ColumnClip)">
+            <summary>
+            表示 Replace 函数。 
+            </summary>
+            <param name="StringPattern"></param>
+            <param name="StringReplacement"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.Replace(System.String,System.String)">
+            <summary>
+            表示 Replace 函数。 
+            </summary>
+            <param name="StringPattern"></param>
+            <param name="StringReplacement"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.PatIndex(System.String)">
+            <summary>
+            表示 PatIndex 函数
+            </summary>
+            <param name="Pattern"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.SizeOf">
+            <summary>
+            表示 DataLength 函数
+            </summary>
+            <param name="Pattern"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.StringIndex(System.String)">
+            <summary>
+            生成 charindex instr() 表达式。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.StringIndex(System.String,System.Int32)">
+            <summary>
+            生成 charindex instr() 表达式。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.StringIndex(MyOql.ColumnClip)">
+            <summary>
+            生成 charindex instr() 表达式。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.StringIndex(MyOql.ColumnClip,System.Int32)">
+            <summary>
+            生成 charindex instr() 表达式。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.Len">
+            <summary>
+            生成 SQL 的Len 函数。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.Ltrim">
+            <summary>
+            生成 SQL 的 LTrim函数。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.Rtrim">
+            <summary>
+            生成 SQL 的 LTrim函数。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.Trim">
+            <summary>
+            生成 SQL 的 LTrim函数。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.Cast(System.Data.DbType)">
+            <summary>
+            类型转换.
+            </summary>
+            <param name="dbType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.Count">
+            <summary>
+            生成 count(1) 表达式。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.CountDistinct">
+            <summary>
+            生成 count( distinct column) 表达式。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.Sum">
+            <summary>
+            生成 sum(column) 表达式。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.Max">
+            <summary>
+            生成 max(column) 表达式。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.Min">
+            <summary>
+            生成 min(column) 表达式。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.Avg">
+            <summary>
+            生成 avg(column) 表达式。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.op_Addition(MyOql.ColumnClip,MyOql.ColumnClip)">
+            <summary>
+            对于两个数字列或左为数据列,右为数值类型来说,它是加法操作符.
+            其它情况,它是 连接符
+            </summary>
+            <remarks> Object 类型属SQL 注入型，当有任何一方是 Object类型，均不处理类型转换。</remarks>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.op_Addition(MyOql.ColumnClip,System.Int32)">
+            <summary>
+            对于两个数字列或左为数据列,右为数值类型来说,它是加法操作符.
+            其它情况,它是 连接符
+            </summary>
+            <param name="left"></param>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.op_Addition(MyOql.ColumnClip,System.Double)">
+            <summary>
+            对于两个数字列或左为数据列,右为数值类型来说,它是加法操作符.
+            其它情况,它是 连接符
+            </summary>
+            <param name="left"></param>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.op_Addition(MyOql.ColumnClip,System.Decimal)">
+            <summary>
+            对于两个数字列或左为数据列,右为数值类型来说,它是加法操作符.
+            其它情况,它是 连接符
+            </summary>
+            <param name="left"></param>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.op_Addition(MyOql.ColumnClip,System.String)">
+            <summary>
+            对于两个数字列或左为数据列,右为数值类型来说,它是加法操作符.
+            其它情况,它是 连接符
+            </summary>
+            <param name="left"></param>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.op_Addition(System.Int32,MyOql.ColumnClip)">
+            <summary>
+            对于两个数字列或左为数据列,右为数值类型来说,它是加法操作符.
+            其它情况,它是 连接符
+            </summary>
+            <param name="left"></param>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.op_Addition(System.Double,MyOql.ColumnClip)">
+            <summary>
+            对于两个数字列或左为数据列,右为数值类型来说,它是加法操作符.
+            其它情况,它是 连接符
+            </summary>
+            <param name="left"></param>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.op_Addition(System.Decimal,MyOql.ColumnClip)">
+            <summary>
+            对于两个数字列或左为数据列,右为数值类型来说,它是加法操作符.
+            其它情况,它是 连接符
+            </summary>
+            <param name="left"></param>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.op_Addition(System.String,MyOql.ColumnClip)">
+            <summary>
+            对于两个数字列或左为数据列,右为数值类型来说,它是加法操作符.
+            其它情况,它是 连接符
+            </summary>
+            <param name="left"></param>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.GetFullName">
+            <summary>
+            得到数据库里 列的全称(转义名称),为 表名.列名
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.GetFullDbName">
+            <summary>
+            得到数据库里 列的全称(非转义名称),为 表名.列名
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.GetAlias">
+            <summary>
+            得到列的别名.如果没有设置别名，则返回Name。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.ToString">
+            <summary>
+            返回的是 Name 属性.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.IsSimple">
+            <summary>
+            是否是叶子。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.Equals(System.Object)">
+            <summary>
+            由于重载了 ==,所以 == 不能比较两个 ColumnClip 是否相等，可果要比较两个 ColumnClip 可以使用：
+            如果要比较相等. 要使用 object.Equals(column ,object)
+            如果要比较是否为空,可使用 ColumnClip.IsNull(column)
+            当然你也可以使用 :  ColumnClip.Equlas(object) 比较。
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.GetHashCode">
+            <summary>
+            判断 Column 是否为空.
+            </summary>
+            <param name="Column"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.IsNull``1(``0)">
+            <summary>
+            调用数据库函数 IsNull
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.IsConst">
+            <summary>
+            是否是 常数列。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.IsPolymer">
+            <summary>
+            是否是聚合函数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ColumnClip.SetAlias(System.String)">
+            <summary>
+            调用前，要对对象进行克隆。
+            </summary>
+            <param name="Alias"></param>
+        </member>
+        <member name="P:MyOql.ColumnClip.TableName">
+            <summary>
+            Table的别名。
+            </summary>
+        </member>
+        <member name="P:MyOql.ColumnClip.DbType">
+            <summary>
+            数据列的类型.
+            </summary>
+        </member>
+        <member name="P:MyOql.ColumnClip.Length">
+            <summary>
+            数据长度,如果是Number,则为精度.
+            </summary>
+        </member>
+        <member name="P:MyOql.ColumnClip.Name">
+            <summary>
+            数据列. 也可为表达式。 转义后的名称.
+            </summary>
+        </member>
+        <member name="P:MyOql.ColumnClip.Asc">
+            <summary>
+            生成 对列升序 的子句.
+            </summary>
+        </member>
+        <member name="P:MyOql.ColumnClip.Desc">
+            <summary>
+            生成 对列降序 的子句.
+            </summary>
+        </member>
+        <member name="T:MyOql.ColumnExtend">
+            <summary>
+            在列上定义的扩展属性.
+            </summary>
+            <remarks>
+            
+            </remarks>
+        </member>
+        <member name="M:MyOql.ColumnExtend.Add(MyOql.SqlOperator,System.Object)">
+            <summary>
+            能接受 常见的数据类型,Column,WhereClip
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+        </member>
+        <member name="T:MyOql.RawColumn">
+            <summary>
+            自定义列.可以解析一些特殊的关键字.如 Case When Then Else End
+            </summary>
+            <remarks>
+            用处：
+            1. 在查询里引用子查询的列。
+            2. 自定义函数列 如： dbo.JoinStr 。 系统函数在复合列。
+            3. 
+            
+            
+            RawColumn 必须是简单列。规范：
+            1. DbType 定义的是该列返回的列类型。
+            2. Name 别名
+            3. Extend中仅有一个 SqlOperator 
+            </remarks>
+        </member>
+        <member name="P:MyOql.RawColumn.Operator">
+            <summary>
+            操作标识，可能只是一个标识Int。 大于1024 表示自定义。如自定义聚合 dbo.JoinStr
+            </summary>
+        </member>
+        <member name="T:MyOql.SelectClip">
+            <summary>
+            查询子句.
+            </summary>
+        </member>
+        <member name="T:MyOql.ContextClipBase">
+            <summary>
+            
+            </summary>
+            <remarks>
+            该类不记录CRUD事件. 在子类中记录事件
+            </remarks>
+        </member>
+        <member name="M:MyOql.ContextClipBase.AppendWhere(MyOql.WhereClip)">
+            <summary>
+            追加 基于 And 逻辑的 Where 条件
+            </summary>
+            <param name="where"></param>
+        </member>
+        <member name="M:MyOql.ContextClipBase.ToProvider">
+            <summary>
+            API
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ContextClipBase.ToCommand(MyOql.ContextClipBase)">
+            <summary>
+            数据库解析命令的核心函数.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ContextClipBase.GetDataAdapter">
+            <summary>
+            得到数据库的 Adapter
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ContextClipBase.ExecuteReader(System.Func{System.Data.Common.DbDataReader,System.Boolean})">
+             <summary>
+             执行并返回记录
+             </summary>
+             <remarks>
+             <code>
+                    int curPos = 0;
+                     List&lt;XmlDictionary&lt;string, object&gt;&gt; dictList = new List&lt;XmlDictionary&lt;string, object&gt;&gt;();
+                    
+                     dbr.Table.Select()
+                    .ExecuteReader(o =&gt;
+                    {
+                        //二次过滤。
+                        if (o.AsDateTime(o.GetOrdinal("AcceptTime")).AddDays(o.GetValue(o.GetOrdinal("OverdueDaynum")).AsInt()) &lt; DateTime.Today)
+                        {
+                            return true;
+                        }
+            
+            
+                        curPos++;
+                        if (curPos &lt;= Skip)
+                        {
+                            return true;
+                        }
+                        if (curPos &gt; Skip + Take)
+                        {
+                            return true;
+                        }
+            
+                        dictList.Add(o.ToDictionary());
+                        return true;
+                    });
+            
+                return dictList.ToMyOqlSet(dbr.TTask, curPos);
+             </code>
+             </remarks>
+             <param name="func"></param>
+             <returns>是否成功执行了回调函数。</returns>
+        </member>
+        <member name="M:MyOql.ContextClipBase.ExecuteReader(MyOql.MyCommand,System.Func{System.Data.Common.DbDataReader,System.Boolean}[])">
+            <summary>
+            执行并返回记录
+            </summary>
+            <param name="myCmd"></param>
+            <param name="func"></param>
+            <returns>是否成功执行了回调函数</returns>
+        </member>
+        <member name="M:MyOql.ContextClipBase.ExecuteReaderBase(MyOql.MyCommand,System.Func{System.Data.Common.DbDataReader,System.Boolean}[])">
+            <summary>
+            
+            </summary>
+            <param name="myCmd"></param>
+            <param name="func"></param>
+            <returns>是否返回了数据</returns>
+        </member>
+        <member name="M:MyOql.ContextClipBase.Execute(MyOql.MyCommand)">
+            <summary>
+            返回影响的行数
+            </summary>
+            <param name="myCmd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ContextClipBase.TableHasPolymer">
+            <summary>
+            是否包含聚合函数。
+            </summary>
+            <param name="Context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ContextClipBase.ContainsIdupKey">
+            <summary>
+            上下文Dna中是否包含自增键，唯一键，单一主键或主键。 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ContextClipBase.ContainsFunctionRule">
+            <summary>
+            是否存在可变数据实体。
+            </summary>
+            <remarks>视图，函数，数据是不稳定的，当其它表数据改变后，也会影响视图，函数的数据，而不能及时清理其缓存。</remarks>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ContextClipBase.GetUsePower">
+            <summary>
+            是否启用权限控制.兼容处理了SkipPower逻辑。 对独立的实体，可以用 new MyContextClip(SqlKeyword.Select){ CurrentRule = Ent }  构造。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ContextClipBase.GetUseLog">
+            <summary>
+            是否启用日志控制.兼容处理了SkipLog逻辑。对独立的实体，可以用 new MyContextClip(SqlKeyword.Select){ CurrentRule = Ent }  构造。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ContextClipBase.HasSubQuery">
+            <summary>
+            是否带有  子查询 ，Join 子询。(不包括 Where In子查询) , 不判断 Union 的查询。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ContextClipBase.ExecuteReader(System.Func{System.Data.Common.DbDataReader,System.Boolean,MyOql.ReaderPositionEnum,System.Int32,System.Boolean})">
+            <summary>
+            过滤用的查询.只有出现唯一约束列时，才集成分页查询。
+            </summary>
+            <param name="ToEntityFunc">Map函数,Reader,是否采用集成分页（如果为true，则生成分页SQL，如果为false，则去除分页机制，按全部返回。）,
+            当采用集成分页时总是InTake，否则显示当前Reader位置状态,当前Reader索引号, 返回true,继续读取, 返回false停止.</param>
+            <returns>是否是部分结果</returns>
+        </member>
+        <member name="P:MyOql.ContextClipBase.CurrentRule">
+            <summary>
+            当前实体约束
+            </summary>
+            <remarks>
+            从当前实体约束中 检索 出 实体名,列集合等信息.
+            </remarks>
+        </member>
+        <member name="P:MyOql.ContextClipBase.Connection">
+            <summary>
+            显式使用数据连接.
+            </summary>
+        </member>
+        <member name="P:MyOql.ContextClipBase.AffectRow">
+            <summary>
+            记录影响行数
+            </summary>
+        </member>
+        <member name="P:MyOql.ContextClipBase.ParameterColumn">
+            <summary>
+            参数所对应的列. 在 GetParameters 里收集. 在每次 ToCommand 时进行向下传递.
+            </summary>
+        </member>
+        <member name="P:MyOql.ContextClipBase.Rules">
+            <summary>
+            语句包含的 表（已去重返回）
+            </summary>
+        </member>
+        <member name="P:MyOql.ContextClipBase.ClearedSqlCacheTable">
+            <summary>
+            清除缓存的
+            </summary>
+        </member>
+        <member name="P:MyOql.ContextClipBase.UserData">
+            <summary>
+            用户额外带的数据。
+            </summary>
+        </member>
+        <member name="T:MyOql.IJoinable">
+            <summary>
+            定义是否是 表连接的对象。
+            </summary>
+            <remarks>
+            包括： 表，视图，表值函数，Select 子句
+            </remarks>
+        </member>
+        <member name="M:MyOql.SelectClip.ToDataTable">
+            <summary>
+            推荐使用 ToDictList 方法。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.SelectClip.GetQueryResultCount">
+            <summary>
+            通过构造Dna，生成查询条数的语句。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.SelectClip.ProcPostOrder(MyOql.OrderByClip)">
+            <summary>
+            处理从客户Post过来的情况。
+            </summary>
+            <param name="pc"></param>
+        </member>
+        <member name="M:MyOql.SelectClip.GetCacheSql(System.String)">
+            <summary>
+            返回CacheSql的缓存项.
+            </summary>
+            <param name="strSql"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.SelectClip.CheckForEntityCache">
+            <summary>
+            判断是否具备缓存实体的条件 . 根据 IdKey 判断.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.SelectClip.ToEntity``1(System.Func{``0})">
+            <summary>
+            所有的返回单实体，都调用这个方法。
+            </summary>
+            <typeparam name="TModel"></typeparam>
+            <param name="NewModelFunc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.SelectClip.ToDictList">
+            <summary>
+            所有的查询列表，都调用这个方法。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.SelectClip.ToScalar">
+            <summary>
+            执行查询，并返回查询所返回的结果集中第一行的第一列。所有其他的列和行将被忽略。
+            </summary>
+            <returns>结果集中第一行的第一列。</returns>
+        </member>
+        <member name="M:MyOql.SelectClip.Recusion(System.Func{MyOql.SelectClip,System.Boolean})">
+            <summary>
+            遍历 叶子型（不包含其它子查询） 子查询，Join子查询，In 子查询，Union子查询, 当 当前查询没有子查询时，递归包括自己。
+            </summary>
+            <param name="Func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.SelectClip.Clone">
+            <summary>
+            外带数据，ExectedCommand ，ParameterColumn ,Rules 不克隆。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.SelectClip.Execute(MyOql.MyCommand)">
+            <summary>
+            该方法不会触发 添加缓存，不会执行 OnReaded
+            </summary>
+            <param name="myCmd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.SelectClip.ExecuteReader(MyOql.MyCommand,System.Func{System.Data.Common.DbDataReader,System.Boolean}[])">
+            <summary>
+            该方法不会触发 添加缓存，不会执行 OnReaded
+            </summary>
+            <param name="myCmd"></param>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.SelectClip.Skip(System.Int32)">
+            <summary>
+            生成 skip 子句. 结果集会过滤指定的行数
+            </summary>
+            <param name="Num">表示过滤指定的行数</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.SelectClip.Take(System.Int32)">
+            <summary>
+            生成 take 子句.结果集会只取指定数量的记录
+            仅在 &gt;= 0 时有意义。
+            </summary>
+            <param name="Num">表示要取的指定的记录数</param>
+            <returns></returns>
+        </member>
+        <member name="P:MyOql.SelectClip.SmartRowCount">
+            <summary>
+            智能分页标记的总条数。
+            </summary>
+            <remarks>
+            当页数位于总页数的后半部分时，如最后一页， 把排序 再倒排，取第一页，来提高查询速度。 
+            </remarks>
+        </member>
+        <member name="P:MyOql.SelectClip.Linker">
+            <summary>
+            有三个值， Union,UnionAll,Enter
+            </summary>
+        </member>
+        <member name="T:MyOql.SelectClip`1">
+            <summary>
+            查询子句.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:MyOql.SelectClip`1.Where(System.Func{`0,MyOql.WhereClip})">
+            <summary>
+            添加 where 子句.
+            </summary>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.SelectClip`1.Having(System.Func{`0,MyOql.WhereClip})">
+            <summary>
+            生成 having 子句.
+            </summary>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.SelectClip`1.GroupBy(System.Func{`0,System.Collections.Generic.IEnumerable{MyOql.ColumnClip}})">
+            <summary>
+            生成 group by 子句. 
+            </summary>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.SelectClip`1.Skip(System.Int32)">
+            <summary>
+            生成 skip 子句. 结果集会过滤指定的行数
+            </summary>
+            <param name="Num">表示过滤指定的行数</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.SelectClip`1.Take(System.Int32)">
+            <summary>
+            生成 take 子句.结果集会只取指定数量的记录
+            仅在 &gt;= 0 时有意义。
+            </summary>
+            <param name="Num">表示要取的指定的记录数</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.SelectClip`1.Join``1(``0,System.Func{`0,``0,MyOql.WhereClip},System.Func{``0,MyOql.ColumnClip})">
+            <summary>
+            生成 join 子句.
+            </summary>
+            <typeparam name="T2"></typeparam>
+            <param name="JoinTable"></param>
+            <param name="FuncOnWhere"></param>
+            <param name="OneColumn"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.SelectClip`1.Join``1(``0,System.Func{`0,``0,MyOql.WhereClip})">
+            <summary>
+            生成 join 子句.
+            </summary>
+            <typeparam name="T2"></typeparam>
+            <param name="JoinTable"></param>
+            <param name="FuncOnWhere"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.SelectClip`1.Join``1(``0,System.Func{`0,``0,MyOql.WhereClip},System.Func{``0,System.Collections.Generic.IEnumerable{MyOql.ColumnClip}})">
+            <summary>
+            生成 join 子句.
+            </summary>
+            <typeparam name="T2"></typeparam>
+            <param name="JoinTable"></param>
+            <param name="FuncOnWhere"></param>
+            <param name="FuncSelect"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.SelectClip`1.LeftJoin``1(``0,System.Func{`0,``0,MyOql.WhereClip},System.Func{``0,MyOql.ColumnClip})">
+             <summary>
+             生成 left join 子句.
+             </summary>
+             <example>
+                 WhereClip where = new WhereClip();
+            
+                 where &amp;= dbr.App.TProductInfo.ProductCode == uid;
+            
+            	    OrderByClip order = new OrderByClip(sortName);
+            	    order.IsAsc = IsAsc ;
+            
+            	    var set = dbr.App.TProductInfo.Select(o=&gt;o.Id)
+                         .LeftJoin(dbr.App.TRegion, (a, b) =&gt; a.RegionID == b.Id, o=&gt; o.Name.As("RegionName"))
+                         .Skip( Skip )
+                         .Take(Take)
+                         .Where(where)
+                         .OrderBy(order)
+                         .ToMyOqlSet(Option) ;
+             </example>
+             <typeparam name="T2"></typeparam>
+             <param name="JoinTable"></param>
+             <param name="FuncOnWhere"></param>
+             <param name="OneColumn"></param>
+             <returns></returns>
+        </member>
+        <member name="M:MyOql.SelectClip`1.LeftJoin``1(``0,System.Func{`0,``0,MyOql.WhereClip})">
+            <summary>
+            生成 left join 子句.
+            </summary>
+            <typeparam name="T2"></typeparam>
+            <param name="JoinTable"></param>
+            <param name="FuncOnWhere"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.SelectClip`1.LeftJoin``1(``0,System.Func{`0,``0,MyOql.WhereClip},System.Func{``0,System.Collections.Generic.IEnumerable{MyOql.ColumnClip}})">
+            <summary>
+            生成 left join 子句
+            </summary>
+            <typeparam name="T2"></typeparam>
+            <param name="JoinTable"></param>
+            <param name="FuncOnWhere"></param>
+            <param name="FuncSelect"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.SelectClip`1.RightJoin``1(``0,System.Func{`0,``0,MyOql.WhereClip},System.Func{``0,MyOql.ColumnClip})">
+            <summary>
+            生成 right join 子句.
+            </summary>
+            <typeparam name="T2"></typeparam>
+            <param name="JoinTable"></param>
+            <param name="FuncOnWhere"></param>
+            <param name="OneColumn"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.SelectClip`1.RightJoin``1(``0,System.Func{`0,``0,MyOql.WhereClip},System.Func{``0,System.Collections.Generic.IEnumerable{MyOql.ColumnClip}})">
+            <summary>
+            生成 right join 子句.
+            </summary>
+            <typeparam name="T2"></typeparam>
+            <param name="JoinTable"></param>
+            <param name="FuncOnWhere"></param>
+            <param name="FuncSelect"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.SelectClip`1.RightJoin``1(``0,System.Func{`0,``0,MyOql.WhereClip})">
+            <summary>
+            生成 right join 子句.
+            </summary>
+            <typeparam name="T2"></typeparam>
+            <param name="JoinTable"></param>
+            <param name="FuncOnWhere"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.SelectClip`1.Join``1(MyOql.SqlKeyword,MyOql.SelectClip{``0},System.Func{`0,``0,MyOql.WhereClip},System.Func{``0,MyOql.ColumnClip})">
+            <summary>
+            
+            </summary>
+            <example>
+            <code>
+             var currPage = collection["page"].GetInt();
+             var eachCount = collection["rp"].GetInt();
+            
+             var subQuery = dbr.SpecialItem
+                  .Select(o => o.ID)
+                  .Where(o => o.PID == 0)
+                  .Skip((currPage - 1) * eachCount)
+                  .Take(eachCount).AsTable("b");
+            
+             var oqlSet = dbr.SpecialItem
+                 .Select()
+                 .Join(SqlKeyword.Join,
+                     subQuery,
+                     (a, b) => a.ID == b.ID.FromTable("b") | (a.RootPath + ",").Contains("," + b.ID.FromTable("b") + ","), o=>o.ID.FromTable("b")
+                     )
+                 .ToMyOqlSet();
+            </code>
+            </example>
+            <typeparam name="T2"></typeparam>
+            <param name="JoinType"></param>
+            <param name="JoinTable"></param>
+            <param name="FuncOnWhere"></param>
+            <param name="FuncSelect"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.SelectClip`1._(System.Func{`0,MyOql.ColumnClip})">
+            <summary>
+            连接select 后的选择列。
+            </summary>
+            <param name="FuncSelect"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.SelectClip`1.OrderBy(System.Func{`0,MyOql.OrderByClip})">
+            <summary>
+            生成 order by 子句.
+            </summary>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.SelectClip`1.Distinct">
+            <summary>
+            去重查询.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:MyOql.MySqlClipBase">
+            <summary>
+            绝对无用.自定义实例化  ContextClipBase。
+            </summary>
+        </member>
+        <member name="T:MyOql.SimpleColumn">
+            <summary>
+            
+            </summary>
+            <remarks>
+            不能使用 ColumnClip[].Contains ，因为重载了 ==
+            </remarks>
+        </member>
+        <member name="M:MyOql.SimpleColumn.#ctor(System.String,System.String,System.Data.DbType,System.Int32,System.String,System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="TabldDbName"></param>
+            <param name="type"></param>
+            <param name="Length"></param>
+            <param name="name"></param>
+            <param name="dbName">数据库中使用的名字</param>
+        </member>
+        <member name="M:MyOql.SimpleColumn.AsDbName">
+            <summary>
+            如果DbName 有值，才有意义。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:MyOql.SimpleColumn.TableDbName">
+            <summary>
+            当前 数据实体对象（DbName）. 在OrderByClip的Order时，可以是 Null。因为只有 Name 才有意义。
+            </summary>
+        </member>
+        <member name="P:MyOql.SimpleColumn.DbNullable">
+            <summary>
+            列是否可空。
+            </summary>
+        </member>
+        <member name="P:MyOql.SimpleColumn.DbName">
+            <summary>
+            数据库中的非转义名称.
+            </summary>
+        </member>
+        <member name="T:MyOql.ComplexColumn">
+            <summary>
+            
+            </summary>
+            <remarks>
+            不能使用 ColumnClip[].Contains ，因为重载了 ==
+            对于 Operator 的SQL关键字来说，比如： cast；或标准的SQL 函数来说，比如： IsNull , 也可以使用 复合列来表示。但仅限于只有两个列和一个sql关键字的形式。
+            如： 
+            cast( col as varchar(8000))   ,这个可以是因为，cast 后只能跟as，而不能跟其它关键字。使用者可以调用  Column.CastAs(DbType.AnsiString) ,而不必传递 varchar(30) , 系统自动把它转换为: cast( column, varchar(8000) ) 
+            isnull( col , '')
+            
+            对于 参数是 DbType 的来说， 系统只能把它转换为看似最合理的字符串格式。见：<see cref="!:TranslateSql.ToSqlType"/>
+            </remarks>
+        </member>
+        <member name="M:MyOql.ComplexColumn.Recusion(System.Func{MyOql.SimpleColumn,System.Boolean})">
+            <summary>
+            递归所有叶子列.返回 false 停止
+            </summary>
+            <param name="Func"></param>
+            <returns></returns>
+        </member>
+        <member name="P:MyOql.ComplexColumn.LeftExp">
+            <summary>
+            表达式左数。
+            </summary>
+        </member>
+        <member name="P:MyOql.ComplexColumn.Operator">
+            <summary>
+            表达式操作符
+            </summary>
+        </member>
+        <member name="P:MyOql.ComplexColumn.RightExp">
+            <summary>
+            表达式右数。
+            </summary>
+        </member>
+        <member name="T:MyOql.ConstColumn">
+            <summary>
+            当有Table的时候，表示指定表里的列。 当没有Table的时候，表示常数列。
+            </summary>
+        </member>
+        <member name="M:MyOql.ConstColumn.#ctor(System.String)">
+            <summary>
+            如果以 # 开头，则DbName会去掉第一个#
+            </summary>
+            <param name="DbName"></param>
+        </member>
+        <member name="M:MyOql.ConstColumn.CreateSystemColumn(System.String)">
+            <summary>
+            直接使用SQL,尽量不要使用.
+            </summary>
+            <param name="DbName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MyOql.dbo">
+            <summary>
+            
+            </summary>
+            <summary>
+            
+            </summary>
+            <remarks>
+            对于外部系统如存储过程更新或删除数据.要用触发器更新元数据表. 这样为了让程序及时得到缓存破坏信息. 
+            在 dbo.OnReadingRow 方法前,检测元数据表.如果元数据表标识有变, 则提前清除缓存.
+            缓存只针对单表单记录读取.
+            
+            <code>
+            元数据表:
+            触发器:
+            Oracle:
+            Sqlserver:
+            </code>
+            </remarks>
+            <summary>
+            database operation 数据库操作类。
+            </summary> 
+            <remarks>
+            <pre style="line-height:30px;font-size:14px;font-family: 微软雅黑,宋体">
+            在生成实体代码之前,要先配置好配置文件,配置文件见<see cref="!:MyOql.MyOql_CodeGen.MyOqlCodeGen"/>
+            在生成实体代码之后,要对各个实体进行配置,配置文件见<see cref="T:MyOql.MyOqlConfigSect"/>
+            配置完成之后,要对MyOql组件进行十三个事件的注册:
+            1.解密             见 <see cref="E:MyOql.IDboEvent.DecrypteEvent"/>
+            2.插入前           见 <see cref="E:MyOql.IDboEvent.Creating"/>
+            3.插入后           见 <see cref="M:MyOql.IDboEvent.OnCreated(MyOql.ContextClipBase)"/>
+            4.读行前           见 <see cref="E:MyOql.IDboEvent.Reading"/>
+            5.读行后           见 <see cref="M:MyOql.IDboEvent.OnReaded(MyOql.ContextClipBase)"/>
+            6.更新行前         见 <see cref="E:MyOql.IDboEvent.Updating"/>
+            7.更新行后         见 <see cref="M:MyOql.IDboEvent.OnUpdated(MyOql.ContextClipBase)"/>
+            8.删除行前         见 <see cref="E:MyOql.IDboEvent.Deleting"/>
+            9.删除行后         见 <see cref="M:MyOql.IDboEvent.OnDeleted(MyOql.ContextClipBase)"/>
+            10.生成Sql后       见 <see cref="E:MyOql.IDboEvent.GenerateSqled"/>
+            11.执行存储过程前  见 <see cref="E:MyOql.IDboEvent.Procing"/>
+            12.执行存储过程后  见 <see cref="M:MyOql.IDboEvent.OnProced(MyOql.ContextClipBase)"/>
+            13.批量插入前      见 <see cref="E:MyOql.IDboEvent.BulkInserting"/>
+            
+            部分操作行前事件和操作列事件, 涉及权限.
+            </pre>
+            </remarks>
+            <remarks>
+            每个动作都有前置后置事件, 权限和日志都在事件中处理.
+            十三个事件.
+            </remarks>
+            <example>
+            通用权限设计图:
+            <img src="../PowerViso.jpg"/>
+            <pre>
+            数据权限里的查看权限表现在 卡片和列表。如果卡片没有查看权限那么它肯定不能修改。
+            数据权限里的修改权限表现在卡片的修改和添加（以及保存操作）。
+            这些数据在MyOql查询时，通过事件注册方式实现权限的应用。
+            页面权限是用户是否能访问该页面的权限，如果不能访问该页面，那么肯定没有该页面的操作权限。
+            </pre>
+            
+            数据库表结构设计:
+            <img src="../PowerTables.jpg"/>
+            <pre>
+            PowerController：项目Area和Controller列表。Area是在程序中定义的枚举。
+            PowerAction：记录项目的 Action。指向页面。
+            PowerButton:列表页面操作有：List,查询，添加，修改，删除，查看。卡片操作有：Edit,保存，删除，关闭。 其中List是列表的代表权限，Edit是卡片的代表权限。代表权限是指，如果没有代表权限的话，就没有该页面的权限。
+            PowerTable：与Mvc没关系。记录MyOql实体的表。
+            PowerColumn：记录MyOql实体的表字段。
+            
+            基于现行架构的实现方案:
+            用户权限表示形式细分为对数据库的查看，修改，删除，更新，以及对页面的访问及操作六部分，各个权限表示用 2 的次幂表示，数据很大，要用 MyBigInt表示，可进行 &amp; 和 | 运算。用户权限可用Json打包在各层传递，数据结构示例：
+            {create:"123456",delete:"12345",read:"123456",update:"12345",action:"12345",button:"123456",row:{"menu":"123456","other table":"12345"} }
+            分为四部分：1.数据处理部分，2.页面访问，3.页面按钮 4.页面列表及字段
+            1.MyOql的数据CRUD权限处理在配置文件中有对各个实体的权限开关 （UsePower），在 MyOql 内部以 dbo.UserPowerEvent 方式扩展来实现；另外 仅针对返回MyOql实体的存储过程做查看的权限的处理。
+            2.action是指是否有对该页面的访问权，在Controller基类统一处理。
+            3.4.但是在客户端，因为只用和本页面相关的数据，包括三部分：read,edit,button，(Viso图的红色部分)，客户端只能识别元素类名，元素内容等信息，不能识别ByBigInt，所以在Render到客户端时，其数据结构变为：
+            {button:[“(内容)",".Class","#ID",":状态","[attr=value]"],view:[“列名","列名"],edit[“列名","列名"]}
+            客户端解析用（）包起来的内容为元素的 text，其它内容直接用 Jquery解析。该结构指示哪些元素可见（或可用）。
+            view , edit 数据存储各列，格式为： 表名.列名，所以，客户端的列表各列要标识出列，卡片的各个字段也要标识出列。
+            数据放在： jv.MyPower 中。
+            如果 jv.MyPower == null 则权限全开；否则只开数组内元素权限。无任何权限可设置 jv.MyPower = [] ; 
+            
+            程序代码实现:请参考实例。
+            </pre>
+            </example>
+        </member>
+        <member name="M:MyOql.dbo.UpdateEnum``1(MyOql.MyOqlSet{``0},System.Func{System.Enum,System.String})">
+            <summary>
+            按 MyOqlSet 里的 Entity 进行更新。
+            </summary>
+            <param name="set"></param>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.UpdateEnum``2(MyOql.MyOqlSet{``1},``0,System.Func{System.Enum,System.String})">
+            <summary>
+            按 MyOqlSet 中的列 和 Entity 中的列进行比对（表列都需要一致）。对其中的枚举进行国际化。
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TE"></typeparam>
+            <param name="set"></param>
+            <param name="Entity">枚举的实体容器</param>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.UpdateEnum``1(MyOql.MyOqlSet{``0},System.Type,System.Func{System.Enum,System.String})">
+            <summary>
+            使用指定的Type更新MyOqlSet
+            </summary>
+            <param name="set"></param>
+            <param name="entityType"></param>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.UpdateEnum``2(MyOql.MyOqlSet{``1},System.String,System.Func{``0,System.String})">
+            <summary>
+            按 ColumnName 进行枚举化。
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="set"></param>
+            <param name="columnName">显示的列别名，如果没有别名，按列名。</param>
+            <param name="Enum">列别名所对应的枚举。</param>
+            <param name="func">列别名枚举资源转换回调</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.UpdateEnum(MyOql.MyOqlSet,System.Func{System.Enum,System.String})">
+            <summary>
+            按 MyOqlSet 里的 Entity 进行更新。
+            </summary>
+            <param name="set"></param>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.UpdateEnum``1(MyOql.MyOqlSet,``0,System.Func{System.Enum,System.String})">
+            <summary>
+            按 MyOqlSet 中的列 和 Entity 中的列进行比对（表列都需要一致）。对其中的枚举进行国际化。
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="set"></param>
+            <param name="Entity">枚举的实体容器</param>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.UpdateEnum(MyOql.MyOqlSet,System.Type,System.Func{System.Enum,System.String})">
+            <summary>
+            使用指定的Type更新MyOqlSet
+            </summary>
+            <param name="set"></param>
+            <param name="entityType"></param>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.UpdateEnum``1(MyOql.MyOqlSet,System.String,System.Func{``0,System.String})">
+            <summary>
+            按 ColumnName 进行枚举化。
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="set"></param>
+            <param name="columnName">显示的列别名，如果没有别名，按列名。</param>
+            <param name="Enum">列别名所对应的枚举。</param>
+            <param name="func">列别名枚举资源转换回调</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.HasData(MyOql.MyOqlSet)">
+            <summary>
+            判断 MyOqlSet 是否有数据。
+            </summary>
+            <param name="set"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.HasData(MyOql.OrderByClip,System.Action{MyOql.OrderByClip})">
+            <summary>
+            是否为有实际排序。
+            </summary>
+            <param name="Order"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.EqualsNull(MyOql.ColumnClip)">
+            <summary>
+            在 C# 中 ,与 null 进行值比较.
+            </summary>
+            <param name="Column"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.HasData(MyOql.OrderByClip)">
+            <summary>
+            只判断当前，不判断Next数据。
+            </summary>
+            <param name="Order"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.IsNull(MyOql.WhereClip)">
+            <summary>
+            判断Where 是否为空.
+            </summary>
+            <param name="where"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.ModelToStringDict(System.Object)">
+            <summary>
+            把 Model 转为 字典，是一个和  ModelToDictionary(RuleBase Entity, IModel objModel) 相同算法的函数。
+            </summary>
+            <remarks>功能和 FastInvoke 是一样的。针对 WhereClip 会有优化。</remarks>
+            <param name="objModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.ModelToDictionary(MyOql.RuleBase,MyCmn.IModel)">
+            <summary>
+            把 Model 转为 字典。核心函数。
+            <remarks>
+            数据实体推入到数据库时使用,解析如下类型： 
+            String
+            Dictionary&lt;ColumnClip, object&gt;
+            Dictionary&lt;string, object&gt;
+            Dictionary&lt;string, string&gt;
+            类
+            值类型结构体
+            </remarks>
+            </summary>
+            <param name="Entity">如果为空,则生成 ConstColumn </param>
+            <param name="objModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.DictionaryToFuncModel``3(System.Collections.Generic.IDictionary{``0,``1},System.Func{``2})">
+            <summary>
+            把字典解析到 Model 类型的 Model 上。
+            <remarks>
+             逻辑同 FastInvoke.StringDictToModel
+            从数据库返回数据实体时使用,解析如下类型： 
+            String
+            IDictionary
+            类(支持递归赋值。如果第一级属性找不到，则查找第二级非基元属性，依次向下查找。)
+            Json树格式，如果在HTML中Post Json对象，如 cols[id][sid] = 10 则可以映射到合适的对象上。
+            值类型结构体,主要适用于 数值，Enum类型。对于结构体，把 结果集第一项值 强制类型转换为该结构体类型，所以尽量避免使用自定义结构体。
+            </remarks>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Dict"></param>
+            <param name="NewModelFunc">关键是 泛型！Model可以为null</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.setDictValue(MyCmn.XmlDictionary{System.String,System.Object},System.String,System.Object)">
+            <summary>
+            设置字典的属性。
+            </summary>
+            <param name="dict">数据源。如果该数据源没有相应字典，则会自动创建</param>
+            <param name="key">Html Post 的Key，如：  cols[id][sid] </param>
+            <param name="value">值</param>
+        </member>
+        <member name="M:MyOql.dbo.UpdateOneProperty(System.Object,MyOql.ColumnClip,System.Object)">
+            <summary>
+            更新Model的一个属性值。Model可以是 字典,Where,类.
+            </summary>
+            <param name="objModel">可以是 字典,Where,类.</param>
+            <param name="Column">要更新的属性</param>
+            <param name="Value">要更新的值</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.ToDictionary(System.Data.Common.DbDataReader)">
+            <summary>
+            Reader 转为 字典 函数，核心函数。
+            </summary>
+            <param name="openReader"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.ToDictionary(System.Data.DataRow)">
+            <summary>
+            DataRow 转为 字典 函数，核心函数。
+            </summary>
+            <param name="row"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.ToEntityList``1(System.Data.DataTable,System.Func{``0})">
+            <summary>
+            把 DataTable 转为实体列表。由于DataTable 是一次装载,不对 DataRow 应用权限控制机制
+            </summary>
+            <param name="table"></param>
+            <param name="NewModelFunc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.ToEntityList``1(System.Data.DataTable)">
+            <summary>
+            把 DataTable 转为实体列表。转换过程不应用权限过滤机制.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="table"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.ToEntity``1(System.Data.Common.DbDataReader)">
+            <summary>
+            把 DataReader 转为实体。
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="openReader"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.ToEntity``1(System.Data.Common.DbDataReader,System.Func{``0})">
+            <summary>
+            启用权限的写法。如果不启用权限请用 DictionaryToModel(ToDictionary(openReader,false), Model)
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="openReader"></param>
+            <param name="NewModelFunc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.ToEntity``1(System.Data.DataRow)">
+            <summary>
+            把 DataRow 转为实体。由于DataTable 是一次装载,不对 DataRow 应用权限控制机制
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="row"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.ToEntity``1(System.Data.DataRow,System.Func{``0})">
+            <summary>
+            把 DataRow 转为实体。由于DataTable 是一次装载,不对 DataRow 应用权限控制机制
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="row"></param>
+            <param name="NewModelFunc">生成默认Model构造器的回调.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.TranslateDbName(System.String)">
+            <summary>
+            把 DbName 转换为 程序 所使用的名称.
+            </summary>
+            <remarks>
+            如果数据库名称中出现以下 指定的分隔字符 , 则按以下分隔字符 进行分隔, 并把每个部分首字母大写之后进行联接. 分隔字符有:
+            1.空格
+            2.下划线 _
+            3.加号 +
+            4.减号 -
+            5.#
+            6.&amp;
+            7.竖线 |
+            8.冒号 :
+            9.分号 ;
+            10.小于号 &lt;
+            11.大于号 &gt;
+            12.逗号 , 
+            13.点号 .
+            14.$
+            15.左括号
+            16.右括号
+            
+            如果没有出现上述分隔符, 如果数据库名称 全大写,或全小写, 则按首字母大写转换, 否则 返回数据库名称.
+            </remarks>
+            <param name="DbName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.ToMyOqlSet``1(System.Data.DataTable,``0)">
+            <summary>
+            把一个 DataTable 转换为 MyOqlSet
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="dataTable"></param>
+            <param name="Rule"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.GetProviderType(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="DatabaseName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.GetDatabaseType(System.String)">
+            <summary>
+            通过实体找到所对应的数据库. 
+            </summary>
+            <param name="ConfigName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.SkipPower``1(``0)">
+            <summary>
+            强制忽略权限控制机制.返回值会克隆一份返回以保证传入值不会改变
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.SkipLog``1(``0)">
+            <summary>
+            强制忽略日志记录.返回值会克隆一份返回以保证传入值不会改变
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.SkipCache``1(``0)">
+            <summary>
+            强制忽略缓存策略.返回值会克隆一份返回以保证传入值不会改变
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.Open``1(MyOql.MyCommand,MyOql.ContextClipBase,System.Func{``0})">
+            <summary>
+            尝试打开数据连接,并执行相应方法
+            该方法是安全的.保证使用完毕后自动关闭连接.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="myCmd"></param>
+            <param name="Context">如果上下文中存在事务, 则忽略连接</param>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.GetVarTableVars(System.String,System.String)">
+            <summary>
+            TF_Fees_{Comm}_{User}   TF_Fees_1001_01
+            </summary>
+            <remarks>
+            DbName 中不能出现 { } 
+            </remarks>
+            <param name="tmpName"></param>
+            <param name="DbName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.As``1(``0,System.String)">
+            <summary>
+            给表设置别名.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="rule"></param>
+            <param name="Alias"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.AsFullName(System.Collections.Generic.IEnumerable{MyOql.ColumnClip})">
+            <summary>
+            对列集合进行别名设置，别名采用转义后的 数据库表名.数据库列名 （转义）。
+            </summary>
+            <param name="Columns"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.AsFullName(System.Collections.Generic.IEnumerable{MyOql.ColumnClip},System.String)">
+            <summary>
+            对列集合进行别名设置，别名采用转义后的 数据库表名.数据库列名 （转义）。
+            </summary>
+            <param name="Columns"></param>
+            <param name="Prefix">别名前缀</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.AsDbName(System.Collections.Generic.IEnumerable{MyOql.SimpleColumn})">
+            <summary>
+            对列集合进行别名设置，别名采用数据库列名（不转义）
+            </summary>
+            <param name="Columns"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.Coalesce(MyOql.ColumnClip,MyOql.ColumnClip)">
+            <summary>
+            数据库系统函数，返回第一个非空值。
+            </summary>
+            <param name="cols"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.GetUniqueExpression(System.Char,MyOql.ColumnClip[])">
+            <summary>
+            得到行唯一列表述。
+            </summary>
+            <param name="Seperator"></param>
+            <param name="Columns"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.ToDataTable(System.String,System.String)">
+            <summary>
+            根据自定义Sql返回结果集.
+            </summary>
+            <param name="ConfigName">配置文件的数据库连接名.</param>
+            <param name="Sql"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.ToScalar(System.String,System.String)">
+            <summary>
+            根据自定义Sql返回结果集.
+            </summary>
+            <param name="ConfigName">配置文件的数据库连接名.如果为空,取默认值 dbo</param>
+            <param name="Sql"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dbo.GetRelationViewsByTable(System.String)">
+            <summary>
+            根据 表名，找出和该表有关系的视图
+            </summary>
+            <param name="TableDbName">表的数据库名</param>
+            <returns>和该表有关系的视图</returns>
+        </member>
+        <member name="M:MyOql.dbo.Check(System.Boolean,System.String,MyOql.RuleBase)">
+            <summary>
+            检查条件 , 抛出错误.
+            </summary>
+            <param name="FalseResult">如果条件为真,则抛出错误.</param>
+            <param name="Msg">错误消息.</param>
+            <param name="rule"></param>
+        </member>
+        <member name="P:MyOql.dbo.DefaultMyOqlConfig">
+            <summary>
+            值只能是 ReadPast,NoLock,WaitLock之一。
+            </summary>
+        </member>
+        <member name="T:MyOql.IDboEvent">
+            <summary>
+            缓存项包括: 根据id 缓存, 根据SQL 缓存 两种形式.
+            </summary>
+            <remarks>
+            术语定义：
+            VCId  关联视图的根据Id的缓存项（仅一条）
+            VCSql 关联视图的根据 SQL 的缓存项
+            VCAll 关联视图的所有缓存项（所有根据Id缓存项 和 所有根据SQL缓存项）
+            TCId  根据Id缓存表的缓存项 （仅一条）
+            TCSql 根据SQL 缓存表的缓存项
+            TCAll 该表的所有缓存项（所有根据Id缓存项 和 所有根据SQL缓存项）
+            
+            在 添加，删除，更新，执行存储过程时，清除相关联的缓存
+            添加：清除 TCSql ， VCAll
+            删除：清除 TCId ，TCSQL ，VCAll
+            更新：清除 TCId ， TCSQL，VCAll
+            存储过程： 清除 TCAll , VCAll
+            
+            分析得出： 
+            不会出现 单独清除 VCId ,VCSql 的情况。
+            清除 TCSql 时，一定要清除 VCAll
+            清除 TCAll 时，一定要清除 VCAll
+            </remarks>
+        </member>
+        <member name="M:MyOql.IDboEvent.OnCacheRemoveById(MyOql.ContextClipBase,System.String)">
+            <summary>
+            移除一条缓存数据.
+            </summary>
+            <param name="Context"></param>
+            <param name="IdValue">如果为空，则移除所有</param>
+        </member>
+        <member name="M:MyOql.IDboEvent.OnCacheFindById``1(MyOql.ContextClipBase,System.Func{System.String},System.Func{``0})">
+            <summary>
+            单条数据查找.
+            </summary>
+            <param name="Context"></param>
+            <param name="IdValueFunc"></param>
+            <param name="NewModelFunc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.IDboEvent.CacheDataToDict(MyOql.RuleBase,System.Object[])">
+            <summary>
+            把单条数据转换为 Dict . 单条数用 object[] 来存储, 是为了减少存储量.
+            </summary>
+            <param name="Entity"></param>
+            <param name="Data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.IDboEvent.CacheDictToData(MyOql.RuleBase,MyCmn.XmlDictionary{MyOql.ColumnClip,System.Object})">
+            <summary>
+            把 XmlDict 转化为 object[]. 单条数用 object[] 来存储, 是为了减少存储量.
+            </summary>
+            <param name="Entity"></param>
+            <param name="Dict"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.IDboEvent.CacheDictToData(MyOql.RuleBase,MyCmn.XmlDictionary{System.String,System.Object})">
+            <summary>
+            把 XmlDict 转化为 object[]. 单条数用 object[] 来存储, 是为了减少存储量.
+            </summary>
+            <param name="Entity"></param>
+            <param name="Dict"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.IDboEvent.OnCacheAddById(MyOql.ContextClipBase,System.String,MyCmn.XmlDictionary{System.String,System.Object})">
+            <summary>
+            更新某一个缓存实体,如果更新不成功，会删除所有的缓存项。
+            </summary>
+            <param name="Entity"></param>
+            <param name="IdValue"></param>
+            <param name="Model"></param>
+            <returns>成功更新缓存，返回true，如果没有更新，返回false</returns>
+        </member>
+        <member name="M:MyOql.IDboEvent.GetChangedTable">
+            <summary>
+            获取外部接口改变的数据表.
+            </summary>
+            <remarks>如果返回有值,则会清空关联该值的所有缓存.</remarks>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.IDboEvent.ClearedCacheTable(System.String)">
+            <summary>
+            已清除缓存表的事件通知.
+            </summary>
+            <param name="Table"></param>
+        </member>
+        <member name="M:MyOql.IDboEvent.OnCacheFindBySql(MyOql.ContextClipBase,System.String)">
+            <summary>
+            对多条查询的数据,根据Sql进行查找.
+            </summary>
+            <param name="Context">上下文.</param>
+            <param name="cacheSqlKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.IDboEvent.OnCacheAddBySql(MyOql.ContextClipBase,System.String,System.Func{MyOql.MyOqlSet})">
+            <summary>
+            对多条查询的数据进行缓存.
+            </summary>
+            <param name="Context"></param>
+            <param name="cacheSqlKey"></param>
+            <param name="GetModelFunc"></param>
+        </member>
+        <member name="M:MyOql.IDboEvent.OnCacheRemoveBySql(MyOql.ContextClipBase)">
+            <summary>
+            清除根据SQL 的缓存项，同时清除 和该表相关联 视图的缓存项  <see cref="T:MyOql.IDboEvent"/>
+            </summary>
+            <param name="Context"></param>
+        </member>
+        <member name="M:MyOql.IDboEvent.OnCacheRemoveAll(MyOql.ContextClipBase)">
+            <summary>
+            移除和该表相关的所有项，并清除和该表相关的视图的所有项 <see cref="T:MyOql.IDboEvent"/>
+            </summary>
+            <param name="Context"></param>
+        </member>
+        <member name="M:MyOql.IDboEvent.OnReading(MyOql.ContextClipBase)">
+            <summary>
+            
+            </summary>
+            <param name="Context"></param>
+            <returns>返回 false 说明没有查询权限. 返回 true ,表示有查询权限,并已处理查询列.</returns>
+        </member>
+        <member name="M:MyOql.IDboEvent.OnDecrypte(System.String)">
+            <summary>
+            解密数据库连接字符串的方法。 
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="E:MyOql.IDboEvent.Creating">
+            <summary>
+            创建前事件。参数是：当前实体，创建的列，创建的Model，返回 DoingResult
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="E:MyOql.IDboEvent.Reading">
+            <summary>
+            读取前事件。参数是：当前实体，读取的Id值(Id值表示法，<see cref="M:MyOql.WhereClip.GetIdValue(MyOql.RuleBase)"/>)，读取的列，返回值。
+            </summary>
+        </member>
+        <member name="E:MyOql.IDboEvent.Updating">
+            <summary>
+            更新前事件.参数为:当前实体,要更新的Id值(Id值表示法，<see cref="M:MyOql.WhereClip.GetIdValue(MyOql.RuleBase)"/>),更新的列，更新的Model，返回值。
+            </summary>
+        </member>
+        <member name="E:MyOql.IDboEvent.Deleting">
+            <summary>
+            删除前事件。参数是：当前实体，要删除的Id值(Id值表示法，<see cref="M:MyOql.WhereClip.GetIdValue(MyOql.RuleBase)"/>)，返回是否允许。
+            </summary>
+            <remarks>要删除的Id值，如果为null，则可能更新多行。</remarks>
+        </member>
+        <member name="E:MyOql.IDboEvent.GenerateSqled">
+            <summary>
+            生成SQL事件。参数是：生成SQL的数据库类型，当前命令。
+            </summary>
+        </member>
+        <member name="E:MyOql.IDboEvent.Procing">
+            <summary>
+            存储过程执行前事件。参数是：当前实体，参数字典。
+            </summary>
+        </member>
+        <member name="E:MyOql.IDboEvent.BulkInserting">
+            <summary>
+            批量插入前事件。参数是：当前实体，插入的数据集，返回值。
+            </summary>
+        </member>
+        <member name="E:MyOql.IDboEvent.BulkUpdating">
+            <summary>
+            批量更新前事件。参数是：当前实体，更新的数据集，返回值。
+            </summary>
+        </member>
+        <member name="E:MyOql.IDboEvent.DecrypteEvent">
+            <summary>
+            解密数据库连接字符串的事件。 
+            </summary>
+            <example>
+            应该在 Application_Start 事件中注册如下事件的代码
+            <code>
+            dbo.DecrypteEvent += (arg) =>
+            {
+                return MyCmn.Security.DecrypteString(arg);
+            };
+            </code>
+            </example>
+        </member>
+        <member name="T:MyOql.dboRule">
+            <summary>
+            
+            </summary>
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MyOql.dboRule.Update``1(``0,MyCmn.IModel,MyOql.WhereClip,System.Func{``0,System.Collections.Generic.IEnumerable{MyOql.ColumnClip}})">
+            <summary>
+            更新三种 Model： 1. 实体类 2.Dictionary&lt;string,object> or Dictionary&lt;string,string>  3. WhereClip
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="Model"></param>
+            <param name="where">如果where 为空，则按主键进行。</param>
+            <param name="setColumnFunc">设置更新列.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboRule.Update``1(``0,System.Func{``0,MyCmn.IModel})">
+            <summary>
+            根据主键进行更新. 如果没有主键,则会出错. 
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="SetValueExpressionFunc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboRule.Update``1(``0,System.Func{``0,MyCmn.IModel},System.Func{``0,MyOql.WhereClip})">
+            <summary>
+            生成 Update 子句。
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="SetValueExpressionFunc"></param>
+            <param name="WhereFunc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboRule.Update``1(``0,System.Func{``0,MyCmn.IModel},System.Func{``0,MyOql.WhereClip},System.Func{``0,System.Collections.Generic.IEnumerable{MyOql.ColumnClip}})">
+            <summary>
+            更新
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="SetValueExpressionFunc">更新的Model回调</param>
+            <param name="WhereFunc">更新条件</param>
+            <param name="setColumnFunc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboRule.Update``1(``0,MyCmn.IModel)">
+            <summary>
+            根据主键更新。
+            </summary>
+            <example>
+            <code>
+            var model = new UserRule.Entity();
+            model.DeptID = 1 ;
+            model.Name = "张三" ;
+            model.AddTime = DateTime.Now ;
+            model.ID = 15 ;
+            
+            var retval = dbr.User
+                        .Update(model) // 根据主键更新.
+                        .Execute() ;
+            </code>
+            </example>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="Model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboRule.Update``1(``0,MyCmn.IModel,System.Func{``0,MyOql.WhereClip})">
+            <summary>
+            用 Model 更新记录
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="Model"></param>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboRule.Update``1(``0,MyCmn.IModel,System.Func{``0,System.Collections.Generic.IEnumerable{MyOql.ColumnClip}})">
+            <summary>
+            用 Model 更新记录
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="Model"></param>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboRule.Update``1(``0,MyCmn.IModel,System.Func{``0,MyOql.ColumnClip})">
+            <summary>
+            用 Model 更新记录
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="Model"></param>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboRule.Update``1(``0,MyCmn.IModel,MyOql.WhereClip)">
+            <summary>
+            更新三种 Model： 1. 实体类 2.Dictionary&lt;string,object> or Dictionary&lt;string,string>  3. WhereClip
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="Model"></param>
+            <param name="where">如果where 为空，则按主键进行。</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboRule.Insert``1(``0,MyCmn.IModel)">
+             <summary>
+             三种Model，1.实体类， 2. Dictionary&lt;string,object&gt; or Dictionary&lt;string,string&gt; 3.WhereClip
+             </summary>
+             <remarks>
+              Model的形式可以是多种多样的.可以是 三种Model，1.实体类， 2. Dictionary&lt;string,object&gt; or Dictionary&lt;string,string&gt; 3.WhereClip .
+              只要类的属性和数据实体属性名相同,即可插入记录.同时忽略不匹配的属性名.
+             </remarks>
+             <example>
+             <code>
+              var model = new UserRule.Entity();
+              model.DeptID = 1 ;
+              model.Name = "张三" ;
+              model.AddTime = DateTime.Now ;
+             
+              var retval = dbr.User
+                           .Insert(model)
+                           .Execute() ;
+              </code>    
+              <code>
+             var dict = new XmlDictionary&lt;string,object&gt;
+             dict["DeptID"] = 1 ;
+             dict[dbr.User.Name.Name] = "张三" ;
+             dict[dbr.User.AddTime.Name] = DateTime.Now ;
+             
+             var retval = dbr.User
+                         .Insert(dict)
+                         .Execute();
+             </code>
+             Model也可认是Where表达式,但不能以Where表达式理解,Where表达式只用来表示数据存储,这样写法更简便.
+             这种方法不能返回即插入对象值,如ID值例如:
+            <code>
+            var retval = dbr.User
+                        .Insert(o=&gt;o.DeptID == 1 &amp; o.Name == "张三" &amp; o.AddTime == DateTime.Now) 
+                        .Execute(); 
+             </code>
+             </example>
+             <typeparam name="T"></typeparam>
+             <param name="obj"></param>
+             <param name="Model"></param>
+             <returns></returns>
+        </member>
+        <member name="M:MyOql.dboRule.Insert``2(``0,MyOql.SelectClip{``1})">
+            <summary>
+            批量插入并执行.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="T2"></typeparam>
+            <param name="obj"></param>
+            <param name="Model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboRule.Insert``1(``0,System.Func{``0,MyCmn.IModel})">
+            <summary>
+            返回的 object ，仅限三种类型： 1.实体类。2.Dictionary , 3.WhereClip
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="SetValueExpressionFunc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboRule.AutoSave``1(``0,System.Func{``0,MyCmn.IModel},System.Func{``0,MyOql.ColumnClip})">
+            <summary>
+            自动保存。
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="FuncModel"></param>
+            <param name="FuncWhereColumn"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboRule.AutoSave``1(``0,System.Func{``0,MyCmn.IModel},System.Func{``0,MyOql.ColumnClip},System.Func{``0,System.Collections.Generic.IEnumerable{MyOql.ColumnClip}})">
+            <summary>
+            无则插入,有则更新.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="FuncModel"></param>
+            <param name="FuncWhereColumn">如果ColumnClip为空,则用主键判断是否存在记录.</param>
+            <param name="SetColumnsFunc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboRule.AutoSave``1(``0,System.Func{``0,MyCmn.IModel},System.Func{``0,System.Collections.Generic.IEnumerable{MyOql.ColumnClip}})">
+            <summary>
+            自动保存
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="FuncModel"></param>
+            <param name="FuncWhereColumns"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboRule.AutoSave``1(``0,System.Func{``0,MyCmn.IModel},System.Func{``0,System.Collections.Generic.IEnumerable{MyOql.ColumnClip}},System.Func{``0,System.Collections.Generic.IEnumerable{MyOql.ColumnClip}})">
+            <summary>
+            无则插入,有则更新.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="FuncModel"></param>
+            <param name="FuncWhereColumns">如果ColumnClip为空,则用主键判断是否存在记录.</param>
+            <param name="SetColumnsFunc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboRule.AutoSave``1(``0,MyCmn.IModel,System.Collections.Generic.IEnumerable{MyOql.ColumnClip},System.Func{``0,System.Collections.Generic.IEnumerable{MyOql.ColumnClip}})">
+            <summary>
+            单条数的 数据推送(无则插入,有则更新).尽量不要使用,它用生成两次操作. 一次是查询是否存在, 一次是执行.
+            如果查询出多条，则会抛出异常。
+            </summary>
+            <example>
+            var model = new UserRule.Entity();
+            model.DeptID = 1 ;
+            model.Name = "张三" ;
+            model.AddTime = DateTime.Now ;
+            model.ID = 15 ;
+            
+            var retval = dbr.User
+                        .AutoSave(model,o=&lt;o.ID);
+            </example>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="Model"></param>
+            <param name="WhereColumns">如果为空,则用Model里主键,唯一键,或自增键判断是否存在记录.</param>
+            <param name="UpdateSetColumnsFunc">更新实体时，更新的字段</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboRule.Delete``1(``0,MyOql.WhereClip)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="where"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboRule.Delete``1(``0,System.Func{``0,MyOql.WhereClip})">
+            <summary>
+            生成删除子句。
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboRule.UseTransaction``1(MyOql.InsertClip{``0},System.Data.Common.DbTransaction)">
+            <summary>
+            显式使用事务及事务的连接
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Source"></param>
+            <param name="Transaction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboRule.UseTransaction``1(MyOql.UpdationClip{``0},System.Data.Common.DbTransaction)">
+            <summary>
+            显式使用事务及事务的连接
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Source"></param>
+            <param name="Transaction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboRule.UseTransaction``1(MyOql.DeleteClip{``0},System.Data.Common.DbTransaction)">
+            <summary>
+            显式使用事务及事务的连接
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Source"></param>
+            <param name="Transaction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboRule.UseConnection``1(MyOql.SelectClip{``0},System.Data.Common.DbConnection)">
+            <summary>
+            显式使用事务及事务的连接
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Source"></param>
+            <param name="Connection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboRule.UseConnection``1(MyOql.InsertClip{``0},System.Data.Common.DbConnection)">
+            <summary>
+            显式使用事务及事务的连接
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Source"></param>
+            <param name="Connection">强制使用数据连接,可以用于单机事务.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboRule.UseConnection``1(MyOql.UpdationClip{``0},System.Data.Common.DbConnection)">
+            <summary>
+            显式使用事务及事务的连接
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Source"></param>
+            <param name="Connection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboRule.UseConnection``1(MyOql.DeleteClip{``0},System.Data.Common.DbConnection)">
+            <summary>
+            显式使用事务及事务的连接
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Source"></param>
+            <param name="Connection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboRule.Count``1(``0,System.Func{``0,MyOql.WhereClip})">
+            <summary>
+            直接取出条数。
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="whereFunc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboRule.Exists``1(``0,System.Func{``0,MyOql.WhereClip})">
+            <summary>
+            判断是否存在
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="whereFunc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboRule.FindFirst``2(``0,System.Func{``0,MyOql.WhereClip},System.Func{``1})">
+            <summary>
+            查找第一个实体。
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TModel"></typeparam>
+            <param name="obj"></param>
+            <param name="func"></param>
+            <param name="NewModelFunc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboRule.FindFirst``2(``0,System.Func{``0,MyOql.WhereClip},System.Func{``0,``1})">
+            <summary>
+            查找第一个实体。
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TModel"></typeparam>
+            <param name="obj"></param>
+            <param name="func"></param>
+            <param name="Model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboColumn.NameEquals(MyOql.ColumnClip,MyOql.ColumnClip)">
+            <summary>
+            判断两个列是否是同一列。(对于复合列，还要确认是否可以相等。)
+            </summary>
+            <param name="Column"></param>
+            <param name="two"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboColumn.NameEquals(MyOql.ColumnClip,System.String,System.Boolean)">
+            <summary>
+            根据名称判断 列是否是同一列。
+            </summary>
+            <param name="Column"></param>
+            <param name="ColumnName"></param>
+            <param name="WithDbName">是否启用 真实列名的比较</param>
+            <returns></returns>
+            <remarks>
+            在 Insert , Update 时, 要使用 DbName 比较更有效,而别名可能无效.如:
+            dbr.Menu.Insert(o=> new {NAME = "MyOql" } );
+            
+            而在应用层查询时,使用 Name 比较有效.如:
+            dbr.Menu.Select(o=>o.Name.As("Name1"))
+                .Join(dbr.User,(a,b)=>a.Id == b.Id , o=>o.Name.As("Name2") )
+                ;
+            在这时, 比较 DbName 是不正确的.应该忽略对  DbName 的比较.
+            </remarks>
+        </member>
+        <member name="M:MyOql.dboColumn.AsFullName``1(``0)">
+            <summary>
+            生成 As 语句，别名采用 转义后的数据库表名.数据库列名。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboColumn.FromTable``1(``0,System.String)">
+            <summary>
+            从别名中引用列.
+            </summary>
+            <param name="Alias"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MyOql.dboSelect">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MyOql.dboSelect._``1(``0,MyOql.ColumnClip)">
+            <summary>
+            连接select 后的选择列。
+            </summary>
+            <param name="FuncSelect"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboSelect.OrderBy``1(``0,MyOql.OrderByClip)">
+            <summary>
+            生成 order by 子句.
+            </summary>
+            <remarks>
+            如果排序列的列DbName以 # 开始，则从表中遍历查找该列名的列。
+            </remarks>
+            <param name="order"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboSelect.Having``1(``0,MyOql.WhereClip)">
+            <summary>
+            生成 having 子句.
+            </summary>
+            <param name="where"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboSelect.GroupBy``1(``0,MyOql.ColumnClip[])">
+            <summary>
+            生成 group by 子句
+            </summary>
+            <example>
+            <code>
+                var users = dbr.User
+                    .Select(o=&gt;new ColumnClip[]{ o.DeptID,o.Count().As("cou") } )
+                    .GroupBy(o=&gt;new ColumnClip[]{ o.DeptID })
+                    .Having(o=&gt;o.Count() &gt; 3 )
+                    .ToDictList() ;
+            </code>        
+            <code>
+                var users = dbr.User     
+                          .Select(o=&gt;new ColumnClip[]{ o.DeptID.As("User's DeptID"),o.Count().As("cou") } )
+                          .Join(dbr.Dept,(a,b)=&gt;a.DeptID == b.ID ,o=&gt;o.Name.As("DeptName") )
+                          .GroupBy(o=&gt;new ColumnClip[]{ o.DeptID , dbr.Dept.Name } )
+                          .Having(o=&gt;o.Count() &gt; 3 )
+                          .ToDictList() ;
+            </code>
+            </example>
+            <param name="Group"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboSelect.AutoGroup``1(``0)">
+            <summary>
+            根据聚合函数,自动生成分组.
+            </summary>
+            <example>
+            <code>
+            var users = dbr.User
+                        .Select(o=&gt;new ColumnClip[]{ o.DeptID,o.Count().As("cou") } )
+                        .AutoGroup()
+                        .Having(o=&gt;o.Count() &gt; 3 )
+                        .ToDictList() ;
+            </code>
+            </example>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboSelect.SelectWrap``1(``0,System.String,MyOql.ColumnClip[])">
+            <summary>
+            以子查询为结果集进行再查询.
+            </summary>
+            <remarks>
+            <example>
+            <code>
+            select col from ( select col from tab )  as tab 
+            var d = dbr.ViewProject.Select().SelectWrap("a").ToEntityList(o => dbr.ViewProject._);
+            </code>
+            </example>
+            </remarks>
+            <param name="Alias"> 别名 </param>
+            <param name="cols"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboSelect.Where``1(``0,MyOql.WhereClip)">
+            <summary>
+            添加 where 子句.
+            </summary>
+            <param name="where"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboSelect.AsTable``1(``0,System.String)">
+            <summary>
+            给表起个别名. <see cref="!:MyOql.SelectClip.Join"/>
+            </summary>
+            <remarks>
+            高级用法: 用子查询做联接 .
+            <code>
+            var currPage = collection["page"].GetInt();
+            var eachCount = collection["rp"].GetInt();
+            
+            var subQuery = dbr.SpecialItem
+                 .Select(o =&gt; o.ID)
+                 .Where(o =&gt; o.PID == 0)
+                 .Skip((currPage - 1) * eachCount)
+                 .Take(eachCount).AsTable("b");
+            
+            var oqlSet = dbr.SpecialItem
+                .Select()
+                .Join(SqlKeyword.Join,
+                    subQuery,
+                    (a, b) =&gt; a.ID == b.ID.FromTable("b") | (a.RootPath + ",").Contains("," + b.ID.FromTable("b") + ","), null
+                    )
+                .ToMyOqlSet();
+            
+            </code>
+            </remarks>
+            <param name="Alias"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboSelect.GroupBy``1(``0,System.Func{System.Collections.Generic.IEnumerable{MyOql.ColumnClip}})">
+            <summary>
+            生成 group by 子句. 
+            </summary>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboSelect.Where``1(``0,System.Func{MyOql.WhereClip})">
+            <summary>
+            添加 where 子句.
+            </summary>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboSelect.Join``2(``0,MyOql.SqlKeyword,``1,MyOql.WhereClip,System.Collections.Generic.IEnumerable{MyOql.ColumnClip})">
+            <summary>
+            生成 join  Table 子句
+            </summary>
+            <remarks>
+            如果连接表有 AsTable，而条件或外带查询列属于该表，且没有FromTable，则自动添加 FromTable。
+            要避免列自动添加FromTable，可以手动添加FromTable
+            </remarks>
+            <typeparam name="T2"></typeparam>
+            <param name="JoinType"></param>
+            <param name="JoinTable"></param>
+            <param name="FuncOnWhere"></param>
+            <param name="FuncSelect"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboSelect.Join``1(``0,MyOql.SqlKeyword,MyOql.SelectClip,MyOql.WhereClip,System.Collections.Generic.IEnumerable{MyOql.ColumnClip})">
+            <summary>
+            生成 Join (select  * from tab ) as a  子查询
+            </summary>
+            <param name="JoinType"></param>
+            <param name="JoinSelect"></param>
+            <param name="where"></param>
+            <param name="SelectColumns"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboSelect.Join``1(``0,MyOql.RuleBase)">
+            <summary>
+            生成 join 子句.
+            </summary>
+            <typeparam name="T2"></typeparam>
+            <param name="JoinTable">连接的表，在两个表只有一个外键关系时，自动生成 On 语句。否则报错</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboSelect.Join``2(``0,``1,System.Func{``1,MyOql.ColumnClip})">
+            <summary>
+            生成 join 子句.
+            </summary>
+            <typeparam name="T2"></typeparam>
+            <param name="JoinTable">连接的表，在两个表只有一个外键关系时，自动生成 On 语句。否则报错</param>
+            <param name="OneColumn"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboSelect.Join``2(``0,``1,System.Func{``1,System.Collections.Generic.IEnumerable{MyOql.ColumnClip}})">
+            <summary>
+            生成 join 子句.
+            </summary>
+            <typeparam name="T2"></typeparam>
+            <param name="JoinTable">连接的表，在两个表只有一个外键关系时，自动生成 On 语句。否则报错</param>
+            <param name="FuncSelect"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboSelect.Select``1(``0,MyOql.ColumnClip[])">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="cols">
+            在多表关联查询中,如果选择了关联表,且 cols 为空, 则不选择主表列.
+            如果所有的查询列为空, 则查询列为 *
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboSelect.Select``1(``0,System.Func{``0,MyOql.ColumnClip})">
+            <summary>
+            生成 Select 子句
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboSelect.Select``1(``0,System.Func{``0,System.Collections.Generic.IEnumerable{MyOql.ColumnClip}})">
+            <summary>
+            生成 Select 子句。
+            </summary>
+            <example>
+             var users = dbr.User
+                            .Select(o=&gt; new ColumnClip[]{ o.Id, o.Name, (o.Id + "." + o.Name).As("FullName") } )
+                            .Where(o=&gt; o.Age.Between( 20, 30 ) )
+                            .Take(15)
+                            .Skip(30)
+                            .OrderBy(o&gt; o.Id.Asc )
+                            .ToDictList();
+            </example>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.dboSelect.Select``1(``0)">
+            <summary>
+            选择该实体的全部列。
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="CurrentRule"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MyOql.DatabaseType">
+            <summary>
+            Database Types supported.
+            </summary>
+        </member>
+        <member name="F:MyOql.DatabaseType.SqlServer">
+            <summary>
+            指 SqlServer 2005 + 
+            </summary>
+        </member>
+        <member name="F:MyOql.MyOqlActionEnum.Row">
+            <summary>
+            目前在 Read , Update 中处理 .
+            </summary>
+        </member>
+        <member name="T:MyOql.NoValueEnum">
+            <summary>
+            Sql 操作符
+            </summary>
+        </member>
+        <member name="F:MyOql.NoValueEnum.NoValue">
+            <summary>
+            不返回任何语句
+            </summary>
+        </member>
+        <member name="F:MyOql.NoValueEnum.Ignore">
+            <summary>
+            忽略长度为0的数组，不生成该语句
+            </summary>
+        </member>
+        <member name="T:MyOql.SelectOption">
+            <summary>
+            查询选项.如果有分页查询,则有效.
+            </summary>
+        </member>
+        <member name="F:MyOql.SelectOption.WithCount">
+            <summary>
+            默认值.在存在 Take 或 Skip 选项时,执午额外的查询获取总记录数.
+            </summary>
+        </member>
+        <member name="T:MyOql.ExecuteTypeEnum">
+            <summary>
+            数据执行方式.
+            </summary>
+        </member>
+        <member name="F:MyOql.ExecuteTypeEnum.Select">
+            <summary>
+            有返回值,用专用连接.
+            </summary>
+        </member>
+        <member name="F:MyOql.ExecuteTypeEnum.SelectWithSkip">
+            <summary>
+            有分页结果 , 使用了 MyOqlConfigScope.DataReader
+            </summary>
+        </member>
+        <member name="F:MyOql.ExecuteTypeEnum.Execute">
+            <summary>
+            直接执行.可以用共享连接.
+            </summary>
+        </member>
+        <member name="T:MyOql.GroupByClip">
+            <summary>
+            Group by 子句
+            </summary>
+        </member>
+        <member name="P:MyOql.GroupByClip.Groups">
+            <summary>
+            Group by 列集合
+            </summary>
+        </member>
+        <member name="T:MyOql.HavingClip">
+            <summary>
+            Having 子句
+            </summary>
+        </member>
+        <member name="P:MyOql.HavingClip.Where">
+            <summary>
+            Having 的 Where 条件
+            </summary>
+        </member>
+        <member name="F:MyOql.MyOqlRuleEnum.Table">
+            <summary>
+            实体表。
+            </summary>
+        </member>
+        <member name="F:MyOql.MyOqlRuleEnum.View">
+            <summary>
+            视图
+            </summary>
+        </member>
+        <member name="F:MyOql.MyOqlRuleEnum.VarTable">
+            <summary>
+            表变量
+            </summary>
+        </member>
+        <member name="F:MyOql.MyOqlRuleEnum.TempTable">
+            <summary>
+            临时表
+            </summary>
+        </member>
+        <member name="T:MyOql.WhereValueEnum">
+            <summary>
+            Where表达式值的五种类型.
+            </summary>
+        </member>
+        <member name="F:MyOql.WhereValueEnum.Value">
+            <summary>
+            值类型，如：字符串，数字，时间，GUID，Null
+            </summary>
+        </member>
+        <member name="F:MyOql.WhereValueEnum.ValueArray">
+            <summary>
+            值数组，用于 In,NotIn,Between 子句。
+            </summary>
+        </member>
+        <member name="F:MyOql.WhereValueEnum.Column">
+            <summary>
+            列类型。
+            </summary>
+        </member>
+        <member name="F:MyOql.WhereValueEnum.SubQuery">
+            <summary>
+            子查询类型，用于 In,NotIn
+            </summary>
+        </member>
+        <member name="T:MyOql.DatePart">
+            <summary>
+            DateDiff 枚举用。
+            </summary>
+        </member>
+        <member name="T:MyOql.ReConfigEnum">
+            <summary>
+            配置MyOql作用域
+            </summary>
+        </member>
+        <member name="F:MyOql.ReConfigEnum.NoEscapeDbName">
+            <summary>
+            设置不对数据库名进行转义。
+            </summary>
+        </member>
+        <member name="F:MyOql.ReConfigEnum.ReadPast">
+            <summary>
+            脏读模式，不读取未提交信息。
+            </summary>
+        </member>
+        <member name="F:MyOql.ReConfigEnum.NoLock">
+            <summary>
+            脏读模式，读取未提交信息
+            </summary>
+        </member>
+        <member name="F:MyOql.ReConfigEnum.WaitLock">
+            <summary>
+            默认的等待事务完成模式。
+            </summary>
+        </member>
+        <member name="F:MyOql.ReConfigEnum.RowNumber">
+            <summary>
+            使用 RowNumber 分页
+            </summary>
+        </member>
+        <member name="F:MyOql.ReConfigEnum.DataReader">
+            <summary>
+            使用 DataReader 分页
+            </summary>
+        </member>
+        <member name="T:MyOql.MyOqlCodeGenSect">
+             <summary>
+             示例见实际项目.
+             </summary>
+             <remarks>
+             一.定义规范:
+                 a) 名称为了可读性。请参见 TranslateDbName <see cref="M:MyOql.dbo.TranslateDbName(System.String)"/>
+                 b) 在实际数据业务中,可以定义多个业务模块,再对这些模块定义功能.
+                     可以根据实际情况,把模块定义为 Group , 把各个表定义到各个Group.
+                     对于系统组, 定义其 Name 为空
+             二.定义基本结构
+             实例参见： MyTool\MyOqlCodeGen.config
+             二.定义数据库 
+            1.定义数据库表或视图(视图的操作和表相同)，规范如下：
+                 a)	必须定义主键，其它键可无:  外键 ，计算列 ,自增键,唯一键,列定义.
+                 b)	列名不能与表名相同。（该规则是因为：类的属性名不能与类名相同）
+                 数据库表的配置 Entity节点属性如下:
+                 Name是表的名称
+                 PKs 是主键列表，多个主键，用“，” 分隔
+                 Fks 是外键列表，格式： 外键名称＝引用表：引用表键 ，多个外键用“，”分隔. 格式参见:MyFkNode <see cref="T:MyOql.MyOql_CodeGen.MyFkNode"/>
+                 AutoIncreKey 是自增列，最多有一个
+                 UniqueKey 唯一约束，虽然数据库可以有多个， 但对于业务系统来说 ， 只写一个即可。
+                 ComputeKeys是计划列，多个用“，”分隔
+                 Enums是枚举列类型. 如指定某列为枚举. MyOql 会根据数据库存的是 Int / Varchar2 , 动态转换枚举值. 也可以指定某列的类型.如指定时间格式的C#类型是 MyDate (MyOql 默认用MyDate类型映射到数据库的 时间格式.).
+            2.定义存储过程 规范如下:
+                 Name 是存储过程的名称
+                 Paras 是存储过程的参数列表，多个参数用“，”分隔，单个参数 格式参见: MyParaNode <see cref="T:MyOql.MyOql_CodeGen.MyParaNode"/>
+                 Return 是指存储过程返回的数据类型默认out参数，返回格式参见: MyParaReturnDefine <see cref="T:MyOql.MyOql_CodeGen.MyParaReturnDefine"/>
+                     但要特别注意的是：如果果 Return 返回定义为空，则调用 ProcClip.Execute，即返回存储过程的返回值（存储过程中return Value 形式,如果没有定义return ，则返回影响行数）
+                     而如果 Return 显式定义了返回数字类型，则调用 ProcClip.ExecuteReader ，即返回存储过程结果集的第一行第一列的值（select * from table）
+            3.定义返回表值型函数 , 类似于定义带参数的表 . 其规范与表相同. 其特殊性在于,必须显式的定义全部列.
+             </remarks>
+        </member>
+        <member name="M:MyOql.MyOqlCodeGenSect.TableCollection.BaseRemove(System.String)">
+            <summary>
+            本程序集之外,需要操作Config 文件 之用. 
+            </summary>
+            <param name="Key"></param>
+        </member>
+        <member name="P:MyOql.MyOqlCodeGenSect.TableCollection.Owner">
+            <summary>
+            数据库对象的所有者.
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOqlCodeGenSect.TableCollection.Nullable">
+            <summary>
+            对于值类型来说，是否生成 int? 类型，默认是 false 
+            </summary>
+        </member>
+        <member name="M:MyOql.MyOqlCodeGenSect.TableCollection.TableGroupCollection.BaseRemove(System.String)">
+            <summary>
+            本程序集之外,需要操作Config 文件 之用. 
+            </summary>
+            <param name="Key"></param>
+        </member>
+        <member name="P:MyOql.MyOqlCodeGenSect.TableCollection.TableGroupCollection.Owner">
+            <summary>
+            数据库对象的所有者.
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOqlCodeGenSect.TableCollection.TableGroupCollection.Nullable">
+            <summary>
+            对于值类型来说，是否生成 int? 类型，默认是 false 
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOqlCodeGenSect.TableCollection.TableGroupCollection.BaseTableElement.Owner">
+            <summary>
+            数据库对象的所有者.
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOqlCodeGenSect.TableCollection.TableGroupCollection.BaseTableElement.Name">
+            <summary>
+            数据库里的表名。
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOqlCodeGenSect.TableCollection.TableGroupCollection.BaseTableElement.MapName">
+            <summary>
+            手动映射成程序的友好名字
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOqlCodeGenSect.TableCollection.TableGroupCollection.BaseTableElement.PKs">
+            <summary>
+            新的映射方法是子对象 pk，两种形式都兼容。
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOqlCodeGenSect.TableCollection.TableGroupCollection.BaseTableElement.UniqueKey">
+            <summary>
+            仅支持单一唯一键，如果多个键是组合唯一键，会忽略其定义。
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOqlCodeGenSect.TableCollection.TableGroupCollection.BaseTableElement.Nullable">
+            <summary>
+            对于值类型来说，是否生成 int? 类型，默认是 false 
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOqlCodeGenSect.TableCollection.TableGroupCollection.TableElement.Paras">
+            <summary>
+            仅在 表值函数 时有效。
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOqlCodeGenSect.TableCollection.TableGroupCollection.TableElement.VarName">
+            <summary>
+            表示变表的模板定义 如： TF_Fees_{Comm}
+            </summary>
+        </member>
+        <member name="T:MyOql.MyOqlCodeGenSect.FunctionCollection">
+            <summary>
+            函数定义是在表定久的基础上添加了参数列表。要求在定义出完整的列定义Enums
+            </summary>
+        </member>
+        <member name="T:MyOql.MyOqlCodeGenSect.ViewCollection">
+            <summary>
+            函数定义是在表定久的基础上添加了参数列表。要求在定义出完整的列定义Enums
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOqlCodeGenSect.ViewCollection.ViewGroupCollection.ViewElement.MyTable">
+            <summary>
+            关联的更新插入实体。
+            </summary>
+        </member>
+        <member name="M:MyOql.MyOqlCodeGenSect.ProcCollection.BaseRemove(System.String)">
+            <summary>
+            本程序集之外,需要操作Config 文件 之用. 
+            </summary>
+            <param name="Key"></param>
+        </member>
+        <member name="P:MyOql.MyOqlCodeGenSect.ProcCollection.Owner">
+            <summary>
+            数据库对象的所有者.
+            </summary>
+        </member>
+        <member name="M:MyOql.MyOqlCodeGenSect.ProcCollection.ProcGroupCollection.BaseRemove(System.String)">
+            <summary>
+            本程序集之外,需要操作Config 文件 之用. 
+            </summary>
+            <param name="Key"></param>
+        </member>
+        <member name="P:MyOql.MyOqlCodeGenSect.ProcCollection.ProcGroupCollection.Owner">
+            <summary>
+            数据库对象的所有者.
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOqlCodeGenSect.ProcCollection.ProcGroupCollection.ProcElement.Owner">
+            <summary>
+            数据库对象的所有者.
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOqlCodeGenSect.ProcCollection.ProcGroupCollection.ProcElement.db">
+            <summary>
+            该项配置不是针对存储过程的数据配置，因为生成存储过程本身不需要访问数据库，它是 ReturnModel 定义的表或视图所在的数据配置。
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOqlCodeGenSect.ProcCollection.ProcGroupCollection.ProcElement.MapName">
+            <summary>
+            映射到程序里的名字。
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOqlCodeGenSect.ProcCollection.ProcGroupCollection.ProcElement.Return">
+            <summary>
+            可提供两个属性即可：参数名称=数据类型
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOqlCodeGenSect.ProcCollection.ProcGroupCollection.ProcElement.ReturnDefine">
+            <summary>
+            定义为数据库里的表或视图。以表或视图的名称和列定义定义到Proc类里。作为存储过程返回结果定义
+            </summary>
+            <remarks>
+            DataTable , DataModel , DataModel Array , DbType ,void 
+            </remarks>
+        </member>
+        <member name="P:MyOql.MyOqlCodeGenSect.ProcCollection.ProcGroupCollection.ProcElement.MyTable">
+            <summary>
+            关联的更新插入实体。
+            </summary>
+        </member>
+        <member name="T:MyOql.MyOqlConfigSect">
+            <summary>
+            MyOql配置节点.
+            </summary>
+            <example>
+            注意事项:
+            <div style="font-size:18px;font-weight:bold;border:solid 1px green;background-color:yellow;margin:10px;padding:10px;">
+            对于 权限控制 表, UsePower属性 一定为 false .
+            对于 日志 表, Log 属性一定为 false.
+            </div>
+            对于所有人都可操作的表,如日志,字典, 建议设置 UsePower  为false 以提高性能.
+            对于系统访问频繁,是否访问并不关心的表, 建议设置 Log 为false 以减少日志冗余. 
+            <code>
+            <![CDATA[
+            <configSections>
+               <section name="MyOql" type="MyOql.MyOqlConfigSect,MyOql"/>
+            </configSections>
+            <MyOql>
+                <Entitys CacheTime="120" db="dbo" UsePower="true" OraclePKG="PKG" Log="true">
+                    <Entity Name="Dict" CacheTime="120" UsePower="false"/>
+                    <Entity Name="Person" CacheTime="120" db="dbo"/>
+                    <Entity Name="PowerTable" CacheTime="120" UsePower="false" Log="false"/>
+                    <Entity Name="PowerColumn" CacheTime="120" UsePower="false" Log="false"/>
+                    <Entity Name="PowerController" CacheTime="120" UsePower="false" Log="false"/>
+                    <Entity Name="PowerAction" CacheTime="120" UsePower="false" Log="false"/>
+                    <Entity Name="PowerButton" CacheTime="120" UsePower="false" Log="false"/>
+                    <Entity Name="VPowerAction" CacheTime="120" UsePower="false" Log="false"/>
+                    <Entity Name="VPowerData" CacheTime="120" UsePower="false" Log="false"/>
+                    <Entity Name="Log" Log="false" UsePower="false"/>
+                    <Entity Name="PLogin" UsePower="false" />
+                </Entitys>
+                <DbProviders>
+                    <Provider Name="MySql" Type="MyOql.Provider.MySql,MyOql"/>
+                    <Provider Name="SqlServer" Type="MyOql.Provider.SqlServer,MyOql"/>
+                    <Provider Name="Oracle" Type="MyOql.Provider.Oracle,MyOql"/>
+                </DbProviders>
+            </MyOql>
+            ]]>
+            </code>
+            </example>
+        </member>
+        <member name="P:MyOql.MyOqlConfigSect.EntityCollection.Owner">
+            <summary>
+            数据库对象的所有者.
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOqlConfigSect.EntityCollection.CacheTime">
+            <summary>
+            表示全部组缓存主键或唯一键的默认时间.
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOqlConfigSect.EntityCollection.CacheSqlTime">
+            <summary>
+            表示全部组缓存SQL默认时间.
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOqlConfigSect.EntityCollection.GroupCollection.Owner">
+            <summary>
+            数据库对象的所有者.
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOqlConfigSect.EntityCollection.GroupCollection.CacheTime">
+            <summary>
+            表示该组默认的缓存主键或唯一键的时间.
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOqlConfigSect.EntityCollection.GroupCollection.CacheSqlTime">
+            <summary>
+            表示该组默认的缓存SQL的时间.
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOqlConfigSect.EntityCollection.GroupCollection.EntityElement.Owner">
+            <summary>
+            数据库对象的所有者.
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOqlConfigSect.EntityCollection.GroupCollection.EntityElement.CacheTime">
+            <summary>
+            表示缓存表主键或唯一键的时间
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOqlConfigSect.EntityCollection.GroupCollection.EntityElement.CacheSqlTime">
+            <summary>
+            表示缓存表主键或唯一键的时间
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOqlConfigSect.EntityCollection.GroupCollection.EntityElement.UsePower">
+            <summary>
+            CRUD=  *  . 其中= 表示是否启用行集权限. * 是所有权限.  另外.true 表示所有权限,  false 表示没有任何权限
+            请使用: MyOqlActionEnumExtend.TranslateMyOqlAction 进行转换.
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOqlConfigSect.EntityCollection.GroupCollection.EntityElement.Log">
+            <summary>
+            CRUD= * . 请使用: MyOqlActionEnumExtend.TranslateMyOqlAction 进行转换.
+            </summary>
+        </member>
+        <member name="T:MyOql.ModelClip">
+            <summary>
+            模型, 表示插入或更新的模型.
+            </summary>
+        </member>
+        <member name="M:MyOql.ModelClip.#ctor(MyOql.RuleBase,MyCmn.IModel)">
+            <summary>
+            
+            </summary>
+            <param name="Rule">如果为空,不报错,忽略,但部分函数报错. 如:GetIdValue</param>
+            <param name="OriginalModel"></param>
+        </member>
+        <member name="M:MyOql.ModelClip.GetIdValue">
+            <summary>
+            逻辑同WhereClip.GetIdValue ，返回该Model 的Id值。
+            依赖CurrentRule
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:MyOql.ModelClip.OriginalModel">
+            <summary>
+            原始数据模型.
+            </summary>
+        </member>
+        <member name="P:MyOql.ModelClip.Model">
+            <summary>
+            对原始数据模型的整理.
+            </summary>
+            <remarks>ColumnClip 只能是两种：  SimpleColumn 和  ConstColumn </remarks>
+        </member>
+        <member name="T:MyOql.MyOql_CodeGen.MyParaReturnDefine">
+            <summary>
+            定义存储过程返回值格式.
+            </summary>
+            <remarks>
+                 但要特别注意的是：如果果 Return 返回定义为空，则调用 ProcClip.Execute，即返回存储过程的返回值（存储过程中return Value 形式,如果没有定义return ，则返回影响行数）
+                 而如果 Return 显式定义了返回数字类型，则调用 ProcClip.ExecuteReader ，即返回存储过程结果集的第一行第一列的值（select * from table）
+            </remarks>
+            <example>
+            参数名称=返回实体或返回类型:out
+            返回实体或返回类型包括：
+                XmlDictionary&lt;T,V&gt;
+                DataTable
+                DataSet
+            	实体：如  PersonRule.Entity。
+            	实体数组： PersonRule.Entity[]。
+            	值：须是DbType 枚举类型，如 Int32 , AnsiString。
+            	值数组： 须是DbType 枚举类型数组。如 AnsiString[] ，系统返回对应的数据类型的数组。
+            	void : 即使定义void ,也会返回存储过程影响行数.
+            对于 Oracle 来说 ,所有的存储过程都要在一个包下定义. 包定义见 MyOqlConfigSect 配置节.
+            由于Oracle存储过程不能直接返回结果集,但 SqlServer 可以返回结果集. 所以返回参数名在SqlServer中忽略.
+            </example>
+        </member>
+        <member name="T:MyOql.MyOql_CodeGen.MyParaNode">
+            <summary>
+            存储过程的参数定义格式.
+            </summary>
+            <remarks>
+            参数名称＝DbType枚举值：in/out/inout/ret
+                其中 in  是指输入参数
+                out 是 输出参数，对应C#程序中的 out 参数
+                inout 是输入输出参数，对应C#程序中的 ref 参数
+                ret 是一个保留关键字。
+            </remarks>
+        </member>
+        <member name="T:MyOql.MyOql_CodeGen.MyEnumNode">
+            <summary>
+            代码生成器中的Enums定义的每个节点.
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOql_CodeGen.MyEnumNode.Name">
+            <summary>
+            数据库的列名。
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOql_CodeGen.MyEnumNode.EnumType">
+            <summary>
+            枚举类型，如果是表值函数，则表示具体的列的 C# 类型
+            </summary>
+            <remarks>
+            如果自定义了类型, 那么需要实现 TypeConverter , 且要实现 CanConvertFrom,ConvertFrom  或 CanConvertTo,ConvertTo.(类型转换需要.)
+            </remarks>
+        </member>
+        <member name="P:MyOql.MyOql_CodeGen.MyEnumNode._TranslateName">
+            <summary>
+            数据库中原始的类型
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOql_CodeGen.MyEnumNode.TranslateName">
+            <summary>
+            数据库列的别名。
+            </summary>
+        </member>
+        <member name="T:MyOql.MyOql_CodeGen.MyFkNode">
+            <summary>
+            外键定义格式
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOql_CodeGen.MyFkNode.RefTable">
+            <summary>
+            外键引用表
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOql_CodeGen.MyFkNode.RefColumn">
+            <summary>
+            外键引用表的引用列。
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOql_CodeGen.MyFkNode.MyFkMapNode.MapColumn">
+            <summary>
+            当前表外键别名
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOql_CodeGen.MyFkNode.MyFkMapNode.MapRefTable">
+            <summary>
+            外键引用表别名
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOql_CodeGen.MyFkNode.MyFkMapNode.MapRefColumn">
+            <summary>
+            外键引用表引用列别名
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOql_CodeGen.MyFkNode.MyFkMapNode.Entity">
+            <summary>
+            当前数据库表名
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOql_CodeGen.MyFkNode.MyFkMapNode.MapEntity">
+            <summary>
+            当前数据库表别名
+            </summary>
+        </member>
+        <member name="T:MyOql.IRawOql">
+            <summary>
+             用法 见 CaseWhen
+            </summary>
+             <remarks>
+              
+             </remarks>
+        </member>
+        <member name="T:MyOql.ITableRule">
+            <summary>
+            是否是 表定义。
+            </summary>
+            <remarks>
+            ITableRule 与 IViewRule， IFunctionRule，IProcRule 互斥。
+            </remarks>
+        </member>
+        <member name="T:MyOql.IViewRule">
+            <summary>
+            表示是视图的定义，不能插入、更新、删除。
+            </summary>
+             <remarks>
+             ITableRule 与 IViewRule， IFunctionRule，IProcRule 互斥。
+             </remarks>
+        </member>
+        <member name="T:MyOql.IProcRule">
+            <summary>
+            表示是存储过程的定义，不能插入、更新、删除。
+            </summary>
+             <remarks>
+             ITableRule 与 IViewRule， IFunctionRule，IProcRule 互斥。
+             </remarks>
+        </member>
+        <member name="T:MyOql.IDbr">
+            <summary>
+             
+            </summary>
+             <remarks>
+              
+             </remarks>
+        </member>
+        <member name="M:MyOql.IDbr.GetViewRelationTables">
+            <summary>
+            取 视图关联的表
+            </summary>
+            <param name="DbName"> 视图名 的数据库名称</param>
+            <returns>Key 是视图的数据库名，Value 是关联表的数据库名</returns>
+        </member>
+        <member name="M:MyOql.IDbr.GetProcRelationTables">
+            <summary>
+            取 存储过程 关联的表
+            </summary>
+            <param name="ProcDbName">存储过程 的数据库名称</param>
+            <returns>Key 是存储过程的数据库名，Value 是关联表的数据库名</returns>
+        </member>
+        <member name="M:MyOql.IDbr.GetMyOqlEntity(System.String)">
+            <summary>
+            根据数据库名称取 表 或 视图
+            </summary>
+            <param name="DbName">可以是表名,视图名,</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.IDbr.GetFkDefines">
+            <summary>
+            获取所有表的 外键定义信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:MyOql.MyCommand">
+            <summary>
+            不同的数据库进行解析Sql 时，返回的对象。
+            </summary>
+        </member>
+        <member name="P:MyOql.MyCommand.Command">
+            <summary>
+            返回的 DbCommand ，里面有 CommandText , Parameters , Connection
+            </summary>
+        </member>
+        <member name="P:MyOql.MyCommand.CurrentAction">
+            <summary>
+            当前动作子句。
+            </summary>
+        </member>
+        <member name="P:MyOql.MyCommand.ExecuteType">
+            <summary>
+            数据执行方式，仅在是最外层 ContextClip 的 MyCommand 中有效。
+            </summary>
+        </member>
+        <member name="P:MyOql.MyCommand.LastAutoID">
+            <summary>
+            仅在MyOql 内部使用.如果是插入的话, 返回的自增ID. 仅对数据库不能直接返回自增的情况有效. 
+            </summary>
+            <remarks>
+            对于一些OleDb数据库如 Excel, 不能执行多语句,也不能返回自增ID . 所以需要提前确定自增ID的值.
+            如果该值 大于 0 , 则使用该值返回结果 . 
+            </remarks>
+        </member>
+        <member name="T:MyOql.OrderByClip">
+            <summary>
+            排序子句
+            </summary>
+        </member>
+        <member name="M:MyOql.OrderByClip.#ctor(System.String)">
+            <summary>
+            如果以 # 开头，则Name会去掉第一个#
+            </summary>
+            <param name="OrderExpression">页面上定义的列别名。</param>
+        </member>
+        <member name="P:MyOql.OrderByClip.IsAsc">
+            <summary>
+            默认值是升序（true)，Sql 的默认值（不写）也是升序
+            </summary>
+        </member>
+        <member name="P:MyOql.OrderByClip.PostOrderName">
+            <summary>
+            
+            </summary>
+            <remarks>在真正解析成SQL的时候，要从DNA中查找到合适的列。</remarks>
+        </member>
+        <member name="P:MyOql.OrderByClip.Order">
+            <summary>
+            从页面上看，要按 Name 判断相等 
+            </summary>
+        </member>
+        <member name="T:MyOql.ProcRule">
+            <summary>
+            表示一个存储过程.基类.
+            </summary>
+        </member>
+        <member name="T:MyOql.RuleBase">
+            <summary>表,视图,表值函数,存储过程的基类.</summary>
+            <remarks>
+            Rule 表示 数据实体规则, 即是数据库表的元数据.
+            MyOql使用两个类,
+            一个是Rule类,表示操作的数据实体, RuleBase 即是操作数据实体的基类.
+            另一个是裸类实体,表示的是数据.比如查询结果,更新Model等.
+            
+            MyOql 对象是可序列化的,可做为在 WCF 的传输实体.
+                在 Interface 中定义:
+                [WCF::OperationContract(IsTerminating = false, IsInitiating = true, IsOneWay = false, AsyncPattern = false, Action = "http://WSSFTest.Model/2010/ServiceContractDsl1/ServiceContract1/Operation1", ProtectionLevel = ProtectionLevel.None)]
+                List&lt;ProductInfoRule.Entity&gt; GetQuery(MyOql.WhereClip where, LangEnum Lang, int SkipNumber, int TakeNumber, OrderByClip order);
+            </remarks>
+        </member>
+        <member name="M:MyOql.RuleBase.GetDbName">
+            <summary>
+            取表名.表名，不能重复。
+            </summary>
+            <remarks>
+            使用方法而不是属性,在为了避免与实体的列属性名冲突.
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.RuleBase.GetName">
+            <summary>
+            取应用程序转义后的名称.转义规则见 <see cref="M:MyOql.dbo.TranslateDbName(System.String)"/>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.RuleBase.GetFullName">
+            <summary>
+            取表名.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.RuleBase.GetColumns">
+            <summary>
+            取列集合.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.RuleBase.GetPrimaryKeys">
+            <summary>
+            取主键集合. MyOql支持多主键.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.RuleBase.GetComputeKeys">
+            <summary>
+            取计算列集合.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.RuleBase.GetAutoIncreKey">
+            <summary>
+            取自增列.自增列只能有一个.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.RuleBase.GetIdKey">
+            <summary>
+            取唯一约束列. 返回顺序是: 单一主键,自增列,唯一维束列. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.RuleBase.GetUniqueNumberKey">
+            <summary>
+            返回 数字唯一列, 用于行集权限的标识.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.RuleBase.GetUniqueKey">
+            <summary>
+            取唯一约束列. 如果表中存在多个列联合做唯一约束, 则返回 null .
+            主要是为了数据库表中不使用 自增,而使用 GUID 做唯一, 其它多列做联合主键的情况.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.RuleBase.Count">
+            <summary>
+            生成 Count(1) 子句.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.RuleBase.GetColumn(System.String)">
+            <summary>
+            根据列名查询列.(采用 ColumnClip.NameEquals ，属于模糊匹配)
+            </summary>
+            <param name="Name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.RuleBase.GetDbConnection">
+             <summary>
+             从配置文件中取出当前连接 .
+             </summary>
+             <example>
+            可以使用单库事务，也可以使用分布式事务。 以下是两处事务的不同实现。
+            显式使用单库事务：
+             <code>
+            using (var conn = dbr.Dict.GetDbConnection())
+               {
+                   dbo.Open(conn, () =&gt;
+                       {
+                           using (var tran = conn.BeginTransaction(IsolationLevel.ReadCommitted))
+                           {
+            
+                               dbr.Dept.Insert(o = &gt; o.Name == "udi" &amp; o.Pid == 0 &amp; o.RootPath == "0"  &amp; o.BusType == DeptBusEnum.Trade)
+                                   .UseTransaction(tran);
+                                   .Execute();
+            
+            
+                               dbr.Person.Insert(o =&gt; o.UserID == "udi"  &amp; o.DeptID == d.LastAutoID)
+                                   .UseTransaction(tran)
+                                   .Execute();
+            
+                               try
+                               {
+                                   tran.Commit();
+                               }
+                               catch
+                               {
+                                   tran.Rollback();
+                                   throw;
+                               }
+                           }
+                           return 1;
+                       });
+               }    
+             </code>
+             分布式事务：
+             <code>
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    var deptModel = new DeptRule.Entity(){ Name = "管理部门", ID = 0 };
+                    var userModel = new UserRule.Entity(){ Name = "张三" , DeptID = 0 , ID = 0 } ;
+                    
+                    dbr.Dept.Insert(deptModel ).Execute();
+                    userModel.DeptID = deptModel.ID ;
+                    dbr.User.Insert(userModel).Execute() ;
+                    
+                     Assert.IsTrue(userModel.ID &lt; 0) ;
+                    scope.Complete();
+                }
+             </code>
+             </example>
+             <returns></returns>
+        </member>
+        <member name="M:MyOql.RuleBase.Clone">
+            <summary>
+            克隆
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.RuleBase.#ctor(System.String)">
+            <summary>
+            优化了 dbr.Entity 性能.
+            </summary>
+        </member>
+        <member name="M:MyOql.RuleBase.GetConfig">
+            <summary>
+            只读,不能设置.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.RuleBase.ReadXml(System.Xml.XmlReader)">
+            <summary>
+            反序列化 Xml
+            </summary>
+            <param name="reader"></param>
+        </member>
+        <member name="M:MyOql.RuleBase.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            序列化Xml
+            </summary>
+            <param name="writer"></param>
+        </member>
+        <member name="P:MyOql.RuleBase._Config_">
+            <summary>
+            配置.
+            </summary>
+        </member>
+        <member name="T:MyOql.ProcClip">
+            <summary>
+            存储过程。
+            </summary>
+        </member>
+        <member name="M:MyOql.ProcClip.Execute">
+            <summary>
+            执行,返回存储过程的返回值 , 如果不存在 ReturnValue 参数 ,则返回影响行数.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ProcClip.ExecuteReader(System.Func{System.Data.Common.DbDataReader,System.Boolean})">
+            <summary>
+            执行并返回记录
+            </summary>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.ProcClip.ToDataTable">
+            <summary>
+            推荐使用 ToDictList 方法。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:MyOql.ProcClip.Result">
+            <summary>
+            当存储过程做为查询结果放到表变量里时，表示结果的定义。不可以为 ConstRule ,忽略out参数。
+            </summary>
+        </member>
+        <member name="T:MyOql.Provider.TranslateSql">
+            <summary>
+            数据库解析Sql基类。
+            </summary>
+            <remarks>
+            
+            由于参数不能同时被添加到多个参数集合中， 所以在添加完参数后， 清空参数。
+            否则报错：
+                “另一个 SqlParameterCollection 中已包含 SqlParameter。”
+                
+            但在执行完成后， 可以不清除。
+            </remarks>
+            <summary>
+            数据库翻译器.类似于 DbProvider.
+            </summary>
+        </member>
+        <member name="M:MyOql.Provider.TranslateSql.ToCommand(MyOql.ContextClipBase,System.Boolean)">
+            <summary>
+            解析入口。要根据合适的数据库类型进行调用.
+            </summary>
+            <param name="Context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.Provider.TranslateSql.ToUpdateCommand(MyOql.MyCommand)">
+            <summary>
+            解析为 Update 命令。
+            </summary>
+            <param name="myCmd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.Provider.TranslateSql.TidyUpdateModel(MyOql.MyCommand,MyCmn.XmlDictionary{MyOql.ColumnClip,System.Object}@)">
+            <summary>
+            整理Update子句的Model
+            </summary>
+            <param name="myCmd"></param>
+            <param name="Model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.Provider.TranslateSql.TidyInsertModel(MyOql.MyCommand)">
+            <summary>
+            整理Insert子句Model
+            </summary>
+            <param name="myCmd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.Provider.TranslateSql.ToDeleteCommand(MyOql.MyCommand)">
+            <summary>
+            解析Delete命令。
+            </summary>
+            <param name="myCmd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.Provider.TranslateSql.GetMyName(System.String)">
+            <summary>
+            给表列加标识符。
+            </summary>
+            <param name="MyObject"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.Provider.TranslateSql.GetTableFullName(MyOql.RuleBase)">
+            <summary>
+            处理常量表的情况.
+            </summary>
+            <param name="table"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.Provider.TranslateSql.ToParaValues(System.Object[])">
+            <summary>
+            如果任何一个参数值是数组,则将它们展开,合并到上级的参数数组.
+            </summary>
+            <param name="paraObjs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.Provider.TranslateSql.GetSelectColumnExpression(MyOql.ColumnClip)">
+            <summary>
+            Select 子句查询表达式。
+            </summary>
+            <param name="Column"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.Provider.TranslateSql.DbTypeValueMustBeWrap(System.Data.DbType)">
+            <summary>
+            判断 该 DbType 的值是否能直接使用
+            </summary>
+            <param name="dbType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.Provider.TranslateSql.GetColumnExpression(MyOql.ColumnClip,System.Boolean)">
+            <summary>
+            获取列的SQL表达式. 能够处理系统函数, 组合列表达式,
+            </summary>
+            <remarks>
+            从算法来看，可以参考 MyLinq GetQueryValue 方法进行重构。重构的参数是 把 ColumnClip 传递到每个 Func
+            </remarks>
+            <param name="Column"></param>
+            <param name="withTableAlias">带表别名返回。</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.Provider.TranslateSql.GetOnlyWhereValue(MyOql.WhereClip)">
+            <summary>
+            仅返回 WereValue.其中CommandValue的Sql 和 Parameters是参数值.
+            </summary>
+            <param name="whe"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.Provider.TranslateSql.GetOperator(MyOql.IOperator)">
+            <summary>
+            以SqlServer 为标准.
+            </summary>
+            <param name="Operator"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.Provider.TranslateSql.ToInsertSelectCommand(MyOql.MyCommand)">
+            <summary>
+            批量插入,Context 里有两种Model , 一种是 MyOqlSet , 另一种是 Select 子句.
+            </summary>
+            <param name="myCmd"></param>
+        </member>
+        <member name="M:MyOql.Provider.TranslateSql.GetProcName">
+            <summary>
+            存储过程的名字.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.Provider.TranslateSql.GetFromText">
+            <summary>
+            生成 From 子句Sql语句。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.Provider.TranslateSql.GetGroupText">
+            <summary>
+            生成 Group by 子句Sql语句。
+            </summary>
+            <param name="Context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.Provider.TranslateSql.GetOrderText">
+            <summary>
+            生成 Order by  子句Sql语句。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.Provider.TranslateSql.GetOrderExp">
+            <summary>
+            
+            </summary>
+            <returns>列，是否升序的字典</returns>
+        </member>
+        <member name="M:MyOql.Provider.TranslateSql.GetHavingText(MyOql.MyCommand)">
+            <summary>
+            生成 Having 子句Sql语句。
+            </summary>
+            <param name="myCmd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.Provider.TranslateSql.GetJoinText">
+            <summary>
+            生成 Join 子句Sql语句。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.Provider.TranslateSql.GetSelectText(MyOql.MyCommand)">
+            <summary>
+            生成 Select 子句Sql语句。分页机制可能存在不同的实现。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.Provider.TranslateSql.GetParameter(System.String,System.Data.DbType,System.Object)">
+            <summary>
+            生成指定的参数.
+            </summary>
+            <param name="ParameterName"></param>
+            <param name="DbType"></param>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.Provider.TranslateSql.GetParameter(MyOql.ColumnClip,System.Object)">
+            <summary>
+            根据DbType 生成 Parameter 对象。对于Oracle，生成 OracleDbType。同时处理Value 的时间值。
+            </summary>
+            <param name="Column">用它的DbType，如果是复合列，生成的参数类型按 Value 取。</param>
+            <param name="Value"></param>
+            <returns>返回的值可能只有一个表达式，而没有 DataParameter</returns>
+        </member>
+        <member name="M:MyOql.Provider.TranslateSql.ToInsertCommand(MyOql.MyCommand)">
+            <summary>
+            为了兼容各个数据库的自增.各数据库必须各自实现该方法 .
+            </summary>
+            <param name="myCmd"></param>
+        </member>
+        <member name="M:MyOql.Provider.TranslateSql.ToSelectCommand(MyOql.MyCommand)">
+            <summary>
+            生成Select子句.
+            </summary>
+            <param name="myCmd"></param>
+        </member>
+        <member name="M:MyOql.Provider.TranslateSql.ToBulkInsertCommand(MyOql.MyCommand)">
+            <summary>
+            批量插入,Context 里有两种Model , 一种是 MyOqlSet , 另一种是 Select 子句.
+            </summary>
+            <param name="myCmd"></param>
+        </member>
+        <member name="M:MyOql.Provider.TranslateSql.GenSql(MyOql.RuleBase)">
+            <summary>
+            取类型映射字典.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:MyOql.Provider.TranslateSql.NonTranslateSign">
+            <summary>
+            不必转义的标识符。
+            </summary>
+        </member>
+        <member name="P:MyOql.Provider.TranslateSql.VarId">
+            <summary>
+            变量标识符
+            </summary>
+        </member>
+        <member name="M:MyOql.Provider.SqlServer.GetConnection(System.String)">
+            <summary>
+            获取指定的 DbConnection.
+            </summary>
+            <param name="ConfigName">如果ConfigName 为空,返回默认值.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.Provider.SqlServer.GetParameter(MyOql.ColumnClip,System.Object)">
+            <summary>
+            重写基类方法. 
+            </summary>
+            <param name="Column">如果是复合列, 则按 Value 的类型确定.</param>
+            <param name="Value"></param>
+            <returns>
+            A <see cref="T:MyOql.Provider.CommandParameter"/>
+            </returns>
+        </member>
+        <member name="M:MyOql.Provider.SqlServer.ToInsertCommand(MyOql.MyCommand)">
+            <summary>
+            解析为 Insert 命令
+            </summary>
+            <param name="myCmd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.Provider.SqlServer.ToSelectCommand(MyOql.MyCommand)">
+            <summary>
+            解析Select命令。
+            </summary>
+            <param name="myCmd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.Provider.SqlServer.AutoAddOrderSql(MyOql.ContextClipBase,MyOql.OrderByClip,System.Boolean)">
+            <summary>
+            如果有Skip，处理 Dna
+            </summary>
+        </member>
+        <member name="M:MyOql.Provider.SqlServer.isUseRowNumber(MyOql.MyCommand)">
+            <summary>
+            判断分页模式，有两种情况要用 rownumber 分，即 1：有skip值 ， 2：有 top,且 order by 非单一主键列 的时候。
+            </summary>
+            <param name="myCmd"></param>
+            <returns></returns>
+        </member>
+        <member name="P:MyOql.Provider.SqlServer.UseRowNumber">
+            <summary>
+            Sqlserver 使用 rowNumber 分页。
+            </summary>
+        </member>
+        <member name="T:MyOql.DeleteClip`1">
+            <summary>
+            Delete 子句。
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:MyOql.DeleteClip`1.Where(System.Func{`0,MyOql.WhereClip})">
+            <summary>
+            Delete 子句的 Where 条件 
+            </summary>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.DeleteClip`1.Execute">
+            <summary>
+            执行语句
+            </summary>
+            <returns>返回影响行数</returns>
+        </member>
+        <member name="M:MyOql.DeleteClip`1.Execute(MyOql.MyCommand)">
+            <summary>
+            执行语句。
+            </summary>
+            <param name="cmd"></param>
+            <returns>返回影响行数</returns>
+        </member>
+        <member name="M:MyOql.DeleteClip`1.ExecuteReader(MyOql.MyCommand,System.Func{System.Data.Common.DbDataReader,System.Boolean}[])">
+            <summary>
+            不会执行 破坏缓存，不会执行 OnDeleted  方法
+            </summary>
+            <param name="myCmd"></param>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="P:MyOql.Provider.CommandParameter.Expression">
+            <summary>
+            可能是一个 类型转换表达式.
+            </summary>
+        </member>
+        <member name="P:MyOql.Provider.CommandParameter.Column">
+            <summary>
+            该参数映射到哪个ColumnClip
+            </summary>
+        </member>
+        <member name="T:MyOql.InsertClip`1">
+            <summary>
+            插入子句.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:MyOql.InsertClip`1.Execute">
+            <summary>
+            执行插入,如果有自增列,或计算列, 则更新Model.
+            </summary>
+            <returns>
+            A <see cref="T:System.Int32"/>
+            </returns>
+        </member>
+        <member name="M:MyOql.InsertClip`1.Execute(MyOql.MyCommand)">
+            <summary>
+            执行插入,如果有自增列,或计算列, 则更新Model. 
+            </summary>
+            <param name="myCmd">
+            A <see cref="T:MyOql.MyCommand"/>
+            </param>
+            <returns>
+            A <see cref="T:System.Int32"/>
+            </returns>
+        </member>
+        <member name="M:MyOql.InsertClip`1.ExecuteReader(MyOql.MyCommand,System.Func{System.Data.Common.DbDataReader,System.Boolean}[])">
+            <summary>
+            不执行破坏缓存，不执行  OnCreated 方法
+            </summary>
+            <param name="myCmd"></param>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.InsertClip`1.UsePostKeys">
+            <summary>
+            清除其它键，只保留客户端提交的键来设置插入列。
+            </summary>
+            <remarks>
+            当使用实体进行插入时，由于实体有默认值，而实际提交的Form信息并没有这些值，会导致插入信息的值不正确。
+            设置为true，将使用Request.Form.AllKeys 和Rue 的Name 并集对插入实体的 列 进行修正。
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="P:MyOql.InsertClip`1.LastAutoID">
+            <summary>
+            返回插入表记录的自增ID.
+            </summary>
+        </member>
+        <member name="P:MyOql.InsertClip`1.Columns">
+            <summary>
+            指定更新列。如果为空，更新所有列。
+            </summary>
+        </member>
+        <member name="T:MyOql.JoinTableClip">
+            <summary>
+            关系子句
+            </summary>
+        </member>
+        <member name="M:MyOql.JoinTableClip.#ctor(MyOql.SqlKeyword)">
+            <summary>
+            指定连接类型.
+            </summary>
+            <param name="JoinType">连接连接符必须是: Join,LeftJoin,RightJoin 其中之一!</param>
+        </member>
+        <member name="P:MyOql.JoinTableClip.Table">
+            <summary>
+            与 SubSelect 互斥.
+            </summary>
+        </member>
+        <member name="T:MyOql.SqlKeyword">
+            <summary>
+            Sql 关键字。
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlKeyword.Simple">
+            <summary>
+            简单列
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlKeyword.Complex">
+            <summary>
+            复合列
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlKeyword.Raw">
+            <summary>
+            原始列
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlKeyword.Const">
+            <summary>
+            常数列
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlKeyword.Model">
+            <summary>
+            表示 Model
+            </summary>
+        </member>
+        <member name="T:MyOql.SqlOperator">
+            <summary>
+            Sql 操作符 , 1024以上属自定义函数 。
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.Concat">
+            <summary>
+            字符串, 表达式 连接符.
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.Add">
+            <summary>
+            加法
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.Minus">
+            <summary>
+            减法
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.Multiple">
+            <summary>
+            乘法
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.Divided">
+            <summary>
+            除法
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.As">
+            <summary>
+            列别名已转移到 列的 Name 上。
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.And">
+            <summary>
+            And 关键字
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.Or">
+            <summary>
+            Or 关键字
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.BitAnd">
+            <summary>
+            二进制 And 关键字
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.BitOr">
+            <summary>
+            二进制 Or 关键字
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.Equal">
+            <summary>
+            判断相等
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.BigThan">
+            <summary>
+            判断 大于
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.LessThan">
+            <summary>
+            判断 小于
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.BigEqual">
+            <summary>
+            判断 大于等于
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.LessEqual">
+            <summary>
+            判断 小于等于
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.NotEqual">
+            <summary>
+            判断 不等于
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.In">
+            <summary>
+            In 
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.Mod">
+            <summary>
+            取模
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.CaseWhen">
+            <summary>
+             
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.WhenThen">
+            <summary>
+            只帮助生成SQL用。
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.Else">
+            <summary>
+            只帮助生成SQL
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.Len">
+            <summary>
+             长度函数，是字符长度。Len(MsSql)、char_Length(MySql)
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.SizeOf">
+            <summary>
+            表示 DataLength(MsSql)、 函数
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.Left">
+            <summary>
+            表示 Left 函数
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.Right">
+            <summary>
+            表示 Right 函数
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.Reverse">
+            <summary>
+            表示 反转函数
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.AscII">
+            <summary>
+            表示 AscII 函数
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.Unicode">
+            <summary>
+            表示 Unicode  函数
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.Char">
+            <summary>
+            表示 Char 函数。
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.NChar">
+            <summary>
+            表示 NChar 函数
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.StringIndex">
+            <summary>
+            生成一个 复合列表达式.
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.Stuff">
+            <summary>
+            表示 Stuff 函数
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.PatIndex">
+            <summary>
+            表示 PatIndex 函数
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.Replace">
+            <summary>
+            表示 Replace 函数
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.IsNumeric">
+            <summary>
+            是否是数字。
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.Count">
+            <summary>
+            Count(column) 函数
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.CountDistinct">
+            <summary>
+            Count( distinct column ) 函数 
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.Sum">
+            <summary>
+            sum(column) 函数
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.Max">
+            <summary>
+            Max 函数
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.IsDate">
+            <summary>
+            表示 IsDate 函数
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.Property">
+            <summary>
+            属性连接符，即点号
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.Qualifier">
+            <summary>
+            限定符，即 []
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.ConcatSql">
+            <summary>
+            连接SQL
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.CurrentIdentity">
+            <summary>
+            当前要使用的自增值.(插入记录要返回的自增值)
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.Coalesce2">
+            <summary>
+            表示 Coalesce函数，返回第一个非空值,2个参数
+            </summary>
+        </member>
+        <member name="F:MyOql.SqlOperator.Parameter">
+            <summary>
+            参数连接符，即逗号 
+            </summary>
+        </member>
+        <member name="T:MyOql.ValueMetaTypeEnum">
+            <summary>
+            描述值的类型的枚举
+            </summary>
+        </member>
+        <member name="F:MyOql.ValueMetaTypeEnum.DbType">
+            <summary>
+            Raw 所使用的,表示 参数内容的类型是 DbType,下同。
+            </summary>
+        </member>
+        <member name="F:MyOql.ValueMetaTypeEnum.MyOqlType">
+            <summary>
+            Raw 所使用的,表示 参数内容的类型是 SqlClipBase。
+            </summary>
+        </member>
+        <member name="T:MyOql.SkipClip">
+            <summary>
+            分页的 跳过行数.
+            </summary>
+        </member>
+        <member name="T:MyOql.UpdationClip`1">
+            <summary>
+            更新子句. 
+            如果时间列值是 DateTime.MinTime 则忽略该列为Null 
+            若要忽略该列, 可使用 SetColumn 方法
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:MyOql.UpdationClip`1.Set(System.Func{`0,MyCmn.IModel})">
+            <summary>
+            多次追加 Update Set 值.
+            </summary>
+            <remarks> 可以对特殊值进行设定, 如 对DateTime 赋null值.
+            
+            <code>
+             dbr.Log.Update(data).Set(o =&gt; o.AddTime == null).Execute();
+            </code>
+            </remarks>
+            <param name="Model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.UpdationClip`1.AppendColumns(System.Func{`0,System.Collections.Generic.IEnumerable{MyOql.ColumnClip}})">
+            <summary>
+            重新设定更新列.
+            </summary>
+            <example>
+            <code>
+            var Model = new TMemberRule.Entity Model() ;
+            Model.UpdateMan = MySession.Get(MySessionKey.UserID);
+            Model.UpdateTime = DateTime.Now;
+            
+            var updateResult = dbr.App.TMember
+                .Update(Model)
+                .AppendColumns(o =&gt; o.GetColumns()
+                                            .Minus(new ColumnClip[] { o.Status, o.ValidateCode, o.LastLoginTime, o.Count, o.RegisterTime })
+                            )
+                .Execute();
+            </code>
+            </example>
+            <param name="setColumnFunc"></param>
+            <returns></returns>
+        </member>
+        <!-- 对于成员“M:MyOql.UpdationClip`1.UsePostKeys”忽略有格式错误的 XML 注释 -->
+        <member name="T:MyOql.TakeClip">
+            <summary>
+            分页中 获取行数.
+            </summary>
+        </member>
+        <member name="T:MyOql.WhereClip">
+            <summary>
+            Where 条件，同时也是一个表达示树，可用于Inser,Update 的Model表示。
+            Where 是一个链式+树状的数据结构.
+            </summary>
+        </member>
+        <member name="M:MyOql.WhereClip.#ctor(MyOql.WhereClip)">
+            <summary>
+            重制构造
+            </summary>
+            <param name="where"></param>
+        </member>
+        <member name="M:MyOql.WhereClip.op_BitwiseAnd(MyOql.WhereClip,MyOql.WhereClip)">
+            <summary>
+            用逻辑与 连接两个Where
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.WhereClip.op_BitwiseOr(MyOql.WhereClip,MyOql.WhereClip)">
+            <summary>
+            用逻辑或 连接两个 Where
+            </summary>
+            <remarks> 把两边都放到 子组里, 很严谨, 但可能会多出括号. </remarks>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.WhereClip.GetLast">
+            <summary>
+            MyOql内部使用.得到最后一个 Where
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.WhereClip.GetIdValue(MyOql.RuleBase)">
+            <summary>
+            从Where条件中得到 行的唯一表示.主要用于日志记录。
+            </summary>
+            <remarks>
+            原则上讲，所有的表都要有唯一列（或自增，或单主键，或唯一约束列）。
+            该方法还兼容了非唯一主键,没有自增列的行.
+                例如三个主键 A,B,C 列,值分别为 "hello","oql","!" 则返回  #5,3.hellooql!
+            如果查询条件里没有主键值,则返回null
+            
+            注意：缓存操作时，需要唯一列，按 唯一列原则进行。
+            </remarks>
+            <param name="Rule"></param>
+            <returns>返回Id值表示法。当有单唯一列时，Id值表示单唯一列的值，否则表示为：#值1长度,值2长度.值1，值2，值3</returns>
+        </member>
+        <member name="M:MyOql.WhereClip.QueryColumnValue(System.String)">
+            <summary>
+            在Where里查某一列的值.
+            </summary>
+            <param name="Column"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.WhereClip.Recusion(System.Func{MyOql.WhereClip,System.Boolean})">
+            <summary>
+            遍历 非空数据的 WhereClip
+            </summary>
+            <param name="Func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.WhereClip.ReadXml(System.Xml.XmlReader)">
+            <summary>
+            反序列化Xml
+            </summary>
+            <param name="reader"></param>
+        </member>
+        <member name="M:MyOql.WhereClip.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            序列化Xml
+            </summary>
+            <param name="writer"></param>
+        </member>
+        <member name="M:MyOql.WhereClip.HasInQuery">
+            <summary>
+            判断Where条件中是否存在 In NotIn（Select 子句）子句
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:MyOql.WhereClip.Operator">
+            <summary>
+            操作符
+            </summary>
+        </member>
+        <member name="P:MyOql.WhereClip.Query">
+            <summary>
+            列
+            </summary>
+        </member>
+        <member name="P:MyOql.WhereClip.Value">
+            <summary>
+            Where表达式的条件值，可能有五种类型： 值类型（如字符串，数字），值类型数组(In,NotIn,Between)，列,复合列，子查询（In，NotIn）。
+            </summary>
+        </member>
+        <member name="P:MyOql.WhereClip.Linker">
+            <summary>
+            连接符,用于连接 Next .
+            </summary>
+        </member>
+        <member name="P:MyOql.WhereClip.Next">
+            <summary>
+            下一个节点
+            </summary>
+        </member>
+        <member name="P:MyOql.WhereClip.Child">
+            <summary>
+            Child 与 (Query,Value,Linker)互斥，说明此Where是一个集合体。
+            </summary>
+        </member>
+        <member name="T:MyOql.ConstTable">
+            <summary>
+            常量表,用处不大.
+            </summary>
+        </member>
+        <member name="T:MyOql.ColumnName">
+            <summary>
+            Column 的列表示.
+            </summary>
+        </member>
+        <member name="P:MyOql.FkColumn.RefTable">
+            <summary>
+            外键引用表
+            </summary>
+        </member>
+        <member name="P:MyOql.FkColumn.RefColumn">
+            <summary>
+            外键引用表的引用列。
+            </summary>
+        </member>
+        <member name="P:MyOql.DoingResult.IsKoed">
+            <summary>
+            是否被全部打死.包括列权限,单条行集权限
+            </summary>
+        </member>
+        <member name="P:MyOql.DoingResult.RowFilter">
+            <summary>
+            行集过滤. 允许的RowID,如果为空，表示没有行集权限。
+            </summary>
+            <remarks>对于单条查询,在 Reading 时,直接返回 false 过滤.</remarks>
+        </member>
+        <member name="M:MyOql.EntityName.ToString">
+            <summary>
+            返回 Owner + "." + DbName 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.EntityName.GetCacheKey(System.String)">
+            <summary>
+            取实体全名.实体严格区分大小写.
+            </summary>
+            <remarks>
+            外部系统应该调用 MyOql EntityName 类.来破坏缓存. 
+            或者自行构造 EntityName 类. 其中 Owner应该是动态维护的.
+            </remarks>
+            <param name="IdValue"></param>
+            <returns>返回内容如下:"MyOql|" + this.AsString() + "|" + IdValue.AsString()</returns>
+        </member>
+        <member name="P:MyOql.EntityName.DbName">
+            <summary>
+            表示未转义的在数据库中保存的名字。
+            </summary>
+        </member>
+        <member name="P:MyOql.EntityName.Name">
+            <summary>
+            表示程序转义的名字.
+            </summary>
+        </member>
+        <member name="T:MyOql.MyContextClip">
+            <summary>
+            绝对无用.自定义实例化  ContextClipBase。
+            </summary>
+        </member>
+        <member name="T:MyOql.IFunctionRule">
+            <summary>
+            表示是函数的定义，不能插入、更新、删除。
+            </summary>
+             <remarks>
+             ITableRule 与 IViewRule， IFunctionRule，IProcRule 互斥。
+             </remarks>
+        </member>
+        <member name="T:MyOql.CaseWhen">
+            <summary>
+            
+            </summary>
+            <remarks>
+            该类不记录CRUD事件. 在子类中记录事件
+            </remarks>
+        </member>
+        <member name="M:MyOql.CaseWhen.GetWhenThen(System.Int32,MyOql.ComplexColumn)">
+            <summary>
+            返回的 RightExp 永远是下一个 WhenThen 复合表达式
+            </summary>
+            <param name="level"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MyOql.Columns">
+            <summary>
+            
+            </summary>
+            <remarks>
+            该类不记录CRUD事件. 在子类中记录事件
+            </remarks>
+        </member>
+        <member name="T:MyOql.MyOqlConfigScope">
+            <summary>
+            设置当前线程的Myoql 配置
+            </summary>
+            <remarks>
+            <example>
+            在以下代码中两个执行的操作，会跳过权限过滤。
+            <code>
+                using ( var config = new MyOqlConfigScope( ReConfigEnum.SkipPower ) )
+                {
+                    var ent =  dbr.Menu.FindById(12) ;
+                    var usr = dbr.PLogin(ent.UserId , 'abc' ) ;
+                }
+            </code>
+            </example>
+            </remarks>
+        </member>
+        <member name="M:MyOql.MyOqlSet.Load``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            根据Object设置 Columns 和 Rows 
+            如果没有数据，则不会生成 Columns
+            </summary>
+            <param name="ObjectData"></param>
+        </member>
+        <member name="M:MyOql.MyOqlSet.Load(System.Data.DataTable)">
+            <summary>
+            如果Entity 为空. 则生成ConstColumn
+            </summary>
+            <param name="dataTable"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.MyOqlSet.InsertColumn(MyOql.ColumnClip,System.Func{System.Int32,MyOql.RowData,System.Object})">
+            <summary>
+            给 MyOqlSet 添加一列。 
+            </summary>
+            <param name="Index">添加列索引。如果为负数，则在最后添加。</param>
+            <param name="Column">添加 Column</param>
+            <param name="EachValueFunc">每一列的值。</param>
+        </member>
+        <member name="M:MyOql.MyOqlSet.InsertToServer(System.Data.Common.DbTransaction)">
+            <summary>
+            批量插入.
+            </summary>
+            <example>
+            <code>
+            var insertRows = new MyOqlBulkSet&lt;ProjectChangeSetRule&gt;(dbr.ProjectChangeSet);
+            insertRows.SetColumns(o => new ColumnClip[] { o.ChangeType, o.Trait, o.Key, o.Value, o.TaskWBS, o.VerID });
+            insertRows.Rows = Translate(this).ToArray();
+            insertRows.SaveToServer(null);
+            </code>
+            </example>
+            <param name="Tran"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.MyOqlSet.UpdateToServer(System.Data.Common.DbTransaction)">
+            <summary>
+            批量更新
+            </summary>
+            <remarks>
+            如果传入事务, 则使用事务里的连接 , 否则创建新的连接.
+            </remarks>
+            <param name="Tran"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.MyOqlSet.GetColumnIndex(System.String)">
+            <summary>
+            优先根据列别名查找列索引，如果列别名找不到，则使用列名进行查找。 (包含表名.)
+            </summary>
+            <param name="ColumnAlias"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyOql.MyOqlSet.GetProperties">
+            <summary>
+            通过Id进行查找.
+            </summary>
+            <param name="Id">Id必须有值,且不能包含#</param>
+            <returns></returns>
+        </member>
+        <member name="P:MyOql.MyOqlSet.Count">
+            <summary>
+            数据查询，返回 0 ,表示没有取条数，或结果集本身没有数据。
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOqlSet.Columns">
+            <summary>
+            定义的数据列。
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOqlSet.Rows">
+            <summary>
+            行数据。
+            </summary>
+        </member>
+        <member name="P:MyOql.MyOqlSet.OrderBy">
+            <summary>
+            在数据查询时的排序列。
+            </summary>
+        </member>
+    </members>
+</doc>

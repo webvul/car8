@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C860CEC6-DE88-498E-891B-18ADB416126C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DbEnt</RootNamespace>
+    <AssemblyName>DbEnt</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <PublishUrl>http://localhost/DbEnt/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>bin\Debug\DbEnt.XML</DocumentationFile>
+    <NoWarn>1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MyCmn, Version=1.0.4834.18985, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\MyCmn.dll</HintPath>
+    </Reference>
+    <Reference Include="MyOql, Version=1.0.4590.26928, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\MyOql.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EntEnum\PowerController.cs" />
+    <Compile Include="EntEnum\CacheKey.cs" />
+    <Compile Include="EntEnum\DeptAnnexEnum.cs" />
+    <Compile Include="EntEnum\DeptDetailKey.cs" />
+    <Compile Include="EntEnum\DeptEnum.cs" />
+    <Compile Include="EntEnum\DictKeyEnum.cs" />
+    <Compile Include="EntEnum\ExtAnnex.cs" />
+    <Compile Include="EntEnum\FunctionEnum.cs" />
+    <Compile Include="EntEnum\OrgEnum.cs" />
+    <Compile Include="EntEnum\ProductAnnexEnum.cs" />
+    <Compile Include="EntEnum\ProductDetailEnum.cs" />
+    <Compile Include="EntEnum\SiteHomeTypeEnum.cs" />
+    <Compile Include="EntEnum\UserRole.cs" />
+    <Compile Include="Entity\Ent_dbr.cs" />
+    <Compile Include="Entity\Ent_Group.cs" />
+    <Compile Include="Entity\Ent_LongFor.cs" />
+    <Compile Include="Entity\Ent_LongFor_Private.cs" />
+    <Compile Include="Entity\Ent_Proc.cs" />
+    <Compile Include="Entity\Ent_Proc_Private.cs" />
+    <Compile Include="Entity\Ent_Shop.cs" />
+    <Compile Include="Entity\Ent_Table.cs" />
+    <Compile Include="Entity\Ent_View.cs" />
+    <Compile Include="Extend\AnnexBus.cs" />
+    <Compile Include="Extend\DeptBus.cs" />
+    <Compile Include="Extend\Dict.cs" />
+    <Compile Include="Extend\DictRule_Extend.cs" />
+    <Compile Include="Extend\GroupKey.cs" />
+    <Compile Include="Extend\Person.cs" />
+    <Compile Include="Model\Power.cs" />
+    <Compile Include="Entity_Extend.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SysEnum\RoleEnum.cs" />
+    <Compile Include="SysEnum\SysEnum.cs" />
+    <Compile Include="SysEnum\MySessionEnum.cs" />
+    <Compile Include="Interface.cs" />
+    <Compile Include="SysEnum\IEnm.cs" />
+    <Compile Include="MyEnt.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>格式化文本</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=EmulateIE8" />
+    <script src="../Res/MyJs.js"></script>
+    <link href="../Res/MyCss.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            jv.Root = window.location.pathname.slice(0, window.location.pathname.indexOf("Web/format.html"));
+            jv.AddRequest(window);
+            jv.MyOnInit();
+
+        });
+        function formatSql() {
+            var oriSql = $("#con").val();
+            oriSql = oriSql.replace("\r\n", " ").replace("\n", " ");
+
+            $("#res").val(oriSql);
+        }
+    </script>
+    <style type="text/css">
+        html, body {
+            height: 100%;
+        }
+
+        textarea {
+            width: 40%;
+            height: 80%;
+        }
+
+        button
+        {
+            background-color:blue;
+            padding:5px 15px;
+            font-size:14px;
+            color:yellow;
+        }
+    </style>
+</head>
+<body class="jvRequest_waite">
+    <button onclick="formatSql();">格式化SQL</button>
+    <hr />
+    <textarea id="con"></textarea>
+
+
+    <textarea id="res"></textarea>
+</body>
+</html>

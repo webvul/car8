@@ -1,0 +1,4171 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MyCmn</name>
+    </assembly>
+    <members>
+        <member name="T:MyCmn.CmdArgs">
+            <summary>
+            命令行参数分析
+            </summary>
+        </member>
+        <member name="M:MyCmn.CmdArgs.#ctor(System.Char,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="CommandSign">命令分隔符,如 - , / </param>
+            <param name="CommandString">命令字符串</param>
+        </member>
+        <member name="M:MyCmn.CmdArgs.#ctor(System.Char,System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="CommandSign">命令分隔符,如 - , / </param>
+            <param name="args">命令行参数. 只取 以 CommandSign 开始的部分.</param>
+        </member>
+        <member name="M:MyCmn.CmdArgs.ToModel``1(``0)">
+            <summary>
+            把Data的各个部分赋给某实体, 按属性名匹配.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="retVal"></param>
+            <returns></returns>
+        </member>
+        <member name="P:MyCmn.CmdArgs.CmdSign">
+            <summary>
+            命令分隔符.
+            </summary>
+        </member>
+        <member name="P:MyCmn.CmdArgs.Data">
+            <summary>
+            分隔出的各个部分.
+            </summary>
+        </member>
+        <member name="T:MyCmn.CodeGen">
+            <summary>
+            基于模板的代码生成.是 string.Format 的一个替代方案.
+            </summary>
+            <summary>
+            基于模板的代码生成.是 string.Format 的一个替代方案.
+            </summary>
+            <summary>
+            基于模板的代码生成.是 string.Format 的一个替代方案.
+            </summary>
+        </member>
+        <member name="M:MyCmn.CodeGen.JumpWithNullLine(System.String,System.Int32)">
+            <summary>
+            如果Index 的后面是 空格和回车，则跳到回车后，否则返回Index
+            </summary>
+            <param name="Content"></param>
+            <param name="Index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.CodeGen.StartIsBlankEnter(System.String)">
+            <summary>
+            是否是 空白* + 回车开始.
+            </summary>
+            <param name="retVal"></param>
+            <returns>返回值是空白*+回车的下一个字符索引. -1 表示非.</returns>
+        </member>
+        <member name="M:MyCmn.CodeGen.EndIsEnterBlank(System.String)">
+            <summary>
+            是否是 回车+ 空白* 结束.
+            </summary>
+            <param name="retVal"></param>
+            <returns>返回值表示最后的回车索引.</returns>
+        </member>
+        <member name="M:MyCmn.CodeGen.TmpFor``1(System.String,System.String,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            开始循环。轻量级模板语言，不支持嵌套
+            </summary>
+            <remarks>
+            移除每段的最后一个回车.
+            </remarks>
+            <param name="str"></param>
+            <param name="forName"></param>
+            <param name="source"></param>
+            <returns></returns>  
+        </member>
+        <member name="M:MyCmn.CodeGen.DoEach``1(MyCmn.CodeGen.TmpForSect{``0},System.Func{``0,System.String,System.String})">
+            <summary>
+            嵌套循环。
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="result"></param>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.CodeGen.DoIf``1(MyCmn.CodeGen.TmpForSect{``0},System.Func{``0,System.Boolean})">
+            <summary>
+             DoIf 在 DO 循环里只能调用一次。 这个函数只是为了简化调用方式。
+            </summary>
+        </member>
+        <member name="M:MyCmn.CodeGen.DoIf``1(MyCmn.CodeGen.TmpForSect{``0},MyCmn.CodeGen.DoIfObject{``0}[])">
+            <summary>
+            仅一级判断
+            </summary>
+            <param name="result"></param>
+            <param name="funcs"> </param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.CodeGen.ProcEachIf``1(MyCmn.CodeGen.TmpForSect{``0},MyCmn.CodeGen.DoIfObject{``0}[])">
+            <summary>
+            For 里面的 每一个 IF . 不能嵌套.
+            </summary>
+            <param name="item"></param>
+            <param name="funcs"> </param>
+        </member>
+        <member name="M:MyCmn.CodeGen.TmpIf(System.String)">
+            <summary>
+            一个语句里， 只能出现一个 TmpIf 。而且，要先进行 TmpFor ，然后进行 TmpIf ， 最后是 Replace
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MyCmn.CodeGen.TmpForSect`1">
+            <summary>
+            一个ForSect包含 ForName 相同的 子级及兄弟级 结构.
+            </summary>
+        </member>
+        <member name="P:MyCmn.CodeGen.TmpForSect`1.Source">
+            <summary>
+            数据源各项。
+            </summary>
+        </member>
+        <member name="P:MyCmn.CodeGen.TmpForSect`1.forName">
+            <summary>
+            循环标识。
+            </summary>
+        </member>
+        <member name="T:MyCmn.CodeGen.TmpIfCondition">
+            <summary>
+            If 条件表达式.
+            </summary>
+        </member>
+        <member name="T:MyCmn.CodeGen.TmpIfSect">
+             <summary>
+             包含所有的If节点.
+             </summary>
+             <remarks>
+             If节点的条件是一个表达式.
+             @强制表示是一个变量. 像Sqlserver 的变量标识符.
+             true , false , 1 , 2.5 , "Hello" 表示数值.
+             &amp;  表示 逻辑与
+             |  表示 逻辑并
+             </remarks>
+             <example><code>
+            【if:base】Base【eif:ww=='Dict' &amp; i&gt;0】erer【else】!!【fi】
+            【if:base】Base【eif:@2&gt;oo】er
+             ------------------------------------------
+            【if:base】Base【eif:@2&gt;oo】erer【else】!!【fi】
+             ------------------------------------------
+             er【else】!!【fi】
+             </code></example>
+        </member>
+        <member name="M:MyCmn.CodeGen.TmpIfSect.SetDownVar(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="varName"></param>
+        </member>
+        <member name="M:MyCmn.CodeGen.TmpIfSect.GetLast">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:MyCmn.CodeGen.TmpIfSect.Text">
+            <summary>
+            如果存在Text 说明是文本域.
+            </summary>
+        </member>
+        <member name="P:MyCmn.CodeGen.TmpIfSect.Ifs">
+            <summary>
+            条件为真的文本内容。
+            </summary>
+        </member>
+        <member name="P:MyCmn.CodeGen.TmpIfSect.Else">
+            <summary>
+            条件为假的文本内容。
+            </summary>
+        </member>
+        <member name="P:MyCmn.CodeGen.TmpIfSect.Next">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MyCmn.CodeGen.TmpIfSect.Vars">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:MyCmn.ValueProc">
+             <summary>
+             一些类型转换的函数。
+             </summary>
+             <remarks>
+             <pre style='line-height:30px;font-size:14px;font-family: 微软雅黑,宋体'>
+             最基本的操作是类型转换.它们大部分是扩展方法,方便使用.
+             比如方法调用形式
+                 A.B().C().D().E(); 的可读性要比:  E(D(C(A.B()))) ;  可读性好.
+                 估且把第一种称为 链式调用. 把第二种称为 层级调用.
+                 该类的很多方法是把层级调用转换为链式调用.
+             它们是在 .net framework 之上再次封装,在实际业务中,用于替换 .net framework 的方法.
+             <b style="color:red">应用实例</b>
+             1. AsString 是 ToString 的替代方案 
+                 32.AsString();         //等同于 32.ToString();
+                 null.AsString();       //返回 null;
+                 new char[]{'h','e','l','l','o'}.AsString();    //返回 "hello"
+                 对于枚举, 推荐使用 GetEnumString
+             2. 同类方法包括:
+                 GetInt 是  Convert.ToInt 和 int.Parse 的替代方案
+                 GetBool
+                 GetDateTime 
+                 GetDecimal 
+                 GetFloat 
+                 GetGuid 
+                 GetLong 
+                 GetUInt 
+             3. Split 是 string.Split 的扩展版本.由于没有默认的按连续字符串分隔.
+                 "hello&amp;nbsp;world".Split("&amp;nbsp;") ;    //返回 ["hello","word"]
+             4. TakeOutInt 实现类似 Javascript 的 parseInt 方法
+                 "width:12px".TakeOutInt();              // 返回 12
+             5. HasValue 判断对象是否有值. 是  string.IsEmpty 的替换方案.
+             6. GetSub 是 IEnumerable&lt;TSource&gt;.Where((value,index,retval)=> return index &gt;= startIndex &amp;&amp; index &lt;=endIndex) 的替代方案
+             7. GetOrDefault 是取出字典值.当字典不存在时,返回默认值.而不是报错.(直接取字典值报错.)
+                 字典是高效的,易于使用的数据结构,它是 Hashtable 的替代方案. Hashtable 需要装箱,拆箱.
+             8. IsIn 判断是否存在于集合中.
+                 3.IsIn( new int[]{1,2,3,4} ) ;  等效于 new int[]{1,2,3,4}.Contains(3);
+             9. TrimWithPair 结队去除.
+                 "&lt;a&gt;hello&lt;/a&gt;".TrimWithPair("&lt;a&gt;","&lt;/a&gt;") ;     //返回 hello.
+             10. SplitSect , SplitLine ,SplitCell 暗文,须要保证文本里都是可见字符.
+                 当进行转义性替换时,$表示变量时,具有特殊的意义,就要用两个 $$ 表示一个 $ : 
+                 "you cost $$:$money$"
+                     .Replace("$$",ValueProc.SplitSect.AsString())
+                     .FindNextNode(o=&gt;o.Replace("money", "123"))
+                     .Replace(ValueProc.SplitSect.AsString(),"$$");
+                     
+                 //返回 you cost $:123
+            <hr></hr>
+             </pre>
+             </remarks>
+        </member>
+        <member name="F:MyCmn.ValueProc.SplitCell">
+            <summary>
+            暗文（不显示字符）的 列分隔符。
+            </summary>
+        </member>
+        <member name="F:MyCmn.ValueProc.SplitLine">
+            <summary>
+            暗文（不显示字符）的 行分隔符。
+            </summary>
+        </member>
+        <member name="F:MyCmn.ValueProc.SplitSect">
+            <summary>
+            暗文（不显示字符）的 段分隔符。
+            </summary>
+        </member>
+        <member name="F:MyCmn.ValueProc.Comma">
+            <summary>
+            明文的数组分隔符  ,
+            </summary>
+        </member>
+        <member name="F:MyCmn.ValueProc.Percent">
+            <summary>
+            明文模板的字界符 %
+            </summary>
+        </member>
+        <member name="M:MyCmn.ValueProc.AddOne``1(System.Collections.Generic.IEnumerable{``0},``0)">
+            <summary>
+            给数组添加一个值。
+            </summary>
+            <typeparam name="TSource"></typeparam>
+            <param name="data"></param>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.Minus``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            集合减法.
+            </summary>
+            <typeparam name="TSource"></typeparam>
+            <param name="data"></param>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.Minus``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TSource"></typeparam>
+            <param name="data"></param>
+            <param name="otherFunc">返回true 表示相等，要减去。返回false 不减。</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.Contains``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+            <param name="equalFunc"></param>
+            <typeparam name="TSource"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.Slice``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="source"></param>
+            <param name="startIndex"></param>
+            <typeparam name="TSource"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.Slice``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
+             <summary>
+             
+            类似于 javascript.slice 。 取出集合的一部分 new int[1,2,3].Slice(0,2) 返回 [1,2]
+             </summary>
+             <remarks>
+             slice 方法一直复制到 end 所指定的元素，但是不包括该元素。
+             如果 start 为负，将它作为 length + start处理，此处 length 为数组的长度。
+             如果 end 为负，就将它作为 length + end 处理，此处 length 为数组的长度。
+             如果省略 end ，那么 slice 方法将一直复制到 arrayObj 的结尾。
+             如果 end 出现在 start 之前，不复制任何元素到新数组中。
+             示例:
+             <code>
+              new int[1,2,3].Slice(0,-1) 返回 1,2
+              new int[1,2,3].Slice(1,0)  返回 空.
+              new int[1,2,3].Slice(-100,2) 返回 1,2
+              new int[1,2,3].Slice(-2,-1) 返回 3
+             </code>
+             </remarks>
+             <typeparam name="TSource"></typeparam>
+             <param name="source"></param>
+             <param name="startIndex"> 表示要截取的字符串的开始索引 . 如果 start 为负，将它作为 length + start处理，此处 length 为数组的长度。 </param>
+             <param name="endIndex">
+             表示要截取的字符串的结束索引,不包括该元素.
+             如果 end 为负，就将它作为 length + end 处理，此处 length 为数组的长度。
+             如果省略 end ，那么 slice 方法将一直复制到 arrayObj 的结尾。
+             如果 end 出现在 start 之前，不复制任何元素到新数组中。
+             </param>
+             <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.AsBool(System.Object,System.Boolean)">
+            <summary>
+            得到对象的 Bool 类型的值
+            </summary>
+            <param name="Value">要转换的值</param>
+            <param name="defaultValue">如果转换失败，返回的默认值</param>
+            <returns>如果对象的值可正确返回， 返回对象转换的值 ，否则， 返回默认值 。</returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.AsInt(System.Object,System.Int32,System.Boolean)">
+            <summary>
+            得到对象的 Int 类型的值,如果是 Float 和 Double , 则 截断 返回.
+            </summary>
+            <remarks>
+            具体逻辑:
+            1. 如果是 Null 或 DbNull  返回默认. 另外, 如果Value 是 ICantToValueType , 则报错.
+            2. 如果是String,调用 int.TryParse , 出错,则调用 AsFloat 转Int.
+            3. 如果不是String,则依次转为 int?,float?,double? ,IConvertible 进行转换返回.
+            </remarks>
+            <param name="Value">要转换的值</param>
+            <param name="defaultValue">如果转换失败，返回的默认值</param>
+            <param name="Rounding">是否四舍五入</param>
+            <returns>如果对象的值可正确返回， 返回对象转换的值 ，否则， 返回默认值 。</returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.AsString(System.Object,System.String)">
+            <summary>
+            得到对象的 String 类型的值
+            </summary>
+            <remarks>
+            具体逻辑:
+            1. 如果是 Null 或 DbNull  返回默认. 另外, 如果Value 是 ICantToValueType , 则报错.
+            2. 转换顺序为: string ,IEnumerable&lt;char&gt;,char[] 
+            3. 最后调用 TypeDescriptor.GetConverter(typeof(string)).ConvertFrom
+            4.如果 defaultValue 是 null,表示：忽略 defaultValue , 仅返回 Value 的字串值。
+            </remarks>
+            <param name="Value">要转换的值，如果是字符串且字符串是空字符串或Null，则返回 DefaultValue </param>
+            <param name="defaultValue">如果是字符串且字符串是空字符串或Null，则返回该值。</param>
+            <returns>如果对象的值可正确返回， 返回对象转换的值 ，否则， 返回默认值 。</returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.AsDecimal(System.Object,System.Decimal)">
+            <summary>
+            得到对象的 Decimal 类型的值
+            </summary>
+            <param name="Value">要转换的值</param>
+            <param name="defaultValue">如果转换失败，返回的默认值</param>
+            <returns>如果对象的值可正确返回， 返回对象转换的值 ，否则， 返回默认值 。</returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.AsLong(System.Object,System.Int64,System.Boolean)">
+            <summary>
+            得到对象的 Long 类型的值,对于小数，会截断返回。
+            </summary>
+            <param name="Value">要转换的值</param>
+            <param name="defaultValue">如果转换失败，返回的默认值</param>
+            <returns>如果对象的值可正确返回， 返回对象转换的值 ，否则， 返回默认值 。</returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.AsFloat(System.Object,System.Single)">
+            <summary>
+            得到对象的 Float 类型的值,如果Value非法(IsNaN,IsNegativeInfinity,IsPositiveInfinity),返回默认值.
+            </summary>
+            <param name="Value">要转换的值</param>
+            <param name="defaultValue">如果转换失败，返回的默认值</param>
+            <returns>如果对象的值可正确返回， 返回对象转换的值 ，否则， 返回默认值 。</returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.AsDateTime(System.Object,System.DateTime)">
+            <summary>
+            得到对象的 DateTime 类型的值
+            </summary>
+            <param name="Value">要转换的值</param>
+            <param name="defaultValue">如果转换失败，返回的默认值</param>
+            <returns>如果对象的值可正确返回， 返回对象转换的值 ，否则， 返回默认值 。</returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.HasValue``1(``0)">
+            <summary>
+            用它和 default(T) 进行比较，如果等于默认值，则返回false, 否则:
+            1. 时间最小值 ,返回 false
+            2. float 非法值 最小值 ,返回 false
+            3. dbouble 非法值 最小值,返回false
+            4. decimal 最小值, 返回 false
+            5. ICollection , IEnumerable  0长度，返回 false
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.AsGuid(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="guidValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.getGenericType(System.Type)">
+            <summary>
+            找该类或基类的泛型类。
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.IsIEnm(System.Type)">
+            <summary>
+            判断是否是 枚举类。
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.As``1(System.Object,``0)">
+            <summary>
+            类型转换并装箱,不处理错误.
+            </summary>
+            <param name="value">要转换的值</param>
+            <param name="defaultValue">默认值</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.AsBool(System.Object)">
+            <summary>
+            得到 对象 的 布尔类型的值。
+            </summary>
+            <param name="Value">要转换的值</param>
+            <returns>如果对象的值可正确返回， 返回对象转换的值 ，否则， 返回默认值 。</returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.AsInt(System.Object)">
+            <summary>
+            得到对象的 Int 类型的值 。
+            </summary>
+            <param name="Value">要转换的值</param>
+            <returns>如果对象的值可正确返回， 返回对象转换的值 ，否则， 返回默认值 。</returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.AsString(System.Object)">
+            <summary>
+            得到对象的 String 类型的值
+            </summary>
+            <param name="Value">要转换的值</param>
+            <returns>如果对象的值可正确返回， 返回对象转换的值 ，否则， 返回默认值 。</returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.AsDecimal(System.Object)">
+            <summary>
+            得到对象的 Decimal 类型的值
+            </summary>
+            <param name="Value">要转换的值</param>
+            <returns>如果对象的值可正确返回， 返回对象转换的值 ，否则， 返回默认值 。</returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.AsFloat(System.Object)">
+            <summary>
+            得到对象的 Float 类型的值
+            </summary>
+            <param name="Value">要转换的值</param>
+            <returns>如果对象的值可正确返回， 返回对象转换的值 ，否则， 返回默认值 。</returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.AsLong(System.Object)">
+            <summary>
+            得到对象的 Long 类型的值
+            </summary>
+            <param name="Value">要转换的值</param>
+            <returns>如果对象的值可正确返回， 返回对象转换的值 ，否则， 返回默认值 。</returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.AsInt(System.Object,System.Int32)">
+            <summary>
+            得到对象的 Int 类型的值,如果是 Float 和 Double , 则四舍五入返回.
+            </summary>
+            <param name="Value"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.AsDateTime(System.Object)">
+            <summary>
+            得到对象的 DateTime 类型的值
+            </summary>
+            <param name="Value">要转换的值</param>
+            <returns>如果对象的值可正确返回， 返回对象转换的值 ，否则， 返回默认值 。</returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.ReturnSelf``1(``0,System.Action{``0})">
+            <summary>
+            执行像 StringBuilder.Append("abc").Append("def") ;
+            StringBuilder.ReturnSelf(o=o.Append("abc")).ReturnSelf(o=>o.Append("def")) ;
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="Func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.HasValue``2(``0,System.Func{``0,``1})">
+            <summary>
+            用它和 default(T) 进行比较，如果等于默认值，则返回false, 否则:
+            
+            1. 时间最小值 ,返回 false
+            2. float 非法值 最小值 ,返回 false
+            3. dbouble 非法值 最小值,返回false
+            4. decimal 最小值, 返回 false
+            </summary>
+            <typeparam name="T">检测对象类型</typeparam>
+            <typeparam name="R">当有值时，回调返回值类型</typeparam>
+            <param name="Value"></param>
+            <param name="HasValueFunc">当有值时，执行的回调</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.IsDBNull``1(``0)">
+            <summary>
+            判断一个对象是否为 null 或 DBNull
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.Between``1(``0,``0,``0)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="startValue"></param>
+            <param name="endValue"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.TrimStart(System.String,System.String)">
+            <summary>
+            去除开头的字符串。 
+            </summary>
+            <param name="value">
+            </param>
+            <param name="removeStart">
+            </param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.TrimEnd(System.String,System.String)">
+            <summary>
+            去除结尾的字符串
+            </summary>
+            <param name="value">
+            </param>
+            <param name="removeEnd">
+            </param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.TrimWithPair(System.String,System.String,System.String,System.StringComparison)">
+            <summary>
+            结队去除，比如去除 () {} [] , 或 &lt;a>t&lt;/a> 等
+            </summary>
+            <param name="value">
+            </param>
+            <param name="removeStart">
+            </param>
+            <param name="removeEnd">
+            </param>
+            <param name="compare"></param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.GetValueOrDefault``1(System.Nullable{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.GetSafeValue(System.String)">
+            <summary>
+            替换 内容有: 单引号, 双引号, 回车, -- , 大于号, 小于号,反斜线[★]
+            </summary>
+            <param name="msg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.GetOrDefault``2(System.Collections.Generic.IDictionary{``0,``1},``0)">
+            <summary>
+            如果没能取出Key ， 则返回 default()， 不会报错。  
+            </summary>
+            <remarks>
+            <pre>
+            GetOrDefault 是取出字典值.当字典不存在时,返回默认值.而不是报错.(直接取字典值报错.)
+                字典是高效的,易于使用的数据结构,它是 Hashtable 的替代方案. Hashtable 需要装箱,拆箱.
+            </pre>
+            </remarks>
+            <typeparam name="T"></typeparam>
+            <typeparam name="R"></typeparam>
+            <param name="theDict"></param>
+            <param name="one"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.GetOrDefault``2(System.Collections.Generic.IDictionary{``0,``1},System.Func{``0,System.Boolean})">
+            <summary>
+            
+            </summary>
+            <param name="theDict"></param>
+            <param name="func"></param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="R"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.EqualsNoMatter(System.Char,System.Char)">
+            <summary>
+            不区分大小写的比较两个字符.
+            </summary>
+            <param name="charValue"> </param>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.GetSequence(System.String,System.Int32)">
+            <summary>
+            根据种子得到某个索引的值.
+            </summary>
+            <remarks>
+            <code>
+            把 十进制 100 , 转为 16 进制.
+            var num100 = GetSequence("123456789abcdef", 100).PadLeft(8, 'a')
+            </code>
+            </remarks>
+            <param name="seed">种子</param>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.GetSequenceIndex(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="seed"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.GetExcelSequence(System.String,System.Int32)">
+            <summary>
+            得到 Excel 的列名.
+            </summary>
+            <param name="Seed"></param>
+            <param name="Index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.Format(System.String,MyCmn.StringDict)">
+            <summary>
+            Dict 连写方式 : new StringDict { { "k1","v1" },{"k2","v2"} } .
+            </summary>
+            <example>
+            <code>
+            "内容如下\n {Name1}:{Value1}, {Name2}:{Value2}".Format(new StringDict { { "Name1", "Value1" }, { "Name2", "Value2" } })
+            </code>
+            </example>
+            <param name="Source"></param>
+            <param name="JsonObject"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.Format(System.String,System.String,MyCmn.StringDict)">
+            <summary>
+            增强型Format.避免用数字索引进行格式化.
+            </summary>
+            <param name="Source"></param>
+            <param name="LeftMark"></param>
+            <param name="RightMar"></param>
+            <param name="Dict"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.Format(System.String,System.String[])">
+            <summary>
+            string.Format 
+            </summary>
+            <param name="Source"></param>
+            <param name="Paras"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.GetMaxCommStrings(System.String,System.String,System.Boolean)">
+            <summary>
+            获取两个字符串的最大公共部分
+            </summary>
+            <remarks>
+            http://hi.baidu.com/tangguoshequ/blog/item/d587dc170878c8946538dbd1.html
+            </remarks>
+            <param name="s1"></param>
+            <param name="s2"></param>
+            <param name="compareWithCase">是否区分大小写</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.GetSimilar(System.String,System.String,System.Boolean,MyCmn.ValueProc.SimilarEnum)">
+            <summary>
+            获取两个字符串相似度。（最大公约数法的扩展）
+            </summary>
+            <remarks>
+                  人 民 共 和 时 代 华 人
+               中 0, 0, 0, 0, 0, 0, 0, 0
+               华 0, 0, 0, 0, 0, 0, 1, 0
+               人 1, 0, 0, 0, 0, 0, 0, 2
+               民 0, 2, 0, 0, 0, 0, 0, 0
+               共 0, 0, 3, 0, 0, 0, 0, 0
+               和 0, 0, 0, 4, 0, 0, 0, 0
+               国 0, 0, 0, 0, 0, 0, 0, 0
+            
+            得到 人民共和  和 华人 两个单词
+            其中 人民共和 是最大公约数
+            按 人民共和 把两个词条分隔。 左左， 右右，再递归求最大公约数
+            参照长度 默认为： Max( s1.Length + s2.Length) 
+            相似度 =   最大公约数.Length / 参照长度   + 
+                       （左最大公约数/ 左参照长度   +  右最大公约数.Length / 右参照长度 ） /参照长度
+                       
+            1  表示， 整体的相似度 介于 四个连字到五个连字之间。
+            </remarks>
+            <param name="s1"></param>
+            <param name="s2"></param>
+            <param name="compareWithCase">是否区分大小写</param>
+            <param name="lengthType">参照算法</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.IndexOf``1(System.Collections.Generic.IEnumerable{``0},``0)">
+            <summary>
+            报告指定 one 在此集合中的第一个匹配项的索引。
+            </summary>
+            <typeparam name="TSource"></typeparam>
+            <param name="Source"></param>
+            <param name="one"></param>
+            <returns>如果找到该对象，则返回从零开始的索引位置；如果未找到，则返回 -1。</returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.Split(System.String,System.String)">
+            <summary>
+            是 string.Split 的扩展版本.由于没有默认的按连续字符串分隔.
+            </summary>
+            <example>
+            <code>
+                "hello&amp;nbsp;world".Split("&amp;nbsp;") ;
+            </code>
+            返回 ["hello","word"]
+            </example>
+            <param name="Source"></param>
+            <param name="splitString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.SplitWithReg(System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
+            <summary>
+            用正则表达式分隔.
+            </summary>
+            <param name="Source"></param>
+            <param name="splitRegString"></param>
+            <param name="Option"></param>
+            <returns>返回所有.</returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.InsertAlternate``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            把第二个集合,交替性插入到第一个集合中,并将第二个集合多余的部分追加到第一个集合末尾.
+            </summary>
+            <example>
+            <code>
+                new int[]{1,3,5}.InsertAlternate(new int[]{2,4,6,8,10}) ;
+            </code>
+            返回的结果是 1,2,3,4,5,6,8,10
+            </example>
+            <typeparam name="TSource"></typeparam>
+            <param name="first"></param>
+            <param name="second"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.IntersectAndAlternate``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            按顺序返回相同个数的两个部分的交替组合.
+            </summary>
+            <example>
+            <code>
+                new int[]{1,3,5}.IntersectAndAlternate(new int[]{2,4,6,8,10}) ;
+            </code>
+            返回的结果是 1,2,3,4,5,6
+            </example>
+            <typeparam name="TSource"></typeparam>
+            <param name="first"></param>
+            <param name="second"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.ToMyList``1(System.Collections.IEnumerable,System.Func{System.Object,``0})">
+            <summary>
+            如把 NameValueCollection 和 Hashtable 转换为 字典.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.IsIn``1(``0,``0[])">
+            <summary>
+            
+            </summary>
+            <param name="one"></param>
+            <param name="source"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.IsIn``1(``0,System.Collections.Generic.IEqualityComparer{``0},``0[])">
+            <summary>
+            
+            </summary>
+            <param name="one"></param>
+            <param name="func"></param>
+            <param name="source"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.IsIn``1(``0,System.Func{``0,``0,System.Boolean},``0[])">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="one"></param>
+            <param name="func">返回 true,表示找到该项. </param>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.TakeOutInt(System.String)">
+            <summary>
+            从字符串里，取出第一个数值内容。实现类似 Javascript 的 parseInt 方法
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.TakeOutInt(System.String,System.Int32)">
+            <summary>
+            从字符串里，取出第一个数值内容。
+            </summary>
+            <param name="value"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.AsType(System.Type,System.Object)">
+            <summary>
+            做指定类型的类型转换
+            </summary>
+            <param name="type"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.IsType``1(System.Object)">
+            <summary>
+            精准判断是否是一个类型。基类不参与运算。
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.IsNullableType(System.Type)">
+            <summary>
+            判断一个类型是否是可空类型。
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.ToXmlDictionary``2(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{``0,``1}})">
+            <summary>
+            
+            </summary>
+            <param name="source"></param>
+            <typeparam name="TKey"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.ToXmlDictionary``4(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{``0,``1}},System.Func{System.Collections.Generic.KeyValuePair{``0,``1},``2},System.Func{System.Collections.Generic.KeyValuePair{``0,``1},``3})">
+            <summary>
+            
+            </summary>
+            <param name="source"></param>
+            <param name="keyFunc"></param>
+            <param name="valueFunc"></param>
+            <typeparam name="TKey"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <typeparam name="TDescKey"></typeparam>
+            <typeparam name="TDescValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.ToXmlDictionary``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2})">
+            <summary>
+            
+            </summary>
+            <param name="source"></param>
+            <param name="keySelector"></param>
+            <param name="elementSelector"></param>
+            <typeparam name="TSource"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <typeparam name="TElement"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.UpdateEnums``1(MyCmn.XmlDictionary{System.String,System.Object},``0)">
+            <summary>
+            用反射的方式,把字典里的数据 枚举化. 枚举化规则采用 字典Key值 和 实体属性值相同.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="dict"></param>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.CopyTo``1(MyCmn.IEntity,``0)">
+            <summary>
+            使用IEntity 提供的方法进行对象属性拷贝.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="entity"></param>
+            <param name="toEntity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.IndexOf(System.String,System.String,System.Int32,System.StringComparison,System.Func{System.Char,System.Boolean},System.Func{System.Char,System.Boolean})">
+            <summary>
+            超级IndexOf.
+            </summary>
+            <param name="value">数据源.</param>
+            <param name="findValue">查找字符串</param>
+            <param name="startIndex">开始查找的索引</param>
+            <param name="comparison">比较枚举</param>
+            <param name="prevCharFunc">找到字符串后再二次判断前面的字符串是否符合要求.</param>
+            <param name="nextCharFunc">找到字符串后再三次判断前面的字符串是否符合要求.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.GetSummary(System.TimeSpan)">
+            <summary>
+            
+            </summary>
+            <param name="time"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.GetGodError(System.Exception)">
+            <summary>
+            从 InnerException 中找出 GodError 
+            </summary>
+            <param name="exceptionError"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.IsSameCase(System.String)">
+            <summary>
+            字符串大小写是否一致（全大写或全小写）。
+            </summary>
+            <param name="value"></param>
+            <returns>空值返回true</returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.IsHtmlValidata(System.String)">
+            <summary>
+            验证Html片断是否合法。
+            </summary>
+            <param name="HtmlSects"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.IsNumberType(System.Type)">
+             <summary>
+             判断类型是否是数据类型.
+             </summary>
+             <remarks>
+             数据类型包括:
+                       "System.Int32",
+                       "System.Int64",
+                       "System.Int16",
+                       "System.Decimal",
+                       "System.Byte",
+                       "System.Double",
+                       "System.Float",
+                       "System.Single",
+                       "System.UInt32",
+                       "System.UInt64",
+                       "System.UInt16",
+                       "System.UInt64"
+            
+             </remarks>
+             <param name="type"></param>
+             <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.IsSimpleType(System.Type)">
+            <summary>
+            判断类型是否是简单类型.
+            </summary>
+            <remarks>
+            枚举, 基元类型, 另外包括:
+                      "System.String",
+                      "System.Char",
+                      "System.Boolean",
+                      "System.DateTime",
+                      "System.Guid",
+                      "System.Decimal"
+            </remarks>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.DbTypeIsDateTime(System.Data.DbType)">
+            <summary>
+            判断 DbType 是否是时间类型.
+            </summary>
+            <remarks>
+                 DbType.Date,
+                 DbType.DateTime,
+                 DbType.DateTime2,
+                 DbType.DateTimeOffset,
+                 DbType.Time 
+            </remarks>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.DbTypeIsNumber(System.Data.DbType)">
+            <summary>
+            DbType 是否是数据类型.
+            </summary>
+            <remarks>
+                   DbType.Byte,
+                   DbType.Currency,
+                   DbType.Decimal,
+                   DbType.VarNumeric,
+                   DbType.Double,
+                   DbType.Int16,
+                   DbType.Int32,
+                   DbType.Int64,
+                   DbType.SByte,
+                   DbType.Single,
+                   DbType.UInt16,
+                   DbType.UInt32,
+                   DbType.UInt64 
+            </remarks>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValueProc.DbTypeIsString(System.Data.DbType)">
+            <summary>
+            判断DbType 是否是 字符串.
+            </summary>
+            <remarks>
+                  DbType.AnsiString,
+                  DbType.AnsiStringFixedLength,
+                  DbType.String,
+                  DbType.StringFixedLength 
+            </remarks>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MyCmn.MyCommandConfig">
+             <summary>
+             插件式命令配置节.
+             </summary>
+             <example>
+             <code>
+             &lt;configuration&gt;
+              &lt;configSections&gt;
+                &lt;section name="MyCmd" type="MyCmn.MyCommandConfig,MyCmn"/&gt;
+              &lt;/configSections&gt;
+              &lt;MyCmd&gt;
+                &lt;Commands&gt;
+                  &lt;Command Name="Svn" Type="MyTool.GetFileFromSvnHandler,MyTool"/&gt;
+                  &lt;Command Name="NewFile" Type="MyTool.NewFileHandler,MyTool"/&gt;
+                &lt;/Commands&gt;
+              &lt;/MyCmd&gt;
+            &lt;/configuration&gt;
+             </code>
+             </example>
+        </member>
+        <member name="P:MyCmn.MyCommandConfig.CommandCollection.CommandElement.Name">
+            <summary>
+            命令名称,主键
+            </summary>
+        </member>
+        <member name="P:MyCmn.MyCommandConfig.CommandCollection.CommandElement.Type">
+            <summary>
+            加载Command的Type
+            </summary>
+        </member>
+        <member name="T:MyCmn.FastInvoke">
+            <summary>
+            通过Emit方式操作对象.
+            </summary>
+            <summary>
+            通过Emit方式操作对象.
+            </summary>
+        </member>
+        <member name="M:MyCmn.FastInvoke.Model2StringDict(System.Object)">
+            <summary>
+            把 Model 转为 字典，是一个和  ModelToDictionary(RuleBase Entity, IModel objModel) 相同算法的函数。
+            </summary>
+            <param name="objModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.FastInvoke.StringDict2Model``1(MyCmn.StringDict,System.Func{``0})">
+            <summary>
+            把字典解析到 Model 类型的 Model 上。
+            <remarks>
+            从数据库返回数据实体时使用,解析如下类型： 
+            String
+            IDictionary
+            类(支持递归赋值。如果第一级属性找不到，则查找第二级非基元属性，依次向下查找。)
+            Json树格式，如果在HTML中Post Json对象，如 cols[id][sid] = 10 则可以映射到合适的对象上。
+            值类型结构体,主要适用于 数值，Enum类型。对于结构体，把 结果集第一项值 强制类型转换为该结构体类型，所以尽量避免使用自定义结构体。
+            </remarks>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Dict"></param>
+            <param name="NewModelFunc">关键是 泛型！Model可以为null</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.FastInvoke.Dict2DeepObj``1(System.Collections.IDictionary,``0,System.Type)">
+            <summary>
+            可以对子对象赋值。
+            </summary>
+            <remarks>
+            子对象赋值： Key 如： book.Id 形式，则是给 model 的 book 对象赋 Id 值。
+            model对象在默认构造函数时，应对 book 子对象初始化。
+            </remarks>
+            <typeparam name="T"></typeparam>
+            <param name="Dict"></param>
+            <param name="TypeOfT"></param>
+            <param name="model"></param>
+        </member>
+        <member name="M:MyCmn.FastInvoke.GetPropertyValue``1(``0,System.Type,System.Reflection.MethodInfo)">
+            <summary>
+            获取属性值。
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj">调用对象。</param>
+            <param name="typeOfT">如果为空或是 Object ， 则调用 obj.GetType 。传入该值是为了性能考虑。</param>
+            <param name="methodInfo">对于属性取值来说，应该是 get_Property 方法。</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.FastInvoke.SetPropertyValue``1(``0,System.Type,System.Reflection.MethodInfo,System.Object)">
+            <summary>
+            设置属性值。
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="typeOfT">如果为空或是 Object ， 则调用 obj.GetType 。传入该值是为了性能考虑。</param>
+            <param name="methodInfo">对于属性赋值来说，应该是 set_Property 方法。</param>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MyCmn.FastInvoke.FastInvokeHandler">
+            <summary>
+            Emit动态生成的内部调用方法.
+            </summary>
+            <param name="target">目标对象.</param>
+            <param name="paramters">方法参数</param>
+            <returns>返回值.</returns>
+        </member>
+        <member name="T:MyCmn.Triple`3">
+            <summary>
+             泛弄化的 Triple
+            </summary>
+        </member>
+        <member name="T:MyCmn.CacheHelper">
+            <summary>
+            缓存管理器，用于 缓存 服务器 IIS 端数据。使用的是 HttpRuntime.Cache类. 仅 .Net 4.0 支持.
+            </summary>
+            <example>
+            CacheHelper.Get 的作用是指当数据项失效后， 调用指定的委托来添加数据项，以保证该项缓存的持续性。
+            该示例用来演示最简的 代码风格， 描述 取出在缓存中维护数据。
+            <code>
+            var retVal = CacheHelper.Get(CacheKey.OrgUserID, delegate() {
+                   var htState = new List&lt; string>();
+                   htState.Add("sys");
+                   htState.Add("org");
+                   htState.Add("user");
+                   htState.Add("none");
+                   htState.Add("web");
+                   return htState ;
+               });
+            return retVal ;
+            </code>
+            </example>
+        </member>
+        <member name="M:MyCmn.CacheHelper.Add(System.String,System.Object,System.TimeSpan)">
+            <summary>
+            如果该项先前存储在 Cache 中，则为 Object，否则为 null。
+            </summary>
+            <param name="key">缓存 Key，可以自已定义， 但是 Key 的 String 在 缓存管理器里不能有重复。</param>
+            <param name="Data">要缓存到 Key 里的 数据。</param>
+            <param name="Time">要缓存的时间</param>
+            <returns>返回 添加的 Data </returns>
+        </member>
+        <member name="M:MyCmn.CacheHelper.IsExists(System.String)">
+            <summary>
+            判断是否存在指定的 Key 的缓存项
+            </summary>
+            <param name="key">缓存 Key，可以自已定义， 但是 Key 的 String 在 缓存管理器里不能有重复。</param>
+            <returns>布尔类型的值 ，存在返回 true ， 不存在返回 false 。</returns>
+        </member>
+        <member name="M:MyCmn.CacheHelper.Remove(System.Enum)">
+            <summary>
+            从 Cache 移除的项。如果未找到键参数中的值，则返回 null
+            </summary>
+            <param name="Key"></param>
+            <returns>从 Cache 移除的项。如果未找到键参数中的值，则返回 null </returns>
+        </member>
+        <member name="M:MyCmn.CacheHelper.Get``1(System.Enum)">
+            <summary>
+            用最简单的方式来取一个缓存的值 。
+            </summary>
+            <typeparam name="T">缓存值的类型。</typeparam>
+            <param name="key">缓存的 Key</param>
+            <returns>得到的缓存值。</returns>
+        </member>
+        <member name="M:MyCmn.CacheHelper.Get``1(System.String)">
+            <summary>
+            用最简单的方式来取一个缓存的值 。
+            </summary>
+            <typeparam name="T">缓存值的类型。</typeparam>
+            <param name="key">缓存的 Key</param>
+            <returns>得到的缓存值。</returns>
+        </member>
+        <member name="M:MyCmn.CacheHelper.Get``1(System.Enum,System.TimeSpan,System.Func{``0})">
+            <summary>
+            该方法用于取 指定 Key 的缓存数据项.<see cref="T:MyCmn.CacheHelper"/>
+            </summary>
+            <remarks>
+            </remarks>
+            <typeparam name="T">缓存数据项的类型</typeparam>
+            <param name="CacheKey">要缓存的 Key</param>
+            <param name="time"></param>
+            <param name="CachSet">当该数据项失效后， 要调用的用来添加数据项委托</param>
+            <returns>要取的 缓存 Key 的数据</returns>
+        </member>
+        <member name="M:MyCmn.CacheHelper.Get``1(System.String,System.TimeSpan,System.Func{``0})">
+            <summary>
+            该方法用于取 指定 Key 的缓存数据项.<see cref="T:MyCmn.CacheHelper"/>
+            </summary>
+            <typeparam name="T">缓存数据项的类型</typeparam>
+            <param name="CacheKey">要缓存的 Key</param>
+            <param name="time">缓存时间</param>
+            <param name="CachSet">当该数据项失效后， 要调用的用来添加数据项委托</param>
+            <returns>要取的 缓存 Key 的数据</returns>
+        </member>
+        <member name="T:MyCmn.StringDict">
+            <summary>
+            区分大小写的字符串字典, ( StringDictionary,NameValueCollection  是不区分大小写的字符串字典)
+            </summary>
+        </member>
+        <member name="T:MyCmn.XmlDictionary`2">
+            <summary>
+            可序列化字典类
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <typeparam name="TValue"></typeparam>
+        </member>
+        <member name="T:MyCmn.IEntity">
+             <summary>
+             如果实体实现此接口, 则在对象化实体体,采用该接口的两个方法对对象赋值(避免采用反射)
+             </summary>
+             <remarks>
+             如果某实体继承了 IEntity，那么该实体最好采用 密封类。如果要扩展该类，请使用组合，而不是继承。
+             如果子类继承了 实现IEntity的类 , 子类应该也重新继承 IEntity , 否则取不到子类新增的属性.
+             <example>
+             <code>
+             public class PersonModel : PersonRule.Entity, IEntity
+             {
+                 public string Dept { get; set; }
+                 public string Role { get; set; }
+            
+                 public PersonModel(PersonRule.Entity Entity)
+                 {
+                     Entity.CopyTo(this);
+                 }
+            
+                 string[] IEntity.GetProperties()
+                 {
+                     return base.GetProperties().AddOne("Dept").AddOne("Role").ToArray();
+                 }
+            
+                 object IEntity.GetPropertyValue(string PropertyName)
+                 {
+                     if (PropertyName == "Dept") return this.Dept;
+                     else if (PropertyName == "Role") return this.Role;
+                     else return base.GetPropertyValue(PropertyName);
+                 }
+            
+                 bool IEntity.SetPropertyValue(string PropertyName, object Value)
+                 {
+                     if (PropertyName == "Dept")
+                     {
+                         this.Dept = Value.AsString();
+                         return true;
+                     }
+                     else if (PropertyName == "Role")
+                     {
+                         this.Role = Value.AsString();
+                         return true;
+                     }
+                     else return base.SetPropertyValue(PropertyName, Value);
+                 }
+             }
+             </code>
+             </example>
+             </remarks>
+        </member>
+        <member name="T:MyCmn.IModel">
+            <summary>
+            仅仅做为一个标识,表示,对象是一个模型.
+            </summary>
+            <remarks>
+            目前, XmlDictionary ,IEntity ,MyOql.WhereClip ,MyOqlSet 都是一个模型.
+            </remarks>
+        </member>
+        <member name="M:MyCmn.IModel.GetProperties">
+            <summary>
+            获取属性列表.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.IReadEntity.GetPropertyValue(System.String)">
+            <summary>
+            取属性值.
+            </summary>
+            <param name="PropertyName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.IEntity.SetPropertyValue(System.String,System.Object)">
+            <summary>
+            设置属性值. 
+            </summary>
+            <param name="PropertyName"></param>
+            <param name="Value"></param>
+            <returns>如果找不到该属性, 返回 false.</returns>
+        </member>
+        <member name="M:MyCmn.XmlDictionary`2.ReadXml(System.Xml.XmlReader)">
+            <summary>
+            反序列化
+            </summary>
+            <param name="reader"></param>
+        </member>
+        <member name="M:MyCmn.XmlDictionary`2.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            序列化
+            </summary>
+            <param name="writer"></param>
+        </member>
+        <member name="M:MyCmn.XmlDictionary`2.SimpleClone">
+            <summary>
+            有很大的陷井,尽量不要用,除非你能确定,所有的Key,Value 都是值类型.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.StringDict.#ctor(System.String)">
+            <summary>
+            自定义构造函数。采用 Key:Value,Key:Value 格式。
+            </summary>
+            <remarks>
+            去除前后的 {}。
+            采用 Key:Value,Key:Value 格式。
+            :用 \: 进行转义。
+            ,用 \, 进行转义。
+            </remarks>
+            <param name="Json"></param>
+        </member>
+        <member name="M:MyCmn.StringDict.ToString">
+            <summary>
+            返回 Key:Value,Key:Value 格式
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:MyCmn.WindowsGroupUser">
+            <summary>
+            主要包括下面两个方法，其他方法也可以用，主要为辅助主方法用
+            UpdatePassWord(string var)  修改本地密码的方法
+            GetUserInfoArrayList(string var)    根据用户组,查询本地包含用户HashTable(含名称、全名、描述）的数组
+            </summary>
+        </member>
+        <member name="M:MyCmn.WindowsGroupUser.UpdatePassWord(System.String)">
+            <summary>
+            修改本地密码的方法
+            </summary>
+            <param name="intputPwd">输入的新密码</param>
+            <returns>成功返回"success",失败返回exception</returns>
+        </member>
+        <member name="M:MyCmn.WindowsGroupUser.GetUsersArrayList(System.DirectoryServices.DirectoryEntry)">
+            <summary>
+            根据本地用户组获得组里的用户名数组
+            </summary>
+            <param name="directoryEntry">=new DirectoryEntry("WinNT://" + Environment.MachineName + "/" + localGroup + ",group")</param>
+            <returns>用户名数组</returns>
+        </member>
+        <member name="M:MyCmn.WindowsGroupUser.GetSingleUserInfo(System.String,System.String)">
+            <summary>
+            获得每个单独的用户信息
+            </summary>
+            <param name="userName">用户名</param>
+            <param name="directoryEntry">目录入口</param>
+            <returns>单独用户信息的HashTable</returns>
+        </member>
+        <member name="M:MyCmn.WindowsGroupUser.GetUserInfoArrayList(System.String)">
+            <summary>
+            根据用户组,查询本地包含用户HashTable(含名称、全名、描述）的数组
+            </summary>
+            <param name="localGroup">用户组名称</param>
+            <returns>包含用户HashTable(含名称、全名、描述）的数组</returns>
+        </member>
+        <member name="T:MyCmn.EnmItem`2">
+            <summary>
+            定义的枚举类。
+            </summary>
+            <example>
+            <code>
+            public class ddd :IEnm
+            {
+                public static EnmItem&lt;ddd&gt; Park { get { return new EnmItem&lt;ddd&gt;("Bs002", "车位"); } }
+            }
+            </code>
+            </example>
+            <typeparam name="ClassT"></typeparam>
+            <typeparam name="CodeT"></typeparam>
+        </member>
+        <member name="T:MyCmn.DbPushModel`1">
+            <summary>
+            以 OriData 为基础， 把 NewData 的数据批量更新到 OriData 的方法的数据模型。
+            </summary>
+            <remarks>
+            已经存在的减去交集 = 要删除的
+            要插入的减去交集 = 要真正插入的
+            </remarks>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:MyCmn.DbPushModel`1.Intersect">
+            <summary>
+            公共数据，数据的交集
+            </summary>
+        </member>
+        <member name="P:MyCmn.DbPushModel`1.ToInsert">
+            <summary>
+            需要向 OriData 插入的数据
+            </summary>
+        </member>
+        <member name="P:MyCmn.DbPushModel`1.ToDelete">
+            <summary>
+            需要向 OriData 删除的数据
+            </summary>
+        </member>
+        <member name="T:System.Web.Mvc.JsonMsg">
+            <summary>
+            返回简单的Json消息对象.
+            </summary>
+        </member>
+        <member name="P:System.Web.Mvc.JsonMsg.msg">
+            <summary>
+            记录错误消息 。 没有消息,就表示没有错误.(No New Is Good News)
+            </summary>
+        </member>
+        <member name="P:System.Web.Mvc.JsonMsg.data">
+            <summary>
+            外带数据。
+            </summary>
+        </member>
+        <member name="T:System.Web.Mvc.JsonMsg`1">
+            <summary>
+            返回简单的Json消息对象.
+            </summary>
+        </member>
+        <member name="T:System.Web.Mvc.MyTag">
+            <summary>
+            生成自定义Tag标签.
+            </summary>
+            <example>
+            <code>
+            using (MyTag tag = new MyTag(HtmlTextWriterTag.A, new { href = "g.cn", id = "id" }))
+            {
+                 Ronse += "Google";
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:System.Web.Mvc.MyHelper.ResolveUrl(System.String)">
+            <summary>
+            能够解析 ~/,../,./ 三类开头的URL ， 解析为程序使用的URL ，不带Http 头。
+            </summary>
+            <param name="Url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Web.Mvc.MyHelper.GetUrlFull(System.String)">
+            <summary>
+            得到程序可用的从根开始的路径。如果想要得到带有 Http 头的URL，请使用： MyUrl.GetUrlPrefix() + VirtualPath.GetUrlFull() 
+            如:DocInfo/List.aspx?id=3 ， /DocInfo/List.aspx?id=3   
+            </summary>
+            <param name="VirtualPath">从根目录开始的路径。</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Web.Mvc.MyHelper.Ajax(System.String,System.Func{System.Net.HttpWebRequest,System.String},System.Action{System.String},System.Action{System.String})">
+            <summary>
+            通过  HttpWebRequest 模拟 Post。
+            </summary>
+            <param name="Url"></param>
+            <param name="PostData"></param>
+            <param name="ResponseAction"></param>
+            <param name="ExceptionAction"></param>
+        </member>
+        <member name="M:System.Web.Mvc.MyHelper.Ajax(System.String,System.Func{System.Net.HttpWebRequest,System.Byte[]},System.Action{System.Byte[],System.Net.HttpWebResponse},System.Action{System.Exception})">
+            <summary>
+            通过 HttpWebRequest Post
+            </summary>
+            <param name="Url"></param>
+            <param name="RequestAction"></param>
+            <param name="ResponseAction"></param>
+            <param name="ExceptionAction"></param>
+        </member>
+        <member name="M:System.Web.Mvc.MyHelper.GetRes``1(System.LangEnum,``0,``0)">
+            <summary>
+            如果当前语言是英文,则显示英文值,否则显示中文值.
+            </summary>
+            <remarks>
+            只支持中英文.
+            </remarks>
+            <typeparam name="T"></typeparam>
+            <param name="Lang"></param>
+            <param name="ZHRes"></param>
+            <param name="EnRes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Web.Mvc.MyHelper.ToRenderString(System.Web.UI.Control)">
+            <summary>
+             得到 Control 的 HTML 解析部分. [★]
+            </summary>
+            <param name="con"></param>
+            <returns></returns>
+        </member>
+        <member name="P:System.Web.Mvc.MyHelper.RequestIsAjax">
+            <summary>
+            判断请求是否是 Ajax 请求。 只针对 Jquery.
+            </summary>
+        </member>
+        <member name="P:System.Web.Mvc.MyHelper.Action">
+            <summary>
+            取MVC中的 Action
+            </summary>
+        </member>
+        <member name="P:System.Web.Mvc.MyHelper.Controller">
+            <summary>
+            Mvc 中的Controller。
+            </summary>
+        </member>
+        <member name="T:MyCmn.ICantToValueType">
+            <summary>
+            不可转换为值类型的接口.（转换为 string 除外）
+            </summary>
+        </member>
+        <member name="T:MyCmn.ILog">
+            <summary>
+            日志接口
+            </summary>
+        </member>
+        <member name="T:MyCmn.IRes">
+            <summary>
+            资源接口
+            </summary>
+        </member>
+        <member name="M:MyCmn.HtmlNodeProc.ProcHtml">
+            <summary>
+            去空白,去注释.
+            </summary>
+        </member>
+        <member name="M:MyCmn.HtmlNodeProc.GetFirstNext(System.String,System.Int32,System.Char[])">
+            <summary>
+            查找不在字符串中的下一个.
+            </summary>
+            <param name="Source"></param>
+            <param name="Start"></param>
+            <param name="Finds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.HtmlNodeProc.GetNextNotNull(System.String,System.Int32,System.Boolean)">
+            <summary>
+            查找下一个不在字符串中的匹配.
+            </summary>
+            <param name="Source"></param>
+            <param name="Start"></param>
+            <param name="IsJumpString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.HtmlNodeProc.IsStringAndJump(System.String,System.Int32)">
+            <summary>
+            如果当前是字符串,就跳过去.
+            </summary>
+            <param name="Html"></param>
+            <param name="Index"></param>
+            <returns></returns>
+        </member>
+        <member name="F:MyCmn.HtmlNodeProc.JsLineTypeEnum.PrevEndIsInString">
+            <summary>
+            上一行结尾在字符串中。
+            </summary>
+        </member>
+        <member name="F:MyCmn.HtmlNodeProc.JsLineTypeEnum.PrevEndIsEnd">
+            <summary>
+            上一行结尾表示结束。
+            </summary>
+        </member>
+        <member name="M:MyCmn.HtmlNodeProc.JsProc.IsStringAndJump(System.Int32)">
+            <summary>
+            如果当前是字符串,就跳过去.
+            </summary>
+            <param name="Index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.HtmlNodeProc.JsProc.IsVerity(System.Int32)">
+            <summary>
+            是否是真实的.而非转义的.
+            </summary>
+            <param name="Index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.HtmlNodeProc.JsProc.GetFirstNext(System.Int32,System.Char[])">
+            <summary>
+            查找不在字符串中的下一个.
+            </summary>
+            <param name="Start"></param>
+            <param name="Finds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.HtmlNodeProc.JsProc.GetNext(System.String,System.Int32)">
+            <summary>
+            区分大小写.
+            </summary>
+            <param name="Find"></param>
+            <param name="Start"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.HtmlNodeProc.JsProc.GetNextNoMatter(System.String,System.Int32)">
+            <summary>
+            不区分大小写.
+            </summary>
+            <param name="Find"></param>
+            <param name="Start"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.HtmlNodeProc.JsProc.GetNext(System.Char,System.Int32)">
+            <summary>
+            查找下一个不在字符串中的匹配..  跳过字符串，判断是否是转义的。
+            </summary>
+            <param name="Find"></param>
+            <param name="Start"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.HtmlNodeProc.JsProc.GetNextDirect(System.Char,System.Int32)">
+            <summary>
+            查找下一个不在字符串中的匹配.不进行任何判断
+            </summary>
+            <param name="Find"></param>
+            <param name="Start"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.HtmlNodeProc.JsProc.GetNextNotNull(System.Int32,System.Boolean)">
+            <summary>
+            查找下一个不在字符串中的匹配.
+            </summary>
+            <param name="Start"></param>
+            <param name="IsJumpString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.JsonHelper.FromJson``1(System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MyCmn.MyBigInt">
+            <summary>
+            大数字表示.用于权限表示.如果用 .net 4.0 + ,可使用：System.Numerics.BigInteger 表示．
+            </summary>
+            <remarks>
+            只完成了两个逻辑运算 &amp; |,其它未实现.
+            </remarks>
+        </member>
+        <member name="M:MyCmn.MyBigInt.CreateBySqlRowId(System.UInt32)">
+            <summary>
+            SqlRowId 数据库从1开始的自增值，为0 表示空返回0。
+            为1 返回 1 ， 为2 返回2 ， 为3 返回 4，为4 返回8 。
+            </summary>
+            <param name="SqlRowId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.MyBigInt.op_BitwiseAnd(MyCmn.MyBigInt,MyCmn.MyBigInt)">
+            <summary>
+            
+            </summary>
+            <param name="one"></param>
+            <param name="two"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.MyBigInt.op_BitwiseOr(MyCmn.MyBigInt,MyCmn.MyBigInt)">
+            <summary>
+            
+            </summary>
+            <param name="one"></param>
+            <param name="two"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.MyBigInt.op_Equality(MyCmn.MyBigInt,MyCmn.MyBigInt)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.MyBigInt.op_Inequality(MyCmn.MyBigInt,MyCmn.MyBigInt)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.MyBigInt.Tidy">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.MyBigInt.ToPositions">
+            <summary>
+            转换为各个 2 的次幂，从低位到高位。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.MyBigInt.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.MyBigInt.IsNull(MyCmn.MyBigInt)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.MyBigInt.IsZero">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.MyBigInt.Fill1(System.UInt32)">
+            <summary>
+            按位来一次性填充域。
+            </summary>
+            <param name="positionLengths"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.MyBigInt.GetPositionLength">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.MyBigInt.SetFlag(System.Int32,System.Boolean)">
+            <summary>
+            设置指定位置的符号 , 如果为true , 则设置为 1 , 否则设置为 0
+            </summary>
+            <param name="position">从1开始. 单个最大32.</param>
+            <param name="sign"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.MyBigInt.Minus(MyCmn.MyBigInt)">
+            <summary>
+            从当前数中 减去 NotContains 中的各个位. 如果当前数不存在 NotContains 的位, 则忽略 .
+            </summary>
+            <param name="notContains"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.MyBigInt.CreateBySqlRowIds(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            
+            </summary>
+            <param name="powerPositions"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.MyBigInt.CreateByBitPositons(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            
+            </summary>
+            <param name="powerPositions"></param>
+            <returns></returns>
+        </member>
+        <member name="P:MyCmn.MyBigInt.Sign">
+            <summary>
+            符号位，true 为正数， false 为负数。
+            </summary>
+        </member>
+        <member name="P:MyCmn.MyBigInt.Data">
+            <summary>
+            第1个表示 低位
+            32,16,21 表示：21:16:32 , 每一个 uint 能表示:32个位.
+            </summary>
+        </member>
+        <member name="T:MyCmn.MyDate">
+            <summary>
+            可以替换 System.DateTime . MyDate 主要用于格式化显示,默认显示为:yyyy-MM-dd
+            </summary>
+            DateTime 与 MyDate 可互相转换. 用法:
+            <example>
+            <code>
+                   MyDate dt = DateTime.Now;
+                   Console.WriteLine(dt.GetDateTime().ToString());
+                     
+             // or
+                  DateTime dt = new MyDate(DateTime.Now);
+            </code>
+            </example>
+        </member>
+        <member name="M:MyCmn.MyDate.ToString(System.String,System.IFormatProvider)">
+            <summary>
+            系统底导调用的ToString函数 。
+            </summary>
+            <param name="format"></param>
+            <param name="provider"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MyCmn.MyUrl">
+            <summary>
+            
+            </summary>
+            <remarks>
+            1. +  URL 中+号表示空格 %2B
+            2. 空格 URL中的空格可以用+号或者编码 %20
+            3. /  分隔目录和子目录 %2F 
+            4. ?  分隔实际的 URL 和参数 %3F 
+            5. % 指定特殊字符 %25 
+            6. # 表示书签 %23 
+            7. &amp; URL 中指定的参数间的分隔符 %26 
+            8. = URL 中指定参数的值 %3D 
+            </remarks>
+        </member>
+        <member name="M:MyCmn.MyUrl.ToString">
+            <summary>
+            把 MyUrl 对象表述为 Url 字符串对象。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.MyUrl.GetUrlPrefix">
+            <summary>
+            通过当前请求的URL，得到  GetUrlHeader 前面的部分。 对于站点得到： http://localhost , 对于虚拟目录得到的是： http://localhost/Cne
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.MyUrl.GetUrlHeader">
+            <summary>
+            得到  ~/ 的 Url 根形式  。 对于站点，得到的是 / , 对虚拟目录得到 /Cne
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:MyCmn.MyUrl.Prefix">
+            <summary>
+            http://localhost
+            </summary>
+        </member>
+        <member name="P:MyCmn.MyUrl.Path">
+            <summary>
+            URL 的 路径表示 ， 如： 
+            </summary>
+        </member>
+        <member name="P:MyCmn.MyUrl.Query">
+            <summary>
+            查询字符串。
+            </summary>
+        </member>
+        <member name="P:MyCmn.MyUrl.PathSegment">
+            <summary>
+            URL中 的表示 路径的各个部分。
+            </summary>
+        </member>
+        <member name="P:MyCmn.MyUrl.QuerySegment">
+            <summary>
+            查询字符串的对象表示。
+            </summary>
+        </member>
+        <member name="P:MyCmn.MyUrl.Extension">
+            <summary>
+            后缀名。 含有 “.”
+            </summary>
+        </member>
+        <member name="P:MyCmn.MyUrl.Annex">
+            <summary>
+            锚点后面的东西。
+            </summary>
+        </member>
+        <member name="T:MyCmn.RecursionReturnEnum">
+            <summary>
+            递归返回类型.
+            </summary>
+        </member>
+        <member name="F:MyCmn.RecursionReturnEnum.Go">
+            <summary>
+            继续
+            </summary>
+        </member>
+        <member name="F:MyCmn.RecursionReturnEnum.StopSub">
+            <summary>
+            停止向下执行递归.
+            </summary>
+        </member>
+        <member name="F:MyCmn.RecursionReturnEnum.Abord">
+            <summary>
+            终止递归.
+            </summary>
+        </member>
+        <member name="M:MyCmn.Recursion`1.Execute(System.Collections.Generic.IEnumerable{`0},System.Func{`0,System.Collections.Generic.IEnumerable{`0}},System.Func{`0,MyCmn.RecursionReturnEnum})">
+            <summary>
+            
+            </summary>
+            <param name="Container"></param>
+            <param name="Subs"></param>
+            <param name="Exec"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.Recursion`1.Execute(System.Collections.Generic.IEnumerable{`0},System.Func{`0,System.Collections.Generic.IEnumerable{`0}},System.Func{`0,System.Int32,MyCmn.RecursionReturnEnum},System.Int32)">
+            <summary>
+            递归执行
+            </summary>
+            <param name="Container"></param>
+            <param name="Subs"></param>
+            <param name="Exec"></param>
+            <param name="InitLevel">初始Level</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsNullOrEmpty``1(``0)">
+            <summary>
+            判断对象是否为空，为空返回true
+            </summary>
+            <typeparam name="T">要验证的对象的类型</typeparam>
+            <param name="data">要验证的对象</param>       
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsNullOrEmpty(System.Object)">
+            <summary>
+            判断对象是否为空，为空返回true
+            </summary>
+            <param name="data">要验证的对象</param>
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsIP(System.String)">
+            <summary>
+            验证IP地址是否合法
+            </summary>
+            <param name="ip">要验证的IP地址</param>       
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsEmail(System.String)">
+            <summary>
+            验证EMail是否合法
+            </summary>
+            <param name="email">要验证的Email</param>
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsInt(System.String)">
+            <summary>
+            验证是否为整数
+            </summary>
+            <param name="number">要验证的整数</param>       
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsNumber(System.String)">
+            <summary>
+            验证是否为数字
+            </summary>
+            <param name="number">要验证的数字</param>       
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsDate(System.String@)">
+            <summary>
+            验证日期是否合法,对不规则的作了简单处理
+            </summary>
+            <param name="date">日期</param>
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsIdCard(System.String)">
+            <summary>
+            验证身份证是否合法
+            </summary>
+            <param name="idCard">要验证的身份证</param>       
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsValidInput(System.String@)">
+            <summary>
+            检测客户输入的字符串是否有效,并将原始字符串修改为有效字符串或空字符串。
+            当检测到客户的输入中有攻击性危险字符串,则返回false,有效返回true。
+            </summary>
+            <param name="input">要检测的字符串</param>
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsNumeric(System.String)">
+            <summary>
+            验证是否是数字
+            </summary>
+            <param name="input">输了待验证字符串</param>
+            <returns>如果是数字返回true,否则返回false</returns>
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsInteger(System.String)">
+            <summary>
+            验证是否整数（正整数 + 负整数）
+            </summary>
+            <param name="input">输了待验证字符串</param>
+            <returns>如果是返回true,否则返回false</returns>
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsPositiveInteger(System.String)">
+            <summary>
+            验证是否是正整数
+            </summary>
+            <param name="input">输了待验证字符串</param>
+            <returns>如果是返回true,否则返回false</returns>
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsNativeInteger(System.String)">
+            <summary>
+            验证是否是负整数
+            </summary>
+            <param name="input">输了待验证字符串</param>
+            <returns>如果是返回true,否则返回false</returns>
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsNoNativeInteger(System.String)">
+            <summary>
+            验证是否非负整数（包括负整数和0）
+            </summary>
+            <param name="input">输了待验证字符串</param>
+            <returns>如果是返回true,否则返回false</returns>
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsNoPositiveInteger(System.String)">
+            <summary>
+            验证非正整数（负整数 + 0）
+            </summary>
+            <param name="input">输了待验证字符串</param>
+            <returns>如果是返回true,否则返回false</returns>
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsFloat(System.String)">
+            <summary>
+            验证是否浮点数
+            </summary>
+            <param name="input">输了待验证字符串</param>
+            <returns>如果是返回true,否则返回false</returns>
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsDouble(System.String)">
+            <summary>
+            判断是否为double类型
+            </summary>
+            <param name="input">被验证字符串。</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsHexNumber(System.String)">
+            <summary>
+            验证是否为16进制字符串
+            </summary>
+            <param name="input">输了待验证字符串</param>
+            <returns>如果是返回true,否则返回false</returns>
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsWord(System.String)">
+            <summary>
+            验证字符串是否由字母组成
+            </summary>
+            <param name="input">输了待验证字符串</param>
+            <returns>如果是返回true,否则返回false</returns>
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsNumbericAndWord(System.String)">
+            <summary>
+            验证是否由数字和字母组成的
+            </summary>
+            <param name="input">输了待验证字符串</param>
+            <returns>如果是返回true,否则返回false</returns>
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsIPAddress(System.String)">
+            <summary>
+            验证是否为IP地址
+            </summary>
+            <param name="input">输了待验证字符串</param>
+            <returns>如果是返回true,否则返回false</returns>
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsUrl(System.String)">
+            <summary>
+            验证是否url地址
+            </summary>
+            <param name="input">输了待验证字符串</param>
+            <returns>如果是返回true,否则返回false</returns>
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsEMail(System.String)">
+            <summary>
+            验证是否EMail地址
+            </summary>
+            <param name="input">输了待验证字符串</param>
+            <returns>如果是返回true,否则返回false</returns>
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsFormatDate(System.String)">
+            <summary>
+            验证是否为指定格式化的日期格式如（ 年-月-日 2009-05-22 ）
+            </summary>
+            <param name="input">输了待验证字符串</param>
+            <returns>如果是返回true,否则返回false</returns>
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsPhoneNumber(System.String)">
+            <summary>
+            验证是否是电话号码（固定电话如：020-38366688）
+            </summary>
+            <param name="input">输了待验证字符串</param>
+            <returns>如果是返回true,否则返回false</returns>
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsMobileNumber(System.String)">
+            <summary>
+            验证是否中文字符。
+            </summary>
+            <param name="input">输了待验证字符串</param>
+            <returns>如果是返回true,否则返回false</returns>
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsUnicode(System.String)">
+            <summary>
+            判断是否为Unicode码
+            </summary>
+            <param name="input">被验证字符串。</param>
+            <returns>返回bool类型</returns>
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsChinese(System.String)">
+            <summary>
+            验证是否中文字符
+            </summary>
+            <param name="input">输了待验证字符串</param>
+            <returns>如果是返回true,否则返回false</returns>
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsDoubleByte(System.String)">
+             <summary>
+            验证匹配双字节字符(包括汉字在内)
+             </summary>
+             <param name="input">输了待验证字符串</param>
+             <returns>如果是返回true,否则返回false</returns>
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsBlankLine(System.String)">
+            <summary>
+            匹配空行的正则表达式
+            </summary>
+            <param name="input">输了待验证字符串</param>
+            <returns>如果是返回true,否则返回false</returns>
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsHTML(System.String)">
+            <summary>
+            验证是否是为HTML标记（还需要改进的地方，如含有空隔或者有属性的时候不行）
+            </summary>
+            <param name="input">输了待验证字符串</param>
+            <returns>如果是返回true,否则返回false</returns>
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsSafety(System.String)">
+            <summary>
+            判断字符串是否存在操作数据库的安全隐患
+            </summary>
+            <param name="input">被验证字符串。</param>
+            <returns>返回bool类型</returns>
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsQQNumber(System.String)">
+            <summary>
+            验证是否为QQ号码
+            </summary>
+            <param name="input">输了待验证字符串</param>
+            <returns>如果是返回true,否则返回false</returns>
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsPostalCode(System.String)">
+            <summary>
+            验证是否邮政编码
+            </summary>
+            <param name="input">输了待验证字符串</param>
+            <returns>如果是返回true,否则返回false</returns>
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsRelativePath(System.String)">
+            <summary>
+            判断是否为相对地址（虚拟地址）
+            </summary>
+            <param name="input">被验证字符串。</param>
+            <returns>返回bool类型</returns>
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsPhysicalPath(System.String)">
+            <summary>
+            判断是否为绝对地址（物理地址）
+            </summary>
+            <param name="input">被验证字符串。</param>
+            <returns>返回bool类型</returns>
+        </member>
+        <member name="M:MyCmn.ValidationHelper.IsInIPArray(System.String,System.String[])">
+            <summary>
+            返回指定IP是否在指定的IP数组所限定的范围内, IP数组内的IP地址可以使用*表示该IP段任意, 例如192.168.1.*
+            </summary>
+            <param name="ip">用户输入的IP</param>
+            <param name="ipArray">指定的IP地址段数组</param>
+            <returns>返回bool类型</returns>
+        </member>
+        <member name="T:MyCmn.ResponseFilter">
+            <summary>
+            占用URL 的 _OriFilter_ 参数 , 如果为 true , 则不过滤.
+            </summary>
+        </member>
+        <member name="T:MyCmn.StringLinker">
+            <summary>
+            StringBuilder 替代方案. 内部采用 StringBuilder .
+            可以 和 string 互转, 可以 += .
+            | 操作符, 返加第一个有效数据.
+            </summary>
+        </member>
+        <member name="T:MyCmn.CmnProc">
+            <summary>
+            针对一些Web应用常用的处理助手函数.
+            </summary>
+            <remarks>
+            当采用 MS Ajax 的 UpdatePanel 之后，页面回发之后，在 PageLoad 里不必再次执行加载，利用从Form Request 过来的值，
+            可以再进行一系列操作，这样可减少数据库的交互，提高性能。
+            
+            所以，约定： PageLoad 回发不加载，当回发之后， 用 GetPostValue 或 GetPostValues 来取客户端的值。
+            GridView，也可以用 
+            </remarks>
+        </member>
+        <member name="M:MyCmn.CmnProc.IsConfigJsCssCompressed">
+            <summary>
+            配置是否是Js，Css压缩输出。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.CmnProc.GetContentType(System.String)">
+            <summary>
+            通过访问注册表，得到指定类型的 ContentType 。 [★]
+            </summary>
+            <param name="strSuffix"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.CmnProc.ToDictionary``1(System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            将 NameValueCollection 转换成 字典 的形式 [★]
+            </summary>
+            <param name="NameValueCollectionAsDataSource"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.CmnProc.GetRepeatString(System.String,System.Int32)">
+            <summary>
+            得到 指定重复次数的 string 的表达式。 [★]
+            </summary>
+            <param name="Value"></param>
+            <param name="RepeatCount"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.CmnProc.DataTableHasData(System.Data.DataTable)">
+            <summary>
+            检测 DataSet 是否包含有效数据。 [★]
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.CmnProc.DataSetHasData(System.Data.DataSet)">
+            <summary>
+            检测 DataSet 是否包含有效数据。 [★]
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.CmnProc.ArrayIsEqual(System.Array,System.Array)">
+            <summary>
+            比较两个 Array 的值 是否相等。 [★]
+            </summary>
+            <param name="First"></param>
+            <param name="Second"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.CmnProc.GetPath(System.String)">
+            <summary>
+            兼容 Cs,Bs , 获取路径.
+            </summary>
+            <remarks>
+            如果是 Bs , 获取相对服务器根位置的物理路径
+            如果是 Cs , 获取相对运行程序位置的物理路径.
+            </remarks>
+            <param name="myPath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.CmnProc.Touch(System.IO.FileInfo)">
+            <summary>
+            如果文件不存在,则创建文件,如果文件存在,则返回.
+            </summary>
+            <param name="fileInfo"></param>
+            <returns>返回第一次是否成功摸到文件. 如果文件存在,返回true,否则返回false</returns>
+        </member>
+        <member name="M:MyCmn.CmnProc.GetPostValue``1(System.Web.UI.WebControls.GridViewRow,``0)">
+            <summary>
+            得到从客户端 Post 回来的 指定的控件名称。
+            </summary>
+            <param name="Row"></param>
+            <param name="BindName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.CmnProc.GetPostValue(System.Web.UI.WebControls.GridViewRow,System.String)">
+            <summary>
+            得到从客户端 Post 回来的 指定的控件名称。
+            </summary>
+            <param name="Row"></param>
+            <param name="BindName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.CmnProc.SetReadOnly``1(System.Web.UI.Control,System.Boolean)">
+            <summary>
+            设置控件集合里的控件的只读属性.  [★]
+            </summary>
+            <param name="controlWithSubControls">要设置成 ReadOnly 的控件的 父控件。</param>
+            <param name="isReadOnly">是否设置为 ReadOnly </param>
+        </member>
+        <member name="M:MyCmn.CmnProc.GetGridViewCommandButtonJs(System.Web.UI.WebControls.GridView,System.String,System.Int32)">
+            <summary>
+            只针对 ImageButton 或 Submit 按钮。且不会生成  __doPostBack 脚本。
+            </summary>
+            <param name="TheGridView"></param>
+            <param name="Command"></param>
+            <param name="Index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.CmnProc.Replace(System.Web.UI.Control,System.Web.UI.Control)">
+            <summary>
+            控件替换.
+            </summary>
+            <param name="TheControl"></param>
+            <param name="NewControl"></param>
+        </member>
+        <member name="M:MyCmn.CmnProc.Replace(System.Web.UI.Control,System.Web.UI.Control,System.Boolean)">
+            <summary>
+            控件替换.
+            </summary>
+            <param name="TheControl"></param>
+            <param name="NewControl"></param>
+            <param name="UseNewID"></param>
+        </member>
+        <member name="M:MyCmn.CmnProc.SetDisplay``1(System.Web.UI.Control,System.Boolean)">
+            <summary>
+            设置 控件的 客户端 Display 属性
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="ControlWithSubControls"></param>
+            <param name="IsDisplay"></param>
+        </member>
+        <member name="M:MyCmn.CmnProc.GetHtmlInnerText(System.String)">
+            <summary>
+            取出 InnerText 部分， 供C#端使用。
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.CmnProc.GetText(System.Web.UI.Control)">
+            <summary>
+            从集合中取出文字来.应用在从单元格里取内容文字。
+            如果文本是  &amp;nbsp; 或空格的话 ， 忽略内容，继续递归查找。
+            </summary>
+            <param name="webCon">要取文本的控件。</param>
+            <returns>控件里的文本。</returns>
+        </member>
+        <member name="M:MyCmn.CmnProc.GetControl``1(System.Web.UI.Control)">
+            <summary>
+            从 控件集合中 中递归取出 指定控件类型(T) 的第一个控件。 如果有 多个T类型的控件, 请使用 FindControl
+            </summary>
+            <typeparam name="T">要取控件的类型</typeparam>
+            <param name="Ctl">要从哪个单元格中取.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.CmnProc.GetTopControl``1(System.Web.UI.Control)">
+            <summary>
+            得到指定类型的最顶层的控件。
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Ctl"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.CmnProc.GetParentControl``1(System.Web.UI.Control)">
+            <summary>
+            得到指定类型的上层控件。从该控件的父控件开始算。
+            </summary>
+            <typeparam name="T">要得到控件的类型。</typeparam>
+            <param name="Ctl">要得到控件的最底层的儿子。</param>
+            <returns>指定类型的，最近层的控件。</returns>
+        </member>
+        <member name="M:MyCmn.CmnProc.GetControlList``1(System.Web.UI.Control)">
+            <summary>
+            从集合中取出指定类型的集合。递归性能不是很好，目前也没有方法实现更好的方法。应该避免大量使用。100次90毫秒，10000次5000毫秒。
+            </summary>
+            <typeparam name="T">要取控件的类型</typeparam>
+            <param name="Ctl">要取控件的源</param>
+            <returns>取到的指定类型的控件。</returns>
+        </member>
+        <member name="M:MyCmn.CmnProc.ProcOneClick(System.Web.UI.WebControls.Button)">
+            <summary>
+            该方法,是给 Button 类用的. [★]
+            </summary>
+            <param name="btn"></param>
+        </member>
+        <member name="M:MyCmn.CmnProc.RemoveNodeByValue(System.Web.UI.WebControls.TreeView,System.String)">
+            <summary>
+            根据 Value , 递归查找节点并删除. [★]
+            </summary>
+            <param name="MyTree"></param>
+            <param name="NodeValue"></param>
+        </member>
+        <member name="M:MyCmn.CmnProc.RemoveNodeByValue(System.Web.UI.WebControls.TreeNodeCollection,System.String)">
+            <summary>
+            根据 Value , 递归查找节点并删除. [★]
+            </summary>
+            <param name="MyTreeNodes"></param>
+            <param name="NodeValue"></param>
+        </member>
+        <member name="M:MyCmn.CmnProc.FindNodeByValue(System.Web.UI.WebControls.TreeView,System.String)">
+            <summary>
+            根据 Value 递归查找节点 [★]
+            </summary>
+            <param name="MyTree"></param>
+            <param name="NodeValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.CmnProc.FindNodeByValue(System.Web.UI.WebControls.TreeNodeCollection,System.String)">
+            <summary>
+            根据 Value 递归查找节点 [★]
+            </summary>
+            <param name="MyTreeNodes"></param>
+            <param name="NodeValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.CmnProc.GetDisplayText(System.String)">
+            <summary>
+            针对 GridView 列的显示名称过长, 取指定配置文件里 GridLineTitleLen 指定的长度的 Text  [★]
+            </summary>
+            <param name="LongText">GridView 里要格式化列的显示值。</param>
+            <returns>格式化后的对象。 包括显示的格式化的文本内容，和 提示。提示就是完整理的内容。</returns>
+        </member>
+        <member name="M:MyCmn.CmnProc.SetDisplayText(System.Web.UI.WebControls.WebControl)">
+            <summary>
+            针对 GridView 列的显示名称过长,设置控件里文本的格式。 [★]
+            </summary>
+            <param name="TheWebControlWithText">要设置显示文本的控件。</param>
+        </member>
+        <member name="M:MyCmn.CmnProc.SetDisplayText(System.Web.UI.WebControls.WebControl,System.Int32)">
+            <summary>
+            针对 GridView 列的显示名称过长, 设置控件里文本的格式。 [★]
+            </summary>
+            <param name="TheWebControlWithText">要设置显示文本的控件。</param>
+            <param name="DisplayLength">要设置格式化显示文本的长度。</param>
+        </member>
+        <member name="M:MyCmn.CmnProc.GetDisplayText(System.String,System.Int32)">
+            <summary>
+            针对 GridView 列的显示名称过长, 取指定长度的 Text , [★]
+            </summary>
+            <param name="LongText"></param>
+            <param name="DisplayLength"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.CmnProc.GetComputeControlWidth(System.String,System.Drawing.Font)">
+            <summary>
+            计算控件内容的宽度，忽略字间距。
+            </summary>
+            <param name="Text"></param>
+            <param name="FontPt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.CmnProc.GetPxValue(System.Int32)">
+            <summary>
+            单位转换 ， 磅 值转换为 像素 值。
+            </summary>
+            <param name="PtValue">磅值</param>
+            <returns>转换后的 像素 值 。</returns>
+        </member>
+        <member name="M:MyCmn.CmnProc.GetPtValue(System.Int32)">
+            <summary>
+            单位转换 ， 像素 值转换为 磅 值。
+            </summary>
+            <param name="PxValue">像素</param>
+            <returns>转换后的 磅 值 。</returns>
+        </member>
+        <member name="M:MyCmn.CmnProc.GetPxValue(System.Int32,System.Int32)">
+            <summary>
+            单位转换 ， 磅 值转换为 像素 值。
+            </summary>
+            <param name="PtValue">磅值</param>
+            <param name="PDI">PDI ， 默认为 96 </param>
+            <returns>转换后的 像素 值 。</returns>
+        </member>
+        <member name="M:MyCmn.CmnProc.GetPtValue(System.Int32,System.Int32)">
+            <summary>
+            单位转换 ， 像素 值转换为 磅 值。
+            </summary>
+            <param name="PxValue">像素</param>
+            <param name="PDI">PDI ， 默认为 96 </param>
+            <returns>转换后的 磅 值 。</returns>
+        </member>
+        <member name="M:MyCmn.CmnProc.AutoResizeImage(System.String,System.Int32,System.Int32)">
+            <summary>
+            自动按 ScaleToSmall 方式,覆盖原图.
+            </summary>
+            <param name="OriDiskFile"></param>
+            <param name="MaxWidth"></param>
+            <param name="MaxHeight"></param>
+        </member>
+        <member name="M:MyCmn.CmnProc.ResizeImage(System.Boolean@,System.String,System.Int32,System.Int32,MyCmn.CmnProc.ResizeImageMode)">
+            <summary>
+            缩放图片.
+            </summary>
+            <param name="IsOK"></param>
+            <param name="OriDiskFile"></param>
+            <param name="MaxWidth"></param>
+            <param name="MaxHeight"></param>
+            <param name="Mode"></param>
+            <returns>是否出错。true 没有问题， false，出错了</returns>
+        </member>
+        <member name="M:MyCmn.CmnProc.MakeTransparentGif(System.Drawing.Bitmap,System.Drawing.Color)">
+            <summary>
+            使GIF图片背景透明. [★]
+            </summary>
+            <param name="bitmap"></param>
+            <param name="color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.CmnProc.isEcho(System.Int32,System.Int32)">
+            <summary>
+            根据现在执行的进度.判断以前是不是曾取过这个段的颜色值. [★]
+            </summary>
+            <param name="Denominator">分母,即时份值,即现在的深度.</param>
+            <param name="Numerator">分子,循环中的即时份值.</param>
+            <returns>如果存在,返回true,否则,返回false</returns>
+        </member>
+        <member name="M:MyCmn.CmnProc.GetColor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            根据要取的颜色数,返回一个颜色数组.[★]
+            </summary>
+            <param name="nColor">要取多少个颜色</param>
+            <param name="MinColor">要取颜色的最小值。</param>
+            <param name="MaxColor">要取颜色的最大值。</param>
+            <returns>返回的颜色数组.</returns>
+        </member>
+        <member name="M:MyCmn.CmnProc.ToHexColorString(System.Drawing.Color)">
+            <summary>
+            返回 Color 对象 的 十六进制表示形式。 [★]
+            </summary>
+            <param name="TheColorValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.CmnProc.ToColor(System.String)">
+            <summary>
+            将十六进制 表式形式的颜色值（#123456） 转换为 Color 对象。 [★]
+            </summary>
+            <param name="TheColorValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.CmnProc.GetEmbedResourceName(System.String)">
+            <summary>
+            传入的参数是 /MyWeb/WebResource.axd?d= 中 d的部分.返回它在 Dll 中资源的名称.
+            Window 和 Linux 下实现方式是不同的， 所以这里要分别对待。
+            </summary>
+            <param name="QueryResourceID">加密的嵌入式资源的TypeID</param>
+            <returns>Dll中嵌入式资源的名称 .</returns>
+        </member>
+        <member name="T:MyCmn.CmnProc.DisplayText">
+            <summary>
+            为了使 GridView 显示整齐的显示方式，而定义的类。 [★]
+            </summary>
+        </member>
+        <member name="P:MyCmn.CmnProc.DisplayText.Text">
+            <summary>
+            格式化之后， 显示的内容。
+            </summary>
+        </member>
+        <member name="P:MyCmn.CmnProc.DisplayText.ToolTip">
+            <summary>
+            如果经过格式化的话，显示的 原始值。如果没有经过格式化， 显示 ""
+            </summary>
+        </member>
+        <member name="T:MyCmn.EnumHelper">
+            <summary>
+            枚举辅助类
+            </summary>
+            <summary>
+            枚举的辅助类， 在 数据库 列定义， UI 传值 规范， UI 列表列定义规范中经常会使用。
+            </summary>
+        </member>
+        <member name="M:MyCmn.EnumHelper.GetMyDesc(System.Type,System.Int32)">
+            <summary>
+            按Short 来.
+            </summary>
+            <param name="EnumDefineType"></param>
+            <param name="myEnumValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.EnumHelper.ToEnum``1(System.String,``0,System.Boolean)">
+            <summary>
+            把指定的字符串形式的枚举值转换为枚举.如果转换失败,则尝试使用配置项EnumEvent指定的转换方法进行转换.
+            </summary>
+            <remarks>
+            如果要表示多个枚举组合，不应该是 Enable,Disable   这样的形式，而应该使用 3 这样的数字值。
+            </remarks>
+            <typeparam name="T"></typeparam>
+            <param name="EnumString"></param>
+            <param name="DefaultValue"></param>
+            <param name="ThrowError">如果抛出错误，则不使用 EnumEvent 进行转换。</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.EnumHelper.ToEnum(System.String,System.Type,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="EnumString"></param>
+            <param name="EnumType"></param>
+            <param name="DefaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.EnumHelper.GetDefault``1">
+            <summary>
+            取默认值，当是枚举的时候，取空值。优先选择： 0,None,Default,-1,-2147483648
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.EnumHelper.GetDefault(System.Type)">
+            <summary>
+            取默认值，当是枚举的时候，取空值。优先选择： 0,None,Default,-1,-2147483648
+            </summary>
+            <param name="enumType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.EnumHelper.ToEnum``1(System.String)">
+            <summary>
+            把指定的字符串形式的枚举值转换为枚举.如果字符串表示多个枚举,用","分隔, 多个返回值用 逻辑或 表示
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="EnumString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.EnumHelper.ToEnum``1(System.Int32)">
+            <summary>
+            把数字枚举值转换为枚举.多个返回值用 逻辑或 表示
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="EnumValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.EnumHelper.ToEnum``1(System.Enum)">
+            <summary>
+            把一个类型的枚举值转换为另一个类型的枚举值.多个返回值用 逻辑或 表示
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="EnumValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.EnumHelper.ToEnumList``1">
+            <summary>
+            使用 Enum.GetValues 获得枚举各集合. 
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.EnumHelper.ToEnumList``1(``0)">
+            <summary>
+            得到枚举的可能单个枚举值列表.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="TheUnionEnum"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.EnumHelper.ToEnumList(System.Enum,System.Type,MyCmn.EnumHelper.EnumType)">
+            <summary>
+            得到枚举的可能单个枚举值列表.(仅对标记 Flag 的枚举有效.) 也采用 Enum.GetValues 获取基本数据集合.
+            </summary>
+            <param name="TheUnionEnum"></param>
+            <param name="Type"></param>
+            <param name="TheEnumType">仅对标记 Flag 的枚举进行运算.</param>
+            <returns>若枚举没有标记Flag,则返回自己,否则按位返回列表.</returns>
+        </member>
+        <member name="M:MyCmn.EnumHelper.Contains``1(``0,``0)">
+            <summary>
+            判断是否包含某值
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="TheContainer"></param>
+            <param name="TheOne"></param>
+            <returns>不判断是否标记Flag,单纯的按二进制进行匹配.</returns>
+        </member>
+        <member name="M:MyCmn.EnumHelper.GetEachDefine(System.Int32)">
+            <summary>
+            得到枚举的可能单个枚举值的Int值列表. 算法和 枚举没有关系.
+            </summary>
+            <param name="EnumValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.EnumHelper.GetEnumString``1(``0)">
+            <summary>
+            按位域得到各个Enum的值。
+            </summary>
+            <remarks>
+            关于位域，请参考：http://127.0.0.1:47873/help/1-5452/ms.help?method=page&amp;id=M%3aSYSTEM.FLAGSATTRIBUTE.%23CTOR&amp;topicversion=100&amp;topiclocale=ZH-CN&amp;SQM=1&amp;product=VS&amp;productVersion=100&amp;locale=ZH-CN
+            </remarks>
+            <typeparam name="T"></typeparam>
+            <param name="EnumValue"></param>
+            <returns></returns>
+        </member>
+        <member name="F:MyCmn.EnumHelper.EnumType.Short">
+            <summary>
+            逻辑运算.二进制数里只能有一个1
+            </summary>
+        </member>
+        <member name="F:MyCmn.EnumHelper.EnumType.NotZero">
+            <summary>
+            值大于0
+            </summary>
+        </member>
+        <member name="F:MyCmn.EnumHelper.EnumType.All">
+            <summary>
+            返回枚举的所有定义.
+            </summary>
+        </member>
+        <member name="T:MyCmn.Log">
+            <summary>
+            日志类。
+            </summary>
+            <example>
+            <code>
+            Log&lt;InfoEnum&gt;.To(InfoEnum.Error,"Msg","User"); 
+            </code>
+            </example>
+        </member>
+        <member name="T:MyCmn.Mail">
+            <summary>
+            邮件发送辅助类。
+            </summary>
+        </member>
+        <member name="M:MyCmn.Mail.Send(System.String,System.String,System.String,System.Collections.Generic.List{System.String},System.String,System.String,System.Collections.Generic.List{System.Net.Mail.Attachment})">
+            <summary>
+            发送邮件。 [★]
+            </summary>
+            <param name="FromEmail"></param>
+            <param name="Password"></param>
+            <param name="SmtpServer"></param>
+            <param name="ToEmails"></param>
+            <param name="Title"></param>
+            <param name="Body"></param>
+            <param name="WithFiles"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.Mail.Send(System.Collections.Generic.List{System.String},System.String,System.String,System.Collections.Generic.List{System.Net.Mail.Attachment})">
+            <summary>
+            发送邮件 [★]
+            </summary>
+            <param name="ToEmails"></param>
+            <param name="Title"></param>
+            <param name="Body"></param>
+            <param name="WithFiles"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MyCmn.Security">
+            <summary>
+            采用 3DES 加解密方式。
+            </summary>
+        </member>
+        <member name="M:MyCmn.Security.EncryptString(System.String,System.Byte[],System.Byte[])">
+            <summary>
+            使用指定的 Key 和 IV 加密 。 [★]
+            </summary>
+            <param name="ToEncryptString"></param>
+            <param name="byKey"></param>
+            <param name="byIV"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.Security.DecrypteString(System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            使用指定的 Key 和 IV 解密。 [★]
+            </summary>
+            <param name="byIn"></param>
+            <param name="byKey"></param>
+            <param name="byIV"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.Security.GetBytes(System.Int32)">
+            <summary>
+            获取随机（种子是 GUID 的 Byte 的和）长度的Byte数组.
+            </summary>
+            <param name="Len">要得到的数组的长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.Security.EncryptString(System.String)">
+            <summary>
+            默认加密字符串。[★]
+            </summary>
+            <param name="ConnString"></param>
+            <returns>返回是非标准的Base64.</returns>
+        </member>
+        <member name="M:MyCmn.Security.DecrypteString(System.String)">
+            <summary>
+            默认解密字符串 [★]
+            </summary>
+            <param name="EncryptedConnectionString"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MyCmn.SerializerHelper">
+            <summary>
+            序列化类。
+            </summary>
+        </member>
+        <member name="M:MyCmn.SerializerHelper.#cctor">
+            <summary>
+            静态构造函数仅在设置CanBinarySerialize值中使用一次。
+            </summary>
+        </member>
+        <member name="M:MyCmn.SerializerHelper.Base64_Serial``1(``0)">
+            <summary>
+            返回二进制编码后的Base64编码 ， 和 Base64_UnSerial 对应使用。 [★]
+            </summary>
+            <param name="ObjWith_Base64_UnSerial"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.SerializerHelper.Base64_UnSerial``1(System.String)">
+            <summary>
+            对 Base64_Serial 函数编码的反序列化.
+            </summary>
+            <param name="StringDealdWith_Base64_Serial">经过 Base64_Serial 编码的序列化文本</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.SerializerHelper.ConvertToBytes(System.Object)">
+            <summary>
+            将对象转化成二进制的数组。和 ConvertToObject 对应使用。 [★] 
+            </summary>
+            <param name="objectToConvert">用于转化的对象。</param>
+            <returns>返回转化后的数组，如果CanBinarySerialize为false则返回null。</returns>
+        </member>
+        <member name="M:MyCmn.SerializerHelper.ConvertToObject(System.Byte[])">
+            <summary>
+            将一个二进制的数组转化为对象，必须通过类型转化自己想得到的相应对象。如果数组为空则返回空。 
+            和 ConvertToBytes 对应使用。  [★] .
+            </summary>
+            <param name="byteArray">用于转化的二进制数组。</param>
+            <returns>返回转化后的对象实例，如果数组为空，则返回空对象。</returns>
+        </member>
+        <member name="M:MyCmn.SerializerHelper.DeepClone``1(``0)">
+            <summary>
+            通过序列化和反序列化进行深度克隆。
+            如果对象继承了 ICloneable , 则使用 ICloneable.Clone.
+            值类型,string 类型不需要深度克隆.直接返回.
+            </summary>
+            <remarks>
+            如果对象继承了 ICloneable , 则使用 ICloneable.Clone. 所以  ICloneable.Clone 实现中,不能使用 DeepClone 方法.
+            如果在 ICloneable.Clone 实现中使用 DeepClone , 会造成死循环.
+            </remarks>
+            <typeparam name="T"></typeparam>
+            <param name="Source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.SerializerHelper.MustDeepClone``1(``0)">
+            <summary>
+            继承自 IClone 接口的对象要实现 深克隆,不能使用 DeepClone ,而需要改用 MustDeepClone .否则,会出现死循环.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.SerializerHelper.CloneIEntity``1(``0)">
+            <summary>
+            IEntity 自定义克隆
+            </summary>
+            <param name="Entity"></param>
+            <returns></returns>
+        </member>
+        <member name="P:MyCmn.SerializerHelper.CanBinarySerialize">
+            <summary>
+            获取二进制序列化是否被使用。
+            </summary>
+        </member>
+        <member name="T:MyCmn.MyDescAttribute">
+            <summary>
+            枚举的描述属性
+            </summary>
+        </member>
+        <member name="T:MyCmn.GodError">
+            <summary>
+             不可能出现的错误，灾难性错误，根本性错误。也可能是系统移植过程中出现的不可预料的错误。
+            </summary>
+            <remarks>
+            需要两个配置项:
+            1. GodErrorLog=bool
+            2. GodErrorRes=bool
+            </remarks>
+        </member>
+        <member name="M:MyCmn.GodError.Check(System.Boolean,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="errorCondition"></param>
+            <param name="msgFunc"></param>
+            <exception cref="T:MyCmn.GodError"></exception>
+        </member>
+        <member name="M:MyCmn.GodError.Check(System.Boolean,System.String,System.Func{System.String},System.String)">
+            <summary>
+            
+            </summary>
+            <param name="errorCondition"></param>
+            <param name="type"></param>
+            <param name="detail"></param>
+            <param name="msgFunc"></param>
+            <exception cref="T:MyCmn.GodError"></exception>
+        </member>
+        <member name="P:MyCmn.GodError.Detail">
+            <summary>
+            消息详情
+            </summary>
+        </member>
+        <member name="T:MyCmn.FixQueue`1">
+            <summary>
+            指定数量的 队列， 达到最大数量后，队首自动弹出。
+            </summary>
+        </member>
+        <member name="M:MyCmn.FixQueue`1.Dequeue">
+            <summary>
+            出列。 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.FixQueue`1.Enqueue(`0)">
+            <summary>
+            将对象添加到 System.Collections.Generic.FixQueue 的结尾处。
+            </summary>
+            <param name="obj"></param>
+        </member>
+        <member name="M:MyCmn.HtmlCharLoad.#ctor(System.Char[])">
+            <summary>
+            Release下万次　780 毫秒．超强.
+            </summary>
+            <param name="Html"></param>
+        </member>
+        <member name="M:MyCmn.HtmlCharLoad.IsValue(System.Int32,System.String)">
+            <summary>
+            判断当前位置开始的值是否是某值。
+            </summary>
+            <param name="start"></param>
+            <param name="find"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.HtmlCharLoad.IsStringAndJump(System.Int32)">
+            <summary>
+            如果当前是字符串,就跳过去.
+            </summary>
+            <param name="Index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.HtmlCharLoad.IsVerity(System.Int32)">
+            <summary>
+            是否是真实的.而非转义的.仅判断前面临近的字符是否是转义字符。
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.HtmlCharLoad.GetFirstNext(System.Int32,System.Char[])">
+            <summary>
+            查找在字符串中的下一个.
+            </summary>
+            <param name="start"></param>
+            <param name="finds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.HtmlCharLoad.GetNext(System.String,System.Int32)">
+            <summary>
+            区分大小写.
+            </summary>
+            <param name="find"></param>
+            <param name="start"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.HtmlCharLoad.GetNextNoMatter(System.String,System.Int32)">
+            <summary>
+            不区分大小写.不考虑字符串内.
+            </summary>
+            <param name="find"></param>
+            <param name="start"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.HtmlCharLoad.GetNext(System.Char,System.Int32)">
+            <summary>
+            查找下一个不在字符串中的匹配..
+            </summary>
+            <param name="find"></param>
+            <param name="start"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyCmn.HtmlCharLoad.GetNextNotNull(System.Int32)">
+            <summary>
+            查找下一个不在字符串中的匹配.
+            </summary>
+            <param name="start"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MyCmn.HtmlCharLoad.CmdArgNode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MyCmn.HtmlCharLoad.CmdArgNode.Cmd">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MyCmn.HtmlCharLoad.CmdArgNode.Args">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:MyCmn.RequestFilter">
+            <summary>
+            修复 IE 下Post数据乱码的Bug
+            </summary>
+        </member>
+        <member name="T:System.LangEnum">
+            <summary>
+            
+            </summary>
+            <remarks>
+            Html定义的语言代码 http://www.w3schools.com/cn/tags/ref_language_codes.asp
+            语言代码: http://www.lingoes.cn/zh/translator/langcode.htm
+            </remarks>
+        </member>
+        <member name="F:System.LangEnum.En">
+            <summary>
+            英语
+            </summary>
+        </member>
+        <member name="F:System.LangEnum.Zh">
+            <summary>
+            中文
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.En">
+            <summary>
+            英语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Zh">
+            <summary>
+            中文
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Af">
+            <summary>
+            南非语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Afza">
+            <summary>
+            南非语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Ar">
+            <summary>
+            阿拉伯语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Arae">
+            <summary>
+            阿拉伯语(阿联酋)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Arbh">
+            <summary>
+            阿拉伯语(巴林)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Ardz">
+            <summary>
+            阿拉伯语(阿尔及利亚)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Areg">
+            <summary>
+            阿拉伯语(埃及)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Ariq">
+            <summary>
+            阿拉伯语(伊拉克)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Arjo">
+            <summary>
+            阿拉伯语(约旦)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Arkw">
+            <summary>
+            阿拉伯语(科威特)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Arlb">
+            <summary>
+            阿拉伯语(黎巴嫩)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Arly">
+            <summary>
+            阿拉伯语(利比亚)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Arma">
+            <summary>
+            阿拉伯语(摩洛哥)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Arom">
+            <summary>
+            阿拉伯语(阿曼)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Arqa">
+            <summary>
+            阿拉伯语(卡塔尔)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Arsa">
+            <summary>
+            阿拉伯语(沙特阿拉伯)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Arsy">
+            <summary>
+            阿拉伯语(叙利亚)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Artn">
+            <summary>
+            阿拉伯语(突尼斯)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Arye">
+            <summary>
+            阿拉伯语(也门)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Az">
+            <summary>
+            阿塞拜疆语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Azaz">
+            <summary>
+            阿塞拜疆语(拉丁文)阿塞拜疆语(西里尔文)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Be">
+            <summary>
+            比利时语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Beby">
+            <summary>
+            比利时语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Bg">
+            <summary>
+            保加利亚语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Bgbg">
+            <summary>
+            保加利亚语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Bsba">
+            <summary>
+            波斯尼亚语(拉丁文，波斯尼亚和黑塞哥维那)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Ca">
+            <summary>
+            加泰隆语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Caes">
+            <summary>
+            加泰隆语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Cs">
+            <summary>
+            捷克语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Cscz">
+            <summary>
+            捷克语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Cy">
+            <summary>
+            威尔士语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Cygb">
+            <summary>
+            威尔士语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Da">
+            <summary>
+            丹麦语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Dadk">
+            <summary>
+            丹麦语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.De">
+            <summary>
+            德语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Deat">
+            <summary>
+            德语(奥地利)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Dech">
+            <summary>
+            德语(瑞士)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Dede">
+            <summary>
+            德语(德国)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Deli">
+            <summary>
+            德语(列支敦士登)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Delu">
+            <summary>
+            德语(卢森堡)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Dv">
+            <summary>
+            第维埃语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Dvmv">
+            <summary>
+            第维埃语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.El">
+            <summary>
+            希腊语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Elgr">
+            <summary>
+            希腊语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Enau">
+            <summary>
+            英语(澳大利亚)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Enbz">
+            <summary>
+            英语(伯利兹)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Enca">
+            <summary>
+            英语(加拿大)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Encb">
+            <summary>
+            英语(加勒比海)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Engb">
+            <summary>
+            英语(英国)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Enie">
+            <summary>
+            英语(爱尔兰)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Enjm">
+            <summary>
+            英语(牙买加)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Ennz">
+            <summary>
+            英语(新西兰)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Enph">
+            <summary>
+            英语(菲律宾)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Entt">
+            <summary>
+            英语(特立尼达)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Enus">
+            <summary>
+            英语(美国)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Enza">
+            <summary>
+            英语(南非)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Enzw">
+            <summary>
+            英语(津巴布韦)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Eo">
+            <summary>
+            世界语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Es">
+            <summary>
+            西班牙语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Esar">
+            <summary>
+            西班牙语(阿根廷)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Esbo">
+            <summary>
+            西班牙语(玻利维亚)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Escl">
+            <summary>
+            西班牙语(智利)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Esco">
+            <summary>
+            西班牙语(哥伦比亚)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Escr">
+            <summary>
+            西班牙语(哥斯达黎加)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Esdo">
+            <summary>
+            西班牙语(多米尼加共和国)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Esec">
+            <summary>
+            西班牙语(厄瓜多尔)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Eses">
+            <summary>
+            西班牙语(传统)西班牙语(国际)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Esgt">
+            <summary>
+            西班牙语(危地马拉)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Eshn">
+            <summary>
+            西班牙语(洪都拉斯)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Esmx">
+            <summary>
+            西班牙语(墨西哥)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Esni">
+            <summary>
+            西班牙语(尼加拉瓜)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Espa">
+            <summary>
+            西班牙语(巴拿马)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Espe">
+            <summary>
+            西班牙语(秘鲁)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Espr">
+            <summary>
+            西班牙语(波多黎各(美))
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Espy">
+            <summary>
+            西班牙语(巴拉圭)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Essv">
+            <summary>
+            西班牙语(萨尔瓦多)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Esuy">
+            <summary>
+            西班牙语(乌拉圭)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Esve">
+            <summary>
+            西班牙语(委内瑞拉)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Et">
+            <summary>
+            爱沙尼亚语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Etee">
+            <summary>
+            爱沙尼亚语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Eu">
+            <summary>
+            巴士克语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Eues">
+            <summary>
+            巴士克语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Fa">
+            <summary>
+            法斯语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Fair">
+            <summary>
+            法斯语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Fi">
+            <summary>
+            芬兰语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Fifi">
+            <summary>
+            芬兰语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Fo">
+            <summary>
+            法罗语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Fofo">
+            <summary>
+            法罗语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Fr">
+            <summary>
+            法语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Frbe">
+            <summary>
+            法语(比利时)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Frca">
+            <summary>
+            法语(加拿大)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Frch">
+            <summary>
+            法语(瑞士)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Frfr">
+            <summary>
+            法语(法国)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Frlu">
+            <summary>
+            法语(卢森堡)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Frmc">
+            <summary>
+            法语(摩纳哥)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Gl">
+            <summary>
+            加里西亚语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Gles">
+            <summary>
+            加里西亚语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Gu">
+            <summary>
+            古吉拉特语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Guin">
+            <summary>
+            古吉拉特语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.He">
+            <summary>
+            希伯来语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Heil">
+            <summary>
+            希伯来语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Hi">
+            <summary>
+            印地语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Hiin">
+            <summary>
+            印地语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Hr">
+            <summary>
+            克罗地亚语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Hrba">
+            <summary>
+            克罗地亚语(波斯尼亚和黑塞哥维那)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Hrhr">
+            <summary>
+            克罗地亚语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Hu">
+            <summary>
+            匈牙利语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Huhu">
+            <summary>
+            匈牙利语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Hy">
+            <summary>
+            亚美尼亚语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Hyam">
+            <summary>
+            亚美尼亚语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Id">
+            <summary>
+            印度尼西亚语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Idid">
+            <summary>
+            印度尼西亚语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Is">
+            <summary>
+            冰岛语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Isis">
+            <summary>
+            冰岛语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.It">
+            <summary>
+            意大利语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Itch">
+            <summary>
+            意大利语(瑞士)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Itit">
+            <summary>
+            意大利语(意大利)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Ja">
+            <summary>
+            日语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Jajp">
+            <summary>
+            日语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Ka">
+            <summary>
+            格鲁吉亚语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Kage">
+            <summary>
+            格鲁吉亚语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Kk">
+            <summary>
+            哈萨克语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Kkkz">
+            <summary>
+            哈萨克语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Kn">
+            <summary>
+            卡纳拉语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Knin">
+            <summary>
+            卡纳拉语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Ko">
+            <summary>
+            朝鲜语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Kokr">
+            <summary>
+            朝鲜语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Kok">
+            <summary>
+            孔卡尼语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Kokin">
+            <summary>
+            孔卡尼语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Ky">
+            <summary>
+            吉尔吉斯语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Kykg">
+            <summary>
+            吉尔吉斯语(西里尔文)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Lt">
+            <summary>
+            立陶宛语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Ltlt">
+            <summary>
+            立陶宛语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Lv">
+            <summary>
+            拉脱维亚语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Lvlv">
+            <summary>
+            拉脱维亚语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Mi">
+            <summary>
+            毛利语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Minz">
+            <summary>
+            毛利语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Mk">
+            <summary>
+            马其顿语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Mkmk">
+            <summary>
+            马其顿语(fyrom)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Mn">
+            <summary>
+            蒙古语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Mnmn">
+            <summary>
+            蒙古语(西里尔文)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Mr">
+            <summary>
+            马拉地语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Mrin">
+            <summary>
+            马拉地语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Ms">
+            <summary>
+            马来语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Msbn">
+            <summary>
+            马来语(文莱达鲁萨兰)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Msmy">
+            <summary>
+            马来语(马来西亚)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Mt">
+            <summary>
+            马耳他语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Mtmt">
+            <summary>
+            马耳他语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Nb">
+            <summary>
+            挪威语(伯克梅尔)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Nbno">
+            <summary>
+            挪威语(伯克梅尔)(挪威)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Nl">
+            <summary>
+            荷兰语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Nlbe">
+            <summary>
+            荷兰语(比利时)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Nlnl">
+            <summary>
+            荷兰语(荷兰)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Nnno">
+            <summary>
+            挪威语(尼诺斯克)(挪威)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Ns">
+            <summary>
+            北梭托语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Nsza">
+            <summary>
+            北梭托语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Pa">
+            <summary>
+            旁遮普语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Pain">
+            <summary>
+            旁遮普语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Pl">
+            <summary>
+            波兰语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Plpl">
+            <summary>
+            波兰语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Pt">
+            <summary>
+            葡萄牙语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Ptbr">
+            <summary>
+            葡萄牙语(巴西)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Ptpt">
+            <summary>
+            葡萄牙语(葡萄牙)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Qu">
+            <summary>
+            克丘亚语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Qubo">
+            <summary>
+            克丘亚语(玻利维亚)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Quec">
+            <summary>
+            克丘亚语(厄瓜多尔)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Qupe">
+            <summary>
+            克丘亚语(秘鲁)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Ro">
+            <summary>
+            罗马尼亚语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Roro">
+            <summary>
+            罗马尼亚语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Ru">
+            <summary>
+            俄语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Ruru">
+            <summary>
+            俄语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Sa">
+            <summary>
+            梵文
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Sain">
+            <summary>
+            梵文
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Se">
+            <summary>
+            北萨摩斯语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Sefi">
+            <summary>
+            北萨摩斯语(芬兰) 斯科特萨摩斯语(芬兰) 伊那里萨摩斯语(芬兰)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Seno">
+            <summary>
+            北萨摩斯语(挪威)律勒欧萨摩斯语(挪威) 南萨摩斯语(挪威)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Sese">
+            <summary>
+            北萨摩斯语(瑞典) 律勒欧萨摩斯语(瑞典) 南萨摩斯语(瑞典)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Sk">
+            <summary>
+            斯洛伐克语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Sksk">
+            <summary>
+            斯洛伐克语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Sl">
+            <summary>
+            斯洛文尼亚语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Slsi">
+            <summary>
+            斯洛文尼亚语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Sq">
+            <summary>
+            阿尔巴尼亚语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Sqal">
+            <summary>
+            阿尔巴尼亚语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Srba">
+            <summary>
+            塞尔维亚语(拉丁文，波斯尼亚和黑塞哥维那) 塞尔维亚语(西里尔文，波斯尼亚和黑塞哥维那)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Srsp">
+            <summary>
+            塞尔维亚(拉丁) 塞尔维亚(西里尔文)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Sv">
+            <summary>
+            瑞典语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Svfi">
+            <summary>
+            瑞典语(芬兰)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Svse">
+            <summary>
+            瑞典语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Sw">
+            <summary>
+            斯瓦希里语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Swke">
+            <summary>
+            斯瓦希里语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Syr">
+            <summary>
+            叙利亚语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Syrsy">
+            <summary>
+            叙利亚语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Ta">
+            <summary>
+            泰米尔语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Tain">
+            <summary>
+            泰米尔语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Te">
+            <summary>
+            泰卢固语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Tein">
+            <summary>
+            泰卢固语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Th">
+            <summary>
+            泰语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Thth">
+            <summary>
+            泰语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Tl">
+            <summary>
+            塔加路语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Tlph">
+            <summary>
+            塔加路语(菲律宾)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Tn">
+            <summary>
+            茨瓦纳语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Tnza">
+            <summary>
+            茨瓦纳语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Tr">
+            <summary>
+            土耳其语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Trtr">
+            <summary>
+            土耳其语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Ts">
+            <summary>
+            宗加语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Tt">
+            <summary>
+            鞑靼语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Ttru">
+            <summary>
+            鞑靼语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Uk">
+            <summary>
+            乌克兰语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Ukua">
+            <summary>
+            乌克兰语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Ur">
+            <summary>
+            乌都语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Urpk">
+            <summary>
+            乌都语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Uz">
+            <summary>
+            乌兹别克语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Uzuz">
+            <summary>
+            乌兹别克语(拉丁文)乌兹别克语(西里尔文)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Vi">
+            <summary>
+            越南语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Vivn">
+            <summary>
+            越南语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Xh">
+            <summary>
+            班图语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Xhza">
+            <summary>
+            班图语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Zhcn">
+            <summary>
+            中文(简体)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Zhhk">
+            <summary>
+            中文(香港)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Zhmo">
+            <summary>
+            中文(澳门)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Zhsg">
+            <summary>
+            中文(新加坡)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Zhtw">
+            <summary>
+            中文(繁体)
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Zu">
+            <summary>
+            祖鲁语
+            </summary>
+        </member>
+        <member name="F:System.LangAllEnum.Zuza">
+            <summary>
+            祖鲁语
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,20 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>和易家社区服务平台</title>
+    <%--<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />--%>
+    <%--<meta name="verify-v1" content="MCgouhOaJKfjbeZwMKdvkQDl+liNWgNYBe9lBtMGlDY=" />--%>
+    <meta name="Copyright" content="和易家社区服务平台" />
+    <meta name="description" content="和易家社区服务平台,企业建站,B2C,B2B电子商务平台." />
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="~/favicon.ico" type="image/x-icon" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="FillHeight FillMinHeight">
+    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+    </asp:ContentPlaceHolder>
+</body>
+</html>

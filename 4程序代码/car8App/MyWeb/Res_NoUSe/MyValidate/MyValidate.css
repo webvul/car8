@@ -1,0 +1,14 @@
+﻿.MyCheckTip
+{
+	margin-left:10px;
+	border:solid 1px red ;
+	background-color:Yellow ;
+	overflow:auto ;
+	z-index:99999;
+}
+.MyCheckBg
+{
+		background-image:url(onError.gif) ;
+	background-repeat:no-repeat ;
+
+}

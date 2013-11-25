@@ -1,0 +1,9 @@
+﻿.marquee
+{
+    border: 0px solid #f1f1f1;
+}
+.marquee span
+{
+    margin: 8px;
+    text-align: center;
+}

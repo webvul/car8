@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EE45C2B3-249D-4940-8609-7846E1FBF8D4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MyOql</RootNamespace>
+    <AssemblyName>MyOql</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\MyOql.XML</DocumentationFile>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\MyOql.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>MyOql.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MyCmn, Version=1.0.4329.32553, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs4\MyCmn.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\libs\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\libs4\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseClip\ColumnClip_Extend.cs" />
+    <Compile Include="BaseClip\ColumnExtend.cs" />
+    <Compile Include="BaseClip\RawColumn.cs" />
+    <Compile Include="BaseClip\SelecteClip_Extend_Shadow.cs" />
+    <Compile Include="BaseClip\SelecteClip_Extend_Serialize.cs" />
+    <Compile Include="BaseClip\ColumnClip_Function.cs" />
+    <Compile Include="BaseClip\SelecteClipT.cs" />
+    <Compile Include="BaseClip\SelecteClip_Extend_ForT.cs" />
+    <Compile Include="BaseClip\MySqlClipBase.cs" />
+    <Compile Include="BaseClip\SelecteClipT_Join.cs" />
+    <Compile Include="BaseClip\SelecteClipT_LeftJoin.cs" />
+    <Compile Include="BaseClip\SelecteClipT_RightJoin.cs" />
+    <Compile Include="BaseClip\SelecteClipT_Join_Select.cs" />
+    <Compile Include="BaseClip\SimpleColumn.cs" />
+    <Compile Include="BaseClip\ComplexColumn.cs" />
+    <Compile Include="ComplexExpresstion.cs" />
+    <Compile Include="BaseClip\ConstColumn.cs" />
+    <Compile Include="ContextClipBase.cs" />
+    <Compile Include="BaseClip\ColumnClip_Extend_Compute.cs" />
+    <Compile Include="dbo\dbo_Extend_UpdateEnum.cs" />
+    <Compile Include="dbo\dbo_Update.cs" />
+    <Compile Include="dbo\dbo_Insert.cs" />
+    <Compile Include="dbo\IDboEvent_Cache.cs" />
+    <Compile Include="dbo\IDboEvent.cs" />
+    <Compile Include="dbo\IDboEvent_Extend.cs" />
+    <Compile Include="dbo\IDboEvent_ed.cs" />
+    <Compile Include="dbo\dbo_HasValue.cs" />
+    <Compile Include="dbo\dbo_New.cs" />
+    <Compile Include="dbo\dboColumn.cs" />
+    <Compile Include="dbo\dboSelect.cs" />
+    <Compile Include="dbo\dboRule.cs" />
+    <Compile Include="dbo\dboSelect_Join.cs" />
+    <Compile Include="Enums\DatabaseType.cs" />
+    <Compile Include="Enums\MyOqlExtendEnum.cs" />
+    <Compile Include="Enums\MyOqlActionEnum.cs" />
+    <Compile Include="Enums\NoValueEnum.cs" />
+    <Compile Include="Enums\SelectOption.cs" />
+    <Compile Include="Enums\ExecuteTypeEnum.cs" />
+    <Compile Include="BaseClip\GroupByClip.cs" />
+    <Compile Include="BaseClip\HavingClip.cs" />
+    <Compile Include="Enums\MyOqlRuleEnum.cs" />
+    <Compile Include="Enums\WhereValueEnum.cs" />
+    <Compile Include="Enums\DatePart.cs" />
+    <Compile Include="Enums\ReConfigEnum.cs" />
+    <Compile Include="Helper\MyOqlCodeGenSect.cs" />
+    <Compile Include="Helper\Ents.cs" />
+    <Compile Include="Helper\MyOqlConfigSect.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Helper\SqlScriptGen\MsSql.cs" />
+    <Compile Include="Helper\SqlScriptGen\MySql.cs" />
+    <Compile Include="dbo\dbo_MapHelper.cs" />
+    <Compile Include="BaseClip\ModelClip.cs" />
+    <Compile Include="Helper\MyParaDefine.cs" />
+    <Compile Include="Helper\MyEnumDefine.cs" />
+    <Compile Include="Helper\MyFkDefine.cs" />
+    <Compile Include="Helper\MyOqlCodeGenSect_Table.cs" />
+    <Compile Include="dbo\dbo_MyOqlSect.cs" />
+    <Compile Include="Helper\MyOqlCodeGenSect_Function.cs" />
+    <Compile Include="Helper\RuleRuntimeConfig.cs" />
+    <Compile Include="Helper\MyOqlCodeGenSect_View.cs" />
+    <Compile Include="Helper\ColumnDefineModel.cs" />
+    <Compile Include="Interface\CodeGenSect_Interface.cs" />
+    <Compile Include="Interface\IColumn.cs" />
+    <Compile Include="Interface\IJoinable.cs" />
+    <Compile Include="Interface\IRawOql.cs" />
+    <Compile Include="Interface\ITableRule.cs" />
+    <Compile Include="Interface\IViewRule.cs" />
+    <Compile Include="Interface\IProcRule.cs" />
+    <Compile Include="Interface\IDbr.cs" />
+    <Compile Include="Interface\IAsable.cs" />
+    <Compile Include="MyCommand.cs" />
+    <Compile Include="BaseClip\OrderByClip.cs" />
+    <Compile Include="BaseClip\ProcClip.cs" />
+    <Compile Include="Provider\CommandValue.cs" />
+    <Compile Include="Provider\MsSql\SqlServer.cs" />
+    <Compile Include="Provider\MyLinq\MyLinq.cs" />
+    <Compile Include="Provider\TranslateSql.cs" />
+    <Compile Include="Provider\TranslateSql_Extend.cs" />
+    <Compile Include="Provider\TranslateSql_Extend_Sql.cs" />
+    <Compile Include="Provider\TranslateSql_Abstract.cs" />
+    <Compile Include="BaseClip\DeleteClip_Extend.cs" />
+    <Compile Include="Provider\CommandParameter.cs" />
+    <Compile Include="Provider\TypeMap.cs" />
+    <Compile Include="BaseClip\SelecteClipT_Extend.cs" />
+    <Compile Include="BaseClip\InsertClip.cs" />
+    <Compile Include="BaseClip\JoinTableClip.cs" />
+    <Compile Include="Enums\SqlKeyword.cs" />
+    <Compile Include="dbo\dbo.cs" />
+    <Compile Include="Enums\SqlOperator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BaseClip\ColumnClip.cs" />
+    <Compile Include="BaseClip\SkipClip.cs" />
+    <Compile Include="BaseClip\DeleteClip.cs" />
+    <Compile Include="BaseClip\SelecteClip.cs" />
+    <Compile Include="BaseClip\SqlClip.cs" />
+    <Compile Include="BaseClip\UpdationClip.cs" />
+    <Compile Include="BaseClip\TakeClip.cs" />
+    <Compile Include="BaseClip\WhereClip.cs" />
+    <Compile Include="dbo\dbo_Extend.cs" />
+    <Compile Include="dbo\dbo_Extend_ExecuteSql.cs" />
+    <Compile Include="dbo\dboSelect_Extend.cs" />
+    <Compile Include="dbo\dbo_Cache.cs" />
+    <Compile Include="BaseClip\ConstTable.cs" />
+    <Compile Include="ColumnName.cs" />
+    <Compile Include="DoingResult.cs" />
+    <Compile Include="EntityName.cs" />
+    <Compile Include="BaseClip\AsClip.cs" />
+    <Compile Include="BaseClip\MyContextClip.cs" />
+    <Compile Include="Interface\IFunctionRule.cs" />
+    <Compile Include="dbo\dbo_ReadMe.cs" />
+    <Compile Include="BoxyCache.cs" />
+    <Compile Include="ContextClipBase_Sqlserver9.cs" />
+    <Compile Include="CaseWhen.cs" />
+    <Compile Include="RuleBase.cs" />
+    <Compile Include="RuleBase_Extend.cs" />
+    <Compile Include="Columns.cs" />
+    <Compile Include="MyOqlConfigScope.cs" />
+    <Compile Include="MyOqlError.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MyOqlSet.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Helper\说明.txt" />
+    <Content Include="说明.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Helper\MyOqlCodeGenSect_Proc.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MyOql.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy $(TargetDir)MyOql* $(SolutionDir)libs4\* /y /R /F</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

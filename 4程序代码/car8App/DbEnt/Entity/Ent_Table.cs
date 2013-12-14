@@ -1,4 +1,4 @@
-﻿//系统自动生成的实体，不能修改。 By: UDI-PC.  At:2013-11-15 13:05:54
+﻿//系统自动生成的实体，不能修改。 By: UDI-PC.于新海  At:2013-12-09 19:32:05
 using System;
 using MyOql;
 using MyCmn;
@@ -36,7 +36,7 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn Id { get; set; }
         /// <summary>
-        /// 部门ID(Int32)[外键(DeptID=TB_Dept:ID)]
+        /// 部门ID(Int32)[外键(DeptID=Dept:ID)]
         /// </summary>
         public SimpleColumn DeptID { get; set; }
         /// <summary>
@@ -57,7 +57,7 @@ namespace DbEnt
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return Id; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "TB_DeptAnnex"; }
+        public override string GetDbName() { return "DeptAnnex"; }
 
         public Entity FindById(Int32 Id)
         {
@@ -104,7 +104,7 @@ namespace DbEnt
             public Int32 Id { get; set; }
  
             /// <summary>
-            /// 部门ID[外键(DeptID=TB_Dept:ID)]
+            /// 部门ID[外键(DeptID=Dept:ID)]
             /// </summary>
             public Int32 DeptID { get; set; }
  
@@ -193,6 +193,7 @@ namespace DbEnt
             this.SortID = new SimpleColumn(this, DbType.Int32, 4,"SortID","SortID",true);
             this.Msn = new SimpleColumn(this, DbType.AnsiString, 50,"Msn","MSN",true);
             this.Qq = new SimpleColumn(this, DbType.AnsiString, 50,"Qq","QQ",true);
+            this.Role = new SimpleColumn(this, DbType.AnsiString, 50,"Role","Role",true);
             this.Power = new SimpleColumn(this, DbType.AnsiString, 4000,"Power","Power",true);
             this.NotPower = new SimpleColumn(this, DbType.AnsiString, 4000,"NotPower","NotPower",true);
         }
@@ -222,7 +223,7 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn IDCard { get; set; }
         /// <summary>
-        /// DeptID(Int32)[外键(DeptID=TB_Dept:ID)]
+        /// DeptID(Int32)[外键(DeptID=Dept:ID)]
         /// </summary>
         public SimpleColumn DeptID { get; set; }
         /// <summary>
@@ -254,6 +255,10 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn Qq { get; set; }
         /// <summary>
+        /// Role(AnsiString)
+        /// </summary>
+        public SimpleColumn Role { get; set; }
+        /// <summary>
         /// 权限(AnsiString)
         /// </summary>
         public SimpleColumn Power { get; set; }
@@ -262,12 +267,12 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn NotPower { get; set; }
 
-        public override SimpleColumn[] GetColumns() {  return new SimpleColumn[] { UserID,Password,Name,Logo,BirthDay,IDCard,DeptID,Email,Sex,Mobile,Phone,SortID,Msn,Qq,Power,NotPower }; }
+        public override SimpleColumn[] GetColumns() {  return new SimpleColumn[] { UserID,Password,Name,Logo,BirthDay,IDCard,DeptID,Email,Sex,Mobile,Phone,SortID,Msn,Qq,Role,Power,NotPower }; }
         public override SimpleColumn[] GetPrimaryKeys() { return new SimpleColumn[] { UserID };  }
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return null; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "TB_Person"; }
+        public override string GetDbName() { return "Person"; }
 
         public Entity FindByUserID(String UserID)
         {
@@ -302,6 +307,7 @@ namespace DbEnt
             tab.SortID = this.SortID.Clone() as SimpleColumn;
             tab.Msn = this.Msn.Clone() as SimpleColumn;
             tab.Qq = this.Qq.Clone() as SimpleColumn;
+            tab.Role = this.Role.Clone() as SimpleColumn;
             tab.Power = this.Power.Clone() as SimpleColumn;
             tab.NotPower = this.NotPower.Clone() as SimpleColumn;
 
@@ -350,7 +356,7 @@ namespace DbEnt
             public String IDCard { get; set; }
  
             /// <summary>
-            /// DeptID[外键(DeptID=TB_Dept:ID)]
+            /// DeptID[外键(DeptID=Dept:ID)]
             /// </summary>
             public Int32 DeptID { get; set; }
  
@@ -390,6 +396,11 @@ namespace DbEnt
             public String Qq { get; set; }
  
             /// <summary>
+            /// Role
+            /// </summary>
+            public String Role { get; set; }
+ 
+            /// <summary>
             /// 权限
             /// </summary>
             public String Power { get; set; }
@@ -415,6 +426,7 @@ namespace DbEnt
                 if ( PropertyName == "SortID" ) { this.SortID = ValueProc.As<Int32>(Value) ; return true; }
                 if ( PropertyName == "Msn" ) { this.Msn = ValueProc.As<String>(Value) ; return true; }
                 if ( PropertyName == "Qq" ) { this.Qq = ValueProc.As<String>(Value) ; return true; }
+                if ( PropertyName == "Role" ) { this.Role = ValueProc.As<String>(Value) ; return true; }
                 if ( PropertyName == "Power" ) { this.Power = ValueProc.As<String>(Value) ; return true; }
                 if ( PropertyName == "NotPower" ) { this.NotPower = ValueProc.As<String>(Value) ; return true; }
                 return false ;
@@ -436,12 +448,13 @@ namespace DbEnt
                 if ( PropertyName == "SortID" ) { return this.SortID ; }
                 if ( PropertyName == "Msn" ) { return this.Msn ; }
                 if ( PropertyName == "Qq" ) { return this.Qq ; }
+                if ( PropertyName == "Role" ) { return this.Role ; }
                 if ( PropertyName == "Power" ) { return this.Power ; }
                 if ( PropertyName == "NotPower" ) { return this.NotPower ; }
                 return null ;
             }
 
-            public string[]  GetProperties() { return new string[]{ "UserID","Password","Name","Logo","BirthDay","IDCard","DeptID","Email","Sex","Mobile","Phone","SortID","Msn","Qq","Power","NotPower" } ; }
+            public string[]  GetProperties() { return new string[]{ "UserID","Password","Name","Logo","BirthDay","IDCard","DeptID","Email","Sex","Mobile","Phone","SortID","Msn","Qq","Role","Power","NotPower" } ; }
             
             public object Clone()
             {
@@ -500,6 +513,7 @@ namespace DbEnt
             this.GisPos = new SimpleColumn(this, DbType.AnsiString, 50,"GisPos","GisPos",true);
             this.Power = new SimpleColumn(this, DbType.AnsiString, 4000,"Power","Power",true);
             this.TitleExtend = new SimpleColumn(this, DbType.Int32, 4,"TitleExtend","TitleExtend",true);
+            this.IsValidate = new SimpleColumn(this, DbType.Boolean, 1,"IsValidate","IsValidate",true);
         }
 
         /// <summary>
@@ -594,13 +608,17 @@ namespace DbEnt
         /// TitleExtend(Int32)[外键(TitleExtend=Annex:ID)]
         /// </summary>
         public SimpleColumn TitleExtend { get; set; }
+        /// <summary>
+        /// 是否开通(Boolean)
+        /// </summary>
+        public SimpleColumn IsValidate { get; set; }
 
-        public override SimpleColumn[] GetColumns() {  return new SimpleColumn[] { Id,Pid,Wbs,WebName,Name,Logo,Title,Address,Phone,Detail,Profile,About,SortID,KeyWords,Langs,DefaultLang,AddTime,BizType,EndTime,MySkin,GisPos,Power,TitleExtend }; }
+        public override SimpleColumn[] GetColumns() {  return new SimpleColumn[] { Id,Pid,Wbs,WebName,Name,Logo,Title,Address,Phone,Detail,Profile,About,SortID,KeyWords,Langs,DefaultLang,AddTime,BizType,EndTime,MySkin,GisPos,Power,TitleExtend,IsValidate }; }
         public override SimpleColumn[] GetPrimaryKeys() { return new SimpleColumn[] { Id };  }
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return null; }
         public override SimpleColumn GetUniqueKey() { return  WebName; }
-        public override string GetDbName() { return "TB_Dept"; }
+        public override string GetDbName() { return "Dept"; }
 
         public Entity FindById(Int32 Id)
         {
@@ -654,6 +672,7 @@ namespace DbEnt
             tab.GisPos = this.GisPos.Clone() as SimpleColumn;
             tab.Power = this.Power.Clone() as SimpleColumn;
             tab.TitleExtend = this.TitleExtend.Clone() as SimpleColumn;
+            tab.IsValidate = this.IsValidate.Clone() as SimpleColumn;
 
             return tab;
         }
@@ -783,6 +802,11 @@ namespace DbEnt
             /// TitleExtend[外键(TitleExtend=Annex:ID)]
             /// </summary>
             public Int32 TitleExtend { get; set; }
+ 
+            /// <summary>
+            /// 是否开通
+            /// </summary>
+            public Boolean IsValidate { get; set; }
 
             public bool SetPropertyValue(string PropertyName, object Value)
             {
@@ -809,6 +833,7 @@ namespace DbEnt
                 if ( PropertyName == "GisPos" ) { this.GisPos = ValueProc.As<String>(Value) ; return true; }
                 if ( PropertyName == "Power" ) { this.Power = ValueProc.As<String>(Value) ; return true; }
                 if ( PropertyName == "TitleExtend" ) { this.TitleExtend = ValueProc.As<Int32>(Value) ; return true; }
+                if ( PropertyName == "IsValidate" ) { this.IsValidate = ValueProc.As<Boolean>(Value) ; return true; }
                 return false ;
            }
 
@@ -837,10 +862,11 @@ namespace DbEnt
                 if ( PropertyName == "GisPos" ) { return this.GisPos ; }
                 if ( PropertyName == "Power" ) { return this.Power ; }
                 if ( PropertyName == "TitleExtend" ) { return this.TitleExtend ; }
+                if ( PropertyName == "IsValidate" ) { return this.IsValidate ; }
                 return null ;
             }
 
-            public string[]  GetProperties() { return new string[]{ "Id","Pid","Wbs","WebName","Name","Logo","Title","Address","Phone","Detail","Profile","About","SortID","KeyWords","Langs","DefaultLang","AddTime","BizType","EndTime","MySkin","GisPos","Power","TitleExtend" } ; }
+            public string[]  GetProperties() { return new string[]{ "Id","Pid","Wbs","WebName","Name","Logo","Title","Address","Phone","Detail","Profile","About","SortID","KeyWords","Langs","DefaultLang","AddTime","BizType","EndTime","MySkin","GisPos","Power","TitleExtend","IsValidate" } ; }
             
             public object Clone()
             {
@@ -881,6 +907,13 @@ namespace DbEnt
                 if (_GetPersons != null) return _GetPersons;
                 _GetPersons = dbr.Person.SelectWhere(o => o.DeptID == this.Id).ToEntityList<PersonRule.Entity>().ToArray();
                 return _GetPersons;
+            }
+            private DeptCommunityRule.Entity[] _GetDeptCommunitys = null;
+            public DeptCommunityRule.Entity[] GetDeptCommunitys()
+            {
+                if (_GetDeptCommunitys != null) return _GetDeptCommunitys;
+                _GetDeptCommunitys = dbr.DeptCommunity.SelectWhere(o => o.DeptId == this.Id).ToEntityList<DeptCommunityRule.Entity>().ToArray();
+                return _GetDeptCommunitys;
             }
             private ProductTypeRule.Entity[] _GetProductTypes = null;
             public ProductTypeRule.Entity[] GetProductTypes()
@@ -2570,6 +2603,1301 @@ namespace DbEnt
                 return this.CloneIEntity() ;
             }
 
+         }
+    }
+
+
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    [Serializable]
+    public sealed partial class RoleRule : RuleBase, ITableRule,ICloneable
+    {
+
+
+        public  RoleRule() : base("Role")
+        {
+            this.Id = new SimpleColumn(this, DbType.Int32, 4,"Id","Id",false);
+            this.Name = new SimpleColumn(this, DbType.AnsiString, 50,"Name","Name",true);
+            this.Power = new SimpleColumn(this, DbType.AnsiString, 250,"Power","Power",true);
+            this.NotPower = new SimpleColumn(this, DbType.AnsiString, 250,"NotPower","NotPower",true);
+            this.Remark = new SimpleColumn(this, DbType.AnsiString, 250,"Remark","Remark",true);
+        }
+
+        /// <summary>
+        /// Id(Int32)[主键(Id),自增键]
+        /// </summary>
+        public SimpleColumn Id { get; set; }
+        /// <summary>
+        /// Name(AnsiString)
+        /// </summary>
+        public SimpleColumn Name { get; set; }
+        /// <summary>
+        /// Power(AnsiString)
+        /// </summary>
+        public SimpleColumn Power { get; set; }
+        /// <summary>
+        /// NotPower(AnsiString)
+        /// </summary>
+        public SimpleColumn NotPower { get; set; }
+        /// <summary>
+        /// Remark(AnsiString)
+        /// </summary>
+        public SimpleColumn Remark { get; set; }
+
+        public override SimpleColumn[] GetColumns() {  return new SimpleColumn[] { Id,Name,Power,NotPower,Remark }; }
+        public override SimpleColumn[] GetPrimaryKeys() { return new SimpleColumn[] { Id };  }
+        public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
+        public override SimpleColumn GetAutoIncreKey() {  return Id; }
+        public override SimpleColumn GetUniqueKey() { return  null; }
+        public override string GetDbName() { return "Role"; }
+
+        public Entity FindById(Int32 Id)
+        {
+             if ( Id <= 0 ) return null ;
+            return this.SelectWhere(o => o.Id == Id).ToEntity<Entity>();
+        }
+        public int DeleteById(Int32 Id)
+        {
+             if ( Id <= 0 ) return 0 ;
+            return this.Delete(o => o.Id == Id).Execute() ;
+        }
+
+
+        public override object Clone()
+        {
+            var tab = new RoleRule();
+            if ( this._Config_ != null ) tab._Config_ = base._Config_.Clone() as RuleRuntimeConfig ;
+            tab.SetAlias(base.Name);
+            tab.SetReconfig(base.ReConfig);
+
+            tab.Id = this.Id.Clone() as SimpleColumn;
+            tab.Name = this.Name.Clone() as SimpleColumn;
+            tab.Power = this.Power.Clone() as SimpleColumn;
+            tab.NotPower = this.NotPower.Clone() as SimpleColumn;
+            tab.Remark = this.Remark.Clone() as SimpleColumn;
+
+            return tab;
+        }
+        /// <summary>
+        ///  
+        /// </summary>
+        public Entity _ { get { return new Entity (); } }
+       
+        /// <summary>
+        /// 
+        /// </summary>
+        [Serializable]
+        public sealed partial class Entity :IEntity
+        {
+ 
+            /// <summary>
+            /// Id[主键(Id),自增键]
+            /// </summary>
+            public Int32 Id { get; set; }
+ 
+            /// <summary>
+            /// Name
+            /// </summary>
+            public String Name { get; set; }
+ 
+            /// <summary>
+            /// Power
+            /// </summary>
+            public String Power { get; set; }
+ 
+            /// <summary>
+            /// NotPower
+            /// </summary>
+            public String NotPower { get; set; }
+ 
+            /// <summary>
+            /// Remark
+            /// </summary>
+            public String Remark { get; set; }
+
+            public bool SetPropertyValue(string PropertyName, object Value)
+            {
+                if ( PropertyName == "Id" ) { this.Id = ValueProc.As<Int32>(Value) ; return true; }
+                if ( PropertyName == "Name" ) { this.Name = ValueProc.As<String>(Value) ; return true; }
+                if ( PropertyName == "Power" ) { this.Power = ValueProc.As<String>(Value) ; return true; }
+                if ( PropertyName == "NotPower" ) { this.NotPower = ValueProc.As<String>(Value) ; return true; }
+                if ( PropertyName == "Remark" ) { this.Remark = ValueProc.As<String>(Value) ; return true; }
+                return false ;
+           }
+
+            public object GetPropertyValue(string PropertyName)
+            {
+                if ( PropertyName == "Id" ) { return this.Id ; }
+                if ( PropertyName == "Name" ) { return this.Name ; }
+                if ( PropertyName == "Power" ) { return this.Power ; }
+                if ( PropertyName == "NotPower" ) { return this.NotPower ; }
+                if ( PropertyName == "Remark" ) { return this.Remark ; }
+                return null ;
+            }
+
+            public string[]  GetProperties() { return new string[]{ "Id","Name","Power","NotPower","Remark" } ; }
+            
+            public object Clone()
+            {
+                return this.CloneIEntity() ;
+            }
+
+         }
+    }
+
+
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    [Serializable]
+    public sealed partial class EnterpriseShowCaseRule : RuleBase, ITableRule,ICloneable
+    {
+
+
+        public  EnterpriseShowCaseRule() : base("EnterpriseShowCase")
+        {
+            this.ProductID = new SimpleColumn(this, DbType.Int32, 4,"ProductID","ProductID",false);
+            this.SortID = new SimpleColumn(this, DbType.Int32, 4,"SortID","SortID",true);
+            this.BeginTime = new SimpleColumn(this, DbType.DateTime, 8,"BeginTime","BeginTime",true);
+            this.EndTime = new SimpleColumn(this, DbType.DateTime, 8,"EndTime","EndTime",true);
+            this.DeptID = new SimpleColumn(this, DbType.Int32, 4,"DeptID","DeptID",true);
+        }
+
+        /// <summary>
+        /// 产品ID(Int32)[主键(ProductID)]
+        /// </summary>
+        public SimpleColumn ProductID { get; set; }
+        /// <summary>
+        /// 排序数(Int32)
+        /// </summary>
+        public SimpleColumn SortID { get; set; }
+        /// <summary>
+        /// 开始时间(DateTime)
+        /// </summary>
+        public SimpleColumn BeginTime { get; set; }
+        /// <summary>
+        /// 结束时间(DateTime)
+        /// </summary>
+        public SimpleColumn EndTime { get; set; }
+        /// <summary>
+        /// 部门ID(Int32)
+        /// </summary>
+        public SimpleColumn DeptID { get; set; }
+
+        public override SimpleColumn[] GetColumns() {  return new SimpleColumn[] { ProductID,SortID,BeginTime,EndTime,DeptID }; }
+        public override SimpleColumn[] GetPrimaryKeys() { return new SimpleColumn[] { ProductID };  }
+        public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
+        public override SimpleColumn GetAutoIncreKey() {  return null; }
+        public override SimpleColumn GetUniqueKey() { return  null; }
+        public override string GetDbName() { return "EnterpriseShowCase"; }
+
+        public Entity FindByProductID(Int32 ProductID)
+        {
+             if ( ProductID <= 0 ) return null ;
+            return this.SelectWhere(o => o.ProductID == ProductID).ToEntity<Entity>();
+        }
+        public int DeleteByProductID(Int32 ProductID)
+        {
+             if ( ProductID <= 0 ) return 0 ;
+            return this.Delete(o => o.ProductID == ProductID).Execute() ;
+        }
+
+
+        public override object Clone()
+        {
+            var tab = new EnterpriseShowCaseRule();
+            if ( this._Config_ != null ) tab._Config_ = base._Config_.Clone() as RuleRuntimeConfig ;
+            tab.SetAlias(base.Name);
+            tab.SetReconfig(base.ReConfig);
+
+            tab.ProductID = this.ProductID.Clone() as SimpleColumn;
+            tab.SortID = this.SortID.Clone() as SimpleColumn;
+            tab.BeginTime = this.BeginTime.Clone() as SimpleColumn;
+            tab.EndTime = this.EndTime.Clone() as SimpleColumn;
+            tab.DeptID = this.DeptID.Clone() as SimpleColumn;
+
+            return tab;
+        }
+        /// <summary>
+        ///  
+        /// </summary>
+        public Entity _ { get { return new Entity (); } }
+       
+        /// <summary>
+        /// 
+        /// </summary>
+        [Serializable]
+        public sealed partial class Entity :IEntity
+        {
+ 
+            /// <summary>
+            /// 产品ID[主键(ProductID)]
+            /// </summary>
+            public Int32 ProductID { get; set; }
+ 
+            /// <summary>
+            /// 排序数
+            /// </summary>
+            public Int32 SortID { get; set; }
+ 
+            /// <summary>
+            /// 开始时间
+            /// </summary>
+            public MyDate BeginTime { get; set; }
+ 
+            /// <summary>
+            /// 结束时间
+            /// </summary>
+            public MyDate EndTime { get; set; }
+ 
+            /// <summary>
+            /// 部门ID
+            /// </summary>
+            public Int32 DeptID { get; set; }
+
+            public bool SetPropertyValue(string PropertyName, object Value)
+            {
+                if ( PropertyName == "ProductID" ) { this.ProductID = ValueProc.As<Int32>(Value) ; return true; }
+                if ( PropertyName == "SortID" ) { this.SortID = ValueProc.As<Int32>(Value) ; return true; }
+                if ( PropertyName == "BeginTime" ) { this.BeginTime = ValueProc.As<MyDate>(Value) ; return true; }
+                if ( PropertyName == "EndTime" ) { this.EndTime = ValueProc.As<MyDate>(Value) ; return true; }
+                if ( PropertyName == "DeptID" ) { this.DeptID = ValueProc.As<Int32>(Value) ; return true; }
+                return false ;
+           }
+
+            public object GetPropertyValue(string PropertyName)
+            {
+                if ( PropertyName == "ProductID" ) { return this.ProductID ; }
+                if ( PropertyName == "SortID" ) { return this.SortID ; }
+                if ( PropertyName == "BeginTime" ) { return this.BeginTime ; }
+                if ( PropertyName == "EndTime" ) { return this.EndTime ; }
+                if ( PropertyName == "DeptID" ) { return this.DeptID ; }
+                return null ;
+            }
+
+            public string[]  GetProperties() { return new string[]{ "ProductID","SortID","BeginTime","EndTime","DeptID" } ; }
+            
+            public object Clone()
+            {
+                return this.CloneIEntity() ;
+            }
+
+         }
+    }
+
+
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    [Serializable]
+    public sealed partial class NoticeShowCaseRule : RuleBase, ITableRule,ICloneable
+    {
+
+
+        public  NoticeShowCaseRule() : base("NoticeShowCase")
+        {
+            this.NoticeID = new SimpleColumn(this, DbType.Int32, 4,"NoticeID","NoticeID",false);
+            this.SortID = new SimpleColumn(this, DbType.Int32, 4,"SortID","SortID",true);
+            this.BeginTime = new SimpleColumn(this, DbType.DateTime, 8,"BeginTime","BeginTime",true);
+            this.EndTime = new SimpleColumn(this, DbType.DateTime, 8,"EndTime","EndTime",true);
+            this.DeptID = new SimpleColumn(this, DbType.Int32, 4,"DeptID","DeptID",true);
+        }
+
+        /// <summary>
+        /// NoticeID(Int32)[主键(NoticeID)]
+        /// </summary>
+        public SimpleColumn NoticeID { get; set; }
+        /// <summary>
+        /// SortID(Int32)
+        /// </summary>
+        public SimpleColumn SortID { get; set; }
+        /// <summary>
+        /// BeginTime(DateTime)
+        /// </summary>
+        public SimpleColumn BeginTime { get; set; }
+        /// <summary>
+        /// EndTime(DateTime)
+        /// </summary>
+        public SimpleColumn EndTime { get; set; }
+        /// <summary>
+        /// DeptID(Int32)
+        /// </summary>
+        public SimpleColumn DeptID { get; set; }
+
+        public override SimpleColumn[] GetColumns() {  return new SimpleColumn[] { NoticeID,SortID,BeginTime,EndTime,DeptID }; }
+        public override SimpleColumn[] GetPrimaryKeys() { return new SimpleColumn[] { NoticeID };  }
+        public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
+        public override SimpleColumn GetAutoIncreKey() {  return null; }
+        public override SimpleColumn GetUniqueKey() { return  null; }
+        public override string GetDbName() { return "NoticeShowCase"; }
+
+        public Entity FindByNoticeID(Int32 NoticeID)
+        {
+             if ( NoticeID <= 0 ) return null ;
+            return this.SelectWhere(o => o.NoticeID == NoticeID).ToEntity<Entity>();
+        }
+        public int DeleteByNoticeID(Int32 NoticeID)
+        {
+             if ( NoticeID <= 0 ) return 0 ;
+            return this.Delete(o => o.NoticeID == NoticeID).Execute() ;
+        }
+
+
+        public override object Clone()
+        {
+            var tab = new NoticeShowCaseRule();
+            if ( this._Config_ != null ) tab._Config_ = base._Config_.Clone() as RuleRuntimeConfig ;
+            tab.SetAlias(base.Name);
+            tab.SetReconfig(base.ReConfig);
+
+            tab.NoticeID = this.NoticeID.Clone() as SimpleColumn;
+            tab.SortID = this.SortID.Clone() as SimpleColumn;
+            tab.BeginTime = this.BeginTime.Clone() as SimpleColumn;
+            tab.EndTime = this.EndTime.Clone() as SimpleColumn;
+            tab.DeptID = this.DeptID.Clone() as SimpleColumn;
+
+            return tab;
+        }
+        /// <summary>
+        ///  
+        /// </summary>
+        public Entity _ { get { return new Entity (); } }
+       
+        /// <summary>
+        /// 
+        /// </summary>
+        [Serializable]
+        public sealed partial class Entity :IEntity
+        {
+ 
+            /// <summary>
+            /// NoticeID[主键(NoticeID)]
+            /// </summary>
+            public Int32 NoticeID { get; set; }
+ 
+            /// <summary>
+            /// SortID
+            /// </summary>
+            public Int32 SortID { get; set; }
+ 
+            /// <summary>
+            /// BeginTime
+            /// </summary>
+            public MyDate BeginTime { get; set; }
+ 
+            /// <summary>
+            /// EndTime
+            /// </summary>
+            public MyDate EndTime { get; set; }
+ 
+            /// <summary>
+            /// DeptID
+            /// </summary>
+            public Int32 DeptID { get; set; }
+
+            public bool SetPropertyValue(string PropertyName, object Value)
+            {
+                if ( PropertyName == "NoticeID" ) { this.NoticeID = ValueProc.As<Int32>(Value) ; return true; }
+                if ( PropertyName == "SortID" ) { this.SortID = ValueProc.As<Int32>(Value) ; return true; }
+                if ( PropertyName == "BeginTime" ) { this.BeginTime = ValueProc.As<MyDate>(Value) ; return true; }
+                if ( PropertyName == "EndTime" ) { this.EndTime = ValueProc.As<MyDate>(Value) ; return true; }
+                if ( PropertyName == "DeptID" ) { this.DeptID = ValueProc.As<Int32>(Value) ; return true; }
+                return false ;
+           }
+
+            public object GetPropertyValue(string PropertyName)
+            {
+                if ( PropertyName == "NoticeID" ) { return this.NoticeID ; }
+                if ( PropertyName == "SortID" ) { return this.SortID ; }
+                if ( PropertyName == "BeginTime" ) { return this.BeginTime ; }
+                if ( PropertyName == "EndTime" ) { return this.EndTime ; }
+                if ( PropertyName == "DeptID" ) { return this.DeptID ; }
+                return null ;
+            }
+
+            public string[]  GetProperties() { return new string[]{ "NoticeID","SortID","BeginTime","EndTime","DeptID" } ; }
+            
+            public object Clone()
+            {
+                return this.CloneIEntity() ;
+            }
+
+         }
+    }
+
+
+    
+    /// <summary>
+    /// 小区
+    /// </summary>
+    [Serializable]
+    public sealed partial class CommunityRule : RuleBase, ITableRule,ICloneable
+    {
+
+
+        public  CommunityRule() : base("Community")
+        {
+            this.CommID = new SimpleColumn(this, DbType.Int32, 4,"CommID","CommID",false);
+            this.ZoneId = new SimpleColumn(this, DbType.Int32, 4,"ZoneId","ZoneId",true);
+            this.CorpID = new SimpleColumn(this, DbType.Int32, 4,"CorpID","CorpID",true);
+            this.CommName = new SimpleColumn(this, DbType.String, 100,"CommName","CommName",true);
+            this.CommType = new SimpleColumn(this, DbType.Int16, 2,"CommType","CommType",true);
+            this.CorpRegionCode = new SimpleColumn(this, DbType.String, 40,"CorpRegionCode","CorpRegionCode",true);
+            this.CommAddress = new SimpleColumn(this, DbType.String, 100,"CommAddress","CommAddress",true);
+            this.Province = new SimpleColumn(this, DbType.String, 40,"Province","Province",true);
+            this.City = new SimpleColumn(this, DbType.String, 40,"City","City",true);
+            this.Borough = new SimpleColumn(this, DbType.String, 40,"Borough","Borough",true);
+            this.Street = new SimpleColumn(this, DbType.String, 100,"Street","Street",true);
+            this.GateSign = new SimpleColumn(this, DbType.String, 40,"GateSign","GateSign",true);
+            this.CommSpell = new SimpleColumn(this, DbType.String, 40,"CommSpell","CommSpell",true);
+            this.RegDate = new SimpleColumn(this, DbType.DateTime, 8,"RegDate","RegDate",true);
+            this.IsDelete = new SimpleColumn(this, DbType.Int16, 2,"IsDelete","IsDelete",true);
+            this.OrganCode = new SimpleColumn(this, DbType.String, 40,"OrganCode","OrganCode",true);
+            this.Detail = new SimpleColumn(this, DbType.String, -1,"Detail","Detail",true);
+        }
+
+        /// <summary>
+        /// CommID(Int32)[主键(CommID)]
+        /// </summary>
+        public SimpleColumn CommID { get; set; }
+        /// <summary>
+        /// 商圈(Int32)[外键(ZoneId=Zone:Id)]
+        /// </summary>
+        public SimpleColumn ZoneId { get; set; }
+        /// <summary>
+        /// 该字段以后去除。(Int32)
+        /// </summary>
+        public SimpleColumn CorpID { get; set; }
+        /// <summary>
+        /// 项目名(String)
+        /// </summary>
+        public SimpleColumn CommName { get; set; }
+        /// <summary>
+        /// 项目类型(Int16)
+        /// </summary>
+        public SimpleColumn CommType { get; set; }
+        /// <summary>
+        /// 所属公司(String)
+        /// </summary>
+        public SimpleColumn CorpRegionCode { get; set; }
+        /// <summary>
+        /// 地址(String)
+        /// </summary>
+        public SimpleColumn CommAddress { get; set; }
+        /// <summary>
+        /// 所在地区(String)
+        /// </summary>
+        public SimpleColumn Province { get; set; }
+        /// <summary>
+        /// 所在市(String)
+        /// </summary>
+        public SimpleColumn City { get; set; }
+        /// <summary>
+        /// 所在区(String)
+        /// </summary>
+        public SimpleColumn Borough { get; set; }
+        /// <summary>
+        /// 街道名(String)
+        /// </summary>
+        public SimpleColumn Street { get; set; }
+        /// <summary>
+        /// 门牌号(String)
+        /// </summary>
+        public SimpleColumn GateSign { get; set; }
+        /// <summary>
+        /// CommSpell(String)
+        /// </summary>
+        public SimpleColumn CommSpell { get; set; }
+        /// <summary>
+        /// RegDate(DateTime)
+        /// </summary>
+        public SimpleColumn RegDate { get; set; }
+        /// <summary>
+        /// IsDelete(Int16)
+        /// </summary>
+        public SimpleColumn IsDelete { get; set; }
+        /// <summary>
+        /// OrganCode(String)
+        /// </summary>
+        public SimpleColumn OrganCode { get; set; }
+        /// <summary>
+        /// 小区介绍(String)
+        /// </summary>
+        public SimpleColumn Detail { get; set; }
+
+        public override SimpleColumn[] GetColumns() {  return new SimpleColumn[] { CommID,ZoneId,CorpID,CommName,CommType,CorpRegionCode,CommAddress,Province,City,Borough,Street,GateSign,CommSpell,RegDate,IsDelete,OrganCode,Detail }; }
+        public override SimpleColumn[] GetPrimaryKeys() { return new SimpleColumn[] { CommID };  }
+        public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
+        public override SimpleColumn GetAutoIncreKey() {  return null; }
+        public override SimpleColumn GetUniqueKey() { return  null; }
+        public override string GetDbName() { return "Community"; }
+
+        public Entity FindByCommID(Int32 CommID)
+        {
+             if ( CommID <= 0 ) return null ;
+            return this.SelectWhere(o => o.CommID == CommID).ToEntity<Entity>();
+        }
+        public int DeleteByCommID(Int32 CommID)
+        {
+             if ( CommID <= 0 ) return 0 ;
+            return this.Delete(o => o.CommID == CommID).Execute() ;
+        }
+
+
+        public override object Clone()
+        {
+            var tab = new CommunityRule();
+            if ( this._Config_ != null ) tab._Config_ = base._Config_.Clone() as RuleRuntimeConfig ;
+            tab.SetAlias(base.Name);
+            tab.SetReconfig(base.ReConfig);
+
+            tab.CommID = this.CommID.Clone() as SimpleColumn;
+            tab.ZoneId = this.ZoneId.Clone() as SimpleColumn;
+            tab.CorpID = this.CorpID.Clone() as SimpleColumn;
+            tab.CommName = this.CommName.Clone() as SimpleColumn;
+            tab.CommType = this.CommType.Clone() as SimpleColumn;
+            tab.CorpRegionCode = this.CorpRegionCode.Clone() as SimpleColumn;
+            tab.CommAddress = this.CommAddress.Clone() as SimpleColumn;
+            tab.Province = this.Province.Clone() as SimpleColumn;
+            tab.City = this.City.Clone() as SimpleColumn;
+            tab.Borough = this.Borough.Clone() as SimpleColumn;
+            tab.Street = this.Street.Clone() as SimpleColumn;
+            tab.GateSign = this.GateSign.Clone() as SimpleColumn;
+            tab.CommSpell = this.CommSpell.Clone() as SimpleColumn;
+            tab.RegDate = this.RegDate.Clone() as SimpleColumn;
+            tab.IsDelete = this.IsDelete.Clone() as SimpleColumn;
+            tab.OrganCode = this.OrganCode.Clone() as SimpleColumn;
+            tab.Detail = this.Detail.Clone() as SimpleColumn;
+
+            return tab;
+        }
+        /// <summary>
+        /// 小区 
+        /// </summary>
+        public Entity _ { get { return new Entity (); } }
+       
+        /// <summary>
+        /// 小区
+        /// </summary>
+        [Serializable]
+        public sealed partial class Entity :IEntity
+        {
+ 
+            /// <summary>
+            /// CommID[主键(CommID)]
+            /// </summary>
+            public Int32 CommID { get; set; }
+ 
+            /// <summary>
+            /// 商圈[外键(ZoneId=Zone:Id)]
+            /// </summary>
+            public Int32 ZoneId { get; set; }
+ 
+            /// <summary>
+            /// 该字段以后去除。
+            /// </summary>
+            public Int32 CorpID { get; set; }
+ 
+            /// <summary>
+            /// 项目名
+            /// </summary>
+            public String CommName { get; set; }
+ 
+            /// <summary>
+            /// 项目类型
+            /// </summary>
+            public Int16 CommType { get; set; }
+ 
+            /// <summary>
+            /// 所属公司
+            /// </summary>
+            public String CorpRegionCode { get; set; }
+ 
+            /// <summary>
+            /// 地址
+            /// </summary>
+            public String CommAddress { get; set; }
+ 
+            /// <summary>
+            /// 所在地区
+            /// </summary>
+            public String Province { get; set; }
+ 
+            /// <summary>
+            /// 所在市
+            /// </summary>
+            public String City { get; set; }
+ 
+            /// <summary>
+            /// 所在区
+            /// </summary>
+            public String Borough { get; set; }
+ 
+            /// <summary>
+            /// 街道名
+            /// </summary>
+            public String Street { get; set; }
+ 
+            /// <summary>
+            /// 门牌号
+            /// </summary>
+            public String GateSign { get; set; }
+ 
+            /// <summary>
+            /// CommSpell
+            /// </summary>
+            public String CommSpell { get; set; }
+ 
+            /// <summary>
+            /// RegDate
+            /// </summary>
+            public MyDate RegDate { get; set; }
+ 
+            /// <summary>
+            /// IsDelete
+            /// </summary>
+            public Int16 IsDelete { get; set; }
+ 
+            /// <summary>
+            /// OrganCode
+            /// </summary>
+            public String OrganCode { get; set; }
+ 
+            /// <summary>
+            /// 小区介绍
+            /// </summary>
+            public String Detail { get; set; }
+
+            public bool SetPropertyValue(string PropertyName, object Value)
+            {
+                if ( PropertyName == "CommID" ) { this.CommID = ValueProc.As<Int32>(Value) ; return true; }
+                if ( PropertyName == "ZoneId" ) { this.ZoneId = ValueProc.As<Int32>(Value) ; return true; }
+                if ( PropertyName == "CorpID" ) { this.CorpID = ValueProc.As<Int32>(Value) ; return true; }
+                if ( PropertyName == "CommName" ) { this.CommName = ValueProc.As<String>(Value) ; return true; }
+                if ( PropertyName == "CommType" ) { this.CommType = ValueProc.As<Int16>(Value) ; return true; }
+                if ( PropertyName == "CorpRegionCode" ) { this.CorpRegionCode = ValueProc.As<String>(Value) ; return true; }
+                if ( PropertyName == "CommAddress" ) { this.CommAddress = ValueProc.As<String>(Value) ; return true; }
+                if ( PropertyName == "Province" ) { this.Province = ValueProc.As<String>(Value) ; return true; }
+                if ( PropertyName == "City" ) { this.City = ValueProc.As<String>(Value) ; return true; }
+                if ( PropertyName == "Borough" ) { this.Borough = ValueProc.As<String>(Value) ; return true; }
+                if ( PropertyName == "Street" ) { this.Street = ValueProc.As<String>(Value) ; return true; }
+                if ( PropertyName == "GateSign" ) { this.GateSign = ValueProc.As<String>(Value) ; return true; }
+                if ( PropertyName == "CommSpell" ) { this.CommSpell = ValueProc.As<String>(Value) ; return true; }
+                if ( PropertyName == "RegDate" ) { this.RegDate = ValueProc.As<MyDate>(Value) ; return true; }
+                if ( PropertyName == "IsDelete" ) { this.IsDelete = ValueProc.As<Int16>(Value) ; return true; }
+                if ( PropertyName == "OrganCode" ) { this.OrganCode = ValueProc.As<String>(Value) ; return true; }
+                if ( PropertyName == "Detail" ) { this.Detail = ValueProc.As<String>(Value) ; return true; }
+                return false ;
+           }
+
+            public object GetPropertyValue(string PropertyName)
+            {
+                if ( PropertyName == "CommID" ) { return this.CommID ; }
+                if ( PropertyName == "ZoneId" ) { return this.ZoneId ; }
+                if ( PropertyName == "CorpID" ) { return this.CorpID ; }
+                if ( PropertyName == "CommName" ) { return this.CommName ; }
+                if ( PropertyName == "CommType" ) { return this.CommType ; }
+                if ( PropertyName == "CorpRegionCode" ) { return this.CorpRegionCode ; }
+                if ( PropertyName == "CommAddress" ) { return this.CommAddress ; }
+                if ( PropertyName == "Province" ) { return this.Province ; }
+                if ( PropertyName == "City" ) { return this.City ; }
+                if ( PropertyName == "Borough" ) { return this.Borough ; }
+                if ( PropertyName == "Street" ) { return this.Street ; }
+                if ( PropertyName == "GateSign" ) { return this.GateSign ; }
+                if ( PropertyName == "CommSpell" ) { return this.CommSpell ; }
+                if ( PropertyName == "RegDate" ) { return this.RegDate ; }
+                if ( PropertyName == "IsDelete" ) { return this.IsDelete ; }
+                if ( PropertyName == "OrganCode" ) { return this.OrganCode ; }
+                if ( PropertyName == "Detail" ) { return this.Detail ; }
+                return null ;
+            }
+
+            public string[]  GetProperties() { return new string[]{ "CommID","ZoneId","CorpID","CommName","CommType","CorpRegionCode","CommAddress","Province","City","Borough","Street","GateSign","CommSpell","RegDate","IsDelete","OrganCode","Detail" } ; }
+            
+            public object Clone()
+            {
+                return this.CloneIEntity() ;
+            }
+
+            private ZoneRule.Entity _GetZone = null;
+            public ZoneRule.Entity GetZone()
+            {
+                if (_GetZone != null) return _GetZone;
+                _GetZone = dbr.Zone.FindById(this.ZoneId);
+                return _GetZone;
+            }
+            private DeptCommunityRule.Entity[] _GetDeptCommunitys = null;
+            public DeptCommunityRule.Entity[] GetDeptCommunitys()
+            {
+                if (_GetDeptCommunitys != null) return _GetDeptCommunitys;
+                _GetDeptCommunitys = dbr.DeptCommunity.SelectWhere(o => o.CommId == this.CommID).ToEntityList<DeptCommunityRule.Entity>().ToArray();
+                return _GetDeptCommunitys;
+            }
+         }
+    }
+
+
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    [Serializable]
+    public sealed partial class DeptCommunityRule : RuleBase, ITableRule,ICloneable
+    {
+
+
+        public  DeptCommunityRule() : base("DeptCommunity")
+        {
+            this.Id = new SimpleColumn(this, DbType.Int32, 4,"Id","Id",false);
+            this.DeptId = new SimpleColumn(this, DbType.Int32, 4,"DeptId","DeptId",true);
+            this.CommId = new SimpleColumn(this, DbType.Int32, 4,"CommId","CommId",true);
+        }
+
+        /// <summary>
+        /// Id(Int32)[主键(Id),自增键]
+        /// </summary>
+        public SimpleColumn Id { get; set; }
+        /// <summary>
+        /// DeptId(Int32)[外键(DeptId=Dept:ID)]
+        /// </summary>
+        public SimpleColumn DeptId { get; set; }
+        /// <summary>
+        /// CommId(Int32)[外键(CommId=Community:CommID)]
+        /// </summary>
+        public SimpleColumn CommId { get; set; }
+
+        public override SimpleColumn[] GetColumns() {  return new SimpleColumn[] { Id,DeptId,CommId }; }
+        public override SimpleColumn[] GetPrimaryKeys() { return new SimpleColumn[] { Id };  }
+        public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
+        public override SimpleColumn GetAutoIncreKey() {  return Id; }
+        public override SimpleColumn GetUniqueKey() { return  null; }
+        public override string GetDbName() { return "Dept_Community"; }
+
+        public Entity FindById(Int32 Id)
+        {
+             if ( Id <= 0 ) return null ;
+            return this.SelectWhere(o => o.Id == Id).ToEntity<Entity>();
+        }
+        public int DeleteById(Int32 Id)
+        {
+             if ( Id <= 0 ) return 0 ;
+            return this.Delete(o => o.Id == Id).Execute() ;
+        }
+
+
+        public override object Clone()
+        {
+            var tab = new DeptCommunityRule();
+            if ( this._Config_ != null ) tab._Config_ = base._Config_.Clone() as RuleRuntimeConfig ;
+            tab.SetAlias(base.Name);
+            tab.SetReconfig(base.ReConfig);
+
+            tab.Id = this.Id.Clone() as SimpleColumn;
+            tab.DeptId = this.DeptId.Clone() as SimpleColumn;
+            tab.CommId = this.CommId.Clone() as SimpleColumn;
+
+            return tab;
+        }
+        /// <summary>
+        ///  
+        /// </summary>
+        public Entity _ { get { return new Entity (); } }
+       
+        /// <summary>
+        /// 
+        /// </summary>
+        [Serializable]
+        public sealed partial class Entity :IEntity
+        {
+ 
+            /// <summary>
+            /// Id[主键(Id),自增键]
+            /// </summary>
+            public Int32 Id { get; set; }
+ 
+            /// <summary>
+            /// DeptId[外键(DeptId=Dept:ID)]
+            /// </summary>
+            public Int32 DeptId { get; set; }
+ 
+            /// <summary>
+            /// CommId[外键(CommId=Community:CommID)]
+            /// </summary>
+            public Int32 CommId { get; set; }
+
+            public bool SetPropertyValue(string PropertyName, object Value)
+            {
+                if ( PropertyName == "Id" ) { this.Id = ValueProc.As<Int32>(Value) ; return true; }
+                if ( PropertyName == "DeptId" ) { this.DeptId = ValueProc.As<Int32>(Value) ; return true; }
+                if ( PropertyName == "CommId" ) { this.CommId = ValueProc.As<Int32>(Value) ; return true; }
+                return false ;
+           }
+
+            public object GetPropertyValue(string PropertyName)
+            {
+                if ( PropertyName == "Id" ) { return this.Id ; }
+                if ( PropertyName == "DeptId" ) { return this.DeptId ; }
+                if ( PropertyName == "CommId" ) { return this.CommId ; }
+                return null ;
+            }
+
+            public string[]  GetProperties() { return new string[]{ "Id","DeptId","CommId" } ; }
+            
+            public object Clone()
+            {
+                return this.CloneIEntity() ;
+            }
+
+            private DeptRule.Entity _GetDept = null;
+            public DeptRule.Entity GetDept()
+            {
+                if (_GetDept != null) return _GetDept;
+                _GetDept = dbr.Dept.FindById(this.DeptId);
+                return _GetDept;
+            }
+            private CommunityRule.Entity _GetCommunity = null;
+            public CommunityRule.Entity GetCommunity()
+            {
+                if (_GetCommunity != null) return _GetCommunity;
+                _GetCommunity = dbr.Community.FindByCommID(this.CommId);
+                return _GetCommunity;
+            }
+         }
+    }
+
+
+    
+    /// <summary>
+    /// 商圈
+    /// </summary>
+    [Serializable]
+    public sealed partial class ZoneRule : RuleBase, ITableRule,ICloneable
+    {
+
+
+        public  ZoneRule() : base("Zone")
+        {
+            this.Id = new SimpleColumn(this, DbType.Int32, 4,"Id","Id",false);
+            this.Name = new SimpleColumn(this, DbType.AnsiString, 50,"Name","Name",true);
+            this.CityId = new SimpleColumn(this, DbType.AnsiString, 50,"CityId","CityId",true);
+            this.Remark = new SimpleColumn(this, DbType.AnsiString, 50,"Remark","Remark",true);
+        }
+
+        /// <summary>
+        /// 商圈ID(Int32)[主键(Id),自增键]
+        /// </summary>
+        public SimpleColumn Id { get; set; }
+        /// <summary>
+        /// Name(AnsiString)
+        /// </summary>
+        public SimpleColumn Name { get; set; }
+        /// <summary>
+        /// CityId(AnsiString)[外键(CityId=City:Id)]
+        /// </summary>
+        public SimpleColumn CityId { get; set; }
+        /// <summary>
+        /// Remark(AnsiString)
+        /// </summary>
+        public SimpleColumn Remark { get; set; }
+
+        public override SimpleColumn[] GetColumns() {  return new SimpleColumn[] { Id,Name,CityId,Remark }; }
+        public override SimpleColumn[] GetPrimaryKeys() { return new SimpleColumn[] { Id };  }
+        public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
+        public override SimpleColumn GetAutoIncreKey() {  return Id; }
+        public override SimpleColumn GetUniqueKey() { return  null; }
+        public override string GetDbName() { return "Zone"; }
+
+        public Entity FindById(Int32 Id)
+        {
+             if ( Id <= 0 ) return null ;
+            return this.SelectWhere(o => o.Id == Id).ToEntity<Entity>();
+        }
+        public int DeleteById(Int32 Id)
+        {
+             if ( Id <= 0 ) return 0 ;
+            return this.Delete(o => o.Id == Id).Execute() ;
+        }
+
+
+        public override object Clone()
+        {
+            var tab = new ZoneRule();
+            if ( this._Config_ != null ) tab._Config_ = base._Config_.Clone() as RuleRuntimeConfig ;
+            tab.SetAlias(base.Name);
+            tab.SetReconfig(base.ReConfig);
+
+            tab.Id = this.Id.Clone() as SimpleColumn;
+            tab.Name = this.Name.Clone() as SimpleColumn;
+            tab.CityId = this.CityId.Clone() as SimpleColumn;
+            tab.Remark = this.Remark.Clone() as SimpleColumn;
+
+            return tab;
+        }
+        /// <summary>
+        /// 商圈 
+        /// </summary>
+        public Entity _ { get { return new Entity (); } }
+       
+        /// <summary>
+        /// 商圈
+        /// </summary>
+        [Serializable]
+        public sealed partial class Entity :IEntity
+        {
+ 
+            /// <summary>
+            /// 商圈ID[主键(Id),自增键]
+            /// </summary>
+            public Int32 Id { get; set; }
+ 
+            /// <summary>
+            /// Name
+            /// </summary>
+            public String Name { get; set; }
+ 
+            /// <summary>
+            /// CityId[外键(CityId=City:Id)]
+            /// </summary>
+            public String CityId { get; set; }
+ 
+            /// <summary>
+            /// Remark
+            /// </summary>
+            public String Remark { get; set; }
+
+            public bool SetPropertyValue(string PropertyName, object Value)
+            {
+                if ( PropertyName == "Id" ) { this.Id = ValueProc.As<Int32>(Value) ; return true; }
+                if ( PropertyName == "Name" ) { this.Name = ValueProc.As<String>(Value) ; return true; }
+                if ( PropertyName == "CityId" ) { this.CityId = ValueProc.As<String>(Value) ; return true; }
+                if ( PropertyName == "Remark" ) { this.Remark = ValueProc.As<String>(Value) ; return true; }
+                return false ;
+           }
+
+            public object GetPropertyValue(string PropertyName)
+            {
+                if ( PropertyName == "Id" ) { return this.Id ; }
+                if ( PropertyName == "Name" ) { return this.Name ; }
+                if ( PropertyName == "CityId" ) { return this.CityId ; }
+                if ( PropertyName == "Remark" ) { return this.Remark ; }
+                return null ;
+            }
+
+            public string[]  GetProperties() { return new string[]{ "Id","Name","CityId","Remark" } ; }
+            
+            public object Clone()
+            {
+                return this.CloneIEntity() ;
+            }
+
+            private CityRule.Entity _GetCity = null;
+            public CityRule.Entity GetCity()
+            {
+                if (_GetCity != null) return _GetCity;
+                _GetCity = dbr.City.FindById(this.CityId);
+                return _GetCity;
+            }
+            private CommunityRule.Entity[] _GetCommunitys = null;
+            public CommunityRule.Entity[] GetCommunitys()
+            {
+                if (_GetCommunitys != null) return _GetCommunitys;
+                _GetCommunitys = dbr.Community.SelectWhere(o => o.ZoneId == this.Id).ToEntityList<CommunityRule.Entity>().ToArray();
+                return _GetCommunitys;
+            }
+         }
+    }
+
+
+    
+    /// <summary>
+    /// 小区
+    /// </summary>
+    [Serializable]
+    public sealed partial class CityRule : RuleBase, ITableRule,ICloneable
+    {
+
+
+        public  CityRule() : base("City")
+        {
+            this.Id = new SimpleColumn(this, DbType.AnsiString, 50,"Id","Id",false);
+            this.Name = new SimpleColumn(this, DbType.AnsiString, 50,"Name","Name",true);
+            this.BelongTo = new SimpleColumn(this, DbType.AnsiString, 50,"BelongTo","BelongTo",true);
+            this.IsValidate = new SimpleColumn(this, DbType.Boolean, 1,"IsValidate","IsValidate",true);
+        }
+
+        /// <summary>
+        /// Id(AnsiString)[主键(Id)]
+        /// </summary>
+        public SimpleColumn Id { get; set; }
+        /// <summary>
+        /// Name(AnsiString)
+        /// </summary>
+        public SimpleColumn Name { get; set; }
+        /// <summary>
+        /// BelongTo(AnsiString)[外键(BelongTo=Province:Id)]
+        /// </summary>
+        public SimpleColumn BelongTo { get; set; }
+        /// <summary>
+        /// 是否开通(Boolean)
+        /// </summary>
+        public SimpleColumn IsValidate { get; set; }
+
+        public override SimpleColumn[] GetColumns() {  return new SimpleColumn[] { Id,Name,BelongTo,IsValidate }; }
+        public override SimpleColumn[] GetPrimaryKeys() { return new SimpleColumn[] { Id };  }
+        public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
+        public override SimpleColumn GetAutoIncreKey() {  return null; }
+        public override SimpleColumn GetUniqueKey() { return  null; }
+        public override string GetDbName() { return "City"; }
+
+        public Entity FindById(String Id)
+        {
+            if ( Id.HasValue() == false ) return null ;
+            return this.SelectWhere(o => o.Id == Id).ToEntity<Entity>();
+        }
+        public int DeleteById(String Id)
+        {
+            if ( Id.HasValue() == false ) return 0 ;
+            return this.Delete(o => o.Id == Id).Execute() ;
+        }
+
+
+        public override object Clone()
+        {
+            var tab = new CityRule();
+            if ( this._Config_ != null ) tab._Config_ = base._Config_.Clone() as RuleRuntimeConfig ;
+            tab.SetAlias(base.Name);
+            tab.SetReconfig(base.ReConfig);
+
+            tab.Id = this.Id.Clone() as SimpleColumn;
+            tab.Name = this.Name.Clone() as SimpleColumn;
+            tab.BelongTo = this.BelongTo.Clone() as SimpleColumn;
+            tab.IsValidate = this.IsValidate.Clone() as SimpleColumn;
+
+            return tab;
+        }
+        /// <summary>
+        /// 小区 
+        /// </summary>
+        public Entity _ { get { return new Entity (); } }
+       
+        /// <summary>
+        /// 小区
+        /// </summary>
+        [Serializable]
+        public sealed partial class Entity :IEntity
+        {
+ 
+            /// <summary>
+            /// Id[主键(Id)]
+            /// </summary>
+            public String Id { get; set; }
+ 
+            /// <summary>
+            /// Name
+            /// </summary>
+            public String Name { get; set; }
+ 
+            /// <summary>
+            /// BelongTo[外键(BelongTo=Province:Id)]
+            /// </summary>
+            public String BelongTo { get; set; }
+ 
+            /// <summary>
+            /// 是否开通
+            /// </summary>
+            public Boolean IsValidate { get; set; }
+
+            public bool SetPropertyValue(string PropertyName, object Value)
+            {
+                if ( PropertyName == "Id" ) { this.Id = ValueProc.As<String>(Value) ; return true; }
+                if ( PropertyName == "Name" ) { this.Name = ValueProc.As<String>(Value) ; return true; }
+                if ( PropertyName == "BelongTo" ) { this.BelongTo = ValueProc.As<String>(Value) ; return true; }
+                if ( PropertyName == "IsValidate" ) { this.IsValidate = ValueProc.As<Boolean>(Value) ; return true; }
+                return false ;
+           }
+
+            public object GetPropertyValue(string PropertyName)
+            {
+                if ( PropertyName == "Id" ) { return this.Id ; }
+                if ( PropertyName == "Name" ) { return this.Name ; }
+                if ( PropertyName == "BelongTo" ) { return this.BelongTo ; }
+                if ( PropertyName == "IsValidate" ) { return this.IsValidate ; }
+                return null ;
+            }
+
+            public string[]  GetProperties() { return new string[]{ "Id","Name","BelongTo","IsValidate" } ; }
+            
+            public object Clone()
+            {
+                return this.CloneIEntity() ;
+            }
+
+            private ProvinceRule.Entity _GetProvince = null;
+            public ProvinceRule.Entity GetProvince()
+            {
+                if (_GetProvince != null) return _GetProvince;
+                _GetProvince = dbr.Province.FindById(this.BelongTo);
+                return _GetProvince;
+            }
+            private ZoneRule.Entity[] _GetZones = null;
+            public ZoneRule.Entity[] GetZones()
+            {
+                if (_GetZones != null) return _GetZones;
+                _GetZones = dbr.Zone.SelectWhere(o => o.CityId == this.Id).ToEntityList<ZoneRule.Entity>().ToArray();
+                return _GetZones;
+            }
+         }
+    }
+
+
+    
+    /// <summary>
+    /// 省份
+    /// </summary>
+    [Serializable]
+    public sealed partial class ProvinceRule : RuleBase, ITableRule,ICloneable
+    {
+
+
+        public  ProvinceRule() : base("Province")
+        {
+            this.Id = new SimpleColumn(this, DbType.AnsiString, 50,"Id","Id",false);
+            this.Name = new SimpleColumn(this, DbType.AnsiString, 50,"Name","Name",true);
+            this.Code = new SimpleColumn(this, DbType.AnsiString, 10,"Code","Code",true);
+            this.Remark = new SimpleColumn(this, DbType.AnsiString, 250,"Remark","Remark",true);
+            this.IsValidate = new SimpleColumn(this, DbType.Boolean, 1,"IsValidate","IsValidate",true);
+        }
+
+        /// <summary>
+        /// Id(AnsiString)[主键(Id)]
+        /// </summary>
+        public SimpleColumn Id { get; set; }
+        /// <summary>
+        /// Name(AnsiString)
+        /// </summary>
+        public SimpleColumn Name { get; set; }
+        /// <summary>
+        /// 简称(AnsiString)
+        /// </summary>
+        public SimpleColumn Code { get; set; }
+        /// <summary>
+        /// Remark(AnsiString)
+        /// </summary>
+        public SimpleColumn Remark { get; set; }
+        /// <summary>
+        /// 是否开通(Boolean)
+        /// </summary>
+        public SimpleColumn IsValidate { get; set; }
+
+        public override SimpleColumn[] GetColumns() {  return new SimpleColumn[] { Id,Name,Code,Remark,IsValidate }; }
+        public override SimpleColumn[] GetPrimaryKeys() { return new SimpleColumn[] { Id };  }
+        public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
+        public override SimpleColumn GetAutoIncreKey() {  return null; }
+        public override SimpleColumn GetUniqueKey() { return  null; }
+        public override string GetDbName() { return "Province"; }
+
+        public Entity FindById(String Id)
+        {
+            if ( Id.HasValue() == false ) return null ;
+            return this.SelectWhere(o => o.Id == Id).ToEntity<Entity>();
+        }
+        public int DeleteById(String Id)
+        {
+            if ( Id.HasValue() == false ) return 0 ;
+            return this.Delete(o => o.Id == Id).Execute() ;
+        }
+
+
+        public override object Clone()
+        {
+            var tab = new ProvinceRule();
+            if ( this._Config_ != null ) tab._Config_ = base._Config_.Clone() as RuleRuntimeConfig ;
+            tab.SetAlias(base.Name);
+            tab.SetReconfig(base.ReConfig);
+
+            tab.Id = this.Id.Clone() as SimpleColumn;
+            tab.Name = this.Name.Clone() as SimpleColumn;
+            tab.Code = this.Code.Clone() as SimpleColumn;
+            tab.Remark = this.Remark.Clone() as SimpleColumn;
+            tab.IsValidate = this.IsValidate.Clone() as SimpleColumn;
+
+            return tab;
+        }
+        /// <summary>
+        /// 省份 
+        /// </summary>
+        public Entity _ { get { return new Entity (); } }
+       
+        /// <summary>
+        /// 省份
+        /// </summary>
+        [Serializable]
+        public sealed partial class Entity :IEntity
+        {
+ 
+            /// <summary>
+            /// Id[主键(Id)]
+            /// </summary>
+            public String Id { get; set; }
+ 
+            /// <summary>
+            /// Name
+            /// </summary>
+            public String Name { get; set; }
+ 
+            /// <summary>
+            /// 简称
+            /// </summary>
+            public String Code { get; set; }
+ 
+            /// <summary>
+            /// Remark
+            /// </summary>
+            public String Remark { get; set; }
+ 
+            /// <summary>
+            /// 是否开通
+            /// </summary>
+            public Boolean IsValidate { get; set; }
+
+            public bool SetPropertyValue(string PropertyName, object Value)
+            {
+                if ( PropertyName == "Id" ) { this.Id = ValueProc.As<String>(Value) ; return true; }
+                if ( PropertyName == "Name" ) { this.Name = ValueProc.As<String>(Value) ; return true; }
+                if ( PropertyName == "Code" ) { this.Code = ValueProc.As<String>(Value) ; return true; }
+                if ( PropertyName == "Remark" ) { this.Remark = ValueProc.As<String>(Value) ; return true; }
+                if ( PropertyName == "IsValidate" ) { this.IsValidate = ValueProc.As<Boolean>(Value) ; return true; }
+                return false ;
+           }
+
+            public object GetPropertyValue(string PropertyName)
+            {
+                if ( PropertyName == "Id" ) { return this.Id ; }
+                if ( PropertyName == "Name" ) { return this.Name ; }
+                if ( PropertyName == "Code" ) { return this.Code ; }
+                if ( PropertyName == "Remark" ) { return this.Remark ; }
+                if ( PropertyName == "IsValidate" ) { return this.IsValidate ; }
+                return null ;
+            }
+
+            public string[]  GetProperties() { return new string[]{ "Id","Name","Code","Remark","IsValidate" } ; }
+            
+            public object Clone()
+            {
+                return this.CloneIEntity() ;
+            }
+
+            private CityRule.Entity[] _GetCitys = null;
+            public CityRule.Entity[] GetCitys()
+            {
+                if (_GetCitys != null) return _GetCitys;
+                _GetCitys = dbr.City.SelectWhere(o => o.BelongTo == this.Id).ToEntityList<CityRule.Entity>().ToArray();
+                return _GetCitys;
+            }
          }
     }
 

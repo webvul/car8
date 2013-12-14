@@ -30,16 +30,16 @@ namespace MyBiz.Admin
                     if (dept == null) { ErrorMsg = "找不到该部门！"; return null; }
 
                     return new PowerJson(dept.Power);
-                //case PowerOwnerEnum.Role:
-                //    var role = dbr.Role.FindById(Value.AsInt());
-                //    if (role == null) { ErrorMsg = "找不到该角色！"; return null; }
+                case PowerOwnerEnum.Role:
+                    var role = dbr.Role.FindById(Value.AsInt());
+                    if (role == null) { ErrorMsg = "找不到该角色！"; return null; }
 
-                //    return new PowerJson(role.Power);
+                    return new PowerJson(role.Power);
 
-                case PowerOwnerEnum.TStandardRole:
-                    var sr = dbr.TStandardRole.FindByStandardRoleId(new Guid(Value));
-                    if (sr == null) { ErrorMsg = "找不到标准角色!"; return null; }
-                    return new PowerJson(sr.Power);
+                //case PowerOwnerEnum.TStandardRole:
+                //    var sr = dbr.TStandardRole.FindByStandardRoleId(new Guid(Value));
+                //    if (sr == null) { ErrorMsg = "找不到标准角色!"; return null; }
+                //    return new PowerJson(sr.Power);
                 case PowerOwnerEnum.NotMine:
                     var personNotMine = dbr.Person.FindByUserID(Value);
                     if (personNotMine == null) { ErrorMsg = "找不到用户！"; return null; }
@@ -73,13 +73,13 @@ namespace MyBiz.Admin
                         return "未更新权限.";
                     return string.Empty;
 
-                //case PowerOwnerEnum.Role:
-                //    var role = dbr.Role.FindById(Value.AsInt());
-                //    if (role == null) { return "找不到该角色！"; }
+                case PowerOwnerEnum.Role:
+                    var role = dbr.Role.FindById(Value.AsInt());
+                    if (role == null) { return "找不到该角色！"; }
 
-                //    if (dbr.Role.Update(o => o.Id == Value & o.Power == Power.ToString()).Execute() == 0)
-                //        return "未更新权限.";
-                //    return string.Empty;
+                    if (dbr.Role.Update(o => o.Id == Value & o.Power == Power.ToString()).Execute() == 0)
+                        return "未更新权限.";
+                    return string.Empty;
                 case PowerOwnerEnum.NotMine:
                     var personNotMine = dbr.Person.FindByUserID(Value);
                     if (personNotMine == null) { return "找不到用户！"; }
@@ -88,14 +88,14 @@ namespace MyBiz.Admin
                         return "未更新权限.";
                     return string.Empty;
 
-                case PowerOwnerEnum.TStandardRole:
-                    var sr = dbr.TStandardRole.FindByStandardRoleId(new Guid(Value));
-                    if (sr == null) { return "找不到标准角色!"; }
+                //case PowerOwnerEnum.TStandardRole:
+                //    var sr = dbr.TStandardRole.FindByStandardRoleId(new Guid(Value));
+                //    if (sr == null) { return "找不到标准角色!"; }
 
 
-                    if (dbr.TStandardRole.Update(o => o.StandardRoleId == new Guid(Value) & o.Power == Power.ToString()).Execute() == 0)
-                        return "未更新权限.";
-                    return string.Empty;
+                //    if (dbr.TStandardRole.Update(o => o.StandardRoleId == new Guid(Value) & o.Power == Power.ToString()).Execute() == 0)
+                //        return "未更新权限.";
+                //    return string.Empty;
 
                 default:
                     break;

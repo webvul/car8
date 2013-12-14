@@ -1,4 +1,4 @@
-﻿//系统自动生成的实体，不能修改。 By: UDI-PC.  At:2013-11-15 13:05:54
+﻿//系统自动生成的实体，不能修改。 By: UDI-PC.于新海  At:2013-12-09 19:32:05
 using System;
 using MyOql;
 using MyCmn;
@@ -20,38 +20,42 @@ public partial class dbr:IDbr
     static dbr()
     {
         dbr.Shop = new ShopGroupClass(); 
-        dbr.LongFor = new LongForGroupClass(); 
         dbr.View = new ViewGroupClass(); 
 
         //MyOql 实体信息
         MyOql_FkDefinesList = new List<FkColumn>() ;
-        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "TB_DeptAnnex" , Column = "DeptID" , CascadeUpdate = true , CascadeDelete = true , RefTable = "TB_Dept", RefColumn = "ID" } );
-        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "TB_DeptAnnex" , Column = "AnnexID" , CascadeUpdate = true , CascadeDelete = true , RefTable = "Annex", RefColumn = "ID" } );
-        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "TB_Person" , Column = "Logo" , CascadeUpdate = false , CascadeDelete = false , RefTable = "Annex", RefColumn = "ID" } );
-        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "TB_Person" , Column = "DeptID" , CascadeUpdate = false , CascadeDelete = false , RefTable = "TB_Dept", RefColumn = "ID" } );
-        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "TB_Dept" , Column = "Logo" , CascadeUpdate = false , CascadeDelete = false , RefTable = "Annex", RefColumn = "ID" } );
-        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "TB_Dept" , Column = "Title" , CascadeUpdate = false , CascadeDelete = false , RefTable = "Annex", RefColumn = "ID" } );
-        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "TB_Dept" , Column = "TitleExtend" , CascadeUpdate = false , CascadeDelete = false , RefTable = "Annex", RefColumn = "ID" } );
+        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "DeptAnnex" , Column = "DeptID" , CascadeUpdate = true , CascadeDelete = true , RefTable = "Dept", RefColumn = "ID" } );
+        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "DeptAnnex" , Column = "AnnexID" , CascadeUpdate = true , CascadeDelete = true , RefTable = "Annex", RefColumn = "ID" } );
+        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "Person" , Column = "Logo" , CascadeUpdate = false , CascadeDelete = false , RefTable = "Annex", RefColumn = "ID" } );
+        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "Person" , Column = "DeptID" , CascadeUpdate = false , CascadeDelete = false , RefTable = "Dept", RefColumn = "ID" } );
+        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "Dept" , Column = "Logo" , CascadeUpdate = false , CascadeDelete = false , RefTable = "Annex", RefColumn = "ID" } );
+        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "Dept" , Column = "Title" , CascadeUpdate = false , CascadeDelete = false , RefTable = "Annex", RefColumn = "ID" } );
+        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "Dept" , Column = "TitleExtend" , CascadeUpdate = false , CascadeDelete = false , RefTable = "Annex", RefColumn = "ID" } );
         MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "PowerAction" , Column = "ControllerID" , CascadeUpdate = false , CascadeDelete = false , RefTable = "PowerController", RefColumn = "ID" } );
         MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "PowerButton" , Column = "ActionID" , CascadeUpdate = true , CascadeDelete = true , RefTable = "PowerAction", RefColumn = "ID" } );
-        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "TB_ProductType" , Column = "DeptID" , CascadeUpdate = false , CascadeDelete = false , RefTable = "TB_Dept", RefColumn = "ID" } );
-        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "TB_NoticeInfo" , Column = "NoticeTypeID" , CascadeUpdate = true , CascadeDelete = true , RefTable = "TB_NoticeType", RefColumn = "ID" } );
-        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "TB_NoticeInfo" , Column = "Logo" , CascadeUpdate = false , CascadeDelete = false , RefTable = "Annex", RefColumn = "ID" } );
-        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "TB_ProductClicks" , Column = "ProductID" , CascadeUpdate = true , CascadeDelete = true , RefTable = "TB_ProductInfo", RefColumn = "ID" } );
-        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "TB_ProductAnnex" , Column = "ProductID" , CascadeUpdate = true , CascadeDelete = true , RefTable = "TB_ProductInfo", RefColumn = "ID" } );
-        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "TB_ProductAnnex" , Column = "AnnexID" , CascadeUpdate = true , CascadeDelete = true , RefTable = "Annex", RefColumn = "ID" } );
-        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "TB_ProductInfo" , Column = "ProductTypeID" , CascadeUpdate = true , CascadeDelete = true , RefTable = "TB_ProductType", RefColumn = "ID" } );
-        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "TB_ProductInfo" , Column = "Logo" , CascadeUpdate = false , CascadeDelete = false , RefTable = "Annex", RefColumn = "ID" } );
-        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "TB_ProductDetail" , Column = "ProductID" , CascadeUpdate = false , CascadeDelete = false , RefTable = "TB_ProductInfo", RefColumn = "ID" } );
+        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "Community" , Column = "ZoneId" , CascadeUpdate = false , CascadeDelete = false , RefTable = "Zone", RefColumn = "Id" } );
+        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "Dept_Community" , Column = "DeptId" , CascadeUpdate = false , CascadeDelete = false , RefTable = "Dept", RefColumn = "ID" } );
+        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "Dept_Community" , Column = "CommId" , CascadeUpdate = false , CascadeDelete = false , RefTable = "Community", RefColumn = "CommID" } );
+        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "Zone" , Column = "CityId" , CascadeUpdate = false , CascadeDelete = false , RefTable = "City", RefColumn = "Id" } );
+        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "City" , Column = "BelongTo" , CascadeUpdate = false , CascadeDelete = false , RefTable = "Province", RefColumn = "Id" } );
+        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "ProductType" , Column = "DeptID" , CascadeUpdate = false , CascadeDelete = false , RefTable = "Dept", RefColumn = "ID" } );
+        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "NoticeInfo" , Column = "NoticeTypeID" , CascadeUpdate = true , CascadeDelete = true , RefTable = "NoticeType", RefColumn = "ID" } );
+        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "NoticeInfo" , Column = "Logo" , CascadeUpdate = false , CascadeDelete = false , RefTable = "Annex", RefColumn = "ID" } );
+        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "ProductClicks" , Column = "ProductID" , CascadeUpdate = true , CascadeDelete = true , RefTable = "ProductInfo", RefColumn = "ID" } );
+        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "ProductAnnex" , Column = "ProductID" , CascadeUpdate = true , CascadeDelete = true , RefTable = "ProductInfo", RefColumn = "ID" } );
+        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "ProductAnnex" , Column = "AnnexID" , CascadeUpdate = true , CascadeDelete = true , RefTable = "Annex", RefColumn = "ID" } );
+        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "ProductInfo" , Column = "ProductTypeID" , CascadeUpdate = true , CascadeDelete = true , RefTable = "ProductType", RefColumn = "ID" } );
+        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "ProductInfo" , Column = "Logo" , CascadeUpdate = false , CascadeDelete = false , RefTable = "Annex", RefColumn = "ID" } );
+        MyOql_FkDefinesList.Add( new FkColumn(){ Entity = "ProductDetail" , Column = "ProductID" , CascadeUpdate = false , CascadeDelete = false , RefTable = "ProductInfo", RefColumn = "ID" } );
 
         MyOql_ViewRelationTablesDict = new Dictionary<string, string[]>();
 
         MyOql_ProcRelationTablesDict = new Dictionary<string, string[]>();
 
         MyOql_EntityDict = new Dictionary<string, RuleBase>();
-        MyOql_EntityDict.Add("TB_DeptAnnex" , dbr.DeptAnnex ); 
-        MyOql_EntityDict.Add("TB_Person" , dbr.Person ); 
-        MyOql_EntityDict.Add("TB_Dept" , dbr.Dept ); 
+        MyOql_EntityDict.Add("DeptAnnex" , dbr.DeptAnnex ); 
+        MyOql_EntityDict.Add("Person" , dbr.Person ); 
+        MyOql_EntityDict.Add("Dept" , dbr.Dept ); 
         MyOql_EntityDict.Add("Annex" , dbr.Annex ); 
         MyOql_EntityDict.Add("Dict" , dbr.Dict ); 
         MyOql_EntityDict.Add("ResKey" , dbr.ResKey ); 
@@ -62,27 +66,27 @@ public partial class dbr:IDbr
         MyOql_EntityDict.Add("Log" , dbr.Log ); 
         MyOql_EntityDict.Add("Menu" , dbr.Menu ); 
         MyOql_EntityDict.Add("CacheTable" , dbr.CacheTable ); 
-        MyOql_EntityDict.Add("TB_ProductType" , dbr.Shop.ProductType ); 
-        MyOql_EntityDict.Add("TB_NoticeType" , dbr.Shop.NoticeType ); 
-        MyOql_EntityDict.Add("TB_NoticeInfo" , dbr.Shop.NoticeInfo ); 
-        MyOql_EntityDict.Add("TB_ProductClicks" , dbr.Shop.ProductClicks ); 
-        MyOql_EntityDict.Add("TB_ContactMsg" , dbr.Shop.ContactMsg ); 
-        MyOql_EntityDict.Add("TB_ProductAnnex" , dbr.Shop.ProductAnnex ); 
-        MyOql_EntityDict.Add("TB_ProductInfo" , dbr.Shop.ProductInfo ); 
-        MyOql_EntityDict.Add("TB_ProductDetail" , dbr.Shop.ProductDetail ); 
-        MyOql_EntityDict.Add("TB_EnterpriseShowCase" , dbr.Shop.EnterpriseShowCase ); 
-        MyOql_EntityDict.Add("TB_NoticeShowCase" , dbr.Shop.NoticeShowCase ); 
-        MyOql_EntityDict.Add("TM_Community" , dbr.LongFor.Community ); 
-        MyOql_EntityDict.Add("T_STANDARD_ROLE" , dbr.LongFor.TStandardRole ); 
-        MyOql_EntityDict.Add("T_ROOM_OWNER" , dbr.LongFor.TRoomOwner ); 
-        MyOql_EntityDict.Add("TEMP_ROOMOWNER" , dbr.LongFor.TempRoomowner ); 
-        MyOql_EntityDict.Add("TB_Dept_Community" , dbr.LongFor.DeptCommunity ); 
+        MyOql_EntityDict.Add("Role" , dbr.Role ); 
+        MyOql_EntityDict.Add("EnterpriseShowCase" , dbr.EnterpriseShowCase ); 
+        MyOql_EntityDict.Add("NoticeShowCase" , dbr.NoticeShowCase ); 
+        MyOql_EntityDict.Add("Community" , dbr.Community ); 
+        MyOql_EntityDict.Add("Dept_Community" , dbr.DeptCommunity ); 
+        MyOql_EntityDict.Add("Zone" , dbr.Zone ); 
+        MyOql_EntityDict.Add("City" , dbr.City ); 
+        MyOql_EntityDict.Add("Province" , dbr.Province ); 
+        MyOql_EntityDict.Add("ProductType" , dbr.Shop.ProductType ); 
+        MyOql_EntityDict.Add("NoticeType" , dbr.Shop.NoticeType ); 
+        MyOql_EntityDict.Add("NoticeInfo" , dbr.Shop.NoticeInfo ); 
+        MyOql_EntityDict.Add("ProductClicks" , dbr.Shop.ProductClicks ); 
+        MyOql_EntityDict.Add("ContactMsg" , dbr.Shop.ContactMsg ); 
+        MyOql_EntityDict.Add("ProductAnnex" , dbr.Shop.ProductAnnex ); 
+        MyOql_EntityDict.Add("ProductInfo" , dbr.Shop.ProductInfo ); 
+        MyOql_EntityDict.Add("ProductDetail" , dbr.Shop.ProductDetail ); 
         MyOql_EntityDict.Add("VPowerAction" , dbr.View.VPowerAction ); 
         MyOql_EntityDict.Add("PM_VTxtRes" , dbr.View.VTxtRes ); 
 
     }
     public static ShopGroupClass Shop { get ; private set ; }
-    public static LongForGroupClass LongFor { get ; private set ; }
     public static ViewGroupClass View { get ; private set ; }
 
     public static DeptAnnexRule DeptAnnex { get { return new DeptAnnexRule() ; } }
@@ -98,6 +102,14 @@ public partial class dbr:IDbr
     public static LogRule Log { get { return new LogRule() ; } }
     public static MenuRule Menu { get { return new MenuRule() ; } }
     public static CacheTableRule CacheTable { get { return new CacheTableRule() ; } }
+    public static RoleRule Role { get { return new RoleRule() ; } }
+    public static EnterpriseShowCaseRule EnterpriseShowCase { get { return new EnterpriseShowCaseRule() ; } }
+    public static NoticeShowCaseRule NoticeShowCase { get { return new NoticeShowCaseRule() ; } }
+    public static CommunityRule Community { get { return new CommunityRule() ; } }
+    public static DeptCommunityRule DeptCommunity { get { return new DeptCommunityRule() ; } }
+    public static ZoneRule Zone { get { return new ZoneRule() ; } }
+    public static CityRule City { get { return new CityRule() ; } }
+    public static ProvinceRule Province { get { return new ProvinceRule() ; } }
     public static ProductTypeRule ProductType { get { return new ProductTypeRule() ; } }
     public static NoticeTypeRule NoticeType { get { return new NoticeTypeRule() ; } }
     public static NoticeInfoRule NoticeInfo { get { return new NoticeInfoRule() ; } }
@@ -106,13 +118,6 @@ public partial class dbr:IDbr
     public static ProductAnnexRule ProductAnnex { get { return new ProductAnnexRule() ; } }
     public static ProductInfoRule ProductInfo { get { return new ProductInfoRule() ; } }
     public static ProductDetailRule ProductDetail { get { return new ProductDetailRule() ; } }
-    public static EnterpriseShowCaseRule EnterpriseShowCase { get { return new EnterpriseShowCaseRule() ; } }
-    public static NoticeShowCaseRule NoticeShowCase { get { return new NoticeShowCaseRule() ; } }
-    public static CommunityRule Community { get { return new CommunityRule() ; } }
-    public static TStandardRoleRule TStandardRole { get { return new TStandardRoleRule() ; } }
-    public static TRoomOwnerRule TRoomOwner { get { return new TRoomOwnerRule() ; } }
-    public static TempRoomownerRule TempRoomowner { get { return new TempRoomownerRule() ; } }
-    public static DeptCommunityRule DeptCommunity { get { return new DeptCommunityRule() ; } }
     public static VPowerActionRule VPowerAction { get { return new VPowerActionRule() ; } }
     public static VTxtResRule VTxtRes { get { return new VTxtResRule() ; } }
     public static SplitRule Split(System.String Val,System.String Split) 

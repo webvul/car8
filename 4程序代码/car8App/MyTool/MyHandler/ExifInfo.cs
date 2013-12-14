@@ -36,7 +36,10 @@ namespace MyTool
             {
                 if (each[0].AsInt() > 0 && each[1].AsInt() > 0)
                 {
-                    var fi = System.IO.Directory.GetFiles(pentaxPath, "*.jpg")[0];
+                    var di = System.IO.Directory.GetFiles(pentaxPath, "*.jpg");
+                    if (di.Any() == false) return;
+                    var fi = di[0];
+
                     var info = new Goheer.EXIF.EXIFextractor(fi, "", "");
 
                     var dt = info["DTDigitized"].AsString().Split(' ')[0].Split(':')[0].AsInt();

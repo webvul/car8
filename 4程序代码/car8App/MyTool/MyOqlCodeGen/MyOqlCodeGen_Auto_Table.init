@@ -13,24 +13,25 @@
       <Entity Name="PowerController" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="" />
       <Entity Name="ResKey" PKs="Key" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="" />
       <Entity Name="ResValue" PKs="Lang,ResID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="" />
-      <Entity Name="T_ROOM_OWNER" PKs="ROOM_OWNER_ID" AutoIncreKey="" ComputeKeys="" UniqueKey="LoginName" FKs="" />
-      <Entity Name="T_STANDARD_ROLE" PKs="STANDARD_ROLE_ID" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="" />
-      <Entity Name="TB_ContactMsg" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="" />
-      <Entity Name="TB_Dept" PKs="ID" AutoIncreKey="" ComputeKeys="" UniqueKey="WebName" FKs="Logo()=Annex:ID,Title()=Annex:ID,TitleExtend()=Annex:ID" />
-      <Entity Name="TB_Dept_Community" PKs="RefID" AutoIncreKey="RefID" ComputeKeys="" UniqueKey="" FKs="" />
-      <Entity Name="TB_DeptAnnex" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="DeptID(ud)=TB_Dept:ID,AnnexID(ud)=Annex:ID" />
-      <Entity Name="TB_EnterpriseShowCase" PKs="ProductID" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="" />
-      <Entity Name="TB_NoticeInfo" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="NoticeTypeID(ud)=TB_NoticeType:ID,Logo()=Annex:ID" />
-      <Entity Name="TB_NoticeShowCase" PKs="NoticeID" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="" />
-      <Entity Name="TB_NoticeType" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="" />
-      <Entity Name="TB_Person" PKs="UserID" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="Logo()=Annex:ID,DeptID()=TB_Dept:ID" />
-      <Entity Name="TB_ProductAnnex" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="ProductID(ud)=TB_ProductInfo:ID,AnnexID(ud)=Annex:ID" />
-      <Entity Name="TB_ProductClicks" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="Year,Month,ProductID" FKs="ProductID(ud)=TB_ProductInfo:ID" />
-      <Entity Name="TB_ProductDetail" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="ProductID()=TB_ProductInfo:ID" />
-      <Entity Name="TB_ProductInfo" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="ProductTypeID(ud)=TB_ProductType:ID,Logo()=Annex:ID" />
-      <Entity Name="TB_ProductType" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="Name,PID" FKs="DeptID()=TB_Dept:ID" />
-      <Entity Name="TEMP_ROOMOWNER" PKs="Id" AutoIncreKey="Id" ComputeKeys="" UniqueKey="" FKs="" />
-      <Entity Name="TM_Community" PKs="CommID" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="ContactMsg" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="Dept" PKs="ID" AutoIncreKey="" ComputeKeys="" UniqueKey="WebName" FKs="Logo()=Annex:ID,Title()=Annex:ID,TitleExtend()=Annex:ID" />
+      <Entity Name="DeptAnnex" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="DeptID(ud)=Dept:ID,AnnexID(ud)=Annex:ID" />
+      <Entity Name="NoticeInfo" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="NoticeTypeID(ud)=NoticeType:ID,Logo()=Annex:ID" />
+      <Entity Name="NoticeType" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="Person" PKs="UserID" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="Logo()=Annex:ID,DeptID()=Dept:ID" />
+      <Entity Name="ProductAnnex" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="ProductID(ud)=ProductInfo:ID,AnnexID(ud)=Annex:ID" />
+      <Entity Name="ProductClicks" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="Year,Month,ProductID" FKs="ProductID(ud)=ProductInfo:ID" />
+      <Entity Name="ProductDetail" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="ProductID()=ProductInfo:ID" />
+      <Entity Name="ProductInfo" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="ProductTypeID(ud)=ProductType:ID,Logo()=Annex:ID" />
+      <Entity Name="ProductType" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="Name,PID" FKs="DeptID()=Dept:ID" />
+      <Entity Name="Role" PKs="Id" AutoIncreKey="Id" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="EnterpriseShowCase" PKs="ProductID" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="NoticeShowCase" PKs="NoticeID" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="Community" PKs="CommID" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="ZoneId()=Zone:Id" />
+      <Entity Name="Dept_Community" PKs="Id" AutoIncreKey="Id" ComputeKeys="" UniqueKey="" FKs="DeptId()=Dept:ID,CommId()=Community:CommID" />
+      <Entity Name="Zone" PKs="Id" AutoIncreKey="Id" ComputeKeys="" UniqueKey="" FKs="CityId()=City:Id" />
+      <Entity Name="City" PKs="Id" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="BelongTo()=Province:Id" />
+      <Entity Name="Province" PKs="Id" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="" />
     </Group>
   </Table>
 </MyOqlCodeGen>

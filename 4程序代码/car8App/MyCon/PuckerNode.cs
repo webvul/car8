@@ -110,9 +110,9 @@ namespace MyCon
         /// 根据 MenuID 加载 菜单树. 如果MenuID 是0 , 则 SubNode 有效.
         /// </summary>
         /// <param name="MenuID"></param>
-        public static PuckerNode LoadMenuByStandardRole(Guid roleId)
+        public static PuckerNode LoadMenuByStandardRole(int roleId)
         {
-            var row = new PowerJson(dbr.TStandardRole.FindByStandardRoleId(roleId).Power).Row;//
+            var row = new PowerJson(dbr.Role.FindById(roleId).Power).Row;//
             //.Select(o => o.Power)
             //.Where(o => o.Id == roleId)
             //.ToEntity(string.Empty)).Row;

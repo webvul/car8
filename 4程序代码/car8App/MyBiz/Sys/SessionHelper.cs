@@ -305,9 +305,9 @@ namespace MyBiz
         }
 
 
-        public static Guid[] GetMyRoles()
+        public static int[] GetMyRoles()
         {
-            return GetMyEntity().GetRoles().Select(o => o.StandardRoleId).ToArray();
+            return GetMyEntity().GetRoles().Select(o => o.Id).ToArray();
         }
 
         /// <summary>

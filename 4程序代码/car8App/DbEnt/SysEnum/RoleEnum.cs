@@ -16,7 +16,7 @@ namespace DbEnt
     {
         User = 1,
         Dept = 2,
-        //Role = 4,
+        Role = 4,
         NotMine,
 
         /// <summary>

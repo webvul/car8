@@ -1,4 +1,4 @@
-﻿//系统自动生成的实体，不能修改。 By: UDI-PC.  At:2013-11-15 13:05:54
+﻿//系统自动生成的实体，不能修改。 By: UDI-PC.于新海  At:2013-12-09 19:32:05
 using System;
 using MyOql;
 using MyCmn;
@@ -65,7 +65,7 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn SortID { get; set; }
         /// <summary>
-        /// 部门ID(Int32)[外键(DeptID=TB_Dept:ID)]
+        /// 部门ID(Int32)[外键(DeptID=Dept:ID)]
         /// </summary>
         public SimpleColumn DeptID { get; set; }
         /// <summary>
@@ -82,7 +82,7 @@ namespace DbEnt
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return Id; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "TB_ProductType"; }
+        public override string GetDbName() { return "ProductType"; }
 
         public Entity FindById(Int32 Id)
         {
@@ -164,7 +164,7 @@ namespace DbEnt
             public Int32 SortID { get; set; }
  
             /// <summary>
-            /// 部门ID[外键(DeptID=TB_Dept:ID)]
+            /// 部门ID[外键(DeptID=Dept:ID)]
             /// </summary>
             public Int32 DeptID { get; set; }
  
@@ -302,7 +302,7 @@ namespace DbEnt
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return Id; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "TB_NoticeType"; }
+        public override string GetDbName() { return "NoticeType"; }
 
         public Entity FindById(Int64 Id)
         {
@@ -460,6 +460,7 @@ namespace DbEnt
             this.Id = new SimpleColumn(this, DbType.Int32, 4,"Id","ID",false);
             this.NoticeTypeID = new SimpleColumn(this, DbType.Int64, 8,"NoticeTypeID","NoticeTypeID",true);
             this.Name = new SimpleColumn(this, DbType.AnsiString, 100,"Name","Name",true);
+            this.Wbs = new SimpleColumn(this, DbType.AnsiString, 50,"Wbs","Wbs",true);
             this.Logo = new SimpleColumn(this, DbType.Int32, 4,"Logo","Logo",true);
             this.Descr = new SimpleColumn(this, DbType.AnsiString, 500,"Descr","Descr",true);
             this.SortID = new SimpleColumn(this, DbType.Int32, 4,"SortID","SortID",true);
@@ -471,13 +472,17 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn Id { get; set; }
         /// <summary>
-        /// NoticeTypeID(Int64)[外键(NoticeTypeID=TB_NoticeType:ID)]
+        /// NoticeTypeID(Int64)[外键(NoticeTypeID=NoticeType:ID)]
         /// </summary>
         public SimpleColumn NoticeTypeID { get; set; }
         /// <summary>
         /// Name(AnsiString)
         /// </summary>
         public SimpleColumn Name { get; set; }
+        /// <summary>
+        /// Wbs(AnsiString)
+        /// </summary>
+        public SimpleColumn Wbs { get; set; }
         /// <summary>
         /// Logo(Int32)[外键(Logo=Annex:ID)]
         /// </summary>
@@ -495,12 +500,12 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn UpdateTime { get; set; }
 
-        public override SimpleColumn[] GetColumns() {  return new SimpleColumn[] { Id,NoticeTypeID,Name,Logo,Descr,SortID,UpdateTime }; }
+        public override SimpleColumn[] GetColumns() {  return new SimpleColumn[] { Id,NoticeTypeID,Name,Wbs,Logo,Descr,SortID,UpdateTime }; }
         public override SimpleColumn[] GetPrimaryKeys() { return new SimpleColumn[] { Id };  }
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return Id; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "TB_NoticeInfo"; }
+        public override string GetDbName() { return "NoticeInfo"; }
 
         public Entity FindById(Int32 Id)
         {
@@ -524,6 +529,7 @@ namespace DbEnt
             tab.Id = this.Id.Clone() as SimpleColumn;
             tab.NoticeTypeID = this.NoticeTypeID.Clone() as SimpleColumn;
             tab.Name = this.Name.Clone() as SimpleColumn;
+            tab.Wbs = this.Wbs.Clone() as SimpleColumn;
             tab.Logo = this.Logo.Clone() as SimpleColumn;
             tab.Descr = this.Descr.Clone() as SimpleColumn;
             tab.SortID = this.SortID.Clone() as SimpleColumn;
@@ -549,7 +555,7 @@ namespace DbEnt
             public Int32 Id { get; set; }
  
             /// <summary>
-            /// NoticeTypeID[外键(NoticeTypeID=TB_NoticeType:ID)]
+            /// NoticeTypeID[外键(NoticeTypeID=NoticeType:ID)]
             /// </summary>
             public Int64 NoticeTypeID { get; set; }
  
@@ -557,6 +563,11 @@ namespace DbEnt
             /// Name
             /// </summary>
             public String Name { get; set; }
+ 
+            /// <summary>
+            /// Wbs
+            /// </summary>
+            public String Wbs { get; set; }
  
             /// <summary>
             /// Logo[外键(Logo=Annex:ID)]
@@ -583,6 +594,7 @@ namespace DbEnt
                 if ( PropertyName == "Id" ) { this.Id = ValueProc.As<Int32>(Value) ; return true; }
                 if ( PropertyName == "NoticeTypeID" ) { this.NoticeTypeID = ValueProc.As<Int64>(Value) ; return true; }
                 if ( PropertyName == "Name" ) { this.Name = ValueProc.As<String>(Value) ; return true; }
+                if ( PropertyName == "Wbs" ) { this.Wbs = ValueProc.As<String>(Value) ; return true; }
                 if ( PropertyName == "Logo" ) { this.Logo = ValueProc.As<Int32>(Value) ; return true; }
                 if ( PropertyName == "Descr" ) { this.Descr = ValueProc.As<String>(Value) ; return true; }
                 if ( PropertyName == "SortID" ) { this.SortID = ValueProc.As<Int32>(Value) ; return true; }
@@ -595,6 +607,7 @@ namespace DbEnt
                 if ( PropertyName == "Id" ) { return this.Id ; }
                 if ( PropertyName == "NoticeTypeID" ) { return this.NoticeTypeID ; }
                 if ( PropertyName == "Name" ) { return this.Name ; }
+                if ( PropertyName == "Wbs" ) { return this.Wbs ; }
                 if ( PropertyName == "Logo" ) { return this.Logo ; }
                 if ( PropertyName == "Descr" ) { return this.Descr ; }
                 if ( PropertyName == "SortID" ) { return this.SortID ; }
@@ -602,7 +615,7 @@ namespace DbEnt
                 return null ;
             }
 
-            public string[]  GetProperties() { return new string[]{ "Id","NoticeTypeID","Name","Logo","Descr","SortID","UpdateTime" } ; }
+            public string[]  GetProperties() { return new string[]{ "Id","NoticeTypeID","Name","Wbs","Logo","Descr","SortID","UpdateTime" } ; }
             
             public object Clone()
             {
@@ -658,7 +671,7 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn Month { get; set; }
         /// <summary>
-        /// 产品ID(Int32)[外键(ProductID=TB_ProductInfo:ID)]
+        /// 产品ID(Int32)[外键(ProductID=ProductInfo:ID)]
         /// </summary>
         public SimpleColumn ProductID { get; set; }
         /// <summary>
@@ -671,7 +684,7 @@ namespace DbEnt
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return Id; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "TB_ProductClicks"; }
+        public override string GetDbName() { return "ProductClicks"; }
 
         public Entity FindById(Int32 Id)
         {
@@ -728,7 +741,7 @@ namespace DbEnt
             public Int32 Month { get; set; }
  
             /// <summary>
-            /// 产品ID[外键(ProductID=TB_ProductInfo:ID)]
+            /// 产品ID[外键(ProductID=ProductInfo:ID)]
             /// </summary>
             public Int32 ProductID { get; set; }
  
@@ -834,7 +847,7 @@ namespace DbEnt
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return Id; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "TB_ContactMsg"; }
+        public override string GetDbName() { return "ContactMsg"; }
 
         public Entity FindById(Int32 Id)
         {
@@ -977,7 +990,7 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn Id { get; set; }
         /// <summary>
-        /// 产品ID(Int32)[外键(ProductID=TB_ProductInfo:ID)]
+        /// 产品ID(Int32)[外键(ProductID=ProductInfo:ID)]
         /// </summary>
         public SimpleColumn ProductID { get; set; }
         /// <summary>
@@ -994,7 +1007,7 @@ namespace DbEnt
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return Id; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "TB_ProductAnnex"; }
+        public override string GetDbName() { return "ProductAnnex"; }
 
         public Entity FindById(Int32 Id)
         {
@@ -1040,7 +1053,7 @@ namespace DbEnt
             public Int32 Id { get; set; }
  
             /// <summary>
-            /// 产品ID[外键(ProductID=TB_ProductInfo:ID)]
+            /// 产品ID[外键(ProductID=ProductInfo:ID)]
             /// </summary>
             public Int32 ProductID { get; set; }
  
@@ -1111,6 +1124,7 @@ namespace DbEnt
             this.Id = new SimpleColumn(this, DbType.Int32, 4,"Id","ID",false);
             this.ProductTypeID = new SimpleColumn(this, DbType.Int32, 4,"ProductTypeID","ProductTypeID",true);
             this.Name = new SimpleColumn(this, DbType.AnsiString, 100,"Name","Name",true);
+            this.Wbs = new SimpleColumn(this, DbType.AnsiString, 50,"Wbs","Wbs",true);
             this.Logo = new SimpleColumn(this, DbType.Int32, 4,"Logo","Logo",true);
             this.Descr = new SimpleColumn(this, DbType.AnsiString, 500,"Descr","Descr",true);
             this.SortID = new SimpleColumn(this, DbType.Int32, 4,"SortID","SortID",true);
@@ -1122,13 +1136,17 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn Id { get; set; }
         /// <summary>
-        /// 产品类型ID(Int32)[外键(ProductTypeID=TB_ProductType:ID)]
+        /// 产品类型ID(Int32)[外键(ProductTypeID=ProductType:ID)]
         /// </summary>
         public SimpleColumn ProductTypeID { get; set; }
         /// <summary>
         /// 名称(AnsiString)
         /// </summary>
         public SimpleColumn Name { get; set; }
+        /// <summary>
+        /// 从根到父节点的路径(AnsiString)
+        /// </summary>
+        public SimpleColumn Wbs { get; set; }
         /// <summary>
         /// 产品缩略图(Int32)[外键(Logo=Annex:ID)]
         /// </summary>
@@ -1146,12 +1164,12 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn UpdateTime { get; set; }
 
-        public override SimpleColumn[] GetColumns() {  return new SimpleColumn[] { Id,ProductTypeID,Name,Logo,Descr,SortID,UpdateTime }; }
+        public override SimpleColumn[] GetColumns() {  return new SimpleColumn[] { Id,ProductTypeID,Name,Wbs,Logo,Descr,SortID,UpdateTime }; }
         public override SimpleColumn[] GetPrimaryKeys() { return new SimpleColumn[] { Id };  }
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return Id; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "TB_ProductInfo"; }
+        public override string GetDbName() { return "ProductInfo"; }
 
         public Entity FindById(Int32 Id)
         {
@@ -1175,6 +1193,7 @@ namespace DbEnt
             tab.Id = this.Id.Clone() as SimpleColumn;
             tab.ProductTypeID = this.ProductTypeID.Clone() as SimpleColumn;
             tab.Name = this.Name.Clone() as SimpleColumn;
+            tab.Wbs = this.Wbs.Clone() as SimpleColumn;
             tab.Logo = this.Logo.Clone() as SimpleColumn;
             tab.Descr = this.Descr.Clone() as SimpleColumn;
             tab.SortID = this.SortID.Clone() as SimpleColumn;
@@ -1200,7 +1219,7 @@ namespace DbEnt
             public Int32 Id { get; set; }
  
             /// <summary>
-            /// 产品类型ID[外键(ProductTypeID=TB_ProductType:ID)]
+            /// 产品类型ID[外键(ProductTypeID=ProductType:ID)]
             /// </summary>
             public Int32 ProductTypeID { get; set; }
  
@@ -1208,6 +1227,11 @@ namespace DbEnt
             /// 名称
             /// </summary>
             public String Name { get; set; }
+ 
+            /// <summary>
+            /// 从根到父节点的路径
+            /// </summary>
+            public String Wbs { get; set; }
  
             /// <summary>
             /// 产品缩略图[外键(Logo=Annex:ID)]
@@ -1234,6 +1258,7 @@ namespace DbEnt
                 if ( PropertyName == "Id" ) { this.Id = ValueProc.As<Int32>(Value) ; return true; }
                 if ( PropertyName == "ProductTypeID" ) { this.ProductTypeID = ValueProc.As<Int32>(Value) ; return true; }
                 if ( PropertyName == "Name" ) { this.Name = ValueProc.As<String>(Value) ; return true; }
+                if ( PropertyName == "Wbs" ) { this.Wbs = ValueProc.As<String>(Value) ; return true; }
                 if ( PropertyName == "Logo" ) { this.Logo = ValueProc.As<Int32>(Value) ; return true; }
                 if ( PropertyName == "Descr" ) { this.Descr = ValueProc.As<String>(Value) ; return true; }
                 if ( PropertyName == "SortID" ) { this.SortID = ValueProc.As<Int32>(Value) ; return true; }
@@ -1246,6 +1271,7 @@ namespace DbEnt
                 if ( PropertyName == "Id" ) { return this.Id ; }
                 if ( PropertyName == "ProductTypeID" ) { return this.ProductTypeID ; }
                 if ( PropertyName == "Name" ) { return this.Name ; }
+                if ( PropertyName == "Wbs" ) { return this.Wbs ; }
                 if ( PropertyName == "Logo" ) { return this.Logo ; }
                 if ( PropertyName == "Descr" ) { return this.Descr ; }
                 if ( PropertyName == "SortID" ) { return this.SortID ; }
@@ -1253,7 +1279,7 @@ namespace DbEnt
                 return null ;
             }
 
-            public string[]  GetProperties() { return new string[]{ "Id","ProductTypeID","Name","Logo","Descr","SortID","UpdateTime" } ; }
+            public string[]  GetProperties() { return new string[]{ "Id","ProductTypeID","Name","Wbs","Logo","Descr","SortID","UpdateTime" } ; }
             
             public object Clone()
             {
@@ -1325,7 +1351,7 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn Id { get; set; }
         /// <summary>
-        /// 产品ID(Int32)[外键(ProductID=TB_ProductInfo:ID)]
+        /// 产品ID(Int32)[外键(ProductID=ProductInfo:ID)]
         /// </summary>
         public SimpleColumn ProductID { get; set; }
         /// <summary>
@@ -1358,7 +1384,7 @@ namespace DbEnt
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return Id; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "TB_ProductDetail"; }
+        public override string GetDbName() { return "ProductDetail"; }
 
         public Entity FindById(Int32 Id)
         {
@@ -1408,7 +1434,7 @@ namespace DbEnt
             public Int32 Id { get; set; }
  
             /// <summary>
-            /// 产品ID[外键(ProductID=TB_ProductInfo:ID)]
+            /// 产品ID[外键(ProductID=ProductInfo:ID)]
             /// </summary>
             public Int32 ProductID { get; set; }
  
@@ -1482,288 +1508,6 @@ namespace DbEnt
                 _GetProductInfo = dbr.Shop.ProductInfo.FindById(this.ProductID);
                 return _GetProductInfo;
             }
-         }
-    }
-
-
-    
-    /// <summary>
-    /// 
-    /// </summary>
-    [Serializable]
-    public sealed partial class EnterpriseShowCaseRule : RuleBase, ITableRule,ICloneable
-    {
-
-
-        public  EnterpriseShowCaseRule() : base("EnterpriseShowCase")
-        {
-            this.ProductID = new SimpleColumn(this, DbType.Int32, 4,"ProductID","ProductID",false);
-            this.SortID = new SimpleColumn(this, DbType.Int32, 4,"SortID","SortID",true);
-            this.BeginTime = new SimpleColumn(this, DbType.DateTime, 8,"BeginTime","BeginTime",true);
-            this.EndTime = new SimpleColumn(this, DbType.DateTime, 8,"EndTime","EndTime",true);
-            this.DeptID = new SimpleColumn(this, DbType.Int32, 4,"DeptID","DeptID",true);
-        }
-
-        /// <summary>
-        /// 产品ID(Int32)[主键(ProductID)]
-        /// </summary>
-        public SimpleColumn ProductID { get; set; }
-        /// <summary>
-        /// 排序数(Int32)
-        /// </summary>
-        public SimpleColumn SortID { get; set; }
-        /// <summary>
-        /// 开始时间(DateTime)
-        /// </summary>
-        public SimpleColumn BeginTime { get; set; }
-        /// <summary>
-        /// 结束时间(DateTime)
-        /// </summary>
-        public SimpleColumn EndTime { get; set; }
-        /// <summary>
-        /// 部门ID(Int32)
-        /// </summary>
-        public SimpleColumn DeptID { get; set; }
-
-        public override SimpleColumn[] GetColumns() {  return new SimpleColumn[] { ProductID,SortID,BeginTime,EndTime,DeptID }; }
-        public override SimpleColumn[] GetPrimaryKeys() { return new SimpleColumn[] { ProductID };  }
-        public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
-        public override SimpleColumn GetAutoIncreKey() {  return null; }
-        public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "TB_EnterpriseShowCase"; }
-
-        public Entity FindByProductID(Int32 ProductID)
-        {
-             if ( ProductID <= 0 ) return null ;
-            return this.SelectWhere(o => o.ProductID == ProductID).ToEntity<Entity>();
-        }
-        public int DeleteByProductID(Int32 ProductID)
-        {
-             if ( ProductID <= 0 ) return 0 ;
-            return this.Delete(o => o.ProductID == ProductID).Execute() ;
-        }
-
-
-        public override object Clone()
-        {
-            var tab = new EnterpriseShowCaseRule();
-            if ( this._Config_ != null ) tab._Config_ = base._Config_.Clone() as RuleRuntimeConfig ;
-            tab.SetAlias(base.Name);
-            tab.SetReconfig(base.ReConfig);
-
-            tab.ProductID = this.ProductID.Clone() as SimpleColumn;
-            tab.SortID = this.SortID.Clone() as SimpleColumn;
-            tab.BeginTime = this.BeginTime.Clone() as SimpleColumn;
-            tab.EndTime = this.EndTime.Clone() as SimpleColumn;
-            tab.DeptID = this.DeptID.Clone() as SimpleColumn;
-
-            return tab;
-        }
-        /// <summary>
-        ///  
-        /// </summary>
-        public Entity _ { get { return new Entity (); } }
-       
-        /// <summary>
-        /// 
-        /// </summary>
-        [Serializable]
-        public sealed partial class Entity :IEntity
-        {
- 
-            /// <summary>
-            /// 产品ID[主键(ProductID)]
-            /// </summary>
-            public Int32 ProductID { get; set; }
- 
-            /// <summary>
-            /// 排序数
-            /// </summary>
-            public Int32 SortID { get; set; }
- 
-            /// <summary>
-            /// 开始时间
-            /// </summary>
-            public MyDate BeginTime { get; set; }
- 
-            /// <summary>
-            /// 结束时间
-            /// </summary>
-            public MyDate EndTime { get; set; }
- 
-            /// <summary>
-            /// 部门ID
-            /// </summary>
-            public Int32 DeptID { get; set; }
-
-            public bool SetPropertyValue(string PropertyName, object Value)
-            {
-                if ( PropertyName == "ProductID" ) { this.ProductID = ValueProc.As<Int32>(Value) ; return true; }
-                if ( PropertyName == "SortID" ) { this.SortID = ValueProc.As<Int32>(Value) ; return true; }
-                if ( PropertyName == "BeginTime" ) { this.BeginTime = ValueProc.As<MyDate>(Value) ; return true; }
-                if ( PropertyName == "EndTime" ) { this.EndTime = ValueProc.As<MyDate>(Value) ; return true; }
-                if ( PropertyName == "DeptID" ) { this.DeptID = ValueProc.As<Int32>(Value) ; return true; }
-                return false ;
-           }
-
-            public object GetPropertyValue(string PropertyName)
-            {
-                if ( PropertyName == "ProductID" ) { return this.ProductID ; }
-                if ( PropertyName == "SortID" ) { return this.SortID ; }
-                if ( PropertyName == "BeginTime" ) { return this.BeginTime ; }
-                if ( PropertyName == "EndTime" ) { return this.EndTime ; }
-                if ( PropertyName == "DeptID" ) { return this.DeptID ; }
-                return null ;
-            }
-
-            public string[]  GetProperties() { return new string[]{ "ProductID","SortID","BeginTime","EndTime","DeptID" } ; }
-            
-            public object Clone()
-            {
-                return this.CloneIEntity() ;
-            }
-
-         }
-    }
-
-
-    
-    /// <summary>
-    /// 
-    /// </summary>
-    [Serializable]
-    public sealed partial class NoticeShowCaseRule : RuleBase, ITableRule,ICloneable
-    {
-
-
-        public  NoticeShowCaseRule() : base("NoticeShowCase")
-        {
-            this.NoticeID = new SimpleColumn(this, DbType.Int32, 4,"NoticeID","NoticeID",false);
-            this.SortID = new SimpleColumn(this, DbType.Int32, 4,"SortID","SortID",true);
-            this.BeginTime = new SimpleColumn(this, DbType.DateTime, 8,"BeginTime","BeginTime",true);
-            this.EndTime = new SimpleColumn(this, DbType.DateTime, 8,"EndTime","EndTime",true);
-            this.DeptID = new SimpleColumn(this, DbType.Int32, 4,"DeptID","DeptID",true);
-        }
-
-        /// <summary>
-        /// NoticeID(Int32)[主键(NoticeID)]
-        /// </summary>
-        public SimpleColumn NoticeID { get; set; }
-        /// <summary>
-        /// SortID(Int32)
-        /// </summary>
-        public SimpleColumn SortID { get; set; }
-        /// <summary>
-        /// BeginTime(DateTime)
-        /// </summary>
-        public SimpleColumn BeginTime { get; set; }
-        /// <summary>
-        /// EndTime(DateTime)
-        /// </summary>
-        public SimpleColumn EndTime { get; set; }
-        /// <summary>
-        /// DeptID(Int32)
-        /// </summary>
-        public SimpleColumn DeptID { get; set; }
-
-        public override SimpleColumn[] GetColumns() {  return new SimpleColumn[] { NoticeID,SortID,BeginTime,EndTime,DeptID }; }
-        public override SimpleColumn[] GetPrimaryKeys() { return new SimpleColumn[] { NoticeID };  }
-        public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
-        public override SimpleColumn GetAutoIncreKey() {  return null; }
-        public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "TB_NoticeShowCase"; }
-
-        public Entity FindByNoticeID(Int32 NoticeID)
-        {
-             if ( NoticeID <= 0 ) return null ;
-            return this.SelectWhere(o => o.NoticeID == NoticeID).ToEntity<Entity>();
-        }
-        public int DeleteByNoticeID(Int32 NoticeID)
-        {
-             if ( NoticeID <= 0 ) return 0 ;
-            return this.Delete(o => o.NoticeID == NoticeID).Execute() ;
-        }
-
-
-        public override object Clone()
-        {
-            var tab = new NoticeShowCaseRule();
-            if ( this._Config_ != null ) tab._Config_ = base._Config_.Clone() as RuleRuntimeConfig ;
-            tab.SetAlias(base.Name);
-            tab.SetReconfig(base.ReConfig);
-
-            tab.NoticeID = this.NoticeID.Clone() as SimpleColumn;
-            tab.SortID = this.SortID.Clone() as SimpleColumn;
-            tab.BeginTime = this.BeginTime.Clone() as SimpleColumn;
-            tab.EndTime = this.EndTime.Clone() as SimpleColumn;
-            tab.DeptID = this.DeptID.Clone() as SimpleColumn;
-
-            return tab;
-        }
-        /// <summary>
-        ///  
-        /// </summary>
-        public Entity _ { get { return new Entity (); } }
-       
-        /// <summary>
-        /// 
-        /// </summary>
-        [Serializable]
-        public sealed partial class Entity :IEntity
-        {
- 
-            /// <summary>
-            /// NoticeID[主键(NoticeID)]
-            /// </summary>
-            public Int32 NoticeID { get; set; }
- 
-            /// <summary>
-            /// SortID
-            /// </summary>
-            public Int32 SortID { get; set; }
- 
-            /// <summary>
-            /// BeginTime
-            /// </summary>
-            public MyDate BeginTime { get; set; }
- 
-            /// <summary>
-            /// EndTime
-            /// </summary>
-            public MyDate EndTime { get; set; }
- 
-            /// <summary>
-            /// DeptID
-            /// </summary>
-            public Int32 DeptID { get; set; }
-
-            public bool SetPropertyValue(string PropertyName, object Value)
-            {
-                if ( PropertyName == "NoticeID" ) { this.NoticeID = ValueProc.As<Int32>(Value) ; return true; }
-                if ( PropertyName == "SortID" ) { this.SortID = ValueProc.As<Int32>(Value) ; return true; }
-                if ( PropertyName == "BeginTime" ) { this.BeginTime = ValueProc.As<MyDate>(Value) ; return true; }
-                if ( PropertyName == "EndTime" ) { this.EndTime = ValueProc.As<MyDate>(Value) ; return true; }
-                if ( PropertyName == "DeptID" ) { this.DeptID = ValueProc.As<Int32>(Value) ; return true; }
-                return false ;
-           }
-
-            public object GetPropertyValue(string PropertyName)
-            {
-                if ( PropertyName == "NoticeID" ) { return this.NoticeID ; }
-                if ( PropertyName == "SortID" ) { return this.SortID ; }
-                if ( PropertyName == "BeginTime" ) { return this.BeginTime ; }
-                if ( PropertyName == "EndTime" ) { return this.EndTime ; }
-                if ( PropertyName == "DeptID" ) { return this.DeptID ; }
-                return null ;
-            }
-
-            public string[]  GetProperties() { return new string[]{ "NoticeID","SortID","BeginTime","EndTime","DeptID" } ; }
-            
-            public object Clone()
-            {
-                return this.CloneIEntity() ;
-            }
-
          }
     }
 

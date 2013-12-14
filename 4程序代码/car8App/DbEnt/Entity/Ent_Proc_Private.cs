@@ -1,4 +1,4 @@
-﻿//系统自动生成的实体，不能修改。 By: UDI-PC.  At:2013-11-15 13:05:54
+﻿//系统自动生成的实体，不能修改。 By: UDI-PC.于新海  At:2013-12-09 19:32:05
 using System;
 using MyOql;
 using MyCmn;

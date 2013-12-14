@@ -96,8 +96,6 @@
     <Compile Include="EntEnum\UserRole.cs" />
     <Compile Include="Entity\Ent_dbr.cs" />
     <Compile Include="Entity\Ent_Group.cs" />
-    <Compile Include="Entity\Ent_LongFor.cs" />
-    <Compile Include="Entity\Ent_LongFor_Private.cs" />
     <Compile Include="Entity\Ent_Proc.cs" />
     <Compile Include="Entity\Ent_Proc_Private.cs" />
     <Compile Include="Entity\Ent_Shop.cs" />

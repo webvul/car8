@@ -132,7 +132,7 @@ namespace MyWeb.Areas.Admin.Controllers
             {
                 new PersonRule().Delete(o => o.DeptID.In(delIds)).Execute();
                 var ret = new DeptRule().Delete(o => o.GetIdKey().In(delIds)).Execute();
-                dbr.DeptCommunity.Delete(o => o.DeptID.In(delIds)).Execute();
+                dbr.DeptCommunity.Delete(o => o.DeptId.In(delIds)).Execute();
                 if (ret == delIds.Count())
                 {
 
@@ -149,7 +149,7 @@ namespace MyWeb.Areas.Admin.Controllers
 
         public ActionResult Detail(int uid)
         {
-            var CommIDs = dbr.DeptCommunity.Select(o => o.CommID).Where(o => o.DeptID == MySessionKey.DeptID.Get() & o.RefUser == MySessionKey.UserID.Get()).ToEntityList(0).Distinct().ToArray();
+            var CommIDs = dbr.DeptCommunity.Select(o => o.CommId).Where(o => o.DeptId == MySessionKey.DeptID.Get()).ToEntityList(0).Distinct().ToArray();
             var CommNames = dbr.Community.Select(o => o.CommName).Where(o => o.CommID.In(CommIDs)).ToEntityList("").Distinct().Join(",");
             RenderJsVar("CommNames", CommNames);
             return View("Edit", dbr.Dept.FindById(uid));
@@ -190,7 +190,7 @@ namespace MyWeb.Areas.Admin.Controllers
                     #region 添加小区关联
                     foreach (var CommID in uid.Split(","))
                     {
-                        dbr.DeptCommunity.Insert(o => o.CommID == CommID & o.DeptID == MaxDeptID & o.RefUser == dept.Name & o.RefTime == DateTime.Now & o.IfPushComm == 1).Execute();
+                        dbr.DeptCommunity.Insert(o => o.CommId == CommID & o.DeptId == MaxDeptID).Execute();
                     }
                     #endregion
 
@@ -213,7 +213,7 @@ namespace MyWeb.Areas.Admin.Controllers
             {
                 MyHelper.RequestContext.RouteData.Values["uid"] = MySession.Get(MySessionKey.DeptID).AsString();
             }
-            var CommIDs = dbr.DeptCommunity.Select(o => o.CommID).Where(o => o.DeptID == MySessionKey.DeptID.Get() & o.RefUser == MySessionKey.DeptName.Get()).ToEntityList(0).Distinct().ToArray();
+            var CommIDs = dbr.DeptCommunity.Select(o => o.CommId).Where(o => o.DeptId == MySessionKey.DeptID.Get()).ToEntityList(0).Distinct().ToArray();
             var CommNames = dbr.Community.Select(o => o.CommName).Where(o => o.CommID.In(CommIDs)).ToEntityList("").Distinct();
             RenderJsVar("CommNames", CommNames.Join(","));
             RenderJsVar("CommIDs", CommIDs.Join(","));
@@ -229,7 +229,7 @@ namespace MyWeb.Areas.Admin.Controllers
             {
                 MyHelper.RequestContext.RouteData.Values["uid"] = MySession.Get(MySessionKey.DeptID).AsString();
             }
-            var CommIDs = dbr.DeptCommunity.Select(o => o.CommID).Where(o => o.DeptID == uid).ToEntityList(0).Distinct().ToArray();
+            var CommIDs = dbr.DeptCommunity.Select(o => o.CommId).Where(o => o.DeptId == uid).ToEntityList(0).Distinct().ToArray();
             var CommNames = dbr.Community.Select(o => o.CommName).Where(o => o.CommID.In(CommIDs)).ToEntityList("").Distinct();
             RenderJsVar("CommNames", CommNames.Join(","));
             RenderJsVar("CommIDs", CommIDs.Join(","));
@@ -255,10 +255,10 @@ namespace MyWeb.Areas.Admin.Controllers
                     .Execute() == 1)
                 {
                     #region 添加小区关联
-                    dbr.DeptCommunity.Delete(o => o.DeptID == ent.Id).Execute();
+                    dbr.DeptCommunity.Delete(o => o.DeptId == ent.Id).Execute();
                     foreach (var CommID in uid.Split(","))
                     {
-                        dbr.DeptCommunity.Insert(o => o.CommID == CommID & o.DeptID == ent.Id & o.RefUser == ent.Name & o.RefTime == DateTime.Now & o.IfPushComm == 1).Execute();
+                        dbr.DeptCommunity.Insert(o => o.CommId == CommID & o.DeptId == ent.Id).Execute();
                     }
                     #endregion
                 }
@@ -288,10 +288,10 @@ namespace MyWeb.Areas.Admin.Controllers
                     .Execute() == 1)
                 {
                     #region 添加小区关联
-                    dbr.DeptCommunity.Delete(o => o.DeptID == ent.Id).Execute();
+                    dbr.DeptCommunity.Delete(o => o.DeptId == ent.Id).Execute();
                     foreach (var CommID in uid.Split(","))
                     {
-                        dbr.DeptCommunity.Insert(o => o.CommID == CommID & o.DeptID == ent.Id & o.RefUser == ent.Name & o.RefTime == DateTime.Now & o.IfPushComm == 1).Execute();
+                        dbr.DeptCommunity.Insert(o => o.CommId == CommID & o.DeptId == ent.Id).Execute();
                     }
                     #endregion
                 }

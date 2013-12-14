@@ -17,7 +17,7 @@ namespace MyBiz.App
 
         public static void Clean(string[] StandardRoleIdList)
         {
-            TStandardRoleRule.Entity[] roles = GetRoles(StandardRoleIdList);
+            RoleRule.Entity[] roles = GetRoles(StandardRoleIdList);
 
             var actions = dbr.PowerAction.Select(o => o.Id).SkipPower().ToEntityList(0);
             var buttons = dbr.PowerButton.Select(o => o.Id).SkipPower().ToEntityList(0);
@@ -30,35 +30,35 @@ namespace MyBiz.App
                 });
         }
 
-        private static void CleanOne(List<int> actions, List<int> buttons, List<int> menus, TStandardRoleRule.Entity Ent)
+        private static void CleanOne(List<int> actions, List<int> buttons, List<int> menus, RoleRule.Entity Ent)
         {
             var pj = new PowerJson(Ent.Power);
-            pj.Action = MyBigInt.CreateByBitPositons(pj.Action.ToPositions().Intersect(actions));
-            pj.Button = MyBigInt.CreateByBitPositons(pj.Button.ToPositions().Intersect(buttons));
+            pj.Action = MyBigInt.CreateBySqlRowIds(pj.Action.ToPositions().Intersect(actions));
+            pj.Button = MyBigInt.CreateBySqlRowIds(pj.Button.ToPositions().Intersect(buttons));
 
             if (pj.Row.View.ContainsKey("Menu"))
             {
-                pj.Row.View["Menu"] = MyBigInt.CreateByBitPositons(pj.Row.View["Menu"].ToPositions().Intersect(menus));
+                pj.Row.View["Menu"] = MyBigInt.CreateBySqlRowIds(pj.Row.View["Menu"].ToPositions().Intersect(menus));
             }
 
-            dbr.TStandardRole.Update(o => o.Power == pj.ToString(), o => o.StandardRoleId == Ent.StandardRoleId).Execute();
+            dbr.Role.Update(o => o.Power == pj.ToString(), o => o.Id == Ent.Id).Execute();
         }
 
 
 
-        private static TStandardRoleRule.Entity[] GetRoles(string[] StandardRoleIdList)
+        private static RoleRule.Entity[] GetRoles(string[] StandardRoleIdList)
         {
             var roleIds = StandardRoleIdList.Where(o => o.HasValue());
 
             if (roleIds.Count() == 0)
             {
-                return dbr.TStandardRole.Select().ToEntityList(o => o._).ToArray();
+                return dbr.Role.Select().ToEntityList(o => o._).ToArray();
             }
             else
             {
                 return
-                    dbr.TStandardRole
-                    .SelectWhere(o => o.StandardRoleId.In(StandardRoleIdList))
+                    dbr.Role
+                    .SelectWhere(o => o.Id.In(StandardRoleIdList))
                     .ToEntityList(o => o._)
                     .ToArray();
             }

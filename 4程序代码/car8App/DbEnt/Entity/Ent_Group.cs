@@ -1,4 +1,4 @@
-﻿//系统自动生成的实体，不能修改。 By: UDI-PC.  At:2013-11-15 13:05:55
+﻿//系统自动生成的实体，不能修改。 By: UDI-PC.于新海  At:2013-12-09 19:32:05
 using System;
 using MyOql;
 using MyCmn;
@@ -22,36 +22,11 @@ public class ShopGroupClass
     public ProductAnnexRule ProductAnnex { get { return new ProductAnnexRule(); } }
     public ProductInfoRule ProductInfo { get { return new ProductInfoRule(); } }
     public ProductDetailRule ProductDetail { get { return new ProductDetailRule(); } }
-    public EnterpriseShowCaseRule EnterpriseShowCase { get { return new EnterpriseShowCaseRule(); } }
-    public NoticeShowCaseRule NoticeShowCase { get { return new NoticeShowCaseRule(); } }
     public SplitRule Split(System.String val,System.String split)
     {
         return new SplitRule(val,split);
     }
     public ShopGroupClass()
-    {
-    }
-}
-
-public class LongForGroupClass
-{
-    public CommunityRule Community { get { return new CommunityRule(); } }
-    public TStandardRoleRule TStandardRole { get { return new TStandardRoleRule(); } }
-    public TRoomOwnerRule TRoomOwner { get { return new TRoomOwnerRule(); } }
-    public TempRoomownerRule TempRoomowner { get { return new TempRoomownerRule(); } }
-    public DeptCommunityRule DeptCommunity { get { return new DeptCommunityRule(); } }
-    
-
-
-    
-    public  int SpImportRoomOwner( System.String commID )
-    { 
-        var proc = dbr_Proc.SpImportRoomOwnerClip( commID ) ;
-        int retVal = proc.Execute() ;
-        return retVal;
-    }
- 
-    public LongForGroupClass()
     {
     }
 }

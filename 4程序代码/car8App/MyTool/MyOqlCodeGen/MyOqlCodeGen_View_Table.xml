@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<!-- （自动生成）分析在 视图 中可能会变更的 表对象，By: UDI-PC.(Administrator)   At:2013/11/15 13:04:53 -->
+<!-- （自动生成）分析在 视图 中可能会变更的 表对象，By: UDI-PC.于新海(新海)   At:2013/12/9 19:31:41 -->
 <MyOqlCodeGen>
     <View>
         <Group Name="View">
-            <Entity Name="VPowerAction" AutoTable="PowerAction,PowerButton,PowerController" />
-<Entity Name="PM_VTxtRes" AutoTable="ResKey,ResValue" />
+            <Entity Name="PM_VTxtRes" AutoTable="ResKey,ResValue" />
+<Entity Name="VPowerAction" AutoTable="PowerAction,PowerButton,PowerController" />
         </Group>
     </View>
 </MyOqlCodeGen>

@@ -41,7 +41,7 @@ namespace MyWeb.Areas.Admin.Controllers
             var retVal = GetPagePowers(
                 Query.skip,
                 Query.take,
-                Query.Controller , Query.Action , Query.Button  
+                Query.Controller, Query.Action, Query.Button
                 );
 
 
@@ -270,12 +270,12 @@ namespace MyWeb.Areas.Admin.Controllers
                     return dbr.Person.Select(o => o.UserID).ToEntityList("").ToArray();
                 case PowerOwnerEnum.Dept:
                     return dbr.Dept.Select(o => o.Id).ToEntityList("").ToArray();
-                //case PowerOwnerEnum.Role:
-                //    return dbr.Role.Select(o => o.Id).ToEntityList("").ToArray();
+                case PowerOwnerEnum.Role:
+                    return dbr.Role.Select(o => o.Id).ToEntityList("").ToArray();
                 case PowerOwnerEnum.NotMine:
                     return dbr.Person.Select(o => o.UserID).ToEntityList("").ToArray();
-                case PowerOwnerEnum.TStandardRole:
-                    return dbr.TStandardRole.Select(o => o.StandardRoleId).ToEntityList("").ToArray();
+                //case PowerOwnerEnum.TStandardRole:
+                //    return dbr.TStandardRole.Select(o => o.StandardRoleId).ToEntityList("").ToArray();
                 default:
                     break;
             }

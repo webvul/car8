@@ -15,12 +15,15 @@ namespace DbEnt
     {
         public partial class Entity
         {
-            private TStandardRoleRule.Entity[] _GetRoles = null;
-            public TStandardRoleRule.Entity[] GetRoles()
+            private RoleRule.Entity[] _GetRoles = null;
+            public RoleRule.Entity[] GetRoles()
             {
-                return dbr.TStandardRole.SelectWhere(o => o.Code == ConfigKey.StandardRoleCode.Get()).ToEntityList(o => o._).ToArray();
-            }
+                return dbr.Role.SelectWhere(
+                    o => o.Id.In(new MyBigInt(this.Role).ToPositions().ToArray()))
+                    .ToEntityList(o => o._)
+                    .ToArray();
 
+            }
         }
     }
 }

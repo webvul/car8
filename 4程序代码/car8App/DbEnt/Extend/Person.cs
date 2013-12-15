@@ -18,8 +18,10 @@ namespace DbEnt
             private RoleRule.Entity[] _GetRoles = null;
             public RoleRule.Entity[] GetRoles()
             {
-                return dbr.Role.SelectWhere(
-                    o => o.Id.In(new MyBigInt(this.Role).ToPositions().ToArray()))
+                return dbr.Role.SelectWhere(r =>
+                r.Id.In(dbr.PersonRole.SelectWhere(
+                    o => o.UserId == this.UserID)
+                    ))
                     .ToEntityList(o => o._)
                     .ToArray();
 

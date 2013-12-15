@@ -1,4 +1,4 @@
-﻿//系统自动生成的实体，不能修改。 By: UDI-PC.于新海  At:2013-12-09 19:32:05
+﻿//系统自动生成的实体，不能修改。 By: UDI-PC.于新海  At:2013-12-15 11:12:12
 using System;
 using MyOql;
 using MyCmn;
@@ -65,7 +65,7 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn SortID { get; set; }
         /// <summary>
-        /// 部门ID(Int32)[外键(DeptID=Dept:ID)]
+        /// 部门ID(Int32)[外键(DeptID=EC_Dept:ID)]
         /// </summary>
         public SimpleColumn DeptID { get; set; }
         /// <summary>
@@ -82,7 +82,7 @@ namespace DbEnt
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return Id; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "ProductType"; }
+        public override string GetDbName() { return "EC_ProductType"; }
 
         public Entity FindById(Int32 Id)
         {
@@ -164,7 +164,7 @@ namespace DbEnt
             public Int32 SortID { get; set; }
  
             /// <summary>
-            /// 部门ID[外键(DeptID=Dept:ID)]
+            /// 部门ID[外键(DeptID=EC_Dept:ID)]
             /// </summary>
             public Int32 DeptID { get; set; }
  
@@ -257,7 +257,7 @@ namespace DbEnt
         }
 
         /// <summary>
-        /// ID(Int64)[主键(ID),自增键]
+        /// ID(Int64)[主键(ID)]
         /// </summary>
         public SimpleColumn Id { get; set; }
         /// <summary>
@@ -300,9 +300,9 @@ namespace DbEnt
         public override SimpleColumn[] GetColumns() {  return new SimpleColumn[] { Id,Name,Pid,Wbs,CategoryID,Descr,SortID,DeptID,UserID,AddTime }; }
         public override SimpleColumn[] GetPrimaryKeys() { return new SimpleColumn[] { Id };  }
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
-        public override SimpleColumn GetAutoIncreKey() {  return Id; }
+        public override SimpleColumn GetAutoIncreKey() {  return null; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "NoticeType"; }
+        public override string GetDbName() { return "E_NoticeType"; }
 
         public Entity FindById(Int64 Id)
         {
@@ -349,7 +349,7 @@ namespace DbEnt
         {
  
             /// <summary>
-            /// ID[主键(ID),自增键]
+            /// ID[主键(ID)]
             /// </summary>
             public Int64 Id { get; set; }
  
@@ -472,7 +472,7 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn Id { get; set; }
         /// <summary>
-        /// NoticeTypeID(Int64)[外键(NoticeTypeID=NoticeType:ID)]
+        /// NoticeTypeID(Int64)[外键(NoticeTypeID=E_NoticeType:ID)]
         /// </summary>
         public SimpleColumn NoticeTypeID { get; set; }
         /// <summary>
@@ -484,7 +484,7 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn Wbs { get; set; }
         /// <summary>
-        /// Logo(Int32)[外键(Logo=Annex:ID)]
+        /// Logo(Int32)[外键(Logo=S_Annex:ID)]
         /// </summary>
         public SimpleColumn Logo { get; set; }
         /// <summary>
@@ -505,7 +505,7 @@ namespace DbEnt
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return Id; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "NoticeInfo"; }
+        public override string GetDbName() { return "E_NoticeInfo"; }
 
         public Entity FindById(Int32 Id)
         {
@@ -555,7 +555,7 @@ namespace DbEnt
             public Int32 Id { get; set; }
  
             /// <summary>
-            /// NoticeTypeID[外键(NoticeTypeID=NoticeType:ID)]
+            /// NoticeTypeID[外键(NoticeTypeID=E_NoticeType:ID)]
             /// </summary>
             public Int64 NoticeTypeID { get; set; }
  
@@ -570,7 +570,7 @@ namespace DbEnt
             public String Wbs { get; set; }
  
             /// <summary>
-            /// Logo[外键(Logo=Annex:ID)]
+            /// Logo[外键(Logo=S_Annex:ID)]
             /// </summary>
             public Int32 Logo { get; set; }
  
@@ -671,7 +671,7 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn Month { get; set; }
         /// <summary>
-        /// 产品ID(Int32)[外键(ProductID=ProductInfo:ID)]
+        /// 产品ID(Int32)[外键(ProductID=EC_ProductInfo:ID)]
         /// </summary>
         public SimpleColumn ProductID { get; set; }
         /// <summary>
@@ -684,7 +684,7 @@ namespace DbEnt
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return Id; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "ProductClicks"; }
+        public override string GetDbName() { return "E_ProductClicks"; }
 
         public Entity FindById(Int32 Id)
         {
@@ -741,7 +741,7 @@ namespace DbEnt
             public Int32 Month { get; set; }
  
             /// <summary>
-            /// 产品ID[外键(ProductID=ProductInfo:ID)]
+            /// 产品ID[外键(ProductID=EC_ProductInfo:ID)]
             /// </summary>
             public Int32 ProductID { get; set; }
  
@@ -847,7 +847,7 @@ namespace DbEnt
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return Id; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "ContactMsg"; }
+        public override string GetDbName() { return "E_ContactMsg"; }
 
         public Entity FindById(Int32 Id)
         {
@@ -990,11 +990,11 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn Id { get; set; }
         /// <summary>
-        /// 产品ID(Int32)[外键(ProductID=ProductInfo:ID)]
+        /// 产品ID(Int32)[外键(ProductID=EC_ProductInfo:ID)]
         /// </summary>
         public SimpleColumn ProductID { get; set; }
         /// <summary>
-        /// 附件ID(Int32)[外键(AnnexID=Annex:ID)]
+        /// 附件ID(Int32)[外键(AnnexID=S_Annex:ID)]
         /// </summary>
         public SimpleColumn AnnexID { get; set; }
         /// <summary>
@@ -1007,7 +1007,7 @@ namespace DbEnt
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return Id; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "ProductAnnex"; }
+        public override string GetDbName() { return "EC_ProductAnnex"; }
 
         public Entity FindById(Int32 Id)
         {
@@ -1053,12 +1053,12 @@ namespace DbEnt
             public Int32 Id { get; set; }
  
             /// <summary>
-            /// 产品ID[外键(ProductID=ProductInfo:ID)]
+            /// 产品ID[外键(ProductID=EC_ProductInfo:ID)]
             /// </summary>
             public Int32 ProductID { get; set; }
  
             /// <summary>
-            /// 附件ID[外键(AnnexID=Annex:ID)]
+            /// 附件ID[外键(AnnexID=S_Annex:ID)]
             /// </summary>
             public Int32 AnnexID { get; set; }
  
@@ -1136,7 +1136,7 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn Id { get; set; }
         /// <summary>
-        /// 产品类型ID(Int32)[外键(ProductTypeID=ProductType:ID)]
+        /// 产品类型ID(Int32)[外键(ProductTypeID=EC_ProductType:ID)]
         /// </summary>
         public SimpleColumn ProductTypeID { get; set; }
         /// <summary>
@@ -1148,7 +1148,7 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn Wbs { get; set; }
         /// <summary>
-        /// 产品缩略图(Int32)[外键(Logo=Annex:ID)]
+        /// 产品缩略图(Int32)[外键(Logo=S_Annex:ID)]
         /// </summary>
         public SimpleColumn Logo { get; set; }
         /// <summary>
@@ -1169,7 +1169,7 @@ namespace DbEnt
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return Id; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "ProductInfo"; }
+        public override string GetDbName() { return "EC_ProductInfo"; }
 
         public Entity FindById(Int32 Id)
         {
@@ -1219,7 +1219,7 @@ namespace DbEnt
             public Int32 Id { get; set; }
  
             /// <summary>
-            /// 产品类型ID[外键(ProductTypeID=ProductType:ID)]
+            /// 产品类型ID[外键(ProductTypeID=EC_ProductType:ID)]
             /// </summary>
             public Int32 ProductTypeID { get; set; }
  
@@ -1234,7 +1234,7 @@ namespace DbEnt
             public String Wbs { get; set; }
  
             /// <summary>
-            /// 产品缩略图[外键(Logo=Annex:ID)]
+            /// 产品缩略图[外键(Logo=S_Annex:ID)]
             /// </summary>
             public Int32 Logo { get; set; }
  
@@ -1351,7 +1351,7 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn Id { get; set; }
         /// <summary>
-        /// 产品ID(Int32)[外键(ProductID=ProductInfo:ID)]
+        /// 产品ID(Int32)[外键(ProductID=EC_ProductInfo:ID)]
         /// </summary>
         public SimpleColumn ProductID { get; set; }
         /// <summary>
@@ -1384,7 +1384,7 @@ namespace DbEnt
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return Id; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "ProductDetail"; }
+        public override string GetDbName() { return "EC_ProductDetail"; }
 
         public Entity FindById(Int32 Id)
         {
@@ -1434,7 +1434,7 @@ namespace DbEnt
             public Int32 Id { get; set; }
  
             /// <summary>
-            /// 产品ID[外键(ProductID=ProductInfo:ID)]
+            /// 产品ID[外键(ProductID=EC_ProductInfo:ID)]
             /// </summary>
             public Int32 ProductID { get; set; }
  

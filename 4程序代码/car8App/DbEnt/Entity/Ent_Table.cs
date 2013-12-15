@@ -1,4 +1,4 @@
-﻿//系统自动生成的实体，不能修改。 By: UDI-PC.于新海  At:2013-12-09 19:32:05
+﻿//系统自动生成的实体，不能修改。 By: UDI-PC.于新海  At:2013-12-15 11:12:12
 using System;
 using MyOql;
 using MyCmn;
@@ -36,7 +36,7 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn Id { get; set; }
         /// <summary>
-        /// 部门ID(Int32)[外键(DeptID=Dept:ID)]
+        /// 部门ID(Int32)[外键(DeptID=EC_Dept:ID)]
         /// </summary>
         public SimpleColumn DeptID { get; set; }
         /// <summary>
@@ -44,7 +44,7 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn Key { get; set; }
         /// <summary>
-        /// 附件ID(Int32)[外键(AnnexID=Annex:ID)]
+        /// 附件ID(Int32)[外键(AnnexID=S_Annex:ID)]
         /// </summary>
         public SimpleColumn AnnexID { get; set; }
         /// <summary>
@@ -57,7 +57,7 @@ namespace DbEnt
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return Id; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "DeptAnnex"; }
+        public override string GetDbName() { return "E_DeptAnnex"; }
 
         public Entity FindById(Int32 Id)
         {
@@ -104,7 +104,7 @@ namespace DbEnt
             public Int32 Id { get; set; }
  
             /// <summary>
-            /// 部门ID[外键(DeptID=Dept:ID)]
+            /// 部门ID[外键(DeptID=EC_Dept:ID)]
             /// </summary>
             public Int32 DeptID { get; set; }
  
@@ -114,7 +114,7 @@ namespace DbEnt
             public DeptAnnexKeyEnum Key { get; set; }
  
             /// <summary>
-            /// 附件ID[外键(AnnexID=Annex:ID)]
+            /// 附件ID[外键(AnnexID=S_Annex:ID)]
             /// </summary>
             public Int32 AnnexID { get; set; }
  
@@ -193,7 +193,6 @@ namespace DbEnt
             this.SortID = new SimpleColumn(this, DbType.Int32, 4,"SortID","SortID",true);
             this.Msn = new SimpleColumn(this, DbType.AnsiString, 50,"Msn","MSN",true);
             this.Qq = new SimpleColumn(this, DbType.AnsiString, 50,"Qq","QQ",true);
-            this.Role = new SimpleColumn(this, DbType.AnsiString, 50,"Role","Role",true);
             this.Power = new SimpleColumn(this, DbType.AnsiString, 4000,"Power","Power",true);
             this.NotPower = new SimpleColumn(this, DbType.AnsiString, 4000,"NotPower","NotPower",true);
         }
@@ -211,7 +210,7 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn Name { get; set; }
         /// <summary>
-        /// 头像(Int32)[外键(Logo=Annex:ID)]
+        /// 头像(Int32)[外键(Logo=S_Annex:ID)]
         /// </summary>
         public SimpleColumn Logo { get; set; }
         /// <summary>
@@ -223,7 +222,7 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn IDCard { get; set; }
         /// <summary>
-        /// DeptID(Int32)[外键(DeptID=Dept:ID)]
+        /// DeptID(Int32)[外键(DeptID=EC_Dept:ID)]
         /// </summary>
         public SimpleColumn DeptID { get; set; }
         /// <summary>
@@ -255,10 +254,6 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn Qq { get; set; }
         /// <summary>
-        /// Role(AnsiString)
-        /// </summary>
-        public SimpleColumn Role { get; set; }
-        /// <summary>
         /// 权限(AnsiString)
         /// </summary>
         public SimpleColumn Power { get; set; }
@@ -267,12 +262,12 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn NotPower { get; set; }
 
-        public override SimpleColumn[] GetColumns() {  return new SimpleColumn[] { UserID,Password,Name,Logo,BirthDay,IDCard,DeptID,Email,Sex,Mobile,Phone,SortID,Msn,Qq,Role,Power,NotPower }; }
+        public override SimpleColumn[] GetColumns() {  return new SimpleColumn[] { UserID,Password,Name,Logo,BirthDay,IDCard,DeptID,Email,Sex,Mobile,Phone,SortID,Msn,Qq,Power,NotPower }; }
         public override SimpleColumn[] GetPrimaryKeys() { return new SimpleColumn[] { UserID };  }
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return null; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "Person"; }
+        public override string GetDbName() { return "EC_Person"; }
 
         public Entity FindByUserID(String UserID)
         {
@@ -307,7 +302,6 @@ namespace DbEnt
             tab.SortID = this.SortID.Clone() as SimpleColumn;
             tab.Msn = this.Msn.Clone() as SimpleColumn;
             tab.Qq = this.Qq.Clone() as SimpleColumn;
-            tab.Role = this.Role.Clone() as SimpleColumn;
             tab.Power = this.Power.Clone() as SimpleColumn;
             tab.NotPower = this.NotPower.Clone() as SimpleColumn;
 
@@ -341,7 +335,7 @@ namespace DbEnt
             public String Name { get; set; }
  
             /// <summary>
-            /// 头像[外键(Logo=Annex:ID)]
+            /// 头像[外键(Logo=S_Annex:ID)]
             /// </summary>
             public Int32 Logo { get; set; }
  
@@ -356,7 +350,7 @@ namespace DbEnt
             public String IDCard { get; set; }
  
             /// <summary>
-            /// DeptID[外键(DeptID=Dept:ID)]
+            /// DeptID[外键(DeptID=EC_Dept:ID)]
             /// </summary>
             public Int32 DeptID { get; set; }
  
@@ -396,11 +390,6 @@ namespace DbEnt
             public String Qq { get; set; }
  
             /// <summary>
-            /// Role
-            /// </summary>
-            public String Role { get; set; }
- 
-            /// <summary>
             /// 权限
             /// </summary>
             public String Power { get; set; }
@@ -426,7 +415,6 @@ namespace DbEnt
                 if ( PropertyName == "SortID" ) { this.SortID = ValueProc.As<Int32>(Value) ; return true; }
                 if ( PropertyName == "Msn" ) { this.Msn = ValueProc.As<String>(Value) ; return true; }
                 if ( PropertyName == "Qq" ) { this.Qq = ValueProc.As<String>(Value) ; return true; }
-                if ( PropertyName == "Role" ) { this.Role = ValueProc.As<String>(Value) ; return true; }
                 if ( PropertyName == "Power" ) { this.Power = ValueProc.As<String>(Value) ; return true; }
                 if ( PropertyName == "NotPower" ) { this.NotPower = ValueProc.As<String>(Value) ; return true; }
                 return false ;
@@ -448,13 +436,12 @@ namespace DbEnt
                 if ( PropertyName == "SortID" ) { return this.SortID ; }
                 if ( PropertyName == "Msn" ) { return this.Msn ; }
                 if ( PropertyName == "Qq" ) { return this.Qq ; }
-                if ( PropertyName == "Role" ) { return this.Role ; }
                 if ( PropertyName == "Power" ) { return this.Power ; }
                 if ( PropertyName == "NotPower" ) { return this.NotPower ; }
                 return null ;
             }
 
-            public string[]  GetProperties() { return new string[]{ "UserID","Password","Name","Logo","BirthDay","IDCard","DeptID","Email","Sex","Mobile","Phone","SortID","Msn","Qq","Role","Power","NotPower" } ; }
+            public string[]  GetProperties() { return new string[]{ "UserID","Password","Name","Logo","BirthDay","IDCard","DeptID","Email","Sex","Mobile","Phone","SortID","Msn","Qq","Power","NotPower" } ; }
             
             public object Clone()
             {
@@ -474,6 +461,13 @@ namespace DbEnt
                 if (_GetDept != null) return _GetDept;
                 _GetDept = dbr.Dept.FindById(this.DeptID);
                 return _GetDept;
+            }
+            private PersonRoleRule.Entity[] _GetPersonRoles = null;
+            public PersonRoleRule.Entity[] GetPersonRoles()
+            {
+                if (_GetPersonRoles != null) return _GetPersonRoles;
+                _GetPersonRoles = dbr.PersonRole.SelectWhere(o => o.UserId == this.UserID).ToEntityList<PersonRoleRule.Entity>().ToArray();
+                return _GetPersonRoles;
             }
          }
     }
@@ -537,11 +531,11 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn Name { get; set; }
         /// <summary>
-        /// 头像(Int32)[外键(Logo=Annex:ID)]
+        /// 头像(Int32)[外键(Logo=S_Annex:ID)]
         /// </summary>
         public SimpleColumn Logo { get; set; }
         /// <summary>
-        /// 公司条幅(Int32)[外键(Title=Annex:ID)]
+        /// 公司条幅(Int32)[外键(Title=S_Annex:ID)]
         /// </summary>
         public SimpleColumn Title { get; set; }
         /// <summary>
@@ -557,7 +551,7 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn Detail { get; set; }
         /// <summary>
-        /// Profile(AnsiString)
+        /// [去除](AnsiString)
         /// </summary>
         public SimpleColumn Profile { get; set; }
         /// <summary>
@@ -605,7 +599,7 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn Power { get; set; }
         /// <summary>
-        /// TitleExtend(Int32)[外键(TitleExtend=Annex:ID)]
+        /// 副标题(Int32)[外键(TitleExtend=S_Annex:ID)]
         /// </summary>
         public SimpleColumn TitleExtend { get; set; }
         /// <summary>
@@ -618,7 +612,7 @@ namespace DbEnt
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return null; }
         public override SimpleColumn GetUniqueKey() { return  WebName; }
-        public override string GetDbName() { return "Dept"; }
+        public override string GetDbName() { return "EC_Dept"; }
 
         public Entity FindById(Int32 Id)
         {
@@ -714,12 +708,12 @@ namespace DbEnt
             public String Name { get; set; }
  
             /// <summary>
-            /// 头像[外键(Logo=Annex:ID)]
+            /// 头像[外键(Logo=S_Annex:ID)]
             /// </summary>
             public Int32 Logo { get; set; }
  
             /// <summary>
-            /// 公司条幅[外键(Title=Annex:ID)]
+            /// 公司条幅[外键(Title=S_Annex:ID)]
             /// </summary>
             public Int32 Title { get; set; }
  
@@ -739,7 +733,7 @@ namespace DbEnt
             public String Detail { get; set; }
  
             /// <summary>
-            /// Profile
+            /// [去除]
             /// </summary>
             public String Profile { get; set; }
  
@@ -799,7 +793,7 @@ namespace DbEnt
             public String Power { get; set; }
  
             /// <summary>
-            /// TitleExtend[外键(TitleExtend=Annex:ID)]
+            /// 副标题[外键(TitleExtend=S_Annex:ID)]
             /// </summary>
             public Int32 TitleExtend { get; set; }
  
@@ -873,27 +867,14 @@ namespace DbEnt
                 return this.CloneIEntity() ;
             }
 
-            private AnnexRule.Entity _GetAnnexByLogo = null;
-            public AnnexRule.Entity GetAnnexByLogo()
+            private AnnexRule.Entity _GetAnnex = null;
+            public AnnexRule.Entity GetAnnex()
             {
-                if (_GetAnnexByLogo != null) return _GetAnnexByLogo;
-                _GetAnnexByLogo = dbr.Annex.FindById(this.Logo);
-                return _GetAnnexByLogo;
+                if (_GetAnnex != null) return _GetAnnex;
+                _GetAnnex = dbr.Annex.FindById(this.Logo);
+                return _GetAnnex;
             }
-            private AnnexRule.Entity _GetAnnexByTitle = null;
-            public AnnexRule.Entity GetAnnexByTitle()
-            {
-                if (_GetAnnexByTitle != null) return _GetAnnexByTitle;
-                _GetAnnexByTitle = dbr.Annex.FindById(this.Title);
-                return _GetAnnexByTitle;
-            }
-            private AnnexRule.Entity _GetAnnexByTitleExtend = null;
-            public AnnexRule.Entity GetAnnexByTitleExtend()
-            {
-                if (_GetAnnexByTitleExtend != null) return _GetAnnexByTitleExtend;
-                _GetAnnexByTitleExtend = dbr.Annex.FindById(this.TitleExtend);
-                return _GetAnnexByTitleExtend;
-            }
+            
             private DeptAnnexRule.Entity[] _GetDeptAnnexs = null;
             public DeptAnnexRule.Entity[] GetDeptAnnexs()
             {
@@ -990,7 +971,7 @@ namespace DbEnt
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return Id; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "Annex"; }
+        public override string GetDbName() { return "S_Annex"; }
 
         public Entity FindById(Int32 Id)
         {
@@ -1229,7 +1210,7 @@ namespace DbEnt
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return Id; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "Dict"; }
+        public override string GetDbName() { return "S_Dict"; }
 
         public Entity FindById(Int32 Id)
         {
@@ -1359,7 +1340,7 @@ namespace DbEnt
         }
 
         /// <summary>
-        /// ID(Int32)[自增键]
+        /// ID(Int32)[自增键,唯一键(ID)]
         /// </summary>
         public SimpleColumn Id { get; set; }
         /// <summary>
@@ -1375,8 +1356,8 @@ namespace DbEnt
         public override SimpleColumn[] GetPrimaryKeys() { return new SimpleColumn[] { Key };  }
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return Id; }
-        public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "ResKey"; }
+        public override SimpleColumn GetUniqueKey() { return  Id; }
+        public override string GetDbName() { return "S_ResKey"; }
 
         public Entity FindByKey(String Key)
         {
@@ -1426,7 +1407,7 @@ namespace DbEnt
         {
  
             /// <summary>
-            /// ID[自增键]
+            /// ID[自增键,唯一键(ID)]
             /// </summary>
             public Int32 Id { get; set; }
  
@@ -1463,6 +1444,13 @@ namespace DbEnt
                 return this.CloneIEntity() ;
             }
 
+            private ResValueRule.Entity[] _GetResValues = null;
+            public ResValueRule.Entity[] GetResValues()
+            {
+                if (_GetResValues != null) return _GetResValues;
+                _GetResValues = dbr.ResValue.SelectWhere(o => o.ResID == this.Id).ToEntityList<ResValueRule.Entity>().ToArray();
+                return _GetResValues;
+            }
          }
     }
 
@@ -1493,7 +1481,7 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn Lang { get; set; }
         /// <summary>
-        /// ResID(Int32)[主键(Lang,ResID)]
+        /// ResID(Int32)[主键(Lang,ResID),外键(ResID=S_ResKey:ID)]
         /// </summary>
         public SimpleColumn ResID { get; set; }
         /// <summary>
@@ -1506,7 +1494,7 @@ namespace DbEnt
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return Id; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "ResValue"; }
+        public override string GetDbName() { return "S_ResValue"; }
 
         public Entity FindById(Int32 Id)
         {
@@ -1565,7 +1553,7 @@ namespace DbEnt
             public LangEnum Lang { get; set; }
  
             /// <summary>
-            /// ResID[主键(Lang,ResID)]
+            /// ResID[主键(Lang,ResID),外键(ResID=S_ResKey:ID)]
             /// </summary>
             public Int32 ResID { get; set; }
  
@@ -1599,6 +1587,13 @@ namespace DbEnt
                 return this.CloneIEntity() ;
             }
 
+            private ResKeyRule.Entity _GetResKey = null;
+            public ResKeyRule.Entity GetResKey()
+            {
+                if (_GetResKey != null) return _GetResKey;
+                _GetResKey = dbr.ResKey.FindById(this.ResID);
+                return _GetResKey;
+            }
          }
     }
 
@@ -1642,7 +1637,7 @@ namespace DbEnt
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return Id; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "PowerController"; }
+        public override string GetDbName() { return "S_PowerController"; }
 
         public Entity FindById(Int32 Id)
         {
@@ -1764,7 +1759,7 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn Action { get; set; }
         /// <summary>
-        /// ControllerID(Int32)[外键(ControllerID=PowerController:ID)]
+        /// ControllerID(Int32)[外键(ControllerID=S_PowerController:ID)]
         /// </summary>
         public SimpleColumn ControllerID { get; set; }
         /// <summary>
@@ -1777,7 +1772,7 @@ namespace DbEnt
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return Id; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "PowerAction"; }
+        public override string GetDbName() { return "S_PowerAction"; }
 
         public Entity FindById(Int32 Id)
         {
@@ -1828,7 +1823,7 @@ namespace DbEnt
             public String Action { get; set; }
  
             /// <summary>
-            /// ControllerID[外键(ControllerID=PowerController:ID)]
+            /// ControllerID[外键(ControllerID=S_PowerController:ID)]
             /// </summary>
             public Int32 ControllerID { get; set; }
  
@@ -1902,7 +1897,7 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn Id { get; set; }
         /// <summary>
-        /// ActionID(Int32)[外键(ActionID=PowerAction:ID)]
+        /// ActionID(Int32)[外键(ActionID=S_PowerAction:ID)]
         /// </summary>
         public SimpleColumn ActionID { get; set; }
         /// <summary>
@@ -1919,7 +1914,7 @@ namespace DbEnt
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return Id; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "PowerButton"; }
+        public override string GetDbName() { return "S_PowerButton"; }
 
         public Entity FindById(Int32 Id)
         {
@@ -1965,7 +1960,7 @@ namespace DbEnt
             public Int32 Id { get; set; }
  
             /// <summary>
-            /// ActionID[外键(ActionID=PowerAction:ID)]
+            /// ActionID[外键(ActionID=S_PowerAction:ID)]
             /// </summary>
             public Int32 ActionID { get; set; }
  
@@ -2109,7 +2104,7 @@ namespace DbEnt
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return Id; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "Log"; }
+        public override string GetDbName() { return "S_log"; }
 
         public Entity FindById(Int32 Id)
         {
@@ -2365,7 +2360,7 @@ namespace DbEnt
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return null; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "Menu"; }
+        public override string GetDbName() { return "S_Menu"; }
 
         public Entity FindById(Int32 Id)
         {
@@ -2542,7 +2537,7 @@ namespace DbEnt
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return null; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "CacheTable"; }
+        public override string GetDbName() { return "S_CacheTable"; }
 
         public Entity FindByTable(String Table)
         {
@@ -2609,7 +2604,7 @@ namespace DbEnt
 
     
     /// <summary>
-    /// 
+    /// 企业角色
     /// </summary>
     [Serializable]
     public sealed partial class RoleRule : RuleBase, ITableRule,ICloneable
@@ -2630,19 +2625,19 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn Id { get; set; }
         /// <summary>
-        /// Name(AnsiString)
+        /// 角色的英文名(AnsiString)
         /// </summary>
         public SimpleColumn Name { get; set; }
         /// <summary>
-        /// Power(AnsiString)
+        /// 权限字(AnsiString)
         /// </summary>
         public SimpleColumn Power { get; set; }
         /// <summary>
-        /// NotPower(AnsiString)
+        /// 禁用的权限(AnsiString)
         /// </summary>
         public SimpleColumn NotPower { get; set; }
         /// <summary>
-        /// Remark(AnsiString)
+        /// 备注(AnsiString)
         /// </summary>
         public SimpleColumn Remark { get; set; }
 
@@ -2651,7 +2646,7 @@ namespace DbEnt
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return Id; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "Role"; }
+        public override string GetDbName() { return "EC_Role"; }
 
         public Entity FindById(Int32 Id)
         {
@@ -2681,12 +2676,12 @@ namespace DbEnt
             return tab;
         }
         /// <summary>
-        ///  
+        /// 企业角色 
         /// </summary>
         public Entity _ { get { return new Entity (); } }
        
         /// <summary>
-        /// 
+        /// 企业角色
         /// </summary>
         [Serializable]
         public sealed partial class Entity :IEntity
@@ -2698,22 +2693,22 @@ namespace DbEnt
             public Int32 Id { get; set; }
  
             /// <summary>
-            /// Name
+            /// 角色的英文名
             /// </summary>
             public String Name { get; set; }
  
             /// <summary>
-            /// Power
+            /// 权限字
             /// </summary>
             public String Power { get; set; }
  
             /// <summary>
-            /// NotPower
+            /// 禁用的权限
             /// </summary>
             public String NotPower { get; set; }
  
             /// <summary>
-            /// Remark
+            /// 备注
             /// </summary>
             public String Remark { get; set; }
 
@@ -2744,6 +2739,142 @@ namespace DbEnt
                 return this.CloneIEntity() ;
             }
 
+            private PersonRoleRule.Entity[] _GetPersonRoles = null;
+            public PersonRoleRule.Entity[] GetPersonRoles()
+            {
+                if (_GetPersonRoles != null) return _GetPersonRoles;
+                _GetPersonRoles = dbr.PersonRole.SelectWhere(o => o.RoleId == this.Id).ToEntityList<PersonRoleRule.Entity>().ToArray();
+                return _GetPersonRoles;
+            }
+         }
+    }
+
+
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    [Serializable]
+    public sealed partial class PersonRoleRule : RuleBase, ITableRule,ICloneable
+    {
+
+
+        public  PersonRoleRule() : base("PersonRole")
+        {
+            this.Id = new SimpleColumn(this, DbType.Int32, 4,"Id","Id",false);
+            this.UserId = new SimpleColumn(this, DbType.AnsiString, 50,"UserId","UserId",true);
+            this.RoleId = new SimpleColumn(this, DbType.Int32, 4,"RoleId","RoleId",true);
+        }
+
+        /// <summary>
+        /// 企业用户和角色的关系(Int32)[主键(Id),自增键]
+        /// </summary>
+        public SimpleColumn Id { get; set; }
+        /// <summary>
+        /// UserId(AnsiString)[外键(UserId=EC_Person:UserID)]
+        /// </summary>
+        public SimpleColumn UserId { get; set; }
+        /// <summary>
+        /// RoleId(Int32)[外键(RoleId=EC_Role:Id)]
+        /// </summary>
+        public SimpleColumn RoleId { get; set; }
+
+        public override SimpleColumn[] GetColumns() {  return new SimpleColumn[] { Id,UserId,RoleId }; }
+        public override SimpleColumn[] GetPrimaryKeys() { return new SimpleColumn[] { Id };  }
+        public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
+        public override SimpleColumn GetAutoIncreKey() {  return Id; }
+        public override SimpleColumn GetUniqueKey() { return  null; }
+        public override string GetDbName() { return "EC_Person_Role"; }
+
+        public Entity FindById(Int32 Id)
+        {
+             if ( Id <= 0 ) return null ;
+            return this.SelectWhere(o => o.Id == Id).ToEntity<Entity>();
+        }
+        public int DeleteById(Int32 Id)
+        {
+             if ( Id <= 0 ) return 0 ;
+            return this.Delete(o => o.Id == Id).Execute() ;
+        }
+
+
+        public override object Clone()
+        {
+            var tab = new PersonRoleRule();
+            if ( this._Config_ != null ) tab._Config_ = base._Config_.Clone() as RuleRuntimeConfig ;
+            tab.SetAlias(base.Name);
+            tab.SetReconfig(base.ReConfig);
+
+            tab.Id = this.Id.Clone() as SimpleColumn;
+            tab.UserId = this.UserId.Clone() as SimpleColumn;
+            tab.RoleId = this.RoleId.Clone() as SimpleColumn;
+
+            return tab;
+        }
+        /// <summary>
+        ///  
+        /// </summary>
+        public Entity _ { get { return new Entity (); } }
+       
+        /// <summary>
+        /// 
+        /// </summary>
+        [Serializable]
+        public sealed partial class Entity :IEntity
+        {
+ 
+            /// <summary>
+            /// 企业用户和角色的关系[主键(Id),自增键]
+            /// </summary>
+            public Int32 Id { get; set; }
+ 
+            /// <summary>
+            /// UserId[外键(UserId=EC_Person:UserID)]
+            /// </summary>
+            public String UserId { get; set; }
+ 
+            /// <summary>
+            /// RoleId[外键(RoleId=EC_Role:Id)]
+            /// </summary>
+            public Int32 RoleId { get; set; }
+
+            public bool SetPropertyValue(string PropertyName, object Value)
+            {
+                if ( PropertyName == "Id" ) { this.Id = ValueProc.As<Int32>(Value) ; return true; }
+                if ( PropertyName == "UserId" ) { this.UserId = ValueProc.As<String>(Value) ; return true; }
+                if ( PropertyName == "RoleId" ) { this.RoleId = ValueProc.As<Int32>(Value) ; return true; }
+                return false ;
+           }
+
+            public object GetPropertyValue(string PropertyName)
+            {
+                if ( PropertyName == "Id" ) { return this.Id ; }
+                if ( PropertyName == "UserId" ) { return this.UserId ; }
+                if ( PropertyName == "RoleId" ) { return this.RoleId ; }
+                return null ;
+            }
+
+            public string[]  GetProperties() { return new string[]{ "Id","UserId","RoleId" } ; }
+            
+            public object Clone()
+            {
+                return this.CloneIEntity() ;
+            }
+
+            private PersonRule.Entity _GetPerson = null;
+            public PersonRule.Entity GetPerson()
+            {
+                if (_GetPerson != null) return _GetPerson;
+                _GetPerson = dbr.Person.FindByUserID(this.UserId);
+                return _GetPerson;
+            }
+            private RoleRule.Entity _GetRole = null;
+            public RoleRule.Entity GetRole()
+            {
+                if (_GetRole != null) return _GetRole;
+                _GetRole = dbr.Role.FindById(this.RoleId);
+                return _GetRole;
+            }
          }
     }
 
@@ -2792,7 +2923,7 @@ namespace DbEnt
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return null; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "EnterpriseShowCase"; }
+        public override string GetDbName() { return "P_EnterpriseShowCase"; }
 
         public Entity FindByProductID(Int32 ProductID)
         {
@@ -2933,7 +3064,7 @@ namespace DbEnt
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return null; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "NoticeShowCase"; }
+        public override string GetDbName() { return "P_NoticeShowCase"; }
 
         public Entity FindByNoticeID(Int32 NoticeID)
         {
@@ -3065,7 +3196,7 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn CommID { get; set; }
         /// <summary>
-        /// 商圈(Int32)[外键(ZoneId=Zone:Id)]
+        /// 商圈(Int32)[外键(ZoneId=S_Zone:Id)]
         /// </summary>
         public SimpleColumn ZoneId { get; set; }
         /// <summary>
@@ -3134,7 +3265,7 @@ namespace DbEnt
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return null; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "Community"; }
+        public override string GetDbName() { return "S_Community"; }
 
         public Entity FindByCommID(Int32 CommID)
         {
@@ -3193,7 +3324,7 @@ namespace DbEnt
             public Int32 CommID { get; set; }
  
             /// <summary>
-            /// 商圈[外键(ZoneId=Zone:Id)]
+            /// 商圈[外键(ZoneId=S_Zone:Id)]
             /// </summary>
             public Int32 ZoneId { get; set; }
  
@@ -3362,11 +3493,11 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn Id { get; set; }
         /// <summary>
-        /// DeptId(Int32)[外键(DeptId=Dept:ID)]
+        /// 公司Id(Int32)[外键(DeptId=EC_Dept:ID)]
         /// </summary>
         public SimpleColumn DeptId { get; set; }
         /// <summary>
-        /// CommId(Int32)[外键(CommId=Community:CommID)]
+        /// 小区Id(Int32)[外键(CommId=S_Community:CommID)]
         /// </summary>
         public SimpleColumn CommId { get; set; }
 
@@ -3375,7 +3506,7 @@ namespace DbEnt
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return Id; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "Dept_Community"; }
+        public override string GetDbName() { return "E_Dept_Community"; }
 
         public Entity FindById(Int32 Id)
         {
@@ -3420,12 +3551,12 @@ namespace DbEnt
             public Int32 Id { get; set; }
  
             /// <summary>
-            /// DeptId[外键(DeptId=Dept:ID)]
+            /// 公司Id[外键(DeptId=EC_Dept:ID)]
             /// </summary>
             public Int32 DeptId { get; set; }
  
             /// <summary>
-            /// CommId[外键(CommId=Community:CommID)]
+            /// 小区Id[外键(CommId=S_Community:CommID)]
             /// </summary>
             public Int32 CommId { get; set; }
 
@@ -3496,7 +3627,7 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn Name { get; set; }
         /// <summary>
-        /// CityId(AnsiString)[外键(CityId=City:Id)]
+        /// CityId(AnsiString)[外键(CityId=S_City:Id)]
         /// </summary>
         public SimpleColumn CityId { get; set; }
         /// <summary>
@@ -3509,7 +3640,7 @@ namespace DbEnt
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return Id; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "Zone"; }
+        public override string GetDbName() { return "S_Zone"; }
 
         public Entity FindById(Int32 Id)
         {
@@ -3560,7 +3691,7 @@ namespace DbEnt
             public String Name { get; set; }
  
             /// <summary>
-            /// CityId[外键(CityId=City:Id)]
+            /// CityId[外键(CityId=S_City:Id)]
             /// </summary>
             public String CityId { get; set; }
  
@@ -3638,7 +3769,7 @@ namespace DbEnt
         /// </summary>
         public SimpleColumn Name { get; set; }
         /// <summary>
-        /// BelongTo(AnsiString)[外键(BelongTo=Province:Id)]
+        /// BelongTo(AnsiString)[外键(BelongTo=S_Province:Id)]
         /// </summary>
         public SimpleColumn BelongTo { get; set; }
         /// <summary>
@@ -3651,7 +3782,7 @@ namespace DbEnt
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return null; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "City"; }
+        public override string GetDbName() { return "S_City"; }
 
         public Entity FindById(String Id)
         {
@@ -3702,7 +3833,7 @@ namespace DbEnt
             public String Name { get; set; }
  
             /// <summary>
-            /// BelongTo[外键(BelongTo=Province:Id)]
+            /// BelongTo[外键(BelongTo=S_Province:Id)]
             /// </summary>
             public String BelongTo { get; set; }
  
@@ -3798,7 +3929,7 @@ namespace DbEnt
         public override SimpleColumn[] GetComputeKeys() { return new SimpleColumn[] {  }; }
         public override SimpleColumn GetAutoIncreKey() {  return null; }
         public override SimpleColumn GetUniqueKey() { return  null; }
-        public override string GetDbName() { return "Province"; }
+        public override string GetDbName() { return "S_Province"; }
 
         public Entity FindById(String Id)
         {

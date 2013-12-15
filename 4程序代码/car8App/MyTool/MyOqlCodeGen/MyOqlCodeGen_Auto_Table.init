@@ -4,34 +4,38 @@
 <MyOqlCodeGen>
   <Table>
     <Group db="dbo">
-      <Entity Name="Annex" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="" />
-      <Entity Name="CacheTable" PKs="Table" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="" />
-      <Entity Name="Dict" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="" />
-      <Entity Name="Menu" PKs="ID" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="" />
-      <Entity Name="PowerAction" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="ControllerID()=PowerController:ID" />
-      <Entity Name="PowerButton" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="ActionID(ud)=PowerAction:ID" />
-      <Entity Name="PowerController" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="" />
-      <Entity Name="ResKey" PKs="Key" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="" />
-      <Entity Name="ResValue" PKs="Lang,ResID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="" />
-      <Entity Name="ContactMsg" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="" />
-      <Entity Name="Dept" PKs="ID" AutoIncreKey="" ComputeKeys="" UniqueKey="WebName" FKs="Logo()=Annex:ID,Title()=Annex:ID,TitleExtend()=Annex:ID" />
-      <Entity Name="DeptAnnex" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="DeptID(ud)=Dept:ID,AnnexID(ud)=Annex:ID" />
-      <Entity Name="NoticeInfo" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="NoticeTypeID(ud)=NoticeType:ID,Logo()=Annex:ID" />
-      <Entity Name="NoticeType" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="" />
-      <Entity Name="Person" PKs="UserID" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="Logo()=Annex:ID,DeptID()=Dept:ID" />
-      <Entity Name="ProductAnnex" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="ProductID(ud)=ProductInfo:ID,AnnexID(ud)=Annex:ID" />
-      <Entity Name="ProductClicks" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="Year,Month,ProductID" FKs="ProductID(ud)=ProductInfo:ID" />
-      <Entity Name="ProductDetail" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="ProductID()=ProductInfo:ID" />
-      <Entity Name="ProductInfo" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="ProductTypeID(ud)=ProductType:ID,Logo()=Annex:ID" />
-      <Entity Name="ProductType" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="Name,PID" FKs="DeptID()=Dept:ID" />
-      <Entity Name="Role" PKs="Id" AutoIncreKey="Id" ComputeKeys="" UniqueKey="" FKs="" />
-      <Entity Name="EnterpriseShowCase" PKs="ProductID" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="" />
-      <Entity Name="NoticeShowCase" PKs="NoticeID" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="" />
-      <Entity Name="Community" PKs="CommID" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="ZoneId()=Zone:Id" />
-      <Entity Name="Dept_Community" PKs="Id" AutoIncreKey="Id" ComputeKeys="" UniqueKey="" FKs="DeptId()=Dept:ID,CommId()=Community:CommID" />
-      <Entity Name="Zone" PKs="Id" AutoIncreKey="Id" ComputeKeys="" UniqueKey="" FKs="CityId()=City:Id" />
-      <Entity Name="City" PKs="Id" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="BelongTo()=Province:Id" />
-      <Entity Name="Province" PKs="Id" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="E_Dept_Community" PKs="Id" AutoIncreKey="Id" ComputeKeys="" UniqueKey="" FKs="DeptId()=EC_Dept:ID,CommId()=S_Community:CommID" />
+      <Entity Name="E_NoticeInfo" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="NoticeTypeID(ud)=E_NoticeType:ID,Logo()=S_Annex:ID" />
+      <Entity Name="E_NoticeType" PKs="ID" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="E_ProductClicks" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="Year,Month,ProductID" FKs="ProductID(ud)=EC_ProductInfo:ID" />
+      <Entity Name="EC_Dept" PKs="ID" AutoIncreKey="" ComputeKeys="" UniqueKey="WebName" FKs="Logo()=S_Annex:ID,Title()=S_Annex:ID,TitleExtend()=S_Annex:ID" />
+      <Entity Name="EC_Person" PKs="UserID" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="Logo()=S_Annex:ID,DeptID()=EC_Dept:ID" />
+      <Entity Name="EC_Person_Role" PKs="Id" AutoIncreKey="Id" ComputeKeys="" UniqueKey="" FKs="UserId()=EC_Person:UserID,RoleId()=EC_Role:Id" />
+      <Entity Name="EC_ProductAnnex" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="ProductID(ud)=EC_ProductInfo:ID,AnnexID(ud)=S_Annex:ID" />
+      <Entity Name="EC_ProductDetail" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="ProductID()=EC_ProductInfo:ID" />
+      <Entity Name="EC_ProductInfo" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="ProductTypeID(ud)=EC_ProductType:ID,Logo()=S_Annex:ID" />
+      <Entity Name="EC_ProductType" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="Name,PID" FKs="DeptID()=EC_Dept:ID" />
+      <Entity Name="EC_Role" PKs="Id" AutoIncreKey="Id" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="P_EnterpriseShowCase" PKs="ProductID" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="P_NoticeShowCase" PKs="NoticeID" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="S_Annex" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="S_CacheTable" PKs="Table" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="S_City" PKs="Id" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="BelongTo()=S_Province:Id" />
+      <Entity Name="S_Community" PKs="CommID" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="ZoneId()=S_Zone:Id" />
+      <Entity Name="E_ContactMsg" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="E_DeptAnnex" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="DeptID(ud)=EC_Dept:ID,AnnexID(ud)=S_Annex:ID" />
+      <Entity Name="S_Dict" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="S_Menu" PKs="ID" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="S_PowerAction" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="ControllerID()=S_PowerController:ID" />
+      <Entity Name="S_PowerButton" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="ActionID(ud)=S_PowerAction:ID" />
+      <Entity Name="S_PowerController" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="S_PowerTable" PKs="ID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="S_Province" PKs="Id" AutoIncreKey="" ComputeKeys="" UniqueKey="" FKs="" />
+      <Entity Name="S_ResKey" PKs="Key" AutoIncreKey="ID" ComputeKeys="" UniqueKey="ID" FKs="" />
+      <Entity Name="S_ResValue" PKs="Lang,ResID" AutoIncreKey="ID" ComputeKeys="" UniqueKey="" FKs="ResID()=S_ResKey:ID" />
+      <Entity Name="S_Zone" PKs="Id" AutoIncreKey="Id" ComputeKeys="" UniqueKey="" FKs="CityId()=S_City:Id" />
+      
+      <Entity Name="S_log" PKs="Id" AutoIncreKey="Id" ComputeKeys="" UniqueKey="" FKs="" />
     </Group>
   </Table>
 </MyOqlCodeGen>
